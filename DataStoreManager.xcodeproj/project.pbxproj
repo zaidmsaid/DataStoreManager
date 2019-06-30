@@ -10,6 +10,10 @@
 		B8C2CF3522C8E6640080102C /* DataStoreManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2CF2B22C8E6640080102C /* DataStoreManager.framework */; };
 		B8C2CF3A22C8E6640080102C /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
 		B8C2CF3C22C8E6640080102C /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8C2CF4A22C8EE980080102C /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
+		B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
+		B8C2CF4E22C9080E0080102C /* DataStoreManager+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */; };
+		B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,10 @@
 		B8C2CF3422C8E6640080102C /* DataStoreManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataStoreManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
 		B8C2CF3B22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8C2CF4922C8EE980080102C /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
+		B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWorker.swift; sourceTree = "<group>"; };
+		B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStoreManager+Protocol.swift"; sourceTree = "<group>"; };
+		B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +97,10 @@
 		B8C2CF4522C8E69D0080102C /* DataStoreManager */ = {
 			isa = PBXGroup;
 			children = (
+				B8C2CF4922C8EE980080102C /* DataStoreManager.swift */,
+				B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */,
+				B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */,
+				B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */,
 				B8C2CF2E22C8E6640080102C /* DataStoreManager.h */,
 			);
 			path = DataStoreManager;
@@ -164,6 +176,7 @@
 				TargetAttributes = {
 					B8C2CF2A22C8E6640080102C = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					B8C2CF3322C8E6640080102C = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -210,6 +223,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */,
+				B8C2CF4E22C9080E0080102C /* DataStoreManager+Protocol.swift in Sources */,
+				B8C2CF4A22C8EE980080102C /* DataStoreManager.swift in Sources */,
+				B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +374,7 @@
 		B8C2CF4022C8E6640080102C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -374,6 +392,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -382,6 +401,7 @@
 		B8C2CF4122C8E6640080102C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -407,6 +427,7 @@
 		B8C2CF4322C8E6640080102C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -425,6 +446,7 @@
 		B8C2CF4422C8E6640080102C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
 				INFOPLIST_FILE = Tests/Info.plist;
