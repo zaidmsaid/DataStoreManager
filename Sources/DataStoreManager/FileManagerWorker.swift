@@ -33,6 +33,7 @@ extension DataStoreManager {
         class func create(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
+                assertionFailure("Unable to get document URL")
                 completionHandler(false)
                 return
             }
@@ -58,6 +59,7 @@ extension DataStoreManager {
         class func update(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getFullPath(forFileName: fileName, inDirectory: directory) else {
+                assertionFailure("Unable to get document URL")
                 completionHandler(false)
                 return
             }
@@ -67,6 +69,7 @@ extension DataStoreManager {
                 try data?.write(to: url)
                 completionHandler(true)
             } catch {
+                assertionFailure("Unable to write to document URL")
                 completionHandler(false)
             }
         }
@@ -74,6 +77,7 @@ extension DataStoreManager {
         class func delete(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getFullPath(forFileName: fileName, inDirectory: directory) else {
+                assertionFailure("Unable to get document URL")
                 completionHandler(false)
                 return
             }
@@ -83,6 +87,7 @@ extension DataStoreManager {
                 completionHandler(true)
 
             } catch {
+                assertionFailure("Unable to remote at document URL")
                 completionHandler(false)
             }
         }
@@ -90,6 +95,7 @@ extension DataStoreManager {
         class func deleteAll(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getURL(for: directory) else {
+                assertionFailure("Unable to get document URL")
                 completionHandler(false)
                 return
             }
@@ -99,6 +105,7 @@ extension DataStoreManager {
                     delete(forKey: fileName, forDirectory: directory, completionHandler: completionHandler)
                 }
             } else {
+                assertionFailure("Unable to get contents of document directory")
                 completionHandler(false)
             }
         }
@@ -166,6 +173,8 @@ extension DataStoreManager {
         }
     }
 }
+
+// MARK: - Private Extensions
 
 fileprivate protocol AnySubclass: Any {
 }

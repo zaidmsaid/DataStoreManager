@@ -16,8 +16,30 @@
 
 import Foundation
 
+// MARK: - DataSource
+
 @objc public protocol DataStoreManagerDataSource: class {
 
+    // MARK: Core
+
     @objc optional func defaultType(for manager: DataStoreManager) -> DataStoreManager.StorageType
-    @objc optional func willMigrate(_ manager: DataStoreManager, fromVersion version: Int, forType type: DataStoreManager.StorageType)
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, currentSchemaVersionForType type: DataStoreManager.StorageType) -> Int
+
+    // MARK: Cache
+
+    @objc optional func cacheTotalCostLimit(for manager: DataStoreManager) -> Int
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, cacheCostLimitForObject object: Any) -> Int
+
+    // MARK: SecItem
+
+    @objc optional func keychainService(for manager: DataStoreManager) -> String
+    @objc optional func keychainAccount(for manager: DataStoreManager) -> String
+    @objc optional func keychainAccessGroup(for manager: DataStoreManager) -> String
+}
+
+// MARK: - Delegate
+
+@objc public protocol DataStoreManagerDelegate: class {
+
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, performMigrationFromOldVersion version: Int, forType type: DataStoreManager.StorageType)
 }

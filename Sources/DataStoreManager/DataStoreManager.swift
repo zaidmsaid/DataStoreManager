@@ -20,7 +20,11 @@ import Foundation
 
     // MARK: - Properties
 
-    @objc open var tag: Int = 0
+    @objc open var tag: Int = 0 {
+        willSet {
+        }
+    }
+
     @objc open weak var dataSource: DataStoreManagerDataSource? {
         willSet {
             if let defaultType = newValue?.defaultType?(for: self) {
@@ -28,6 +32,37 @@ import Foundation
             }
         }
     }
+
+    @objc open weak var delegate: DataStoreManagerDelegate? {
+        willSet {
+        }
+    }
+
+    @objc public static let shared = DataStoreManager()
+
+    lazy var userDefaultsWorker: UserDefaultsWorker.Type = {
+        UserDefaultsWorker.self
+    }()
+
+    lazy var fileManagerWorker: FileManagerWorker.Type = {
+        FileManagerWorker.self
+    }()
+
+    lazy var cacheWorker: CacheWorker = {
+        let worker = CacheWorker()
+        worker.dataStoreManager = self
+        worker.totalCostLimit = self.dataSource?.cacheTotalCostLimit?(for: self)
+        worker.costDataSource = self.dataSource?.dataStoreManager(_:cacheCostLimitForObject:)
+        return worker
+    }()
+
+    lazy var secItemWorker: SecItemWorker.Type = {
+        let worker = SecItemWorker.self
+        worker.service = self.dataSource?.keychainService?(for: self)
+        worker.account = self.dataSource?.keychainAccount?(for: self)
+        worker.accessGroup = self.dataSource?.keychainAccessGroup?(for: self)
+        return worker
+    }()
 
     private var defaultType: StorageType = .userDefaults
 
@@ -40,6 +75,8 @@ import Foundation
         case userDirectory
         case libraryDirectory
         case temporaryDirectory
+        case cache
+        case secItem
 
         public func toString() -> String {
             switch self {
@@ -57,6 +94,12 @@ import Foundation
 
             case .temporaryDirectory:
                 return "FileManager.temporaryDirectory"
+
+            case .cache:
+                return "NSCache"
+
+            case .secItem:
+                return "SecItem"
             }
         }
 
@@ -79,21 +122,27 @@ import Foundation
 
     @objc open func create(value: Any, forKey key: String, forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-       switch type {
+        switch type {
         case .userDefaults:
-            UserDefaultsWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.create(value: value, forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            FileManagerWorker.create(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
-       case .userDirectory:
-        FileManagerWorker.create(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+        case .userDirectory:
+            fileManagerWorker.create(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            FileManagerWorker.create(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            FileManagerWorker.create(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+
+        case .cache:
+            cacheWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+
+        case .secItem:
+            secItemWorker.create(value: value, forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -106,19 +155,25 @@ import Foundation
 
         switch type {
         case .userDefaults:
-            UserDefaultsWorker.read(forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.read(forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            FileManagerWorker.read(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.read(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            FileManagerWorker.read(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.read(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            FileManagerWorker.read(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.read(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            FileManagerWorker.read(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.read(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+
+        case .cache:
+            cacheWorker.read(forKey: key, completionHandler: completionHandler)
+
+        case .secItem:
+            secItemWorker.read(forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -131,19 +186,25 @@ import Foundation
 
         switch type {
         case .userDefaults:
-            UserDefaultsWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.update(value: value, forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            FileManagerWorker.update(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            FileManagerWorker.update(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            FileManagerWorker.update(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            FileManagerWorker.update(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+
+        case .cache:
+            cacheWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+
+        case .secItem:
+            secItemWorker.update(value: value, forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -156,19 +217,25 @@ import Foundation
 
         switch type {
         case .userDefaults:
-            UserDefaultsWorker.delete(forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.delete(forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            FileManagerWorker.delete(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.delete(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            FileManagerWorker.delete(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.delete(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            FileManagerWorker.delete(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.delete(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            FileManagerWorker.delete(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.delete(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+
+        case .cache:
+            cacheWorker.delete(forKey: key, completionHandler: completionHandler)
+
+        case .secItem:
+            secItemWorker.delete(forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -181,19 +248,25 @@ import Foundation
 
         switch type {
         case .userDefaults:
-            UserDefaultsWorker.deleteAll(completionHandler: completionHandler)
+            userDefaultsWorker.deleteAll(completionHandler: completionHandler)
 
         case .documentDirectory:
-            FileManagerWorker.deleteAll(forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.deleteAll(forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            FileManagerWorker.deleteAll(forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.deleteAll(forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            FileManagerWorker.deleteAll(forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.deleteAll(forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            FileManagerWorker.deleteAll(forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.deleteAll(forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+
+        case .cache:
+            cacheWorker.deleteAll(completionHandler: completionHandler)
+
+        case .secItem:
+            secItemWorker.deleteAll(completionHandler: completionHandler)
         }
     }
 
@@ -201,8 +274,32 @@ import Foundation
 
     @objc open func migrateSchema(forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-        // TODO: properly handle migration logic
-        dataSource?.willMigrate?(self, fromVersion: 0, forType: type)
-        completionHandler(true)
+        let key = "kSchemaVersion\(tag)"
+
+        read(forKey: key, forType: type) { (object) in
+
+            let oldSchemaVersion = object as? Int ?? 0
+            let newSchemaVersion = self.dataSource?.dataStoreManager?(self, currentSchemaVersionForType: type) ?? 0
+
+            if oldSchemaVersion < newSchemaVersion {
+                self.delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: type)
+
+                if oldSchemaVersion == 0 {
+                    self.create(value: newSchemaVersion, forKey: key, forType: type, completionHandler: completionHandler)
+
+                } else {
+                    self.update(value: newSchemaVersion, forKey: key, forType: type, completionHandler: completionHandler)
+                }
+
+            } else if oldSchemaVersion > newSchemaVersion {
+                assertionFailure("Current schema version is lower than old schema version")
+                completionHandler(false)
+                return
+
+            } else {
+                completionHandler(true)
+                return
+            }
+        }
     }
 }
