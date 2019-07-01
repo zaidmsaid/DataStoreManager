@@ -30,21 +30,21 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     .
     func fetchFromDataStore(aValue: String) {
     	manager.read(forKey: "Key") { (object) in
-    		print("successfully read \(object) from UserDefaults")
+            print("successfully read \(object) from UserDefaults")
     	}
 
     	manager.read(forKey: "temp_file.txt", forType: .temporaryDirectory) { (object) in
-    		print("successfully read \(object) from Temporary Directory")
+    	    print("successfully read \(object) from Temporary Directory")
     	}
     }
 
     func storeToDataStore(aValue: String) {
     	manager.create(value: aValue, forKey: "Key") { (isSuccessful) in
-    		print("successfully write to UserDefaults")
+    	    print("successfully write to UserDefaults")
     	}
 
     	manager.create(value: aValue, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
-    		print("successfully write to Inbox Document Directory")
+    	    print("successfully write to Inbox Document Directory")
     	}
     }
     .
