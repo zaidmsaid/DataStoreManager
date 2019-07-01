@@ -20,8 +20,6 @@ import Foundation
 
     // MARK: - Properties
 
-    @objc public static let shared = DataStoreManager()
-
     @objc open var tag: Int = 0 {
         willSet {
         }
@@ -39,6 +37,16 @@ import Foundation
         willSet {
         }
     }
+
+    @objc public static let shared = DataStoreManager()
+
+    lazy var secItemWorker: SecItemWorker.Type = {
+        let worker = SecItemWorker.self
+        worker.service = dataSource?.keychainService?(for: self)
+        worker.account = dataSource?.keychainAccount?(for: self)
+        worker.accessGroup = dataSource?.keychainAccessGroup?(for: self)
+        return worker
+    }()
 
     private var defaultType: StorageType = .userDefaults
 

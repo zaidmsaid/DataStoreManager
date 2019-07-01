@@ -16,11 +16,23 @@
 
 import Foundation
 
+// MARK: - DataSource
+
 @objc public protocol DataStoreManagerDataSource: class {
+
+    // MARK: Core
 
     @objc optional func defaultType(for manager: DataStoreManager) -> DataStoreManager.StorageType
     @objc optional func dataStoreManager(_ manager: DataStoreManager, currentSchemaVersionForType type: DataStoreManager.StorageType) -> Int
+
+    // MARK: SecItem
+
+    @objc optional func keychainService(for manager: DataStoreManager) -> String
+    @objc optional func keychainAccount(for manager: DataStoreManager) -> String
+    @objc optional func keychainAccessGroup(for manager: DataStoreManager) -> String
 }
+
+// MARK: - Delegate
 
 @objc public protocol DataStoreManagerDelegate: class {
 
