@@ -17,7 +17,7 @@ import DataStoreManager
 
 class ViewController: UIViewController, DataStoreManagerDataSource {
 
-    let manager = DataStoreManager.shared
+    let manager = DataStoreManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,22 +29,22 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     .
     .
     func fetchFromDataStore(aValue: String) {
-    	DataStoreManager.shared.read(forKey: "Key") { (object) in
-    		print("successfully read \(object) from UserDefaults")
+    	manager.read(forKey: "Key") { (object) in
+            print("successfully read \(object) from UserDefaults")
     	}
 
-    	DataStoreManager.shared.read(forKey: "temp_file.txt", forType: .temporaryDirectory) { (object) in
-    		print("successfully read \(object) from Temporary Directory")
+    	manager.read(forKey: "temp_file.txt", forType: .temporaryDirectory) { (object) in
+    	    print("successfully read \(object) from Temporary Directory")
     	}
     }
 
     func storeToDataStore(aValue: String) {
-    	DataStoreManager.shared.create(value: aValue, forKey: "Key") { (isSuccessful) in
-    		print("successfully write to UserDefaults")
+    	manager.create(value: aValue, forKey: "Key") { (isSuccessful) in
+    	    print("successfully write to UserDefaults")
     	}
 
-    	DataStoreManager.shared.create(value: aValue, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
-    		print("successfully write to Inbox Document Directory")
+    	manager.create(value: aValue, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
+    	    print("successfully write to Inbox Document Directory")
     	}
     }
     .
@@ -58,8 +58,8 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
 
 ### Prerequisites
 
-- iOS 8.0+
-- Xcode 10.2+
+* iOS 8.0+
+* Xcode 10.2+
 
 ### Installing
 
@@ -98,7 +98,7 @@ use_frameworks!
 
 Then run `pod install` with CocoaPods 1.6.0 or newer.
 
-#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/Resources/Images/swift.png" width="24" height="24"> [PackageManager]
+#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/Resources/Images/swift.png" width="24" height="24"> [Swift Package Manager]
 
 [Swift Package Manager]: https://swift.org/package-manager/
 
@@ -146,7 +146,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Zaid M. Said** - *Initial work* - [SentulAsia](https://github.com/SentulAsia)
+* [**Zaid M. Said**](http://github.com/SentulAsia) - *Initial work* - [@SentulAsia](https://twitter.com/SentulAsia)
 
 See also the list of [contributors](https://github.com/zaidmsaid/DataStoreManager/graphs/contributors) who participated in this project.
 
