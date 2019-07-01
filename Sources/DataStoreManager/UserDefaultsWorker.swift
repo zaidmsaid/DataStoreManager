@@ -51,6 +51,7 @@ extension DataStoreManager {
         class func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
+                assertionFailure("Unable to get bundle identifier")
                 completionHandler(false)
                 return
             }

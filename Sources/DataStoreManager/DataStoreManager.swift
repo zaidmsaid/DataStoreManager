@@ -228,6 +228,7 @@ import Foundation
                 }
 
             } else if oldSchemaVersion > newSchemaVersion {
+                assertionFailure("Current schema version is lower than old schema version")
                 completionHandler(false)
                 return
 
