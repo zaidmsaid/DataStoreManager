@@ -28,30 +28,54 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     .
     .
     .
-    func fetchFromDataStore(aValue: String) {
+    func fetchFromDataStore() {
     	manager.read(forKey: "Key") { (object) in
-            print("successfully read \(object) from UserDefaults")
+            if let object = object {
+                print("successfully read \(object) from UserDefaults")
+            }
     	}
 
+        manager.read(forKey: "Key", forType: .keychain) { (object) in
+            if let object = object {
+                print("successfully read \(object) from SecItem")
+            }
+        }
+
     	manager.read(forKey: "temp_file.txt", forType: .temporaryDirectory) { (object) in
-    	    print("successfully read \(object) from Temporary Directory")
+            if let object = object {
+    	        print("successfully read \(object) from Temporary Directory")
+            }
     	}
     }
 
     func storeToDataStore(aValue: String) {
     	manager.create(value: aValue, forKey: "Key") { (isSuccessful) in
-    	    print("successfully write to UserDefaults")
+            if isSuccessful {
+    	        print("successfully write to UserDefaults")
+            }
     	}
 
+        manager.create(value: aValue, forKey: "Key", forType: .keychain) { (isSuccessful) in
+            if isSuccessful {
+                print("successfully write to SecItem")
+            }
+        }
+
     	manager.create(value: aValue, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
-    	    print("successfully write to Inbox Document Directory")
+            if isSuccessful {
+    	        print("successfully write to Inbox Document Directory")
+            }
     	}
     }
     .
     .
     .
     func defaultType(for manager: DataStoreManager) -> DataStoreManager.StorageType {
-        return .userDefaults
+        if manager.tag == 3 {
+            return .userDefaults
+        } else {
+            return .keychain
+        }
     }
 }
 ```
