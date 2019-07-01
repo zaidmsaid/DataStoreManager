@@ -20,12 +20,23 @@ import Foundation
 
     // MARK: - Properties
 
-    @objc open var tag: Int = 0
+    @objc public static let shared = DataStoreManager()
+
+    @objc open var tag: Int = 0 {
+        willSet {
+        }
+    }
+
     @objc open weak var dataSource: DataStoreManagerDataSource? {
         willSet {
             if let defaultType = newValue?.defaultType?(for: self) {
                 self.defaultType = defaultType
             }
+        }
+    }
+
+    @objc open weak var delegate: DataStoreManagerDelegate? {
+        willSet {
         }
     }
 
@@ -201,8 +212,29 @@ import Foundation
 
     @objc open func migrateSchema(forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-        // TODO: properly handle migration logic
-        dataSource?.willMigrate?(self, fromVersion: 0, forType: type)
-        completionHandler(true)
+        let key = "kSchemaVersion\(tag)"
+
+        read(forKey: key, forType: type) { (object) in
+            let oldSchemaVersion = object as? Int ?? 0
+            let newSchemaVersion = self.dataSource?.dataStoreManager?(self, currentSchemaVersionForType: type) ?? 0
+            if oldSchemaVersion < newSchemaVersion {
+                self.delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: type)
+
+                if oldSchemaVersion == 0 {
+                    self.create(value: newSchemaVersion, forKey: key, forType: type, completionHandler: completionHandler)
+
+                } else {
+                    self.update(value: newSchemaVersion, forKey: key, forType: type, completionHandler: completionHandler)
+                }
+
+            } else if oldSchemaVersion > newSchemaVersion {
+                completionHandler(false)
+                return
+
+            } else {
+                completionHandler(true)
+                return
+            }
+        }
     }
 }

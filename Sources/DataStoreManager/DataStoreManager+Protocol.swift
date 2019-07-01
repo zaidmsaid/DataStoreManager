@@ -19,5 +19,10 @@ import Foundation
 @objc public protocol DataStoreManagerDataSource: class {
 
     @objc optional func defaultType(for manager: DataStoreManager) -> DataStoreManager.StorageType
-    @objc optional func willMigrate(_ manager: DataStoreManager, fromVersion version: Int, forType type: DataStoreManager.StorageType)
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, currentSchemaVersionForType type: DataStoreManager.StorageType) -> Int
+}
+
+@objc public protocol DataStoreManagerDelegate: class {
+
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, performMigrationFromOldVersion version: Int, forType type: DataStoreManager.StorageType)
 }
