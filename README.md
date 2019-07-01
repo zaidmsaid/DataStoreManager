@@ -146,7 +146,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **[Zaid M. Said]**(http://github.com/SentulAsia) - *Initial work* - [@SentulAsia](https://twitter.com/SentulAsia)
+* [**Zaid M. Said**](http://github.com/SentulAsia) - *Initial work* - [@SentulAsia](https://twitter.com/SentulAsia)
 
 See also the list of [contributors](https://github.com/zaidmsaid/DataStoreManager/graphs/contributors) who participated in this project.
 
