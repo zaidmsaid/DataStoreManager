@@ -20,6 +20,17 @@ extension DataStoreManager {
 
     class UserDefaultsWorker {
 
+        // MARK: - Properties
+
+        static var dataStoreManager: DataStoreManager?
+
+        private static var userDefaults: UserDefaults = {
+            if let manager = dataStoreManager, let suiteName = manager.dataSource?.userDefaultsSuiteName?(for: manager) {
+                return UserDefaults(suiteName: suiteName) ?? UserDefaults.standard
+            }
+            return UserDefaults.standard
+        }()
+
         // MARK: - CRUD
 
         class func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
@@ -29,22 +40,22 @@ extension DataStoreManager {
 
         class func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
 
-            UserDefaults.standard.synchronize()
-            let object = UserDefaults.standard.object(forKey: key)
+            userDefaults.synchronize()
+            let object = userDefaults.object(forKey: key)
             completionHandler(object)
         }
 
         class func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            UserDefaults.standard.setValue(value, forKey: key)
-            UserDefaults.standard.synchronize()
+            userDefaults.setValue(value, forKey: key)
+            userDefaults.synchronize()
             completionHandler(true)
         }
 
         class func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            UserDefaults.standard.removeObject(forKey: key)
-            UserDefaults.standard.synchronize()
+            userDefaults.removeObject(forKey: key)
+            userDefaults.synchronize()
             completionHandler(true)
         }
 
@@ -55,8 +66,8 @@ extension DataStoreManager {
                 completionHandler(false)
                 return
             }
-            UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
-            UserDefaults.standard.synchronize()
+            userDefaults.removePersistentDomain(forName: bundleIdentifier)
+            userDefaults.synchronize()
             completionHandler(true)
         }
     }

@@ -18,7 +18,7 @@ import Security
 
 extension DataStoreManager {
 
-    class SecItemWorker {
+    class SecurityItemWorker {
 
         // MARK: - CRUD
 
@@ -28,7 +28,7 @@ extension DataStoreManager {
 
         class func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            var newItem = keychainQuery(withService: service, account: account ?? key, accessGroup: accessGroup)
+            var newItem = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
             newItem[kSecValueData as String] = value as AnyObject?
             let status = SecItemAdd(newItem as CFDictionary, nil)
             completionHandler(status == noErr)
@@ -36,7 +36,7 @@ extension DataStoreManager {
 
         class func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
 
-            var item = keychainQuery(withService: service, account: account ?? key, accessGroup: accessGroup)
+            var item = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
             item[kSecMatchLimit as String] = kSecMatchLimitOne
             item[kSecReturnAttributes as String] = kCFBooleanTrue
             item[kSecReturnData as String] = kCFBooleanTrue
@@ -64,7 +64,7 @@ extension DataStoreManager {
                     var newItem = [String : AnyObject]()
                     newItem[kSecValueData as String] = value as AnyObject?
 
-                    let item = keychainQuery(withService: service, account: account ?? key, accessGroup: accessGroup)
+                    let item = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
                     let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
 
                     guard status == noErr else {
@@ -79,7 +79,7 @@ extension DataStoreManager {
 
         class func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            let item = keychainQuery(withService: service, account: account ?? key, accessGroup: accessGroup)
+            let item = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
             let status = SecItemDelete(item as CFDictionary)
 
             guard status == noErr || status == errSecItemNotFound else {
@@ -110,22 +110,22 @@ extension DataStoreManager {
 
         // MARK: - Helper
 
-        private static func keychainQuery(withService service: String?, account: String? = nil, accessGroup: String? = nil) -> [String : AnyObject] {
+        private static func keychainItem(withService service: String?, account: String? = nil, accessGroup: String? = nil) -> [String : AnyObject] {
             let secAttrService: AnyObject = service as AnyObject? ?? Bundle.main.bundleIdentifier as AnyObject? ?? "DataStoreManager" as AnyObject
-            var query = [String : AnyObject]()
-            query[kSecClass as String] = kSecClassGenericPassword
-            query[kSecAttrService as String] = secAttrService
+            var item = [String : AnyObject]()
+            item[kSecClass as String] = kSecClassGenericPassword
+            item[kSecAttrService as String] = secAttrService
 
             if let account = account {
-                query[kSecAttrGeneric as String] = account as AnyObject?
-                query[kSecAttrAccount as String] = account as AnyObject?
+                item[kSecAttrGeneric as String] = account as AnyObject?
+                item[kSecAttrAccount as String] = account as AnyObject?
             }
 
             if let accessGroup = accessGroup {
-                query[kSecAttrAccessGroup as String] = accessGroup as AnyObject?
+                item[kSecAttrAccessGroup as String] = accessGroup as AnyObject?
             }
 
-            return query
+            return item
         }
     }
 }

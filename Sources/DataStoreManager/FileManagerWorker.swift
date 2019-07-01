@@ -25,6 +25,8 @@ extension DataStoreManager {
             case documentDirectory
             case userDirectory
             case libraryDirectory
+            case applicationDirectory
+            case coreServiceDirectory
             case temporaryDirectory
         }
 
@@ -112,12 +114,9 @@ extension DataStoreManager {
 
         // MARK: - Helper
 
-        /// Check if file should contain in a folder.
-        ///
-        /// - Parameter fileName: String that might have folder.
-        /// - Returns: Array of folders that file might need to be in.
         private final class func getPathComponent(forKey fileName: String) -> [String]? {
 
+            // Check if file should contain in a folder.
             if fileName.contains("/") {
                 var paths = fileName.components(separatedBy: "/")
                 paths.removeLast() // last is the actual fileName
@@ -138,6 +137,12 @@ extension DataStoreManager {
 
             case .libraryDirectory:
                 url = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
+
+            case .applicationDirectory:
+                url = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask).first
+
+            case .coreServiceDirectory:
+                url = FileManager.default.urls(for: .coreServiceDirectory, in: .userDomainMask).first
 
             case .temporaryDirectory:
                 if #available(iOS 10.0, *) {
