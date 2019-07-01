@@ -8,7 +8,7 @@
 [![License Apache](https://img.shields.io/badge/License-Apache-lightgrey.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 [![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg)](http://twitter.com/SentulAsia)
 
-DataStoreManager is a persistent data framework written in Swift.
+DataStoreManager is a persistent data framework written in Swift and can be used with Objective-C.
 
 ## Getting Started
 
