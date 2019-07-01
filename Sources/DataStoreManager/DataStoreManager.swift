@@ -215,8 +215,10 @@ import Foundation
         let key = "kSchemaVersion\(tag)"
 
         read(forKey: key, forType: type) { (object) in
+
             let oldSchemaVersion = object as? Int ?? 0
             let newSchemaVersion = self.dataSource?.dataStoreManager?(self, currentSchemaVersionForType: type) ?? 0
+
             if oldSchemaVersion < newSchemaVersion {
                 self.delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: type)
 
