@@ -8,7 +8,7 @@
 [![License Apache](https://img.shields.io/badge/License-Apache-lightgrey.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 [![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg)](http://twitter.com/SentulAsia)
 
-DataStoreManager is a persistent data framework written in Swift.
+DataStoreManager is a persistent data framework written in Swift and can be used with Objective-C.
 
 ## Getting Started
 
@@ -28,30 +28,54 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     .
     .
     .
-    func fetchFromDataStore(aValue: String) {
+    func fetchFromDataStore() {
     	manager.read(forKey: "Key") { (object) in
-            print("successfully read \(object) from UserDefaults")
+            if let object = object {
+                print("successfully read \(object) from UserDefaults")
+            }
     	}
 
+        manager.read(forKey: "Key", forType: .keychain) { (object) in
+            if let object = object {
+                print("successfully read \(object) from SecItem")
+            }
+        }
+
     	manager.read(forKey: "temp_file.txt", forType: .temporaryDirectory) { (object) in
-    	    print("successfully read \(object) from Temporary Directory")
+            if let object = object {
+    	        print("successfully read \(object) from Temporary Directory")
+            }
     	}
     }
 
     func storeToDataStore(aValue: String) {
     	manager.create(value: aValue, forKey: "Key") { (isSuccessful) in
-    	    print("successfully write to UserDefaults")
+            if isSuccessful {
+    	        print("successfully write to UserDefaults")
+            }
     	}
 
+        manager.create(value: aValue, forKey: "Key", forType: .keychain) { (isSuccessful) in
+            if isSuccessful {
+                print("successfully write to SecItem")
+            }
+        }
+
     	manager.create(value: aValue, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
-    	    print("successfully write to Inbox Document Directory")
+            if isSuccessful {
+    	        print("successfully write to Inbox Document Directory")
+            }
     	}
     }
     .
     .
     .
     func defaultType(for manager: DataStoreManager) -> DataStoreManager.StorageType {
-        return .userDefaults
+        if manager.tag == 3 {
+            return .userDefaults
+        } else {
+            return .keychain
+        }
     }
 }
 ```
@@ -110,7 +134,7 @@ dependencies: [
 ]
 ```
 
-or more strict
+or more strict:
 
 ```swift
 dependencies: [
@@ -127,7 +151,7 @@ DataStoreManager in your project requires the following steps:
 1. Add DataStoreManager as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/zaidmsaid/DataStoreManager.git`
 2. Open the `DataStoreManager` folder, and drag `DataStoreManager.xcodeproj` into the file navigator of your app project.
 3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
-4. Ensure that the deployment target of DataStoreManager.framework matches that of the application target.
+4. Ensure that the deployment target of `DataStoreManager.framework` matches that of the application target.
 5. In the tab bar at the top of that window, open the "Build Phases" panel.
 6. Expand the "Link Binary with Libraries" group, and add `DataStoreManager.framework`.
 7. Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `DataStoreManager.framework`.
