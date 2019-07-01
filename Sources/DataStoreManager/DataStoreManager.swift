@@ -76,7 +76,7 @@ import Foundation
         case libraryDirectory
         case temporaryDirectory
         case cache
-        case secItem
+        case keychain
 
         public func toString() -> String {
             switch self {
@@ -98,7 +98,7 @@ import Foundation
             case .cache:
                 return "NSCache"
 
-            case .secItem:
+            case .keychain:
                 return "SecItem"
             }
         }
@@ -141,7 +141,7 @@ import Foundation
         case .cache:
             cacheWorker.create(value: value, forKey: key, completionHandler: completionHandler)
 
-        case .secItem:
+        case .keychain:
             secItemWorker.create(value: value, forKey: key, completionHandler: completionHandler)
         }
     }
@@ -172,7 +172,7 @@ import Foundation
         case .cache:
             cacheWorker.read(forKey: key, completionHandler: completionHandler)
 
-        case .secItem:
+        case .keychain:
             secItemWorker.read(forKey: key, completionHandler: completionHandler)
         }
     }
@@ -203,7 +203,7 @@ import Foundation
         case .cache:
             cacheWorker.update(value: value, forKey: key, completionHandler: completionHandler)
 
-        case .secItem:
+        case .keychain:
             secItemWorker.update(value: value, forKey: key, completionHandler: completionHandler)
         }
     }
@@ -234,7 +234,7 @@ import Foundation
         case .cache:
             cacheWorker.delete(forKey: key, completionHandler: completionHandler)
 
-        case .secItem:
+        case .keychain:
             secItemWorker.delete(forKey: key, completionHandler: completionHandler)
         }
     }
@@ -265,7 +265,7 @@ import Foundation
         case .cache:
             cacheWorker.deleteAll(completionHandler: completionHandler)
 
-        case .secItem:
+        case .keychain:
             secItemWorker.deleteAll(completionHandler: completionHandler)
         }
     }
