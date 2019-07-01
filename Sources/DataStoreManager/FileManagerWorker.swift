@@ -18,6 +18,7 @@ import UIKit
 
 extension DataStoreManager {
 
+    /// An interface to the FileManager.
     class FileManagerWorker {
 
         enum Directory {
@@ -225,7 +226,7 @@ fileprivate protocol DataConvertible {
     var data: Data { get }
 }
 
-extension DataConvertible {
+fileprivate extension DataConvertible {
     var data: Data {
         return withUnsafeBytes(of: self) { Data($0) }
     }

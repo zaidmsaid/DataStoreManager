@@ -18,32 +18,27 @@ import Foundation
 
 extension DataStoreManager {
 
-    /// An interface to the NSCache.
-    class CacheWorker {
+    /// An interface to the NSUbiquitousKeyValueStore.
+    class UbiquitousWorker {
 
         // MARK: - Properties
 
-        var dataStoreManager: DataStoreManager?
-        var totalCostLimit: Int?
-        var totalCostLimitDataSource: ((DataStoreManager) -> Int)?
-        var costDataSource: ((DataStoreManager, Any) -> Int)?
-        private var cacheStorage = NSCache<NSString, AnyObject>()
+        private lazy var ubiquitousKeyValueStore: NSUbiquitousKeyValueStore = {
+            return NSUbiquitousKeyValueStore.default
+        }()
 
         // MARK: - Init
 
         init() {
-            if let manager = dataStoreManager, let datasource = totalCostLimitDataSource {
-                cacheStorage.totalCostLimit = datasource(manager)
-            }
-            NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(onUbiquitousKeyValueStoreDidChangeExternally(notification:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: NSUbiquitousKeyValueStore.default)
         }
 
         deinit {
-            NotificationCenter.default.removeObserver(self, name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: NSUbiquitousKeyValueStore.default)
         }
 
-        @objc private func didReceiveMemoryWarning() {
-            deleteAll { (_) in }
+        @objc private func onUbiquitousKeyValueStoreDidChangeExternally(notification: Notification) {
+            // TODO: let userInfo = notification.userInfo
         }
 
         // MARK: - CRUD
@@ -55,29 +50,32 @@ extension DataStoreManager {
 
         func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
 
-            let object = cacheStorage.object(forKey: NSString(string: key))
+            ubiquitousKeyValueStore.synchronize()
+            let object = ubiquitousKeyValueStore.object(forKey: key)
             completionHandler(object)
         }
 
         func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            if let manager = dataStoreManager, let datasource = costDataSource {
-                cacheStorage.setObject(value as AnyObject, forKey: NSString(string: key), cost: datasource(manager, value))
-            } else {
-                cacheStorage.setObject(value as AnyObject, forKey: NSString(string: key), cost: 0)
-            }
+            ubiquitousKeyValueStore.setValue(value, forKey: key)
+            ubiquitousKeyValueStore.synchronize()
             completionHandler(true)
         }
 
         func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            cacheStorage.removeObject(forKey: NSString(string: key))
+            ubiquitousKeyValueStore.removeObject(forKey: key)
+            ubiquitousKeyValueStore.synchronize()
             completionHandler(true)
         }
 
         func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            cacheStorage.removeAllObjects()
+            let keys = ubiquitousKeyValueStore.dictionaryRepresentation.keys
+            for key in keys {
+                ubiquitousKeyValueStore.removeObject(forKey: key)
+            }
+            ubiquitousKeyValueStore.synchronize()
             completionHandler(true)
         }
     }
