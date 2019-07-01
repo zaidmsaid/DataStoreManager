@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B81933F022CA6A1800A754CA /* UbiquitousWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousWorker.swift */; };
 		B8C2CF3522C8E6640080102C /* DataStoreManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2CF2B22C8E6640080102C /* DataStoreManager.framework */; };
 		B8C2CF3A22C8E6640080102C /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
 		B8C2CF3C22C8E6640080102C /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B81933EF22CA6A1800A754CA /* UbiquitousWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousWorker.swift; sourceTree = "<group>"; };
 		B8C2CF2B22C8E6640080102C /* DataStoreManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF2E22C8E6640080102C /* DataStoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStoreManager.h; sourceTree = "<group>"; };
 		B8C2CF2F22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,11 +104,12 @@
 			isa = PBXGroup;
 			children = (
 				B8C2CF4922C8EE980080102C /* DataStoreManager.swift */,
-				B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */,
 				B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */,
 				B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */,
 				B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */,
 				B8F88E8922C9A57E00414B3E /* SecurityItemWorker.swift */,
+				B81933EF22CA6A1800A754CA /* UbiquitousWorker.swift */,
+				B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */,
 				B8C2CF2E22C8E6640080102C /* DataStoreManager.h */,
 			);
 			path = DataStoreManager;
@@ -233,6 +236,7 @@
 				B8F88E8A22C9A57E00414B3E /* SecurityItemWorker.swift in Sources */,
 				B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */,
 				B8C2CF4E22C9080E0080102C /* DataStoreManager+Protocol.swift in Sources */,
+				B81933F022CA6A1800A754CA /* UbiquitousWorker.swift in Sources */,
 				B8C2CF4A22C8EE980080102C /* DataStoreManager.swift in Sources */,
 				B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */,
 			);

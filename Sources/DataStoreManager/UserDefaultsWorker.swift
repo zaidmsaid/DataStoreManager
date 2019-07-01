@@ -18,6 +18,7 @@ import Foundation
 
 extension DataStoreManager {
 
+    /// An interface to the UserDefaults.
     class UserDefaultsWorker {
 
         // MARK: - Properties
