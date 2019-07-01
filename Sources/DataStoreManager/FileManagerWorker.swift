@@ -174,6 +174,8 @@ extension DataStoreManager {
     }
 }
 
+// MARK: - Private Extensions
+
 fileprivate protocol AnySubclass: Any {
 }
 

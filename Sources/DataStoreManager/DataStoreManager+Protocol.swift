@@ -25,6 +25,11 @@ import Foundation
     @objc optional func defaultType(for manager: DataStoreManager) -> DataStoreManager.StorageType
     @objc optional func dataStoreManager(_ manager: DataStoreManager, currentSchemaVersionForType type: DataStoreManager.StorageType) -> Int
 
+    // MARK: Cache
+
+    @objc optional func cacheTotalCostLimit(for manager: DataStoreManager) -> Int
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, cacheCostLimitForObject object: Any) -> Int
+
     // MARK: SecItem
 
     @objc optional func keychainService(for manager: DataStoreManager) -> String

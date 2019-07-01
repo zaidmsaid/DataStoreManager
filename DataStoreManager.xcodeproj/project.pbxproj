@@ -15,6 +15,7 @@
 		B8C2CF4E22C9080E0080102C /* DataStoreManager+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */; };
 		B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
 		B8F88E8A22C9A57E00414B3E /* SecItemWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* SecItemWorker.swift */; };
+		B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStoreManager+Protocol.swift"; sourceTree = "<group>"; };
 		B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerWorker.swift; sourceTree = "<group>"; };
 		B8F88E8922C9A57E00414B3E /* SecItemWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecItemWorker.swift; sourceTree = "<group>"; };
+		B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */,
 				B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */,
 				B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */,
+				B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */,
 				B8F88E8922C9A57E00414B3E /* SecItemWorker.swift */,
 				B8C2CF2E22C8E6640080102C /* DataStoreManager.h */,
 			);
@@ -228,6 +231,7 @@
 			files = (
 				B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */,
 				B8F88E8A22C9A57E00414B3E /* SecItemWorker.swift in Sources */,
+				B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */,
 				B8C2CF4E22C9080E0080102C /* DataStoreManager+Protocol.swift in Sources */,
 				B8C2CF4A22C8EE980080102C /* DataStoreManager.swift in Sources */,
 				B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */,
