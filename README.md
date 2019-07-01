@@ -7,6 +7,7 @@
 [![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 [![License Apache](https://img.shields.io/badge/License-Apache-lightgrey.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 [![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg)](http://twitter.com/SentulAsia)
+[![Documentation](https://github.com/zaidmsaid/DataStoreManager/blob/master/docs/badge.svg)](https://zaidmsaid.github.io/DataStoreManager/)
 
 DataStoreManager is a persistent data framework written in Swift and can be used with Objective-C.
 
