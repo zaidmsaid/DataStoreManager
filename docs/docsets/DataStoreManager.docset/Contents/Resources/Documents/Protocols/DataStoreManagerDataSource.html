@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DataStoreManagerDataSource Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/DataStoreManagerDataSource" class="dashAnchor"></a>
+    <a title="DataStoreManagerDataSource Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">DataStoreManager Docs</a> (46% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">DataStoreManager Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        DataStoreManagerDataSource Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager.html">DataStoreManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/StorageType.html">– StorageType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/CacheWorker.html">– CacheWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/SecurityItemWorker.html">– SecurityItemWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DataConvertible.html">DataConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImage.html">UIImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/DataStoreManagerDataSource.html">DataStoreManagerDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DataStoreManagerDelegate.html">DataStoreManagerDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>DataStoreManagerDataSource</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DataStoreManagerDataSource</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>The methods adopted by the object you use to manage data for a data store manager.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Core"></a>
+                <a name="//apple_ref/swift/Section/Core" class="dashAnchor"></a>
+                <a href="#/Core">
+                  <h3 class="section-name">Core</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)defaultTypeFor:"></a>
+                    <a name="//apple_ref/swift/Method/defaultType(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)defaultTypeFor:">defaultType(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source to return the default storage type for the data store manager.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">defaultType</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="o">.</span><span class="kt">StorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The default storage type of the data store manager.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:currentSchemaVersionForType:"></a>
+                    <a name="//apple_ref/swift/Method/dataStoreManager(_:currentSchemaVersionForType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:currentSchemaVersionForType:">dataStoreManager(_:currentSchemaVersionForType:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source to return the current schema version for the storage type of data store manager.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">currentSchemaVersionForType</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="o">.</span><span class="kt">StorageType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A storage type constant.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The current schema version number for the storage type of the data store manager.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UserDefaults"></a>
+                <a name="//apple_ref/swift/Section/UserDefaults" class="dashAnchor"></a>
+                <a href="#/UserDefaults">
+                  <h3 class="section-name">UserDefaults</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)userDefaultsSuiteNameFor:"></a>
+                    <a name="//apple_ref/swift/Method/userDefaultsSuiteName(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)userDefaultsSuiteNameFor:">userDefaultsSuiteName(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source to return a string that represent the suite name for UserDefaults of the data store manager.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">userDefaultsSuiteName</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The UserDefaults suite name for the data store manager.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Cache"></a>
+                <a name="//apple_ref/swift/Section/Cache" class="dashAnchor"></a>
+                <a href="#/Cache">
+                  <h3 class="section-name">Cache</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)cacheTotalCostLimitFor:"></a>
+                    <a name="//apple_ref/swift/Method/cacheTotalCostLimit(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)cacheTotalCostLimitFor:">cacheTotalCostLimit(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the maximum total cost that the cache can hold before it starts evicting objects.</p>
+
+<p>When you add an object to the cache, you may pass in a specified cost for the object, such as the size in bytes of the object.
+If adding this object to the cache causes the cache’s total cost to rise above totalCostLimit, the cache may automatically
+evict objects until its total cost falls below totalCostLimit. The order in which the cache evicts objects is not guaranteed.</p>
+
+<p>This is not a strict limit, and if the cache goes over the limit, an object in the cache could be evicted instantly, at a later
+point in time, or possibly never, all depending on the implementation details of the cache.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cacheTotalCostLimit</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The number of total cost limit.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:cacheCostLimitForObject:"></a>
+                    <a name="//apple_ref/swift/Method/dataStoreManager(_:cacheCostLimitForObject:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:cacheCostLimitForObject:">dataStoreManager(_:cacheCostLimitForObject:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the cost with which associate to the object.</p>
+
+<p>When memory is limited or when the total cost of the cache eclipses the maximum allowed total cost, the cache could begin an
+eviction process to remove some of its elements. However, this eviction process is not in a guaranteed order. As a consequence,
+if you try to manipulate the cost values to achieve some specific behavior, the consequences could be detrimental to your program.
+Typically, the obvious cost is the size of the value in bytes. If that information is not readily available, you should not go
+through the trouble of trying to compute it, as doing so will drive up the cost of using the cache. Pass in 0 for the cost value
+if you otherwise have nothing useful to pass, or simply use the setObject:forKey: method, which does not require a cost value to
+be passed in.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">cacheCostLimitForObject</span> <span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>object</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The object to be cached.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The cost value is used to compute a sum encompassing the costs of all the objects in the cache.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/SecurityItem"></a>
+                <a name="//apple_ref/swift/Section/SecurityItem" class="dashAnchor"></a>
+                <a href="#/SecurityItem">
+                  <h3 class="section-name">SecurityItem</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)keychainServiceFor:"></a>
+                    <a name="//apple_ref/swift/Method/keychainService(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)keychainServiceFor:">keychainService(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the keychain service of the data store manager.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">keychainService</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The corresponding value is a string of type CFString that represents the service associated with this item.
+       Items of class kSecClassGenericPassword have this attribute.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)keychainAccountFor:"></a>
+                    <a name="//apple_ref/swift/Method/keychainAccount(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)keychainAccountFor:">keychainAccount(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for the keychain account name of the data store manager.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">keychainAccount</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The corresponding value is of type CFString and contains an account name. Items of class kSecClassGenericPassword
+       and kSecClassInternetPassword have this attribute.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)keychainAccessGroupFor:"></a>
+                    <a name="//apple_ref/swift/Method/keychainAccessGroup(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)keychainAccessGroupFor:">keychainAccessGroup(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the data source for a string indicating the keychain access group of the data store manager.</p>
+
+<p>For an app to access a keychain item, one of the groups to which the app belongs must be the item’s group.
+The list of an app’s access groups consists of the following string identifiers, in this order:</p>
+
+<ul>
+<li>The strings in the app’s Keychain Access Groups Entitlement</li>
+<li>The app ID string</li>
+<li>The strings in the App Groups Entitlement</li>
+</ul>
+
+<p>Two or more apps that are in the same access group can share keychain items. For more details,
+see Sharing Access to Keychain Items Among a Collection of Apps.</p>
+
+<p>Specify which access group a keychain item belongs to when you create it by setting the kSecAttrAccessGroup
+attribute in the query you send to the SecItemAdd(<em>:</em>:) method. Naming a group that’s not among the creating
+app’s access groups—including the empty string, which is always an invalid group—generates an error. If you
+don’t explicitly set a group, keychain services defaults to the app’s first access group, which is either the
+first keychain access group, or the app ID when the app has no keychain groups. In the latter case, the item
+is only accessible to the app creating the item, since no other app can be in that group.</p>
+
+<p>By default, the SecItemUpdate(<em>:</em>:), SecItemDelete(<em>:), and SecItemCopyMatching(</em>:_:) methods search all the
+app’s access groups. Add the kSecAttrAccessGroup attribute to the query to limit the search to a particular
+group.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">keychainAccessGroup</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The corresponding value is of type CFString and indicates the item’s one and only access group.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
