@@ -260,6 +260,69 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 21,
+      "symbol": "DataStoreManager.SecurityItemWorker",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 25,
+      "symbol": "DataStoreManager.SecurityItemWorker.service",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 26,
+      "symbol": "DataStoreManager.SecurityItemWorker.account",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 27,
+      "symbol": "DataStoreManager.SecurityItemWorker.accessGroup",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 29,
+      "symbol": "DataStoreManager.SecurityItemWorker.create(value:forKey:completionHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 37,
+      "symbol": "DataStoreManager.SecurityItemWorker.read(forKey:completionHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 58,
+      "symbol": "DataStoreManager.SecurityItemWorker.update(value:forKey:completionHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 80,
+      "symbol": "DataStoreManager.SecurityItemWorker.delete(forKey:completionHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/SecurityItemWorker.swift",
+      "line": 93,
+      "symbol": "DataStoreManager.SecurityItemWorker.deleteAll(completionHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
       "line": 21,
       "symbol": "DataStoreManager.UserDefaultsWorker",
