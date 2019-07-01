@@ -18,6 +18,7 @@ import Security
 
 extension DataStoreManager {
 
+    /// An interface to the SecItem.
     class SecurityItemWorker {
 
         // MARK: - CRUD

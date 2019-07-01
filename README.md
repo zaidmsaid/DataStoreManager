@@ -105,7 +105,7 @@ for up to date installation instructions.
 
 [carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
-#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/Resources/Images/cocoapods.png" width="24" height="24"> [CocoaPods]
+#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/cocoapods.png" width="24" height="24"> [CocoaPods]
 
 [CocoaPods]: http://cocoapods.org
 
@@ -123,7 +123,7 @@ use_frameworks!
 
 Then run `pod install` with CocoaPods 1.6.0 or newer.
 
-#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/Resources/Images/swift.png" width="24" height="24"> [Swift Package Manager]
+#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/swift.png" width="24" height="24"> [Swift Package Manager]
 
 [Swift Package Manager]: https://swift.org/package-manager/
 
@@ -145,9 +145,11 @@ dependencies: [
 
 Then run `swift package update`.
 
-#### Manually
+#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/docs/img/gh.png" width="24" height="24"> [Manually]
 
-DataStoreManager in your project requires the following steps:
+[Manually]: https://github.com/zaidmsaid/DataStoreManager
+
+To install manually DataStoreManager in your project requires the following steps:
 
 1. Add DataStoreManager as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/zaidmsaid/DataStoreManager.git`
 2. Open the `DataStoreManager` folder, and drag `DataStoreManager.xcodeproj` into the file navigator of your app project.
@@ -177,7 +179,7 @@ See also the list of [contributors](https://github.com/zaidmsaid/DataStoreManage
 
 ## License
 
-This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) file for details
+This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](https://github.com/zaidmsaid/DataStoreManager/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 

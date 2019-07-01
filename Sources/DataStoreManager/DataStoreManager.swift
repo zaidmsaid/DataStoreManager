@@ -31,7 +31,7 @@ import Foundation
 
     /// The object that acts as the data source of the data store manager.
     ///
-    /// The data source must adopt the [DataStoreManagerDataSource](https://github.com/zaidmsaid/DataStoreManager/blob/master/Sources/DataStoreManager/DataStoreManager%2BProtocol.swift)
+    /// The data source must adopt the [DataStoreManagerDataSource](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html)
     /// protocol. The data source is not retained.
     open weak var dataSource: DataStoreManagerDataSource? {
         willSet {
@@ -43,7 +43,7 @@ import Foundation
 
     /// The object that acts as the delegate of the data store manager.
     ///
-    /// The delegate must adopt the [DataStoreManagerDelegate](https://github.com/zaidmsaid/DataStoreManager/blob/master/Sources/DataStoreManager/DataStoreManager%2BProtocol.swift)
+    /// The delegate must adopt the [DataStoreManagerDelegate](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html)
     /// protocol. The delegate is not retained.
     open weak var delegate: DataStoreManagerDelegate? {
         willSet {
@@ -77,6 +77,10 @@ import Foundation
         worker.account = self.dataSource?.keychainAccount?(for: self)
         worker.accessGroup = self.dataSource?.keychainAccessGroup?(for: self)
         return worker
+    }()
+
+    lazy var ubiquitousWorker: UbiquitousWorker = {
+        return UbiquitousWorker()
     }()
 
     private var defaultType: StorageType = .userDefaults
@@ -113,6 +117,9 @@ import Foundation
         /// The storage type SecItem.
         case keychain
 
+        /// The storage type NSUbiquitousKeyValueStore.
+        case ubiquitous
+
         /// Converts the storage type value to a native string.
         ///
         /// - Returns: The string representation of the value.
@@ -144,6 +151,9 @@ import Foundation
 
             case .keychain:
                 return "SecItem"
+
+            case .ubiquitous:
+                return "NSUbiquitousKeyValueStore"
             }
         }
 
@@ -224,6 +234,9 @@ import Foundation
 
         case .keychain:
             securityItemWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+
+        case .ubiquitous:
+            ubiquitousWorker.create(value: value, forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -278,6 +291,9 @@ import Foundation
 
         case .keychain:
             securityItemWorker.read(forKey: key, completionHandler: completionHandler)
+
+        case .ubiquitous:
+            ubiquitousWorker.read(forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -334,6 +350,9 @@ import Foundation
 
         case .keychain:
             securityItemWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+
+        case .ubiquitous:
+            ubiquitousWorker.update(value: value, forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -388,6 +407,9 @@ import Foundation
 
         case .keychain:
             securityItemWorker.delete(forKey: key, completionHandler: completionHandler)
+
+        case .ubiquitous:
+            ubiquitousWorker.delete(forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -440,6 +462,9 @@ import Foundation
 
         case .keychain:
             securityItemWorker.deleteAll(completionHandler: completionHandler)
+
+        case .ubiquitous:
+            ubiquitousWorker.deleteAll(completionHandler: completionHandler)
         }
     }
 
@@ -454,9 +479,9 @@ import Foundation
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter isSuccessful: true on successful; false if not.
     ///
-    /// Call this function at the point where you app can migrate the schema.
-    /// It will check first if the schema version is the same or not.
-    /// If the schema needs to be migrated, it will call *dataStoreManager(_:performMigrationFromOldVersion:forType:)*
+    /// Call this function at the point where you app can migrate the schema. It will check first
+    /// if the schema version is the same or not.If the schema needs to be migrated, it will call
+    /// [dataStoreManager(_:performMigrationFromOldVersion:forType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:)
     /// delegate method.
     open func migrateSchema(forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
