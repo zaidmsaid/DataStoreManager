@@ -14,7 +14,7 @@
     <a title="DataStoreManagerDataSource Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DataStoreManager Docs</a> (47% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (52% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -310,8 +310,8 @@
                         <p>Asks the data source for the maximum total cost that the cache can hold before it starts evicting objects.</p>
 
 <p>When you add an object to the cache, you may pass in a specified cost for the object, such as the size in bytes of the object.
-If adding this object to the cache causes the cache’s total cost to rise above totalCostLimit, the cache may automatically
-evict objects until its total cost falls below totalCostLimit. The order in which the cache evicts objects is not guaranteed.</p>
+If adding this object to the cache causes the cache’s total cost to rise above <code>totalCostLimit</code>, the cache may automatically
+evict objects until its total cost falls below <code>totalCostLimit</code>. The order in which the cache evicts objects is not guaranteed.</p>
 
 <p>This is not a strict limit, and if the cache goes over the limit, an object in the cache could be evicted instantly, at a later
 point in time, or possibly never, all depending on the implementation details of the cache.</p>
@@ -372,8 +372,9 @@ eviction process to remove some of its elements. However, this eviction process 
 if you try to manipulate the cost values to achieve some specific behavior, the consequences could be detrimental to your program.
 Typically, the obvious cost is the size of the value in bytes. If that information is not readily available, you should not go
 through the trouble of trying to compute it, as doing so will drive up the cost of using the cache. Pass in 0 for the cost value
-if you otherwise have nothing useful to pass, or simply use the setObject:forKey: method, which does not require a cost value to
-be passed in.</p>
+if you otherwise have nothing useful to pass.</p>
+
+<p>Unlike an <code>NSMutableDictionary</code> object, a cache does not copy the key objects that are put into it.</p>
 
                       </div>
                       <div class="declaration">
@@ -418,7 +419,7 @@ be passed in.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The cost value is used to compute a sum encompassing the costs of all the objects in the cache.</p>
+                        <p>The <code>cost</code> value is used to compute a sum encompassing the costs of all the objects in the cache.</p>
                       </div>
                     </section>
                   </div>
@@ -480,8 +481,9 @@ be passed in.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The corresponding value is a string of type CFString that represents the service associated with this item.
-       Items of class kSecClassGenericPassword have this attribute.</p>
+                        <p>The corresponding value is a string of type <a href="apple-reference-documentation://hsYWZv0wKs">CFString</a>
+       that represents the service associated with this item. Items of class
+       <a href="apple-reference-documentation://hsgWgYNpc3">kSecClassGenericPassword</a> have this attribute.</p>
                       </div>
                     </section>
                   </div>
@@ -532,8 +534,10 @@ be passed in.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The corresponding value is of type CFString and contains an account name. Items of class kSecClassGenericPassword
-       and kSecClassInternetPassword have this attribute.</p>
+                        <p>The corresponding value is of type <a href="apple-reference-documentation://hsYWZv0wKs">CFString</a>
+       and contains an account name. Items of class
+       <a href="apple-reference-documentation://hsgWgYNpc3">kSecClassGenericPassword</a> and
+       <a href="apple-reference-documentation://hsT6cNjrp9">kSecClassInternetPassword</a> have this attribute.</p>
                       </div>
                     </section>
                   </div>
@@ -557,24 +561,17 @@ be passed in.</p>
 The list of an app’s access groups consists of the following string identifiers, in this order:</p>
 
 <ul>
-<li>The strings in the app’s Keychain Access Groups Entitlement</li>
+<li>The strings in the app’s <a href="apple-reference-documentation://hsVfwaZeip">Keychain Access Groups Entitlement</a></li>
 <li>The app ID string</li>
-<li>The strings in the App Groups Entitlement</li>
+<li>The strings in the <a href="apple-reference-documentation://hsSm4ftpCR">App Groups Entitlement</a></li>
 </ul>
 
 <p>Two or more apps that are in the same access group can share keychain items. For more details,
-see Sharing Access to Keychain Items Among a Collection of Apps.</p>
+see <a href="apple-reference-documentation://ts2972431">Sharing Access to Keychain Items Among a Collection of Apps</a>.</p>
 
-<p>Specify which access group a keychain item belongs to when you create it by setting the kSecAttrAccessGroup
-attribute in the query you send to the SecItemAdd(<em>:</em>:) method. Naming a group that’s not among the creating
-app’s access groups—including the empty string, which is always an invalid group—generates an error. If you
-don’t explicitly set a group, keychain services defaults to the app’s first access group, which is either the
-first keychain access group, or the app ID when the app has no keychain groups. In the latter case, the item
+<p>If you don’t explicitly set a group, keychain services defaults to the app’s first access group, which is either
+the first keychain access group, or the app ID when the app has no keychain groups. In the latter case, the item
 is only accessible to the app creating the item, since no other app can be in that group.</p>
-
-<p>By default, the SecItemUpdate(<em>:</em>:), SecItemDelete(<em>:), and SecItemCopyMatching(</em>:_:) methods search all the
-app’s access groups. Add the kSecAttrAccessGroup attribute to the query to limit the search to a particular
-group.</p>
 
                       </div>
                       <div class="declaration">
@@ -607,7 +604,8 @@ group.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The corresponding value is of type CFString and indicates the item’s one and only access group.</p>
+                        <p>The corresponding value is of type <a href="apple-reference-documentation://hsYWZv0wKs">CFString</a>
+       and indicates the item’s one and only access group.</p>
                       </div>
                     </section>
                   </div>

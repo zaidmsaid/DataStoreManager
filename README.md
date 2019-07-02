@@ -9,7 +9,7 @@
 [![Documentation](https://zaidmsaid.github.io/DataStoreManager/badge.svg)](https://zaidmsaid.github.io/DataStoreManager/)
 [![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg)](http://twitter.com/SentulAsia)
 
-DataStoreManager is a persistent data framework written in Swift and can be used with Objective-C.
+[DataStoreManager](https://github.com/zaidmsaid/DataStoreManager) is a persistent data framework written in Swift and can be used with Objective-C.
 
 ## Getting Started
 
