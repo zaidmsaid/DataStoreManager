@@ -75,8 +75,8 @@ import Foundation
     }()
 
     /// An interface to the SecItem.
-    lazy var securityItemWorker: SecurityItemWorker = {
-        let worker = SecurityItemWorker()
+    lazy var keychainWorker: KeychainWorker = {
+        let worker = KeychainWorker()
         worker.service = self.dataSource?.keychainService?(for: self)
         worker.account = self.dataSource?.keychainAccount?(for: self)
         worker.accessGroup = self.dataSource?.keychainAccessGroup?(for: self)
@@ -84,8 +84,8 @@ import Foundation
     }()
 
     /// An interface to the NSUbiquitousKeyValueStore.
-    lazy var ubiquitousWorker: UbiquitousWorker = {
-        return UbiquitousWorker()
+    lazy var ubiquitousKeyValueStoreWorker: UbiquitousKeyValueStoreWorker = {
+        return UbiquitousKeyValueStoreWorker()
     }()
 
     private var defaultType: StorageType = .userDefaults
@@ -127,10 +127,10 @@ import Foundation
         case cache
 
         /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services).
-        case keychainServices
+        case keychain
 
         /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
-        case ubiquitous
+        case ubiquitousKeyValueStore
 
         /// Converts the storage type value to a native string.
         ///
@@ -161,10 +161,10 @@ import Foundation
             case .cache:
                 return "NSCache"
 
-            case .keychainServices:
+            case .keychain:
                 return "SecItem"
 
-            case .ubiquitous:
+            case .ubiquitousKeyValueStore:
                 return "NSUbiquitousKeyValueStore"
             }
         }
@@ -244,11 +244,11 @@ import Foundation
         case .cache:
             cacheWorker.create(value: value, forKey: key, completionHandler: completionHandler)
 
-        case .keychainServices:
-            securityItemWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+        case .keychain:
+            keychainWorker.create(value: value, forKey: key, completionHandler: completionHandler)
 
-        case .ubiquitous:
-            ubiquitousWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+        case .ubiquitousKeyValueStore:
+            ubiquitousKeyValueStoreWorker.create(value: value, forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -301,11 +301,11 @@ import Foundation
         case .cache:
             cacheWorker.read(forKey: key, completionHandler: completionHandler)
 
-        case .keychainServices:
-            securityItemWorker.read(forKey: key, completionHandler: completionHandler)
+        case .keychain:
+            keychainWorker.read(forKey: key, completionHandler: completionHandler)
 
-        case .ubiquitous:
-            ubiquitousWorker.read(forKey: key, completionHandler: completionHandler)
+        case .ubiquitousKeyValueStore:
+            ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -360,11 +360,11 @@ import Foundation
         case .cache:
             cacheWorker.update(value: value, forKey: key, completionHandler: completionHandler)
 
-        case .keychainServices:
-            securityItemWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+        case .keychain:
+            keychainWorker.update(value: value, forKey: key, completionHandler: completionHandler)
 
-        case .ubiquitous:
-            ubiquitousWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+        case .ubiquitousKeyValueStore:
+            ubiquitousKeyValueStoreWorker.update(value: value, forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -417,11 +417,11 @@ import Foundation
         case .cache:
             cacheWorker.delete(forKey: key, completionHandler: completionHandler)
 
-        case .keychainServices:
-            securityItemWorker.delete(forKey: key, completionHandler: completionHandler)
+        case .keychain:
+            keychainWorker.delete(forKey: key, completionHandler: completionHandler)
 
-        case .ubiquitous:
-            ubiquitousWorker.delete(forKey: key, completionHandler: completionHandler)
+        case .ubiquitousKeyValueStore:
+            ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
         }
     }
 
@@ -472,11 +472,11 @@ import Foundation
         case .cache:
             cacheWorker.deleteAll(completionHandler: completionHandler)
 
-        case .keychainServices:
-            securityItemWorker.deleteAll(completionHandler: completionHandler)
+        case .keychain:
+            keychainWorker.deleteAll(completionHandler: completionHandler)
 
-        case .ubiquitous:
-            ubiquitousWorker.deleteAll(completionHandler: completionHandler)
+        case .ubiquitousKeyValueStore:
+            ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
         }
     }
 
@@ -497,7 +497,15 @@ import Foundation
     /// delegate method.
     open func migrateSchema(forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-        let key = "kSchemaVersion|\(tag)"
+        var key: String
+
+        switch type {
+        case .documentDirectory, .userDirectory, .libraryDirectory, .applicationDirectory, .coreServiceDirectory, .temporaryDirectory:
+            key = ".data_store_manager/kSchemaVersion|\(tag).txt"
+
+        default:
+            key = "kSchemaVersion|\(tag)"
+        }
 
         read(forKey: key, forType: type) { (object) in
 

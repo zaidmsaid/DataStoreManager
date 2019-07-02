@@ -36,9 +36,9 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
             }
     	}
 
-        manager.read(forKey: "Key", forType: .keychainServices) { (object) in
+        manager.read(forKey: "Key", forType: .keychain) { (object) in
             if let object = object {
-                print("successfully read \(object) from Keychain Services")
+                print("successfully read \(object) from Keychain")
             }
         }
 
@@ -62,9 +62,9 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
             }
     	}
 
-        manager.update(value: object, forKey: "Key", forType: .keychainServices) { (isSuccessful) in
+        manager.update(value: object, forKey: "Key", forType: .keychain) { (isSuccessful) in
             if isSuccessful {
-                print("successfully update object at Keychain Services")
+                print("successfully update object at Keychain")
             }
         }
 
@@ -81,7 +81,7 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
         if manager.tag == 3 {
             return .userDefaults
         } else {
-            return .keychainServices
+            return .keychain
         }
     }
 }

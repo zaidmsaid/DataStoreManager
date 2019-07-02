@@ -21,7 +21,7 @@ import Foundation
 extension DataStoreManager {
 
     /// An interface to the NSUbiquitousKeyValueStore.
-    class UbiquitousWorker {
+    class UbiquitousKeyValueStoreWorker {
 
         // MARK: - Properties
 
