@@ -85,41 +85,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/DataStoreManager.swift",
-      "line": 56,
-      "symbol": "DataStoreManager.userDefaultsWorker",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/DataStoreManager.swift",
-      "line": 62,
-      "symbol": "DataStoreManager.fileManagerWorker",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/DataStoreManager.swift",
-      "line": 66,
-      "symbol": "DataStoreManager.cacheWorker",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/DataStoreManager.swift",
-      "line": 74,
-      "symbol": "DataStoreManager.securityItemWorker",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/DataStoreManager.swift",
-      "line": 82,
-      "symbol": "DataStoreManager.ubiquitousWorker",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/FileManagerWorker.swift",
       "line": 28,
       "symbol": "DataStoreManager.FileManagerWorker.fileManager",
