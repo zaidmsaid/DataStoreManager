@@ -16,6 +16,8 @@
 
 import Foundation
 
+// MARK: - Extension
+
 extension DataStoreManager {
 
     /// An interface to the NSCache.
