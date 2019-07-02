@@ -53,14 +53,14 @@ import Foundation
     /// Returns the shared data store manager object.
     public static let shared = DataStoreManager()
 
-    lazy var userDefaultsWorker: UserDefaultsWorker.Type = {
-        let worker = UserDefaultsWorker.self
+    lazy var userDefaultsWorker: UserDefaultsWorker = {
+        let worker = UserDefaultsWorker()
         worker.dataStoreManager = self
         return worker
     }()
 
-    lazy var fileManagerWorker: FileManagerWorker.Type = {
-        FileManagerWorker.self
+    lazy var fileManagerWorker: FileManagerWorker = {
+        FileManagerWorker()
     }()
 
     lazy var cacheWorker: CacheWorker = {
@@ -71,8 +71,8 @@ import Foundation
         return worker
     }()
 
-    lazy var securityItemWorker: SecurityItemWorker.Type = {
-        let worker = SecurityItemWorker.self
+    lazy var securityItemWorker: SecurityItemWorker = {
+        let worker = SecurityItemWorker()
         worker.service = self.dataSource?.keychainService?(for: self)
         worker.account = self.dataSource?.keychainAccount?(for: self)
         worker.accessGroup = self.dataSource?.keychainAccessGroup?(for: self)

@@ -27,13 +27,16 @@ extension DataStoreManager {
         var totalCostLimit: Int?
         var totalCostLimitDataSource: ((DataStoreManager) -> Int)?
         var costDataSource: ((DataStoreManager, Any) -> Int)?
-        private var cacheStorage = NSCache<NSString, AnyObject>()
+
+        lazy var cache: NSCache<NSString, AnyObject> = {
+            return NSCache<NSString, AnyObject>()
+        }()
 
         // MARK: - Init
 
         init() {
             if let manager = dataStoreManager, let datasource = totalCostLimitDataSource {
-                cacheStorage.totalCostLimit = datasource(manager)
+                cache.totalCostLimit = datasource(manager)
             }
             NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
         }
@@ -55,29 +58,29 @@ extension DataStoreManager {
 
         func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
 
-            let object = cacheStorage.object(forKey: NSString(string: key))
+            let object = cache.object(forKey: NSString(string: key))
             completionHandler(object)
         }
 
         func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             if let manager = dataStoreManager, let datasource = costDataSource {
-                cacheStorage.setObject(value as AnyObject, forKey: NSString(string: key), cost: datasource(manager, value))
+                cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: datasource(manager, value))
             } else {
-                cacheStorage.setObject(value as AnyObject, forKey: NSString(string: key), cost: 0)
+                cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: 0)
             }
             completionHandler(true)
         }
 
         func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            cacheStorage.removeObject(forKey: NSString(string: key))
+            cache.removeObject(forKey: NSString(string: key))
             completionHandler(true)
         }
 
         func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            cacheStorage.removeAllObjects()
+            cache.removeAllObjects()
             completionHandler(true)
         }
     }

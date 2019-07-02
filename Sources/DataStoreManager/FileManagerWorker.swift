@@ -21,6 +21,14 @@ extension DataStoreManager {
     /// An interface to the FileManager.
     class FileManagerWorker {
 
+        // MARK: - Properties
+
+        lazy var fileManager: FileManager = {
+            return FileManager.default
+        }()
+
+        // MARK: - Enums
+
         enum Directory {
 
             case documentDirectory
@@ -33,7 +41,7 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        class func create(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func create(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
                 assertionFailure("Unable to get document URL")
@@ -43,11 +51,11 @@ extension DataStoreManager {
 
             let filePath = url.path + "/" + fileName
             let data = (value as? AnySubclass)?.toData()
-            let isSuccessful = FileManager.default.createFile(atPath: filePath, contents: data, attributes: nil)
+            let isSuccessful = fileManager.createFile(atPath: filePath, contents: data, attributes: nil)
             completionHandler(isSuccessful)
         }
 
-        class func read(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func read(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ object: Any?) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
                 completionHandler(nil)
@@ -55,11 +63,11 @@ extension DataStoreManager {
             }
 
             let filePath = url.path + "/" + fileName
-            let object = FileManager.default.contents(atPath: filePath)
+            let object = fileManager.contents(atPath: filePath)
             completionHandler(object)
         }
 
-        class func update(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func update(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getFullPath(forFileName: fileName, inDirectory: directory) else {
                 assertionFailure("Unable to get document URL")
@@ -77,7 +85,7 @@ extension DataStoreManager {
             }
         }
 
-        class func delete(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func delete(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getFullPath(forFileName: fileName, inDirectory: directory) else {
                 assertionFailure("Unable to get document URL")
@@ -86,7 +94,7 @@ extension DataStoreManager {
             }
 
             do {
-                try FileManager.default.removeItem(at: url)
+                try fileManager.removeItem(at: url)
                 completionHandler(true)
 
             } catch {
@@ -95,7 +103,7 @@ extension DataStoreManager {
             }
         }
 
-        class func deleteAll(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func deleteAll(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getURL(for: directory) else {
                 assertionFailure("Unable to get document URL")
@@ -115,7 +123,7 @@ extension DataStoreManager {
 
         // MARK: - Helper
 
-        private final class func getPathComponent(forKey fileName: String) -> [String]? {
+        private final func getPathComponent(forKey fileName: String) -> [String]? {
 
             // Check if file should contain in a folder.
             if fileName.contains("/") {
@@ -126,28 +134,28 @@ extension DataStoreManager {
             return nil
         }
 
-        private final class func getURL(for directory: Directory, withFileName fileName: String? = nil) -> URL? {
+        private final func getURL(for directory: Directory, withFileName fileName: String? = nil) -> URL? {
 
             var url: URL?
             switch directory {
             case .documentDirectory:
-                url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+                url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
 
             case .userDirectory:
-                url = FileManager.default.urls(for: .userDirectory, in: .userDomainMask).first
+                url = fileManager.urls(for: .userDirectory, in: .userDomainMask).first
 
             case .libraryDirectory:
-                url = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first
+                url = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).first
 
             case .applicationDirectory:
-                url = FileManager.default.urls(for: .applicationDirectory, in: .userDomainMask).first
+                url = fileManager.urls(for: .applicationDirectory, in: .userDomainMask).first
 
             case .coreServiceDirectory:
-                url = FileManager.default.urls(for: .coreServiceDirectory, in: .userDomainMask).first
+                url = fileManager.urls(for: .coreServiceDirectory, in: .userDomainMask).first
 
             case .temporaryDirectory:
                 if #available(iOS 10.0, *) {
-                    url = FileManager.default.temporaryDirectory
+                    url = fileManager.temporaryDirectory
 
                 } else {
                     url = URL(fileURLWithPath: NSTemporaryDirectory())
@@ -163,14 +171,14 @@ extension DataStoreManager {
             return url
         }
 
-        private final class func getFullPath(forFileName fileName: String, inDirectory directory: Directory) -> URL? {
+        private final func getFullPath(forFileName fileName: String, inDirectory directory: Directory) -> URL? {
 
             return getURL(for: directory, withFileName: fileName)?.appendingPathComponent(fileName)
         }
 
-        private final class func list(at directory: URL) -> [String]? {
+        private final func list(at directory: URL) -> [String]? {
 
-            if let listing = try? FileManager.default.contentsOfDirectory(atPath: directory.path), listing.count > 0 {
+            if let listing = try? fileManager.contentsOfDirectory(atPath: directory.path), listing.count > 0 {
                 return listing
                 
             } else {
