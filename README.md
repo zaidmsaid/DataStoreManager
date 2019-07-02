@@ -58,19 +58,19 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     func storeToDataStore(object: Any) {
     	manager.create(value: object, forKey: "Key") { (isSuccessful) in
             if isSuccessful {
-    	        print("successfully write to UserDefaults")
+    	        print("successfully create object at UserDefaults")
             }
     	}
 
-        manager.create(value: object, forKey: "Key", forType: .keychainServices) { (isSuccessful) in
+        manager.update(value: object, forKey: "Key", forType: .keychainServices) { (isSuccessful) in
             if isSuccessful {
-                print("successfully write to Keychain Services")
+                print("successfully update object at Keychain Services")
             }
         }
 
     	manager.create(value: object, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
             if isSuccessful {
-    	        print("successfully write to Inbox Document Directory")
+    	        print("successfully create file at Inbox Document Directory")
             }
     	}
     }
