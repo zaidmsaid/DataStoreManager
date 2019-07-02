@@ -249,10 +249,17 @@ fileprivate extension DataConvertible where Self: ExpressibleByIntegerLiteral {
     }
 }
 
-extension Int: DataConvertible {}
-extension Float: DataConvertible {}
-extension Double: DataConvertible {}
-extension Decimal: DataConvertible {}
+extension Int: DataConvertible {
+}
+
+extension Float: DataConvertible {
+}
+
+extension Double: DataConvertible {
+}
+
+extension Decimal: DataConvertible {
+}
 
 extension Bool: DataConvertible {
     init?(data: Data) {
