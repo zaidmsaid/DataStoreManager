@@ -16,6 +16,8 @@
 
 import Foundation
 
+// MARK: - Extension
+
 extension DataStoreManager {
 
     /// An interface to the UserDefaults.
@@ -23,9 +25,9 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
-        static var dataStoreManager: DataStoreManager?
+        var dataStoreManager: DataStoreManager?
 
-        private static var userDefaults: UserDefaults = {
+        lazy var userDefaults: UserDefaults = {
             if let manager = dataStoreManager, let suiteName = manager.dataSource?.userDefaultsSuiteName?(for: manager) {
                 return UserDefaults(suiteName: suiteName) ?? UserDefaults.standard
             }
@@ -34,33 +36,33 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        class func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             update(value: value, forKey: key, completionHandler: completionHandler)
         }
 
-        class func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
 
             userDefaults.synchronize()
             let object = userDefaults.object(forKey: key)
             completionHandler(object)
         }
 
-        class func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             userDefaults.setValue(value, forKey: key)
             userDefaults.synchronize()
             completionHandler(true)
         }
 
-        class func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             userDefaults.removeObject(forKey: key)
             userDefaults.synchronize()
             completionHandler(true)
         }
 
-        class func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
                 assertionFailure("Unable to get bundle identifier")

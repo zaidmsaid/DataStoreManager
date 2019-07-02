@@ -16,18 +16,22 @@
 
 import Security
 
+// MARK: - Extension
+
 extension DataStoreManager {
 
     /// An interface to the SecItem.
     class SecurityItemWorker {
 
+        // MARK: - Properties
+
+        var service: String?
+        var account: String?
+        var accessGroup: String?
+
         // MARK: - CRUD
 
-        static var service: String?
-        static var account: String?
-        static var accessGroup: String?
-
-        class func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             var newItem = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
             newItem[kSecValueData as String] = value as AnyObject?
@@ -35,7 +39,7 @@ extension DataStoreManager {
             completionHandler(status == noErr)
         }
 
-        class func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
 
             var item = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
             item[kSecMatchLimit as String] = kSecMatchLimitOne
@@ -56,29 +60,23 @@ extension DataStoreManager {
             completionHandler(object)
         }
 
-        class func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            read(forKey: key) { (object) in
-                if object == nil {
-                    create(value: value, forKey: key, completionHandler: completionHandler)
-                } else {
-                    var newItem = [String : AnyObject]()
-                    newItem[kSecValueData as String] = value as AnyObject?
+            var newItem = [String : AnyObject]()
+            newItem[kSecValueData as String] = value as AnyObject?
 
-                    let item = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
-                    let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
+            let item = self.keychainItem(withService: self.service, account: self.account ?? key, accessGroup: self.accessGroup)
+            let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
 
-                    guard status == noErr else {
-                        assertionFailure("Unable to update object to keychain")
-                        completionHandler(false)
-                        return
-                    }
-                    completionHandler(true)
-                }
+            guard status == noErr else {
+                assertionFailure("Unable to update object to keychain")
+                completionHandler(false)
+                return
             }
+            completionHandler(true)
         }
 
-        class func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             let item = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
             let status = SecItemDelete(item as CFDictionary)
@@ -91,7 +89,7 @@ extension DataStoreManager {
             completionHandler(true)
         }
 
-        class func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             var item = [String : AnyObject]()
             item[kSecClass as String] = kSecClassGenericPassword
@@ -111,7 +109,7 @@ extension DataStoreManager {
 
         // MARK: - Helper
 
-        private static func keychainItem(withService service: String?, account: String? = nil, accessGroup: String? = nil) -> [String : AnyObject] {
+        private final func keychainItem(withService service: String?, account: String? = nil, accessGroup: String? = nil) -> [String : AnyObject] {
             let secAttrService: AnyObject = service as AnyObject? ?? Bundle.main.bundleIdentifier as AnyObject? ?? "DataStoreManager" as AnyObject
             var item = [String : AnyObject]()
             item[kSecClass as String] = kSecClassGenericPassword
