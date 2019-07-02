@@ -16,6 +16,8 @@
 
 import Foundation
 
+// MARK: - Extension
+
 extension DataStoreManager {
 
     /// An interface to the NSUbiquitousKeyValueStore.
@@ -30,11 +32,11 @@ extension DataStoreManager {
         // MARK: - Init
 
         init() {
-            NotificationCenter.default.addObserver(self, selector: #selector(onUbiquitousKeyValueStoreDidChangeExternally(notification:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: NSUbiquitousKeyValueStore.default)
+            NotificationCenter.default.addObserver(self, selector: #selector(onUbiquitousKeyValueStoreDidChangeExternally(notification:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousKeyValueStore)
         }
 
         deinit {
-            NotificationCenter.default.removeObserver(self, name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: NSUbiquitousKeyValueStore.default)
+            NotificationCenter.default.removeObserver(self, name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousKeyValueStore)
         }
 
         @objc private func onUbiquitousKeyValueStoreDidChangeExternally(notification: Notification) {

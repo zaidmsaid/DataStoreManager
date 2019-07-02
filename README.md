@@ -44,9 +44,15 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
 
     	manager.read(forKey: "temp_file.txt", forType: .temporaryDirectory) { (object) in
             if let object = object {
-    	        print("successfully read \(object) from Temporary Directory")
+    	        print("successfully read \(object) from /tmp")
             }
     	}
+
+    	manager.read(forKey: "Key", forType: .cache) { (object) in
+            if let object = object {
+                print("successfully read \(object) from NSCache")
+            }
+        }
     }
 
     func storeToDataStore(aValue: String) {
@@ -145,11 +151,11 @@ dependencies: [
 
 Then run `swift package update`.
 
-#### <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="24" height="24"> [Manually]
+#### <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="24" height="24"> [Git Submodule]
 
-[Manually]: https://github.com/zaidmsaid/DataStoreManager
+[Git Submodule]: https://github.com/zaidmsaid/DataStoreManager
 
-To install manually DataStoreManager in your project requires the following steps:
+To install DataStoreManager in your project requires the following steps:
 
 1. Add DataStoreManager as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/zaidmsaid/DataStoreManager.git`
 2. Open the `DataStoreManager` folder, and drag `DataStoreManager.xcodeproj` into the file navigator of your app project.
@@ -159,13 +165,18 @@ To install manually DataStoreManager in your project requires the following step
 6. Expand the "Link Binary with Libraries" group, and add `DataStoreManager.framework`.
 7. Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `DataStoreManager.framework`.
 
+### Documentation
+
+Having trouble with DataStoreManager? Check out our [documentation](https://zaidmsaid.github.io/DataStoreManager/).
+
 ## Built With
 
 * [Xcode](https://developer.apple.com/xcode/ide/) - The IDE used
+* [jazzy](https://github.com/realm/jazzy) - Used to generate docs
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/zaidmsaid/DataStoreManager/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/zaidmsaid/DataStoreManager/blob/master/CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](https://github.com/zaidmsaid/DataStoreManager/blob/master/CODE_OF_CONDUCT.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
