@@ -95,34 +95,41 @@ import Foundation
     /// Constants that provide information regarding storage type of data store manager.
     @objc public enum StorageType : Int, CaseIterable {
 
-        /// The storage type UserDefaults.
+        /// The storage type [UserDefaults](apple-reference-documentation://hsARFaqWd3).
         case userDefaults
 
-        /// The storage type FileManager with the search path document directory.
+        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+        /// with the search path document directory.
         case documentDirectory
 
-        /// The storage type FileManager with the search path user home directories (/Users).
+        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+        /// with the search path user home directories (`/Users`).
         case userDirectory
 
-        /// The storage type FileManager with the search path various user-visible documentation, support, and configuration files (/Library).
+        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+        /// with the search path various user-visible documentation, support, and
+        /// configuration files (`/Library`).
         case libraryDirectory
 
-        /// The storage type FileManager with the search path supported applications (/Applications).
+        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+        /// with the search path supported applications (`/Applications`).
         case applicationDirectory
 
-        /// The storage type FileManager with the search path core services (System/Library/CoreServices).
+        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+        /// with the search path core services (`System/Library/CoreServices`).
         case coreServiceDirectory
 
-        /// The storage type FileManager with the temporary directory for the current user.
+        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+        /// with the temporary directory for the current user.
         case temporaryDirectory
 
-        /// The storage type NSCache.
+        /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
         case cache
 
-        /// The storage type SecItem.
-        case keychain
+        /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services).
+        case keychainServices
 
-        /// The storage type NSUbiquitousKeyValueStore.
+        /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
         case ubiquitous
 
         /// Converts the storage type value to a native string.
@@ -154,7 +161,7 @@ import Foundation
             case .cache:
                 return "NSCache"
 
-            case .keychain:
+            case .keychainServices:
                 return "SecItem"
 
             case .ubiquitous:
@@ -237,7 +244,7 @@ import Foundation
         case .cache:
             cacheWorker.create(value: value, forKey: key, completionHandler: completionHandler)
 
-        case .keychain:
+        case .keychainServices:
             securityItemWorker.create(value: value, forKey: key, completionHandler: completionHandler)
 
         case .ubiquitous:
@@ -294,7 +301,7 @@ import Foundation
         case .cache:
             cacheWorker.read(forKey: key, completionHandler: completionHandler)
 
-        case .keychain:
+        case .keychainServices:
             securityItemWorker.read(forKey: key, completionHandler: completionHandler)
 
         case .ubiquitous:
@@ -353,7 +360,7 @@ import Foundation
         case .cache:
             cacheWorker.update(value: value, forKey: key, completionHandler: completionHandler)
 
-        case .keychain:
+        case .keychainServices:
             securityItemWorker.update(value: value, forKey: key, completionHandler: completionHandler)
 
         case .ubiquitous:
@@ -410,7 +417,7 @@ import Foundation
         case .cache:
             cacheWorker.delete(forKey: key, completionHandler: completionHandler)
 
-        case .keychain:
+        case .keychainServices:
             securityItemWorker.delete(forKey: key, completionHandler: completionHandler)
 
         case .ubiquitous:
@@ -465,7 +472,7 @@ import Foundation
         case .cache:
             cacheWorker.deleteAll(completionHandler: completionHandler)
 
-        case .keychain:
+        case .keychainServices:
             securityItemWorker.deleteAll(completionHandler: completionHandler)
 
         case .ubiquitous:
