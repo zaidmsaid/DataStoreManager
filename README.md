@@ -145,7 +145,7 @@ dependencies: [
 
 Then run `swift package update`.
 
-#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/git.png" width="24" height="24"> [Manually]
+#### <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="24" height="24"> [Manually]
 
 [Manually]: https://github.com/zaidmsaid/DataStoreManager
 
