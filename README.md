@@ -36,9 +36,9 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
             }
     	}
 
-        manager.read(forKey: "Key", forType: .keychain) { (object) in
+        manager.read(forKey: "Key", forType: .keychainServices) { (object) in
             if let object = object {
-                print("successfully read \(object) from SecItem")
+                print("successfully read \(object) from Keychain Services")
             }
         }
 
@@ -62,7 +62,7 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
             }
     	}
 
-        manager.create(value: object, forKey: "Key", forType: .keychain) { (isSuccessful) in
+        manager.create(value: object, forKey: "Key", forType: .keychainServices) { (isSuccessful) in
             if isSuccessful {
                 print("successfully write to SecItem")
             }
@@ -81,7 +81,7 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
         if manager.tag == 3 {
             return .userDefaults
         } else {
-            return .keychain
+            return .keychainServices
         }
     }
 }
@@ -137,7 +137,7 @@ To install it, simply add the following line to your **Package.swift**:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.4.0"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.5.0"))
 ]
 ```
 
@@ -145,7 +145,7 @@ or more strict:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.4.0"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.5.0"))
 ]
 ```
 
