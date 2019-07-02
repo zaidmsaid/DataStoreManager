@@ -64,7 +64,7 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
 
         manager.create(value: object, forKey: "Key", forType: .keychainServices) { (isSuccessful) in
             if isSuccessful {
-                print("successfully write to SecItem")
+                print("successfully write to Keychain Services")
             }
         }
 
