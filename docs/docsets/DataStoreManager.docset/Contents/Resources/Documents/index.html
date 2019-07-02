@@ -140,20 +140,20 @@
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="kd">func</span> <span class="nf">storeToDataStore</span><span class="p">(</span><span class="nv">aValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">aValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Key"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
+    <span class="kd">func</span> <span class="nf">storeToDataStore</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Key"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"successfully write to UserDefaults"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">aValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Key"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">keychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Key"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">keychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"successfully write to SecItem"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">aValue</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Inbox/file.txt"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">documentDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Inbox/file.txt"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">documentDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"successfully write to Inbox Document Directory"</span><span class="p">)</span>
             <span class="p">}</span>
