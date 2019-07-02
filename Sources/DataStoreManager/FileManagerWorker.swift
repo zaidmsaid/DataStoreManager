@@ -16,7 +16,7 @@
 
 import UIKit
 
-// MARK: - Extension
+// MARK: - FileManager
 
 extension DataStoreManager {
 
