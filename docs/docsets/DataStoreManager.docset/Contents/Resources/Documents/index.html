@@ -13,7 +13,7 @@
     <a title="DataStoreManager  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">DataStoreManager Docs</a> (49% documented)</p>
+        <p><a href="index.html">DataStoreManager Docs</a> (47% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -129,7 +129,13 @@
 
         <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"temp_file.txt"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">temporaryDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
-                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from Temporary Directory"</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from /tmp"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Key"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">cache</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from NSCache"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -208,9 +214,9 @@ for up to date installation instructions.</p>
 </code></pre>
 
 <p>Then run <code>swift package update</code>.</p>
-<h4 id='img-src-https-git-scm-com-images-logos-downloads-git-icon-1788c-png-width-24-height-24-a-href-https-github-com-zaidmsaid-datastoremanager-manually-a' class='heading'><img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="24" height="24"> <a href="https://github.com/zaidmsaid/DataStoreManager">Manually</a></h4>
+<h4 id='img-src-https-git-scm-com-images-logos-downloads-git-icon-1788c-png-width-24-height-24-a-href-https-github-com-zaidmsaid-datastoremanager-git-submodule-a' class='heading'><img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="24" height="24"> <a href="https://github.com/zaidmsaid/DataStoreManager">Git Submodule</a></h4>
 
-<p>To install manually DataStoreManager in your project requires the following steps:</p>
+<p>To install DataStoreManager in your project requires the following steps:</p>
 
 <ol>
 <li>Add DataStoreManager as a <a href="http://git-scm.com/docs/git-submodule">submodule</a> by opening the Terminal, <code>cd</code>-ing into your top-level project directory, and entering the command <code>git submodule add https://github.com/zaidmsaid/DataStoreManager.git</code></li>
@@ -221,14 +227,18 @@ for up to date installation instructions.</p>
 <li>Expand the <q>Link Binary with Libraries</q> group, and add <code>DataStoreManager.framework</code>.</li>
 <li>Click on the <code>+</code> button at the top left of the panel and select <q>New Copy Files Phase</q>. Rename this new phase to <q>Copy Frameworks</q>, set the <q>Destination</q> to <q>Frameworks</q>, and add <code>DataStoreManager.framework</code>.</li>
 </ol>
+<h3 id='documentation' class='heading'>Documentation</h3>
+
+<p>Having trouble with DataStoreManager? Check out our <a href="https://zaidmsaid.github.io/DataStoreManager/">documentation</a>.</p>
 <h2 id='built-with' class='heading'>Built With</h2>
 
 <ul>
 <li><a href="https://developer.apple.com/xcode/ide/">Xcode</a> - The IDE used</li>
+<li><a href="https://github.com/realm/jazzy">jazzy</a> - Used to generate docs</li>
 </ul>
 <h2 id='contributing' class='heading'>Contributing</h2>
 
-<p>Please read <a href="https://github.com/zaidmsaid/DataStoreManager/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for details on our code of conduct, and the process for submitting pull requests to us.</p>
+<p>Please read <a href="https://github.com/zaidmsaid/DataStoreManager/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> and <a href="https://github.com/zaidmsaid/DataStoreManager/blob/master/CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a> for details on our code of conduct, and the process for submitting pull requests to us.</p>
 <h2 id='versioning' class='heading'>Versioning</h2>
 
 <p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/zaidmsaid/DataStoreManager/tags">tags on this repository</a>.</p>
