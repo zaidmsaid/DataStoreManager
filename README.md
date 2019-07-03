@@ -3,8 +3,8 @@
 [![Swift 5](https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platform](https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat)](http://www.apple.com/ios/)
 [![Version](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
-[![Carthage](https://img.shields.io/badge/carthage-compatible-brightgreen.svg)](https://github.com/Carthage/Carthage)
-[![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?color=lightgrey)](https://opensource.org/licenses/Apache-2.0)
+[![Carthage](https://img.shields.io/badge/carthage-compatible-lightgrey.svg)](https://github.com/Carthage/Carthage)
+[![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Documentation](https://zaidmsaid.github.io/DataStoreManager/badge.svg)](https://zaidmsaid.github.io/DataStoreManager/)
 [![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg)](http://twitter.com/SentulAsia)
 
