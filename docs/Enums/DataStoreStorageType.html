@@ -1,83 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>StorageType Enumeration Reference</title>
-    <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
+    <title>DataStoreStorageType Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
-    <script src="../../js/jquery.min.js" defer></script>
-    <script src="../../js/jazzy.js" defer></script>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/StorageType" class="dashAnchor"></a>
-    <a title="StorageType Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Enum/DataStoreStorageType" class="dashAnchor"></a>
+    <a title="DataStoreStorageType Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html">DataStoreManager Docs</a> (52% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (54% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../../index.html">DataStoreManager Reference</a>
-        <img id="carat" src="../../img/carat.png" />
-        StorageType Enumeration Reference
+        <a href="../index.html">DataStoreManager Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        DataStoreStorageType Enumeration Reference
       </p>
     </div>
     <div class="content-wrapper">
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="../../Classes.html">Classes</a>
+            <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Classes/DataStoreManager.html">DataStoreManager</a>
+                <a href="../Classes/DataStoreManager.html">DataStoreManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Classes/DataStoreManager/StorageType.html">– StorageType</a>
+                <a href="../Classes/DataStoreManager/CacheWorker.html">– CacheWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Classes/DataStoreManager/CacheWorker.html">– CacheWorker</a>
+                <a href="../Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
+                <a href="../Classes/DataStoreManager/KeychainWorker.html">– KeychainWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Classes/DataStoreManager/SecurityItemWorker.html">– SecurityItemWorker</a>
+                <a href="../Classes/DataStoreManager/UbiquitousKeyValueStoreWorker.html">– UbiquitousKeyValueStoreWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Classes/DataStoreManager/UbiquitousWorker.html">– UbiquitousWorker</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
+                <a href="../Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Extensions.html">Extensions</a>
+            <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Extensions/Bool.html">Bool</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Extensions/String.html">String</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Extensions/UIImage.html">UIImage</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Extensions/UInt16.html">UInt16</a>
+                <a href="../Enums/DataStoreStorageType.html">DataStoreStorageType</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Protocols.html">Protocols</a>
+            <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Protocols/DataStoreManagerDataSource.html">DataStoreManagerDataSource</a>
+                <a href="../Extensions/Bool.html">Bool</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Protocols/DataStoreManagerDelegate.html">DataStoreManagerDelegate</a>
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImage.html">UIImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/DataStoreManagerDataSource.html">DataStoreManagerDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DataStoreManagerDelegate.html">DataStoreManagerDelegate</a>
               </li>
             </ul>
           </li>
@@ -86,11 +91,11 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>StorageType</h1>
+            <h1>DataStoreStorageType</h1>
               <div class="declaration">
                 <div class="language">
                   <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">StorageType</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">DataStoreStorageType</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                 </div>
               </div>
@@ -103,9 +108,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO12userDefaultsyA2DmF"></a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUserDefaults"></a>
                     <a name="//apple_ref/swift/Element/userDefaults" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO12userDefaultsyA2DmF">userDefaults</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUserDefaults">userDefaults</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -130,9 +135,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO17documentDirectoryyA2DmF"></a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeDocumentDirectory"></a>
                     <a name="//apple_ref/swift/Element/documentDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO17documentDirectoryyA2DmF">documentDirectory</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeDocumentDirectory">documentDirectory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -158,9 +163,9 @@ with the search path document directory.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO13userDirectoryyA2DmF"></a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUserDirectory"></a>
                     <a name="//apple_ref/swift/Element/userDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO13userDirectoryyA2DmF">userDirectory</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUserDirectory">userDirectory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -186,9 +191,9 @@ with the search path user home directories (<code>/Users</code>).</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO16libraryDirectoryyA2DmF"></a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeLibraryDirectory"></a>
                     <a name="//apple_ref/swift/Element/libraryDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO16libraryDirectoryyA2DmF">libraryDirectory</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeLibraryDirectory">libraryDirectory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -215,9 +220,9 @@ configuration files (<code>/Library</code>).</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO20applicationDirectoryyA2DmF"></a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeApplicationDirectory"></a>
                     <a name="//apple_ref/swift/Element/applicationDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO20applicationDirectoryyA2DmF">applicationDirectory</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeApplicationDirectory">applicationDirectory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -243,9 +248,9 @@ with the search path supported applications (<code>/Applications</code>).</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO20coreServiceDirectoryyA2DmF"></a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeCoreServiceDirectory"></a>
                     <a name="//apple_ref/swift/Element/coreServiceDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO20coreServiceDirectoryyA2DmF">coreServiceDirectory</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeCoreServiceDirectory">coreServiceDirectory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -271,9 +276,9 @@ with the search path core services (<code>System/Library/CoreServices</code>).</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO18temporaryDirectoryyA2DmF"></a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeTemporaryDirectory"></a>
                     <a name="//apple_ref/swift/Element/temporaryDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO18temporaryDirectoryyA2DmF">temporaryDirectory</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeTemporaryDirectory">temporaryDirectory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -299,9 +304,9 @@ with the temporary directory for the current user.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO5cacheyA2DmF"></a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeCache"></a>
                     <a name="//apple_ref/swift/Element/cache" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO5cacheyA2DmF">cache</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeCache">cache</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -326,9 +331,9 @@ with the temporary directory for the current user.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO16keychainServicesyA2DmF"></a>
-                    <a name="//apple_ref/swift/Element/keychainServices" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO16keychainServicesyA2DmF">keychainServices</a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeKeychain"></a>
+                    <a name="//apple_ref/swift/Element/keychain" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeKeychain">keychain</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -343,7 +348,7 @@ with the temporary directory for the current user.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">keychainServices</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">keychain</span></code></pre>
 
                         </div>
                       </div>
@@ -353,9 +358,9 @@ with the temporary directory for the current user.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO10ubiquitousyA2DmF"></a>
-                    <a name="//apple_ref/swift/Element/ubiquitous" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO10ubiquitousyA2DmF">ubiquitous</a>
+                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUbiquitousKeyValueStore"></a>
+                    <a name="//apple_ref/swift/Element/ubiquitousKeyValueStore" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUbiquitousKeyValueStore">ubiquitousKeyValueStore</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -370,7 +375,7 @@ with the temporary directory for the current user.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">ubiquitous</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">ubiquitousKeyValueStore</span></code></pre>
 
                         </div>
                       </div>
@@ -380,9 +385,9 @@ with the temporary directory for the current user.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO8toStringSSyF"></a>
+                    <a name="/s:16DataStoreManager0aB11StorageTypeO8toStringSSyF"></a>
                     <a name="//apple_ref/swift/Method/toString()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO8toStringSSyF">toString()</a>
+                    <a class="token" href="#/s:16DataStoreManager0aB11StorageTypeO8toStringSSyF">toString()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -411,9 +416,9 @@ with the temporary directory for the current user.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC11StorageTypeO11stringValueADSgSS_tcfc"></a>
+                    <a name="/s:16DataStoreManager0aB11StorageTypeO11stringValueACSgSS_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(stringValue:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11StorageTypeO11stringValueADSgSS_tcfc">init(stringValue:)</a>
+                    <a class="token" href="#/s:16DataStoreManager0aB11StorageTypeO11stringValueACSgSS_tcfc">init(stringValue:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -424,10 +429,10 @@ with the temporary directory for the current user.</p>
                         <p>Creates a new instance with the specified string value.</p>
 
 <p>If there is no value of the type that corresponds with the specified string value, this initializer returns nil. For example:</p>
-<pre class="highlight swift"><code><span class="nf">print</span><span class="p">(</span><span class="kt">StorageType</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="s">"UserDefaults"</span><span class="p">))</span>
-<span class="c1">// Prints "Optional("StorageType.userDefaults")"</span>
+<pre class="highlight swift"><code><span class="nf">print</span><span class="p">(</span><span class="kt">DataStoreStorageType</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="s">"UserDefaults"</span><span class="p">))</span>
+<span class="c1">// Prints "Optional("DataStoreStorageType.userDefaults")"</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="kt">StorageType</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="s">"Invalid"</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="kt">DataStoreStorageType</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="s">"Invalid"</span><span class="p">))</span>
 <span class="c1">// Prints "nil"</span>
 </code></pre>
 
@@ -467,7 +472,7 @@ with the temporary directory for the current user.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-02)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-03)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

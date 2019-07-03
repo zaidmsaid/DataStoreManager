@@ -30,25 +30,25 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     .
     .
     func fetchFromDataStore() {
-    	manager.read(forKey: "Key") { (object) in
+    	manager.object(forKey: "Age", withValueType: Int.self) { (object) in
             if let object = object {
                 print("successfully read \(object) from UserDefaults")
             }
     	}
 
-        manager.read(forKey: "Key", forType: .keychainServices) { (object) in
+        manager.object(forKey: "Balance", withValueType: Double.self, forType: .keychain) { (object) in
             if let object = object {
-                print("successfully read \(object) from Keychain Services")
+                print("successfully read \(object) from Keychain")
             }
         }
 
-    	manager.read(forKey: "temp_file.txt", forType: .temporaryDirectory) { (object) in
+    	manager.object(forKey: "temp_file.txt", withValueType: String.self, forType: .temporaryDirectory) { (object) in
             if let object = object {
     	        print("successfully read \(object) from /tmp")
             }
     	}
 
-    	manager.read(forKey: "Key", forType: .cache) { (object) in
+    	manager.object(forKey: "Image", withValueType: UIImage.self, forType: .cache) { (object) in
             if let object = object {
                 print("successfully read \(object) from NSCache")
             }
@@ -56,32 +56,32 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     }
 
     func storeToDataStore(object: Any) {
-    	manager.create(value: object, forKey: "Key") { (isSuccessful) in
+    	manager.setValue(value: object, forKey: "Text") { (isSuccessful) in
             if isSuccessful {
-    	        print("successfully write to UserDefaults")
+    	        print("successfully create object at UserDefaults")
             }
     	}
 
-        manager.create(value: object, forKey: "Key", forType: .keychainServices) { (isSuccessful) in
+        manager.setValue(value: object, forKey: "Text", forType: .keychain) { (isSuccessful) in
             if isSuccessful {
-                print("successfully write to Keychain Services")
+                print("successfully update object at Keychain")
             }
         }
 
-    	manager.create(value: object, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
+    	manager.setValue(value: object, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
             if isSuccessful {
-    	        print("successfully write to Inbox Document Directory")
+    	        print("successfully create file at Inbox Document Directory")
             }
     	}
     }
     .
     .
     .
-    func defaultType(for manager: DataStoreManager) -> DataStoreManager.StorageType {
+    func defaultStorageType(for manager: DataStoreManager) -> DataStoreManager.StorageType {
         if manager.tag == 3 {
             return .userDefaults
         } else {
-            return .keychainServices
+            return .keychain
         }
     }
 }
@@ -137,7 +137,7 @@ To install it, simply add the following line to your **Package.swift**:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.5.0"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.6.0"))
 ]
 ```
 
@@ -145,7 +145,7 @@ or more strict:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.5.0"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.6.0"))
 ]
 ```
 
@@ -195,3 +195,5 @@ This project is licensed under the Apache License, Version 2.0 - see the [LICENS
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
+
+![analytics](https://ga-beacon.appspot.com/UA-22180067-6/DataStoreManager/README.md?pixel)
