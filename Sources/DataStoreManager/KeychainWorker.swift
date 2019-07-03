@@ -31,17 +31,35 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func setValue(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            var newItem = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
-            newItem[kSecValueData as String] = value as AnyObject?
-            let status = SecItemAdd(newItem as CFDictionary, nil)
-            completionHandler(status == noErr)
+            object(forKey: key) { (object) in
+                if object == nil {
+                    var newItem = self.getKeychainItem(withService: self.service, account: self.account ?? key, accessGroup: self.accessGroup)
+                    newItem[kSecValueData as String] = value as AnyObject?
+                    let status = SecItemAdd(newItem as CFDictionary, nil)
+                    completionHandler(status == noErr)
+
+                } else {
+                    var newItem = [String : AnyObject]()
+                    newItem[kSecValueData as String] = value as AnyObject?
+
+                    let item = self.getKeychainItem(withService: self.service, account: self.account ?? key, accessGroup: self.accessGroup)
+                    let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
+
+                    guard status == noErr else {
+                        assertionFailure("Unable to update object to Keychain")
+                        completionHandler(false)
+                        return
+                    }
+                    completionHandler(true)
+                }
+            }
         }
 
-        func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func object(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
 
-            var item = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
+            var item = getKeychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
             item[kSecMatchLimit as String] = kSecMatchLimitOne
             item[kSecReturnAttributes as String] = kCFBooleanTrue
             item[kSecReturnData as String] = kCFBooleanTrue
@@ -51,45 +69,36 @@ extension DataStoreManager {
                 SecItemCopyMatching(item as CFDictionary, UnsafeMutablePointer($0))
             }
 
-            guard status == noErr || status == errSecItemNotFound else {
-                assertionFailure("Unable to get object from keychain")
+            guard status == noErr else {
+                assertionFailure("Unable to get object from Keychain")
                 completionHandler(nil)
                 return
             }
-
+            guard status == errSecItemNotFound else {
+                completionHandler(nil)
+                return
+            }
             completionHandler(object)
         }
 
-        func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func removeObject(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-            var newItem = [String : AnyObject]()
-            newItem[kSecValueData as String] = value as AnyObject?
-
-            let item = self.keychainItem(withService: self.service, account: self.account ?? key, accessGroup: self.accessGroup)
-            let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
-
-            guard status == noErr else {
-                assertionFailure("Unable to update object to keychain")
-                completionHandler(false)
-                return
-            }
-            completionHandler(true)
-        }
-
-        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
-
-            let item = keychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
+            let item = getKeychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
             let status = SecItemDelete(item as CFDictionary)
 
-            guard status == noErr || status == errSecItemNotFound else {
-                assertionFailure("Unable to delete object from keychain")
+            guard status == noErr else {
+                assertionFailure("Unable to delete object from Keychain")
+                completionHandler(false)
+                return
+            }
+            guard status == errSecItemNotFound else {
                 completionHandler(false)
                 return
             }
             completionHandler(true)
         }
 
-        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func removeAllObjects(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             var item = [String : AnyObject]()
             item[kSecClass as String] = kSecClassGenericPassword
@@ -100,7 +109,7 @@ extension DataStoreManager {
             let status = SecItemDelete(item as CFDictionary)
 
             guard status == errSecSuccess else {
-                assertionFailure("Unable to delete all object from keychain")
+                assertionFailure("Unable to delete all object from Keychain")
                 completionHandler(false)
                 return
             }
@@ -109,7 +118,7 @@ extension DataStoreManager {
 
         // MARK: - Helper
 
-        private final func keychainItem(withService service: String?, account: String? = nil, accessGroup: String? = nil) -> [String : AnyObject] {
+        private final func getKeychainItem(withService service: String?, account: String? = nil, accessGroup: String? = nil) -> [String : AnyObject] {
             let secAttrService: AnyObject = service as AnyObject? ?? Bundle.main.bundleIdentifier as AnyObject? ?? "DataStoreManager" as AnyObject
             var item = [String : AnyObject]()
             item[kSecClass as String] = kSecClassGenericPassword

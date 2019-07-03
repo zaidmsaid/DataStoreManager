@@ -25,44 +25,36 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
-        var dataStoreManager: DataStoreManager?
+        var suiteName: String?
 
         lazy var userDefaults: UserDefaults = {
-            if let manager = dataStoreManager, let suiteName = manager.dataSource?.userDefaultsSuiteName?(for: manager) {
-                return UserDefaults(suiteName: suiteName) ?? UserDefaults.standard
-            }
-            return UserDefaults.standard
+            return UserDefaults(suiteName: suiteName) ?? UserDefaults.standard
         }()
 
         // MARK: - CRUD
 
-        func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
-
-            update(value: value, forKey: key, completionHandler: completionHandler)
-        }
-
-        func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
-
-            userDefaults.synchronize()
-            let object = userDefaults.object(forKey: key)
-            completionHandler(object)
-        }
-
-        func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func setValue(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             userDefaults.setValue(value, forKey: key)
             userDefaults.synchronize()
             completionHandler(true)
         }
 
-        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func object(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+
+            userDefaults.synchronize()
+            let object = userDefaults.object(forKey: key)
+            completionHandler(object)
+        }
+
+        func removeObject(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             userDefaults.removeObject(forKey: key)
             userDefaults.synchronize()
             completionHandler(true)
         }
 
-        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func removeAllObjects(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
                 assertionFailure("Unable to get bundle identifier")

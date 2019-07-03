@@ -29,9 +29,9 @@ extension DataStoreManager {
             return FileManager.default
         }()
 
-        // MARK: - Enums
+        // MARK: - Enumerations
 
-        enum Directory {
+        @objc enum Directory : Int {
 
             case documentDirectory
             case userDirectory
@@ -43,7 +43,7 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func setValue(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
                 assertionFailure("Unable to get document URL")
@@ -57,7 +57,7 @@ extension DataStoreManager {
             completionHandler(isSuccessful)
         }
 
-        func read(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func object(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ object: Any?) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
                 completionHandler(nil)
@@ -69,25 +69,7 @@ extension DataStoreManager {
             completionHandler(object)
         }
 
-        func update(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
-
-            guard let url = getFullPath(forFileName: fileName, inDirectory: directory) else {
-                assertionFailure("Unable to get document URL")
-                completionHandler(false)
-                return
-            }
-
-            do {
-                let data = (value as? AnySubclass)?.toData()
-                try data?.write(to: url)
-                completionHandler(true)
-            } catch {
-                assertionFailure("Unable to write to document URL")
-                completionHandler(false)
-            }
-        }
-
-        func delete(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func removeObject(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getFullPath(forFileName: fileName, inDirectory: directory) else {
                 assertionFailure("Unable to get document URL")
@@ -100,12 +82,12 @@ extension DataStoreManager {
                 completionHandler(true)
 
             } catch {
-                assertionFailure("Unable to remote at document URL")
+                assertionFailure("Unable to remove at document URL")
                 completionHandler(false)
             }
         }
 
-        func deleteAll(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func removeAllObjects(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             guard let url = getURL(for: directory) else {
                 assertionFailure("Unable to get document URL")
@@ -115,7 +97,7 @@ extension DataStoreManager {
 
             if let files = list(at: url) {
                 for fileName in files {
-                    delete(forKey: fileName, forDirectory: directory, completionHandler: completionHandler)
+                    removeObject(forKey: fileName, forDirectory: directory, completionHandler: completionHandler)
                 }
             } else {
                 assertionFailure("Unable to get contents of document directory")
@@ -162,6 +144,10 @@ extension DataStoreManager {
                 } else {
                     url = URL(fileURLWithPath: NSTemporaryDirectory())
                 }
+
+            @unknown case _:
+                assertionFailure("Use a representation that was unknown when this code was compiled.")
+                url = nil
             }
 
             if let name = fileName, let pathComponents = getPathComponent(forKey: name) {

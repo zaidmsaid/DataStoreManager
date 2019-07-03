@@ -45,33 +45,28 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
-
-            update(value: value, forKey: key, completionHandler: completionHandler)
-        }
-
-        func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
-
-            ubiquitousKeyValueStore.synchronize()
-            let object = ubiquitousKeyValueStore.object(forKey: key)
-            completionHandler(object)
-        }
-
-        func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func setValue(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             ubiquitousKeyValueStore.setValue(value, forKey: key)
             ubiquitousKeyValueStore.synchronize()
             completionHandler(true)
         }
 
-        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func object(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+
+            ubiquitousKeyValueStore.synchronize()
+            let object = ubiquitousKeyValueStore.object(forKey: key)
+            completionHandler(object)
+        }
+
+        func removeObject(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             ubiquitousKeyValueStore.removeObject(forKey: key)
             ubiquitousKeyValueStore.synchronize()
             completionHandler(true)
         }
 
-        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func removeAllObjects(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
             let keys = ubiquitousKeyValueStore.dictionaryRepresentation.keys
             for key in keys {

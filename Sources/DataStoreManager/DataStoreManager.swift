@@ -19,6 +19,11 @@ import Foundation
 /// An interface to the data store manager, where you store key-value pairs persistently across launches of your app.
 @objcMembers open class DataStoreManager : NSObject {
 
+    // MARK: - Type Aliases
+
+    /// Type to mean instance of DataStoreStorageType.
+    public typealias StorageType = DataStoreStorageType
+
     // MARK: - Properties
 
     /// An integer that you can use to identify data store manager objects in your application.
@@ -35,7 +40,7 @@ import Foundation
     /// protocol. The data source is not retained.
     open weak var dataSource: DataStoreManagerDataSource? {
         willSet {
-            if let defaultType = newValue?.defaultType?(for: self) {
+            if let defaultType = newValue?.defaultStorageType?(for: self) {
                 self.defaultType = defaultType
             }
         }
@@ -50,13 +55,10 @@ import Foundation
         }
     }
 
-    /// Returns the shared data store manager object.
-    public static let shared = DataStoreManager()
-
     /// An interface to the UserDefaults.
     lazy var userDefaultsWorker: UserDefaultsWorker = {
         let worker = UserDefaultsWorker()
-        worker.dataStoreManager = self
+        worker.suiteName = self.dataSource?.userDefaultsSuiteName?(for: self)
         return worker
     }()
 
@@ -88,108 +90,12 @@ import Foundation
         return UbiquitousKeyValueStoreWorker()
     }()
 
-    private var defaultType: StorageType = .userDefaults
-
-    // MARK: - Enums
-
-    /// Constants that provide information regarding storage type of data store manager.
-    @objc public enum StorageType : Int, CaseIterable {
-
-        /// The storage type [UserDefaults](apple-reference-documentation://hsARFaqWd3).
-        case userDefaults
-
-        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-        /// with the search path document directory.
-        case documentDirectory
-
-        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-        /// with the search path user home directories (`/Users`).
-        case userDirectory
-
-        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-        /// with the search path various user-visible documentation, support, and
-        /// configuration files (`/Library`).
-        case libraryDirectory
-
-        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-        /// with the search path supported applications (`/Applications`).
-        case applicationDirectory
-
-        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-        /// with the search path core services (`System/Library/CoreServices`).
-        case coreServiceDirectory
-
-        /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-        /// with the temporary directory for the current user.
-        case temporaryDirectory
-
-        /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
-        case cache
-
-        /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services).
-        case keychain
-
-        /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
-        case ubiquitousKeyValueStore
-
-        /// Converts the storage type value to a native string.
-        ///
-        /// - Returns: The string representation of the value.
-        public func toString() -> String {
-            switch self {
-            case .userDefaults:
-                return "UserDefaults"
-
-            case .documentDirectory:
-                return "FileManager.documentDirectory"
-
-            case .userDirectory:
-                return "FileManager.userDirectory"
-
-            case .libraryDirectory:
-                return "FileManager.libraryDirectory"
-
-            case .applicationDirectory:
-                return "FileManager.applicationDirectory"
-
-            case .coreServiceDirectory:
-                return "FileManager.coreServiceDirectory"
-
-            case .temporaryDirectory:
-                return "FileManager.temporaryDirectory"
-
-            case .cache:
-                return "NSCache"
-
-            case .keychain:
-                return "SecItem"
-
-            case .ubiquitousKeyValueStore:
-                return "NSUbiquitousKeyValueStore"
-            }
-        }
-
-        /// Creates a new instance with the specified string value.
-        ///
-        /// - Parameter stringValue: The string value to use for the new instance.
-        ///
-        /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil. For example:
-        /// ```
-        /// print(StorageType(stringValue: "UserDefaults"))
-        /// // Prints "Optional("StorageType.userDefaults")"
-        ///
-        /// print(StorageType(stringValue: "Invalid"))
-        /// // Prints "nil"
-        /// ```
-        public init?(stringValue: String) {
-            for type in StorageType.allCases {
-                if type.toString() == stringValue {
-                    self = type
-                }
-            }
-            return nil
-        }
+    /// Returns the data store manager framework short version string for internal use.
+    var version: String? {
+        return Bundle(for: DataStoreManager.self).object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
+
+    private var defaultType: StorageType = .userDefaults
 
     // MARK: - CRUD
 
@@ -202,9 +108,9 @@ import Foundation
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter isSuccessful: true on successful; false if not.
-    open func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+    open func setValue<T>(value: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-        create(value: value, forKey: key, forType: defaultType, completionHandler: completionHandler)
+        setValue(value: value, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
 
     /// Sets the property of the receiver specified by a given key to a given value.
@@ -212,43 +118,47 @@ import Foundation
     /// - Parameters:
     ///   - value: The value for the property identified by key.
     ///   - key: The key to identify the data store manager object.
-    ///   - type: A storage type constant.
+    ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter isSuccessful: true on successful; false if not.
-    open func create(value: Any, forKey key: String, forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+    open func setValue<T>(value: T, forKey key: String, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-        switch type {
+        switch storageType {
         case .userDefaults:
-            userDefaultsWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.setValue(value: value, forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.setValue(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.setValue(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.setValue(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .applicationDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
+            fileManagerWorker.setValue(value: value, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
 
         case .coreServiceDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
+            fileManagerWorker.setValue(value: value, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.setValue(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
 
         case .cache:
-            cacheWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+            cacheWorker.setValue(value: value, forKey: key, completionHandler: completionHandler)
 
         case .keychain:
-            keychainWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+            keychainWorker.setValue(value: value, forKey: key, completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
-            ubiquitousKeyValueStoreWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+            ubiquitousKeyValueStoreWorker.setValue(value: value, forKey: key, completionHandler: completionHandler)
+
+        @unknown case _:
+            assertionFailure("Use a representation that was unknown when this code was compiled.")
+            completionHandler(false)
         }
     }
 
@@ -256,115 +166,75 @@ import Foundation
     ///
     /// - Parameters:
     ///   - key: The key to identify the data store manager object.
+    ///   - valueType: The type of value for the property identified by key.
+    ///                Only needed by CloudKit.
     ///   - completionHandler: The block to execute with the associated object.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter object: The object associated with the specified key, or nil if the key was not found.
-    open func read(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+    ///
+    /// For CloudKit, the `valueType` are needed to properly map the array of data.
+    /// The `valueType` will be the type of the expected object. For example:
+    /// ```
+    /// let manager = DataStoreManager()
+    /// manager.read(forKey: "Key", withValueType: String.self) { (object) in
+    ///     if let object = object {
+    ///         print("successfully read \(object) from Cloud Kit")
+    ///     }
+    /// }
+    /// ```
+    open func object<T>(forKey key: String, withValueType valueType: T.Type, completionHandler: @escaping (_ object: Any?) -> Void) {
 
-        read(forKey: key, forType: defaultType, completionHandler: completionHandler)
+        object(forKey: key, withValueType: valueType, forStorageType: defaultType, completionHandler: completionHandler)
     }
 
     /// Returns the object associated with the specified key.
     ///
     /// - Parameters:
     ///   - key: The key to identify the data store manager object.
-    ///   - type: A storage type constant.
+    ///   - valueType: The type of value for the property identified by key.
+    ///                Only needed by CloudKit.
+    ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the associated object.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter object: The object associated with the specified key, or nil if the key was not found.
-    open func read(forKey key: String, forType type: StorageType, completionHandler: @escaping (_ object: Any?) -> Void) {
+    open func object<T>(forKey key: String, withValueType valueType: T.Type, forStorageType storageType: StorageType, completionHandler: @escaping (_ object: Any?) -> Void) {
 
-        switch type {
+        switch storageType {
         case .userDefaults:
-            userDefaultsWorker.read(forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.object(forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.object(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.object(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.object(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .applicationDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
+            fileManagerWorker.object(forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
 
         case .coreServiceDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
+            fileManagerWorker.object(forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.object(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
 
         case .cache:
-            cacheWorker.read(forKey: key, completionHandler: completionHandler)
+            cacheWorker.object(forKey: key, completionHandler: completionHandler)
 
         case .keychain:
-            keychainWorker.read(forKey: key, completionHandler: completionHandler)
+            keychainWorker.object(forKey: key, completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
-            ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
-        }
-    }
+            ubiquitousKeyValueStoreWorker.object(forKey: key, completionHandler: completionHandler)
 
-    /// Modifies the property of the receiver specified by a given key to a given value.
-    ///
-    /// - Parameters:
-    ///   - value: The value for the property identified by key.
-    ///   - key: The name of one of the receiver's properties.
-    ///   - completionHandler: The block to execute with the successful flag.
-    ///                        This block is executed asynchronously on your app's main thread.
-    ///                        The block has no return value and takes the following parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
-    open func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
-
-        update(value: value, forKey: key, forType: defaultType, completionHandler: completionHandler)
-    }
-
-    /// Modifies the property of the receiver specified by a given key to a given value.
-    ///
-    /// - Parameters:
-    ///   - value: The value for the property identified by key.
-    ///   - key: The key to identify the data store manager object.
-    ///   - type: A storage type constant.
-    ///   - completionHandler: The block to execute with the successful flag.
-    ///                        This block is executed asynchronously on your app's main thread.
-    ///                        The block has no return value and takes the following parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
-    open func update(value: Any, forKey key: String, forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
-
-        switch type {
-        case .userDefaults:
-            userDefaultsWorker.update(value: value, forKey: key, completionHandler: completionHandler)
-
-        case .documentDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
-
-        case .userDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
-
-        case .libraryDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
-
-        case .applicationDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
-
-        case .coreServiceDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
-
-        case .temporaryDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
-
-        case .cache:
-            cacheWorker.update(value: value, forKey: key, completionHandler: completionHandler)
-
-        case .keychain:
-            keychainWorker.update(value: value, forKey: key, completionHandler: completionHandler)
-
-        case .ubiquitousKeyValueStore:
-            ubiquitousKeyValueStoreWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+        @unknown case _:
+            assertionFailure("Use a representation that was unknown when this code was compiled.")
+            completionHandler(nil)
         }
     }
 
@@ -376,52 +246,56 @@ import Foundation
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter isSuccessful: true on successful; false if not.
-    open func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+    open func removeObject(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-       delete(forKey: key, forType: defaultType, completionHandler: completionHandler)
+       removeObject(forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
 
     /// Removes the value of the specified default key.
     ///
     /// - Parameters:
     ///   - key: The key to identify the data store manager object.
-    ///   - type: A storage type constant.
+    ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter isSuccessful: true on successful; false if not.
-    open func delete(forKey key: String, forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+    open func removeObject(forKey key: String, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-        switch type {
+        switch storageType {
         case .userDefaults:
-            userDefaultsWorker.delete(forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.removeObject(forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeObject(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeObject(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeObject(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .applicationDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeObject(forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
 
         case .coreServiceDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeObject(forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeObject(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
 
         case .cache:
-            cacheWorker.delete(forKey: key, completionHandler: completionHandler)
+            cacheWorker.removeObject(forKey: key, completionHandler: completionHandler)
 
         case .keychain:
-            keychainWorker.delete(forKey: key, completionHandler: completionHandler)
+            keychainWorker.removeObject(forKey: key, completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
-            ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
+            ubiquitousKeyValueStoreWorker.removeObject(forKey: key, completionHandler: completionHandler)
+
+        @unknown case _:
+            assertionFailure("Use a representation that was unknown when this code was compiled.")
+            completionHandler(false)
         }
     }
 
@@ -432,51 +306,55 @@ import Foundation
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter isSuccessful: true on successful; false if not.
-    open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+    open func removeAllObjects(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-        deleteAll(forType: defaultType, completionHandler: completionHandler)
+        removeAllObjects(forStorageType: defaultType, completionHandler: completionHandler)
     }
 
     /// Empties the data store manager for the given type.
     ///
     /// - Parameters:
-    ///   - type: A storage type constant.
+    ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
     /// - Parameter isSuccessful: true on successful; false if not.
-    open func deleteAll(forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+    open func removeAllObjects(forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
-        switch type {
+        switch storageType {
         case .userDefaults:
-            userDefaultsWorker.deleteAll(completionHandler: completionHandler)
+            userDefaultsWorker.removeAllObjects(completionHandler: completionHandler)
 
         case .documentDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeAllObjects(forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeAllObjects(forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeAllObjects(forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .applicationDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .applicationDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeAllObjects(forDirectory: .applicationDirectory, completionHandler: completionHandler)
 
         case .coreServiceDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeAllObjects(forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.removeAllObjects(forDirectory: .temporaryDirectory, completionHandler: completionHandler)
 
         case .cache:
-            cacheWorker.deleteAll(completionHandler: completionHandler)
+            cacheWorker.removeAllObjects(completionHandler: completionHandler)
 
         case .keychain:
-            keychainWorker.deleteAll(completionHandler: completionHandler)
+            keychainWorker.removeAllObjects(completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
-            ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
+            ubiquitousKeyValueStoreWorker.removeAllObjects(completionHandler: completionHandler)
+
+        @unknown case _:
+            assertionFailure("Use a representation that was unknown when this code was compiled.")
+            completionHandler(false)
         }
     }
 
@@ -485,7 +363,7 @@ import Foundation
     /// Migrate the schema if the version differs.
     ///
     /// - Parameters:
-    ///   - type: A storage type constant.
+    ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
@@ -495,11 +373,11 @@ import Foundation
     /// if the schema version is the same or not.If the schema needs to be migrated, it will call
     /// [dataStoreManager(_:performMigrationFromOldVersion:forType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:)
     /// delegate method.
-    open func migrateSchema(forType type: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+    open func migrateSchema(forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
 
         var key: String
 
-        switch type {
+        switch storageType {
         case .documentDirectory, .userDirectory, .libraryDirectory, .applicationDirectory, .coreServiceDirectory, .temporaryDirectory:
             key = ".data_store_manager/kSchemaVersion|\(tag).txt"
 
@@ -507,20 +385,14 @@ import Foundation
             key = "kSchemaVersion|\(tag)"
         }
 
-        read(forKey: key, forType: type) { (object) in
+        object(forKey: key, withValueType: Int.self, forStorageType: storageType) { (object) in
 
             let oldSchemaVersion = object as? Int ?? 0
-            let newSchemaVersion = self.dataSource?.dataStoreManager?(self, currentSchemaVersionForType: type) ?? 0
+            let newSchemaVersion = self.dataSource?.dataStoreManager?(self, currentSchemaVersionForType: storageType) ?? 0
 
             if oldSchemaVersion < newSchemaVersion {
-                self.delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: type)
-
-                if oldSchemaVersion == 0 {
-                    self.create(value: newSchemaVersion, forKey: key, forType: type, completionHandler: completionHandler)
-
-                } else {
-                    self.update(value: newSchemaVersion, forKey: key, forType: type, completionHandler: completionHandler)
-                }
+                self.delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: storageType)
+                self.setValue(value: newSchemaVersion, forKey: key, forStorageType: storageType, completionHandler: completionHandler)
 
             } else if oldSchemaVersion > newSchemaVersion {
                 assertionFailure("Current schema version is lower than old schema version")

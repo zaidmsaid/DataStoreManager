@@ -14,7 +14,7 @@
     <a title="DataStoreManagerDelegate Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DataStoreManager Docs</a> (52% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (54% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -34,22 +34,27 @@
                 <a href="../Classes/DataStoreManager.html">DataStoreManager</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DataStoreManager/StorageType.html">– StorageType</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/CacheWorker.html">– CacheWorker</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DataStoreManager/SecurityItemWorker.html">– SecurityItemWorker</a>
+                <a href="../Classes/DataStoreManager/KeychainWorker.html">– KeychainWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DataStoreManager/UbiquitousWorker.html">– UbiquitousWorker</a>
+                <a href="../Classes/DataStoreManager/UbiquitousKeyValueStoreWorker.html">– UbiquitousKeyValueStoreWorker</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/DataStoreStorageType.html">DataStoreStorageType</a>
               </li>
             </ul>
           </li>
@@ -120,14 +125,15 @@
 <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
     <span class="nf">migrateFromVersionZeroToOne</span><span class="p">()</span>
     <span class="k">fallthrough</span>
-
 <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
     <span class="nf">migrateFromVersionOneToTwo</span><span class="p">()</span>
-
 <span class="k">default</span><span class="p">:</span>
     <span class="k">break</span>
 <span class="p">}</span>
 </code></pre>
+
+<p>After the delegate method is called, the schema version will be updated to the version defined in
+<a href="https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:currentSchemaVersionForType:">dataStoreManager(_:currentSchemaVersionForType:)</a></p>
 
                       </div>
                       <div class="declaration">
@@ -135,7 +141,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">performMigrationFromOldVersion</span> <span class="nv">version</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">forType</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="o">.</span><span class="kt">StorageType</span><span class="p">)</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">performMigrationFromOldVersion</span> <span class="nv">version</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">forType</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/DataStoreStorageType.html">DataStoreStorageType</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -190,7 +196,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-02)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-03)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
