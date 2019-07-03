@@ -1,13 +1,12 @@
 # DataStoreManager
 
-[![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://developer.apple.com/swift/)
-[![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
-[![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
-[![License Apache](https://img.shields.io/badge/License-Apache-lightgrey.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
+[![Swift 5](https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Platform](https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat)](http://www.apple.com/ios/)
+[![Carthage](https://img.shields.io/badge/carthage-compatible-brightgreen.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
+[![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 [![Documentation](https://zaidmsaid.github.io/DataStoreManager/badge.svg)](https://zaidmsaid.github.io/DataStoreManager/)
-[![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg)](http://twitter.com/SentulAsia)
+[![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg?style=flat)](http://twitter.com/SentulAsia)
 
 [DataStoreManager](https://github.com/zaidmsaid/DataStoreManager) is a persistent data framework written in Swift and can be used with Objective-C.
 
@@ -36,7 +35,7 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
             }
     	}
 
-        manager.object(forKey: "Balance", withValueType: Double.self, forType: .keychain) { (object) in
+        manager.object(forKey: "Balance", withValueType: Decimal.self, forType: .keychain) { (object) in
             if let object = object {
                 print("successfully read \(object) from Keychain")
             }
@@ -58,19 +57,19 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     func storeToDataStore(object: Any) {
     	manager.setValue(value: object, forKey: "Text") { (isSuccessful) in
             if isSuccessful {
-    	        print("successfully create object at UserDefaults")
+    	        print("successfully write object at UserDefaults")
             }
     	}
 
         manager.setValue(value: object, forKey: "Text", forType: .keychain) { (isSuccessful) in
             if isSuccessful {
-                print("successfully update object at Keychain")
+                print("successfully write object at Keychain")
             }
         }
 
     	manager.setValue(value: object, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
             if isSuccessful {
-    	        print("successfully create file at Inbox Document Directory")
+    	        print("successfully write file at Inbox Document Directory")
             }
     	}
     }
@@ -155,7 +154,7 @@ Then run `swift package update`.
 
 [Git Submodule]: https://github.com/zaidmsaid/DataStoreManager
 
-To install DataStoreManager in your project requires the following steps:
+To install DataStoreManager to your project, simply follow the following steps:
 
 1. Add DataStoreManager as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/zaidmsaid/DataStoreManager.git`
 2. Open the `DataStoreManager` folder, and drag `DataStoreManager.xcodeproj` into the file navigator of your app project.
