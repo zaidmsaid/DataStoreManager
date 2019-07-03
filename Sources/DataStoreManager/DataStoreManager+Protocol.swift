@@ -27,7 +27,7 @@ import Foundation
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
     /// - Returns: The default storage type of the data store manager.
-    @objc optional func defaultType(for manager: DataStoreManager) -> DataStoreManager.StorageType
+    @objc optional func defaultStorageType(for manager: DataStoreManager) -> DataStoreStorageType
 
     /// Asks the data source to return the current schema version for the storage type of data store manager.
     ///
@@ -35,14 +35,14 @@ import Foundation
     ///   - manager: An object representing the data store manager requesting this information.
     ///   - type: A storage type constant.
     /// - Returns: The current schema version number for the storage type of the data store manager.
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, currentSchemaVersionForType type: DataStoreManager.StorageType) -> Int
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, currentSchemaVersionForType type: DataStoreStorageType) -> Int
 
-    // MARK: UserDefaults
+    // MARK: User Defaults
 
-    /// Asks the data source to return a string that represent the suite name for UserDefaults of the data store manager.
+    /// Asks the data source to return a string that represent the suite name for `UserDefaults` of the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
-    /// - Returns: The UserDefaults suite name for the data store manager.
+    /// - Returns: The `UserDefaults` suite name for the data store manager.
     @objc optional func userDefaultsSuiteName(for manager: DataStoreManager) -> String
 
     // MARK: Cache
@@ -77,7 +77,7 @@ import Foundation
     /// Unlike an `NSMutableDictionary` object, a cache does not copy the key objects that are put into it.
     @objc optional func dataStoreManager(_ manager: DataStoreManager, cacheCostLimitForObject object: Any) -> Int
 
-    // MARK: SecurityItem
+    // MARK: Keychain
 
     /// Asks the data source for the keychain service of the data store manager.
     ///
@@ -115,6 +115,16 @@ import Foundation
     /// the first keychain access group, or the app ID when the app has no keychain groups. In the latter case, the item
     /// is only accessible to the app creating the item, since no other app can be in that group.
     @objc optional func keychainAccessGroup(for manager: DataStoreManager) -> String
+
+    // MARK: Cloud Kit Container
+
+    /// Asks the data source to return a string that represent the containerIdentifier for `CKContainer` of the data store manager.
+    ///
+    /// - Parameter manager: An object representing the data store manager requesting this information.
+    /// - Returns: The `CKContainer` containerIdentifier for the data store manager.
+    @objc optional func cloudKitContainerIdentifier(for manager: DataStoreManager) -> String
+
+    @objc optional func cloudKitRecordType(for manager: DataStoreManager) -> String
 }
 
 // MARK: - Delegate
@@ -135,13 +145,13 @@ import Foundation
     /// case 0:
     ///     migrateFromVersionZeroToOne()
     ///     fallthrough
-    ///
     /// case 1:
     ///     migrateFromVersionOneToTwo()
-    ///
     /// default:
     ///     break
     /// }
     /// ```
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, performMigrationFromOldVersion version: Int, forType type: DataStoreManager.StorageType)
+    /// After the delegate method is called, the schema version will be updated to the version defined in
+    /// [dataStoreManager(_:currentSchemaVersionForType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:currentSchemaVersionForType:)
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, performMigrationFromOldVersion version: Int, forType type: DataStoreStorageType)
 }
