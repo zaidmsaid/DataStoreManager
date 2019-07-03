@@ -2,8 +2,9 @@
 
 [![Swift 5](https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platform](https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat)](http://www.apple.com/ios/)
-[![Version](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
-[![Carthage](https://img.shields.io/badge/carthage-compatible-lightgrey.svg)](https://github.com/Carthage/Carthage)
+[![Carthage](https://img.shields.io/badge/carthage-compatible-brightgreen.svg)](https://github.com/Carthage/Carthage)
+[![CocoaPods](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
+[![SwiftPM](https://img.shields.io/badge/SwiftPM-compatible-lightgrey.svg)](https://swift.org/package-manager/)
 [![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Documentation](https://zaidmsaid.github.io/DataStoreManager/badge.svg)](https://zaidmsaid.github.io/DataStoreManager/)
 [![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg)](http://twitter.com/SentulAsia)
@@ -93,6 +94,23 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
 
 ### Installing
 
+#### <img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> [Carthage]
+
+[Carthage]: https://github.com/Carthage/Carthage
+
+To install it, simply add the following line to your **Cartfile**:
+
+```ruby
+github "zaidmsaid/DataStoreManager"
+```
+
+Then run `carthage update`.
+
+Follow the current instructions in [Carthage's README][carthage-installation]
+for up to date installation instructions.
+
+[carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
+
 #### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/cocoapods.png" width="24" height="24"> [CocoaPods]
 
 [CocoaPods]: http://cocoapods.org
@@ -110,23 +128,6 @@ use_frameworks!
 ```
 
 Then run `pod install` with CocoaPods 1.6.0 or newer.
-
-#### <img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> [Carthage]
-
-[Carthage]: https://github.com/Carthage/Carthage
-
-To install it, simply add the following line to your **Cartfile**:
-
-```ruby
-github "zaidmsaid/DataStoreManager"
-```
-
-Then run `carthage update`.
-
-Follow the current instructions in [Carthage's README][carthage-installation]
-for up to date installation instructions.
-
-[carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
 #### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/swift.png" width="24" height="24"> [Swift Package Manager]
 
