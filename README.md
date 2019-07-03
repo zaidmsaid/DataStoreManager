@@ -1,13 +1,12 @@
 # DataStoreManager
 
 [![Swift 5](https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
-[![Platform](https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat)](http://www.apple.com/ios/)
-[![Carthage](https://img.shields.io/badge/carthage-compatible-brightgreen.svg)](https://github.com/Carthage/Carthage)
+[![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)](http://www.apple.com/ios/)
+[![Carthage](https://img.shields.io/badge/carthage-compatible-brightgreen.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
-[![SwiftPM](https://img.shields.io/badge/SwiftPM-compatible-lightgrey.svg)](https://swift.org/package-manager/)
-[![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
 [![Documentation](https://zaidmsaid.github.io/DataStoreManager/badge.svg)](https://zaidmsaid.github.io/DataStoreManager/)
-[![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg)](http://twitter.com/SentulAsia)
+[![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg?style=flat)](http://twitter.com/SentulAsia)
 
 [DataStoreManager](https://github.com/zaidmsaid/DataStoreManager) is a persistent data framework written in Swift and can be used with Objective-C.
 
