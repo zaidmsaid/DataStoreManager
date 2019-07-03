@@ -1,7 +1,7 @@
 # DataStoreManager
 
 [![Swift 5](https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
-[![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)](http://www.apple.com/ios/)
+[![Platform](https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat)](http://www.apple.com/ios/)
 [![Carthage](https://img.shields.io/badge/carthage-compatible-brightgreen.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
 [![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
