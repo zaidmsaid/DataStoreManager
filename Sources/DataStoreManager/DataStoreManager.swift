@@ -206,7 +206,7 @@ import Foundation
             ubiquitousKeyValueStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(protocol: .unknownRepresentation)
+            let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
     }
@@ -291,7 +291,7 @@ import Foundation
             ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(protocol: .unknownRepresentation)
+            let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(nil, nil, error)
         }
     }
@@ -376,7 +376,7 @@ import Foundation
             ubiquitousKeyValueStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(protocol: .unknownRepresentation)
+            let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
     }
@@ -461,7 +461,7 @@ import Foundation
             ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(protocol: .unknownRepresentation)
+            let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
     }
@@ -542,7 +542,7 @@ import Foundation
             ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(protocol: .unknownRepresentation)
+            let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
     }
@@ -577,7 +577,7 @@ import Foundation
             completionHandler(true, nil)
 
         } else if oldSchemaVersion > newSchemaVersion {
-            let error = DataStoreError(protocol: .lowerSchemaVersion(detail: "oldSchemaVersion: \(oldSchemaVersion), newSchemaVersion: \(newSchemaVersion)"))
+            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: "oldSchemaVersion: \(oldSchemaVersion), newSchemaVersion: \(newSchemaVersion)"))
             completionHandler(false, error)
 
         } else {

@@ -16,8 +16,6 @@
 
 import Foundation
 
-// MARK: - UserDefaults
-
 extension DataStoreManager {
 
     /// An interface to the UserDefaults.
@@ -67,7 +65,7 @@ extension DataStoreManager {
         func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
-                let error = DataStoreError(protocol: .bundleIdentifierNotAvailable)
+                let error = ErrorObject(protocol: .bundleIdentifierNotAvailable)
                 completionHandler(false, nil, error)
                 return
             }

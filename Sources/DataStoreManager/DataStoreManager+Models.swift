@@ -16,10 +16,10 @@
 
 import Security
 
-// MARK: - Models
-
 /// Constants that provide information regarding storage type of data store manager.
 @objc public enum DataStoreStorageType : Int {
+
+    // MARK: - Enumerations
 
     /// The storage type [UserDefaults](apple-reference-documentation://hsARFaqWd3).
     case userDefaults
@@ -74,6 +74,8 @@ import Security
 
 extension DataStoreStorageType : RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
 
+    // MARK: - Init
+
     /// Creates a new instance with the specified raw value.
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
@@ -87,6 +89,8 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable, CustomStringCon
         }
         return nil
     }
+
+    // MARK: - Properties
 
     /// The corresponding value of the raw type.
     public var rawValue: String {
@@ -199,6 +203,8 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable, CustomStringCon
 /// Constants that provide information regarding protocol type of data store manager.
 @objc public enum DataStoreProtocolType : Int {
 
+    // MARK: - Enumerations
+
     /// The protocol type FTP.
     case ftp
 
@@ -293,8 +299,9 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable, CustomStringCon
     case pop3S
 }
 
-
 extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
+
+    // MARK: - Init
 
     /// Creates a new instance with the specified raw value.
     ///
@@ -309,6 +316,8 @@ extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringCon
         }
         return nil
     }
+
+    // MARK: - Properties
 
     /// The corresponding value of the raw type.
     public var rawValue: String {
@@ -523,6 +532,8 @@ extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringCon
 /// Constants that provide information regarding authentication type of data store manager.
 @objc public enum DataStoreAuthenticationType : Int {
 
+    // MARK: - Enumerations
+
     /// The authentication type NTLM.
     case ntlm
 
@@ -550,6 +561,8 @@ extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringCon
 
 extension DataStoreAuthenticationType: RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
 
+    // MARK: - Init
+
     /// Creates a new instance with the specified raw value.
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
@@ -563,6 +576,8 @@ extension DataStoreAuthenticationType: RawRepresentable, CaseIterable, CustomStr
         }
         return nil
     }
+
+    // MARK: - Properties
 
     /// The corresponding value of the raw type.
     public var rawValue: String {
@@ -639,6 +654,8 @@ extension DataStoreAuthenticationType: RawRepresentable, CaseIterable, CustomStr
 /// A type representing an error value.
 enum ErrorProtocol : Error {
 
+    // MARK: - Enumerations
+
     /// The bundle identifier cannot be retrieved.
     case bundleIdentifierNotAvailable
 
@@ -695,47 +712,9 @@ enum ErrorProtocol : Error {
     case unknownRepresentation
 }
 
-extension ErrorProtocol : CustomNSError, RawRepresentable, CaseIterable, LocalizedError, CustomStringConvertible, CustomDebugStringConvertible {
+extension ErrorProtocol : RawRepresentable, CaseIterable, CustomNSError, LocalizedError, CustomStringConvertible, CustomDebugStringConvertible {
 
-    /// The key of the error.
-    static var key: String {
-        return "Error"
-    }
-
-    /// The domain of the error.
-    static var errorDomain: String {
-        return "com.sentulasia.DataStoreManager.error"
-    }
-
-    /// The error code within the given domain.
-    var errorCode: Int {
-        return rawValue
-    }
-
-    /// The user-info dictionary.
-    var errorUserInfo: [String : Any] {
-        return [
-            NSLocalizedDescriptionKey : NSLocalizedString(ErrorProtocol.key, value: errorDescription ?? "Unexpected error has occurred.", comment: description)
-        ]
-    }
-
-    static var allCases: [ErrorProtocol] {
-        return [
-            .bundleIdentifierNotAvailable,
-            .lowerSchemaVersion(detail: ""),
-            .datasourceNotAvailable(detail: ""),
-            .createFailed(detail: ""),
-            .readFailed(detail: ""),
-            .updateFailed(detail: ""),
-            .deleteFailed(detail: ""),
-            .duplicateObject(detail: ""),
-            .directoryURLNotAvailable,
-            .directoryFullURLNotAvailable,
-            .directoryListNotAvailable(detail: ""),
-            .databaseNotAvailable,
-            .unknownRepresentation
-        ]
-    }
+    // MARK: - Init
 
     /// Creates a new instance with the specified raw value.
     ///
@@ -750,6 +729,8 @@ extension ErrorProtocol : CustomNSError, RawRepresentable, CaseIterable, Localiz
         }
         return nil
     }
+
+    // MARK: - Properties
 
     /// The corresponding value of the raw type.
     var rawValue: Int {
@@ -795,60 +776,100 @@ extension ErrorProtocol : CustomNSError, RawRepresentable, CaseIterable, Localiz
         }
     }
 
+    static var allCases: [ErrorProtocol] {
+        return [
+            .bundleIdentifierNotAvailable,
+            .lowerSchemaVersion(detail: ""),
+            .datasourceNotAvailable(detail: ""),
+            .createFailed(detail: ""),
+            .readFailed(detail: ""),
+            .updateFailed(detail: ""),
+            .deleteFailed(detail: ""),
+            .duplicateObject(detail: ""),
+            .directoryURLNotAvailable,
+            .directoryFullURLNotAvailable,
+            .directoryListNotAvailable(detail: ""),
+            .databaseNotAvailable,
+            .unknownRepresentation
+        ]
+    }
+
+    /// The key of the error.
+    static var key: String {
+        return "Error"
+    }
+
+    /// The domain of the error.
+    static var errorDomain: String {
+        return "com.sentulasia.DataStoreManager.error"
+    }
+
+    /// The error code within the given domain.
+    var errorCode: Int {
+        return rawValue
+    }
+
+    /// The user-info dictionary.
+    var errorUserInfo: [String : Any] {
+        return [
+            NSLocalizedDescriptionKey : NSLocalizedString(ErrorProtocol.key, value: errorDescription ?? "Unexpected error has occurred.", comment: description)
+        ]
+    }
+
     /// A localized message describing what error occurred.
     var errorDescription: String? {
         switch self {
         case .bundleIdentifierNotAvailable:
             let message = description
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .lowerSchemaVersion(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .datasourceNotAvailable(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .createFailed(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .updateFailed(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .readFailed(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .deleteFailed(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .duplicateObject(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .directoryURLNotAvailable:
             let message = description
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .directoryFullURLNotAvailable:
             let message = description
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .directoryListNotAvailable(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .databaseNotAvailable:
             let message = description
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
 
         case .unknownRepresentation:
             let message = description
-            return NSLocalizedString(message, comment: message)
+            return NSLocalizedString(message, comment: description)
         }
     }
 
@@ -941,44 +962,49 @@ extension ErrorProtocol : CustomNSError, RawRepresentable, CaseIterable, Localiz
     }
 }
 
-/// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
-///
-/// Objective-C methods can signal an error condition by returning an `NSError` object by reference, which provides additional
-/// information about the kind of error and any underlying cause, if one can be determined. An `NSError` object may also provide
-/// localized error descriptions suitable for display to the user in its user info dictionary. See
-/// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
-/// for more information.
-class DataStoreError: NSError {
+extension DataStoreManager {
 
-    /// Returns an NSError object initialized for a given error type.
+    /// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
     ///
-    /// - Parameters:
-    ///   - type: An error object type.
-    ///   - comment: The comment to place above the key-value pair in the strings file.
-    /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
-    required init(protocol: ErrorProtocol) {
-        super.init(domain: ErrorProtocol.errorDomain, code: `protocol`.rawValue, userInfo: `protocol`.errorUserInfo)
-    }
+    /// Objective-C methods can signal an error condition by returning an `NSError` object by reference, which provides additional
+    /// information about the kind of error and any underlying cause, if one can be determined. An `NSError` object may also provide
+    /// localized error descriptions suitable for display to the user in its user info dictionary. See
+    /// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
+    /// for more information.
+    class ErrorObject: NSError {
 
-    /// Returns an NSError object initialized for a given code.
-    ///
-    /// - Parameters:
-    ///   - code: The error code for the error.
-    ///   - value: The value to return if key is nil or if a localized string for key can’t be found in the table.
-    ///   - comment: The comment to place above the key-value pair in the strings file.
-    /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
-    required init(code: Int, value: String) {
-        let userInfo =  [
-            NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: value, comment: value)
-        ]
-        super.init(domain: ErrorProtocol.errorDomain, code: code, userInfo: userInfo)
-    }
+        // MARK: - Init
 
-    /// Returns an object initialized from data in a given unarchiver.
-    ///
-    /// - Parameter aDecoder: An unarchiver object.
-    /// - Returns: `self`, initialized using the data in decoder.
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        /// Returns an NSError object initialized for a given error type.
+        ///
+        /// - Parameters:
+        ///   - type: An error object type.
+        ///   - comment: The comment to place above the key-value pair in the strings file.
+        /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
+        required init(protocol: ErrorProtocol) {
+            super.init(domain: ErrorProtocol.errorDomain, code: `protocol`.rawValue, userInfo: `protocol`.errorUserInfo)
+        }
+
+        /// Returns an NSError object initialized for a given code.
+        ///
+        /// - Parameters:
+        ///   - code: The error code for the error.
+        ///   - value: The value to return if key is nil or if a localized string for key can’t be found in the table.
+        ///   - comment: The comment to place above the key-value pair in the strings file.
+        /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
+        required init(code: Int, value: String) {
+            let userInfo =  [
+                NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: value, comment: value)
+            ]
+            super.init(domain: ErrorProtocol.errorDomain, code: code, userInfo: userInfo)
+        }
+
+        /// Returns an object initialized from data in a given unarchiver.
+        ///
+        /// - Parameter aDecoder: An unarchiver object.
+        /// - Returns: `self`, initialized using the data in decoder.
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
     }
 }

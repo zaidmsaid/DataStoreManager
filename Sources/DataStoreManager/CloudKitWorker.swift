@@ -16,8 +16,6 @@
 
 import CloudKit
 
-// MARK: - CKContainer
-
 extension DataStoreManager {
 
     /// An interface to the CKContainer.
@@ -82,7 +80,7 @@ extension DataStoreManager {
                 if !self.allowsDuplicateKey {
                     for record in records {
                         if let _ = record.object(forKey: key) as? T {
-                            let error = DataStoreError(protocol: .duplicateObject(detail: key))
+                            let error = ErrorObject(protocol: .duplicateObject(detail: key))
                             completionHandler(false, record.recordID, error)
                             return
                         }
@@ -199,7 +197,7 @@ extension DataStoreManager {
                         }
                     }
 
-                    let error = DataStoreError(protocol: .deleteFailed(detail: "recordID not found in \(records)."))
+                    let error = ErrorObject(protocol: .deleteFailed(detail: "recordID not found in \(records)."))
                     DispatchQueue.main.async {
                         completionHandler(false, nil, error)
                     }
@@ -210,7 +208,7 @@ extension DataStoreManager {
         func deleteAll(forContainerType containerType: ContainerType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let recordType = self.recordType else {
-                let error = DataStoreError(protocol: .datasourceNotAvailable(detail: "recordType"))
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "recordType"))
                 completionHandler(false, nil, error)
                 return
             }
@@ -323,7 +321,7 @@ extension DataStoreManager {
             let query = CKQuery(recordType: recordType, predicate: predicate)
 
             guard let database = getDatabase(forContainerType: containerType) else {
-                let error = DataStoreError(protocol: .databaseNotAvailable)
+                let error = ErrorObject(protocol: .databaseNotAvailable)
                 completionHandler(nil, nil, error)
                 return
             }

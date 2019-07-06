@@ -19,8 +19,6 @@ import Security
 import LocalAuthentication
 #endif
 
-// MARK: - SecItem
-
 extension DataStoreManager {
 
     /// An interface to the SecItem.
@@ -121,7 +119,7 @@ extension DataStoreManager {
                 SecItemCopyMatching(item as CFDictionary, UnsafeMutablePointer($0))
             }
 
-            let error = DataStoreError(code: status.hashValue, value: status.description)
+            let error = ErrorObject(code: status.hashValue, value: status.description)
             guard status == noErr else {
                 completionHandler(nil, nil, error)
                 return
@@ -146,13 +144,13 @@ extension DataStoreManager {
             let status = SecItemDelete(item as CFDictionary)
 
             guard status == noErr else {
-                let error = DataStoreError(protocol: .deleteFailed(detail: status.description))
+                let error = ErrorObject(protocol: .deleteFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
 
             guard status == errSecItemNotFound else {
-                let error = DataStoreError(protocol: .readFailed(detail: status.description))
+                let error = ErrorObject(protocol: .readFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
@@ -199,7 +197,7 @@ extension DataStoreManager {
             let status = SecItemDelete(item as CFDictionary)
 
             guard status == errSecSuccess else {
-                let error = DataStoreError(protocol: .deleteFailed(detail: status.description))
+                let error = ErrorObject(protocol: .deleteFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
@@ -215,7 +213,7 @@ extension DataStoreManager {
             let status = SecItemAdd(newItem as CFDictionary, nil)
 
             guard status == noErr else {
-                let error = DataStoreError(protocol: .createFailed(detail: status.description))
+                let error = ErrorObject(protocol: .createFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
@@ -232,7 +230,7 @@ extension DataStoreManager {
             let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
 
             guard status == noErr else {
-                let error = DataStoreError(protocol: .updateFailed(detail: status.description))
+                let error = ErrorObject(protocol: .updateFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }

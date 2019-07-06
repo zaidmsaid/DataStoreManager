@@ -13,7 +13,7 @@
     <a title="DataStoreManager  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">DataStoreManager Docs</a> (54% documented)</p>
+        <p><a href="index.html">DataStoreManager Docs</a> (65% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -36,6 +36,12 @@
                 <a href="Classes/DataStoreManager/CacheWorker.html">– CacheWorker</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/DataStoreManager/CloudKitWorker.html">– CloudKitWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreManager/ErrorObject.html">– ErrorObject</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
               </li>
               <li class="nav-group-task">
@@ -53,7 +59,16 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Enums/DataStoreAuthenticationType.html">DataStoreAuthenticationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/DataStoreProtocolType.html">DataStoreProtocolType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/DataStoreStorageType.html">DataStoreStorageType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ErrorProtocol.html">ErrorProtocol</a>
               </li>
             </ul>
           </li>
@@ -93,85 +108,73 @@
             
             <h1 id='datastoremanager' class='heading'>DataStoreManager</h1>
 
-<p><a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/Swift-5-orange.svg?style=flat" alt="Swift 5"></a>
-<a href="http://www.apple.com/ios/"><img src="https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat" alt="Platforms iOS"></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg" alt="Carthage Compatible"></a>
-<a href="http://cocoapods.org/pods/DataStoreManager"><img src="https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat" alt="CocoaPods Compatible"></a>
-<a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg" alt="SwiftPM Compatible"></a>
-<a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache-lightgrey.svg?style=flat" alt="License Apache"></a>
+<p><a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat" alt="Swift 5"></a>
+<a href="http://www.apple.com/ios/"><img src="https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat" alt="Platform"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/carthage-compatible-brightgreen.svg?style=flat" alt="Carthage"></a>
+<a href="http://cocoapods.org/pods/DataStoreManager"><img src="https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat" alt="CocoaPods"></a>
+<a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?style=flat" alt="License"></a>
 <a href="https://zaidmsaid.github.io/DataStoreManager/"><img src="https://zaidmsaid.github.io/DataStoreManager/badge.svg" alt="Documentation"></a>
-<a href="http://twitter.com/SentulAsia"><img src="https://img.shields.io/badge/twitter-@SentulAsia-blue.svg" alt="Twitter"></a></p>
+<a href="http://twitter.com/SentulAsia"><img src="https://img.shields.io/badge/twitter-@SentulAsia-blue.svg?style=flat" alt="Twitter"></a></p>
 
 <p><a href="https://github.com/zaidmsaid/DataStoreManager">DataStoreManager</a> is a persistent data framework written in Swift and can be used with Objective-C.</p>
 <h2 id='getting-started' class='heading'>Getting Started</h2>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">DataStoreManager</span>
 
-<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">DataStoreManagerDataSource</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
 
-    <span class="k">let</span> <span class="nv">manager</span> <span class="o">=</span> <span class="kt">DataStoreManager</span><span class="p">()</span>
+    <span class="k">let</span> <span class="nv">manager</span> <span class="o">=</span> <span class="kt">DataStoreManager</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
 
-    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
-
-        <span class="n">manager</span><span class="o">.</span><span class="n">dataSource</span> <span class="o">=</span> <span class="k">self</span>
-        <span class="n">manager</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="p">}</span>
-    <span class="o">.</span>
-    <span class="o">.</span>
-    <span class="o">.</span>
     <span class="kd">func</span> <span class="nf">fetchFromDataStore</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">manager</span><span class="o">.</span><span class="nf">object</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Age"</span><span class="p">,</span> <span class="nv">withValueType</span><span class="p">:</span> <span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Age"</span><span class="p">,</span> <span class="nv">withObjectType</span><span class="p">:</span> <span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">userDefaults</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
-                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from UserDefaults"</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read int </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from UserDefaults"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">object</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Balance"</span><span class="p">,</span> <span class="nv">withValueType</span><span class="p">:</span> <span class="kt">Double</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">keychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Balance"</span><span class="p">,</span> <span class="nv">withObjectType</span><span class="p">:</span> <span class="kt">Decimal</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">genericKeychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
-                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from Keychain"</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read decimal </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from Generic Keychain"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">object</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"temp_file.txt"</span><span class="p">,</span> <span class="nv">withValueType</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">temporaryDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"temp_file.txt"</span><span class="p">,</span> <span class="nv">withObjectType</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">temporaryDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
-                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from /tmp"</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read string </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from /tmp"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">object</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Image"</span><span class="p">,</span> <span class="nv">withValueType</span><span class="p">:</span> <span class="kt">UIImage</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">cache</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Image"</span><span class="p">,</span> <span class="nv">withObjectType</span><span class="p">:</span> <span class="kt">UIImage</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">cache</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
-                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from NSCache"</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read image </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from NSCache"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
     <span class="kd">func</span> <span class="nf">storeToDataStore</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">manager</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">userDefaults</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"successfully create object at UserDefaults"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">keychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">genericKeychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
-                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully update object at Keychain"</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully update object at Generic Keychain"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">setValue</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Inbox/file.txt"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">documentDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Inbox/file.txt"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">documentDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"successfully create file at Inbox Document Directory"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="o">.</span>
-    <span class="o">.</span>
-    <span class="o">.</span>
-    <span class="kd">func</span> <span class="nf">defaultStorageType</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">DataStoreManager</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">DataStoreManager</span><span class="o">.</span><span class="kt">StorageType</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="n">manager</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="mi">3</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="o">.</span><span class="n">userDefaults</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="o">.</span><span class="n">keychain</span>
+
+        <span class="k">let</span> <span class="nv">exampleModel</span> <span class="o">=</span> <span class="kt">DynamicModel</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">number</span><span class="p">:</span> <span class="mi">123</span><span class="p">)</span>
+
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">exampleModel</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"column_name"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">privateCloudDatabase</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">recordID</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully create model at CloudKit Private Database with ID </span><span class="se">\(</span><span class="n">recordID</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+            <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -208,20 +211,20 @@ for up to date installation instructions.</p>
 
 <p>To install it, simply add the following line to your <strong>Package.swift</strong>:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.5.0"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.7.0"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 
 <p>or more strict:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.5.0"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.7.0"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 
 <p>Then run <code>swift package update</code>.</p>
 <h4 id='img-src-https-git-scm-com-images-logos-downloads-git-icon-1788c-png-width-24-height-24-a-href-https-github-com-zaidmsaid-datastoremanager-git-submodule-a' class='heading'><img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="24" height="24"> <a href="https://github.com/zaidmsaid/DataStoreManager">Git Submodule</a></h4>
 
-<p>To install DataStoreManager in your project requires the following steps:</p>
+<p>To install DataStoreManager to your project, simply follow the following steps:</p>
 
 <ol>
 <li>Add DataStoreManager as a <a href="http://git-scm.com/docs/git-submodule">submodule</a> by opening the Terminal, <code>cd</code>-ing into your top-level project directory, and entering the command <code>git submodule add https://github.com/zaidmsaid/DataStoreManager.git</code></li>
@@ -268,7 +271,7 @@ for up to date installation instructions.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-03)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
