@@ -15,6 +15,9 @@
 //
 
 import Security
+#if os(iOS) || os(OSX)
+import LocalAuthentication
+#endif
 
 // MARK: - SecItem
 
@@ -27,6 +30,9 @@ extension DataStoreManager {
 
         /// Type to mean instance of DataStoreProtocolType.
         public typealias ProtocolType = DataStoreProtocolType
+
+        /// Type to mean instance of DataStoreAuthenticationType.
+        public typealias AuthenticationType = DataStoreAuthenticationType
 
         // MARK: - Properties
 
@@ -60,7 +66,7 @@ extension DataStoreManager {
             return nil
         }
 
-        var internetPasswordAuthenticationType: String? {
+        var internetPasswordAuthenticationType: AuthenticationType? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.internetPasswordKeychainAuthenticationType?(for: manager)
             }
@@ -74,6 +80,20 @@ extension DataStoreManager {
             return false
         }
 
+        var operationPrompt: String? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.keychainOperationPrompt?(for: manager)
+            }
+            return nil
+        }
+
+        var localAuthenticationContext: LAContext? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.keychainLocalAuthenticationContext?(for: manager)
+            }
+            return nil
+        }
+
         // MARK: - Enumerations
 
         @objc enum ItemClass : Int {
@@ -84,9 +104,9 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create(object: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            create(value, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
+            create(object, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
         }
 
         func read(forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
@@ -115,9 +135,9 @@ extension DataStoreManager {
             completionHandler(object, nil, nil)
         }
 
-        func update(value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update(object: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            update(value, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
+            update(object, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
         }
 
         func delete(forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
@@ -126,13 +146,13 @@ extension DataStoreManager {
             let status = SecItemDelete(item as CFDictionary)
 
             guard status == noErr else {
-                let error = DataStoreError(type: .deleteFailed)
+                let error = DataStoreError(protocol: .deleteFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
 
             guard status == errSecItemNotFound else {
-                let error = DataStoreError(type: .readFailed)
+                let error = DataStoreError(protocol: .readFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
@@ -156,6 +176,8 @@ extension DataStoreManager {
                 #endif
 
             case .internetPassword:
+                item[kSecClass as String] = kSecClassInternetPassword
+
                 if let server = internetPasswordServer {
                     item[kSecAttrServer as String] = server.host as AnyObject
                     item[kSecAttrPort as String] = server.port as AnyObject
@@ -166,14 +188,18 @@ extension DataStoreManager {
                 }
 
                 if let authenticationType = internetPasswordAuthenticationType {
-                    item[kSecAttrAuthenticationType as String] = authenticationType as AnyObject
+                    item[kSecAttrAuthenticationType as String] = authenticationType.rawValue as AnyObject
                 }
             }
+
+            #if arch(i386) || arch(x86_64)
+            item[kSecMatchLimit as String] = kSecMatchLimitAll
+            #endif
 
             let status = SecItemDelete(item as CFDictionary)
 
             guard status == errSecSuccess else {
-                let error = DataStoreError(type: .deleteFailed)
+                let error = DataStoreError(protocol: .deleteFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
@@ -189,7 +215,7 @@ extension DataStoreManager {
             let status = SecItemAdd(newItem as CFDictionary, nil)
 
             guard status == noErr else {
-                let error = DataStoreError(type: .createFailed)
+                let error = DataStoreError(protocol: .createFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
@@ -206,7 +232,7 @@ extension DataStoreManager {
             let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
 
             guard status == noErr else {
-                let error = DataStoreError(type: .updateFailed)
+                let error = DataStoreError(protocol: .updateFailed(detail: status.description))
                 completionHandler(false, nil, error)
                 return
             }
@@ -234,6 +260,8 @@ extension DataStoreManager {
                 #endif
                 
             case .internetPassword:
+                item[kSecClass as String] = kSecClassInternetPassword
+
                 if let server = internetPasswordServer {
                     item[kSecAttrServer as String] = server.host as AnyObject
                     item[kSecAttrPort as String] = server.port as AnyObject
@@ -244,7 +272,7 @@ extension DataStoreManager {
                 }
 
                 if let authenticationType = internetPasswordAuthenticationType {
-                    item[kSecAttrAuthenticationType as String] = authenticationType as AnyObject
+                    item[kSecAttrAuthenticationType as String] = authenticationType.rawValue as AnyObject
                 }
 
             @unknown case _:
@@ -256,6 +284,22 @@ extension DataStoreManager {
             if isSynchronizable {
                 item[kSecAttrSynchronizable as String] = kSecAttrSynchronizableAny
             }
+
+            #if !os(watchOS) && !os(tvOS)
+            if #available(iOS 8.0, OSX 10.10, *) {
+                if let useOperationPrompt = operationPrompt {
+                    item[kSecUseOperationPrompt as String] = useOperationPrompt as AnyObject
+                }
+            }
+
+            if #available(iOS 9.0, OSX 10.11, *) {
+                if let useAuthenticationContext = localAuthenticationContext {
+                    item[kSecUseAuthenticationContext as String] = useAuthenticationContext as AnyObject
+                }
+            }
+            #endif
+
+            item[kSecMatchLimit as String] = kSecMatchLimitOne
 
             return item
         }

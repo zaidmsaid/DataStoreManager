@@ -15,6 +15,9 @@
 //
 
 import CloudKit
+#if os(iOS) || os(OSX)
+import LocalAuthentication
+#endif
 
 // MARK: - DataSource
 
@@ -23,13 +26,13 @@ import CloudKit
 
     // MARK: Core
 
-    /// Asks the data source to return the default storage type for the data store manager.
+    /// Asks the data source for the default storage type for the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
     /// - Returns: The default storage type of the data store manager.
     @objc optional func defaultStorageType(for manager: DataStoreManager) -> DataStoreStorageType
 
-    /// Asks the data source to return the current schema version for the storage type of data store manager.
+    /// Asks the data source for the current schema version for the storage type of data store manager.
     ///
     /// - Parameters:
     ///   - manager: An object representing the data store manager requesting this information.
@@ -39,7 +42,7 @@ import CloudKit
 
     // MARK: User Defaults
 
-    /// Asks the data source to return a string that represent the suite name for `UserDefaults` of the data store manager.
+    /// Asks the data source for the suite name for `UserDefaults` of the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
     /// - Returns: The `UserDefaults` suite name for the data store manager.
@@ -65,16 +68,13 @@ import CloudKit
     /// Asks the data source for the generic password keychain service of the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
-    /// - Returns: The corresponding value is a string of type [CFString](apple-reference-documentation://hsYWZv0wKs)
-    ///            that represents the service associated with this item. Items of class
-    ///            [kSecClassGenericPassword](apple-reference-documentation://hsgWgYNpc3) have this attribute.
+    /// - Returns: The corresponding value is a string that represents the service associated with this item.
     @objc optional func genericPasswordKeychainService(for manager: DataStoreManager) -> String
 
-    /// Asks the data source for a string indicating the generic password keychain access group of the data store manager.
+    /// Asks the data source for the generic password keychain access group of the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
-    /// - Returns: The corresponding value is of type [CFString](apple-reference-documentation://hsYWZv0wKs)
-    ///            and indicates the item’s one and only access group.
+    /// - Returns: The corresponding value is a string that indicates the item’s one and only access group.
     ///
     /// For an app to access a keychain item, one of the groups to which the app belongs must be the item’s group.
     /// The list of an app’s access groups consists of the following string identifiers, in this order:
@@ -94,7 +94,7 @@ import CloudKit
 
     @objc optional func internetPasswordKeychainProtocolType(for manager: DataStoreManager) -> DataStoreProtocolType
 
-    @objc optional func internetPasswordKeychainAuthenticationType(for manager: DataStoreManager) -> String
+    @objc optional func internetPasswordKeychainAuthenticationType(for manager: DataStoreManager) -> DataStoreAuthenticationType
 
     /// Asks the data source to verify that the keychain of the data store manager is synchronized through iCloud.
     ///
@@ -102,9 +102,47 @@ import CloudKit
     /// - Returns: `true` if the item is synchronized through iCloud; otherwise `false`.
     @objc optional func keychainIsSynchronizable(for manager: DataStoreManager) -> Bool
 
+    /// Asks the data source for the keychain operation prompt of the data store manager.
+    ///
+    /// - Parameter manager: An object representing the data store manager requesting this information.
+    /// - Returns: The corresponding value is a string describing the operation for which the app is attempting to
+    ///            authenticate. When performing user authentication, the system includes the string in the user prompt.
+    ///            The app is responsible for text localization.
+    @available(iOS 8.0, *)
+    @available(OSX 10.10, *)
+    @available(tvOS, unavailable)
+    @available(watchOS, unavailable)
+    @objc optional func keychainOperationPrompt(for manager: DataStoreManager) -> String
+
+    /// Asks the data source for the keychain local authentication context to use of the data store manager.
+    ///
+    /// - Parameter manager: An object representing the data store manager requesting this information.
+    /// - Returns: The corresponding value is of type
+    ///            [LAContext](https://developer.apple.com/documentation/localauthentication/lacontext),
+    ///            and represents a reusable local authentication context that should be used for keychain
+    ///            item authentication.
+    ///
+    /// It is according to the following rules:
+    /// * If this key is not specified, and if the item requires authentication, a new context will be created,
+    ///   used once, and discarded.
+    /// * If this key is specified with a context that has been previously authenticated, the operation will
+    ///   succeed without asking user for authentication.
+    /// * If this key is specified with a context that has not been previously authenticated, the system attempts
+    ///   authentication on the context. If successful, the context may be reused in subsequent keychain operations.
+    ///
+    /// - Important: Include the
+    ///              [NSFaceIDUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nsfaceidusagedescription)
+    ///              key in your app’s Info.plist file if your app allows biometric authentication. Otherwise, authorization
+    ///              requests may fail.
+    @available(iOS 8.0, *)
+    @available(OSX 10.10, *)
+    @available(tvOS, unavailable)
+    @available(watchOS, unavailable)
+    @objc optional func keychainLocalAuthenticationContext(for manager: DataStoreManager) -> LAContext
+
     // MARK: Cloud Kit Container
 
-    /// Asks the data source to return a string that represent the containerIdentifier for `CKContainer` of the data store manager.
+    /// Asks the data source for the containerIdentifier for `CKContainer` of the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
     /// - Returns: The `CKContainer` containerIdentifier for the data store manager.

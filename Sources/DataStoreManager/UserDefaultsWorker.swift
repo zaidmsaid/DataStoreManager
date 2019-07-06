@@ -40,9 +40,9 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            setValue(value, forKey: key, completionHandler: completionHandler)
+            setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
         func read(forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
@@ -52,9 +52,9 @@ extension DataStoreManager {
             completionHandler(object, nil, nil)
         }
 
-        func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            setValue(value, forKey: key, completionHandler: completionHandler)
+            setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
         func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
@@ -67,7 +67,7 @@ extension DataStoreManager {
         func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
-                let error = DataStoreError(type: .bundleIdentifierNotAvailable)
+                let error = DataStoreError(protocol: .bundleIdentifierNotAvailable)
                 completionHandler(false, nil, error)
                 return
             }

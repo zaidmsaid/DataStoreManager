@@ -92,6 +92,14 @@ import Foundation
         return worker
     }()
 
+    /// An interface to the CKContainer.
+    lazy var cloudKitWorker: CloudKitWorker = {
+        let worker = CloudKitWorker()
+        worker.dataStoreManager = self
+        worker.recordIDDelegate = self.delegate?.dataStoreManager(_:cloudKitContainerRecordIDForKey:)
+        return worker
+    }()
+
     /// An interface to the NSUbiquitousKeyValueStore.
     lazy var ubiquitousKeyValueStoreWorker: UbiquitousKeyValueStoreWorker = {
         return UbiquitousKeyValueStoreWorker()
@@ -107,6 +115,9 @@ import Foundation
     /// - Parameter identifier: A string identifying the data store manager object.
     ///
     /// Initialize a new data store manager object immediately after memory for it has been allocated.
+    ///
+    /// - Returns: An initialized object, or `nil` if an object could not be created for some reason that
+    ///            would not result in an exception.
     public required init(identifier: String) {
         self.ID = identifier
         self.defaultType = .userDefaults
@@ -115,10 +126,10 @@ import Foundation
 
     // MARK: - CRUD
 
-    /// Create the property of the receiver specified by a given key to a given value.
+    /// Create the property of the receiver specified by a given key to a given object.
     ///
     /// - Parameters:
-    ///   - value: The value for the property identified by key.
+    ///   - object: The object for the property identified by key.
     ///   - key: The name of one of the receiver's properties.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
@@ -129,15 +140,15 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func create<T>(value: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create<T>(object: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-        create(value: value, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
+        create(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
 
-    /// Create the property of the receiver specified by a given key to a given value.
+    /// Create the property of the receiver specified by a given key to a given object.
     ///
     /// - Parameters:
-    ///   - value: The value for the property identified by key.
+    ///   - object: The object for the property identified by key.
     ///   - key: The key to identify the data store manager object.
     ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful flag.
@@ -149,44 +160,53 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func create<T>(value: T, forKey key: String, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create<T>(object: T, forKey key: String, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
-            userDefaultsWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(object: object, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(object: object, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(object: object, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .applicationDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(object: object, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
 
         case .coreServiceDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(object: object, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            fileManagerWorker.create(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.create(object: object, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
 
         case .cache:
-            cacheWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+            cacheWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
-        case .genericPasswordKeychain:
-            keychainWorker.create(value: value, forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
+        case .genericKeychain:
+            keychainWorker.create(object: object, forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
 
-        case .internetPasswordKeychain:
-            keychainWorker.create(value: value, forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+        case .internetKeychain:
+            keychainWorker.create(object: object, forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+
+        case .privateCloudDatabase:
+            cloudKitWorker.create(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+
+        case .publicCloudDatabase:
+            cloudKitWorker.create(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+
+        case .sharedCloudDatabase:
+            cloudKitWorker.create(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
-            ubiquitousKeyValueStoreWorker.create(value: value, forKey: key, completionHandler: completionHandler)
+            ubiquitousKeyValueStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(type: .unknownRepresentation)
+            let error = DataStoreError(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
     }
@@ -195,7 +215,7 @@ import Foundation
     ///
     /// - Parameters:
     ///   - key: The key to identify the data store manager object.
-    ///   - valueType: The type of value for the property identified by key.
+    ///   - objectType: The type of object for the property identified by key.
     ///   - completionHandler: The block to execute with the associated object.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
@@ -205,26 +225,16 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    ///
-    /// For CloudKit, the `valueType` are needed to properly map the model object of data. For example:
-    /// ```
-    /// let manager = DataStoreManager()
-    /// manager.read(forKey: "Key", withValueType: ModelName.self) { (object) in
-    ///     if let object = object {
-    ///         print("successfully read \(object) from Cloud Kit")
-    ///     }
-    /// }
-    /// ```
-    open func read<T>(forKey key: String, withValueType valueType: T.Type, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
-        read(forKey: key, withValueType: valueType, forStorageType: defaultType, completionHandler: completionHandler)
+        read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
     }
 
     /// Returns the object associated with the specified key.
     ///
     /// - Parameters:
     ///   - key: The key to identify the data store manager object.
-    ///   - valueType: The type of value for the property identified by key.
+    ///   - objectType: The type of object for the property identified by key.
     ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the associated object.
     ///                        This block is executed asynchronously on your app's main thread.
@@ -235,17 +245,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    ///
-    /// For CloudKit, the `valueType` are needed to properly map the model object of data. For example:
-    /// ```
-    /// let manager = DataStoreManager()
-    /// manager.read(forKey: "Key", withValueType: ModelName.self) { (object) in
-    ///     if let object = object {
-    ///         print("successfully read \(object) from Cloud Kit")
-    ///     }
-    /// }
-    /// ```
-    open func read<T>(forKey key: String, withValueType valueType: T.Type, forStorageType storageType: StorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: StorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -272,25 +272,34 @@ import Foundation
         case .cache:
             cacheWorker.read(forKey: key, completionHandler: completionHandler)
 
-        case .genericPasswordKeychain:
+        case .genericKeychain:
             keychainWorker.read(forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
 
-        case .internetPasswordKeychain:
+        case .internetKeychain:
             keychainWorker.read(forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+
+        case .privateCloudDatabase:
+            cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+
+        case .publicCloudDatabase:
+            cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+
+        case .sharedCloudDatabase:
+            cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
             ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(type: .unknownRepresentation)
+            let error = DataStoreError(protocol: .unknownRepresentation)
             completionHandler(nil, nil, error)
         }
     }
 
-    /// Update the property of the receiver specified by a given key to a given value.
+    /// Update the property of the receiver specified by a given key to a given object.
     ///
     /// - Parameters:
-    ///   - value: The value for the property identified by key.
+    ///   - object: The object for the property identified by key.
     ///   - key: The name of one of the receiver's properties.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
@@ -301,15 +310,15 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func update<T>(value: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update<T>(object: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-        update(value: value, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
+        update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
 
-    /// Update the property of the receiver specified by a given key to a given value.
+    /// Update the property of the receiver specified by a given key to a given object.
     ///
     /// - Parameters:
-    ///   - value: The value for the property identified by key.
+    ///   - object: The object for the property identified by key.
     ///   - key: The key to identify the data store manager object.
     ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful flag.
@@ -321,53 +330,62 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func update<T>(value: T, forKey key: String, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update<T>(object: T, forKey key: String, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
-            userDefaultsWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+            userDefaultsWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
         case .documentDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(object: object, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
 
         case .userDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(object: object, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
 
         case .libraryDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(object: object, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
 
         case .applicationDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(object: object, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
 
         case .coreServiceDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(object: object, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
 
         case .temporaryDirectory:
-            fileManagerWorker.update(value: value, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
+            fileManagerWorker.update(object: object, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
 
         case .cache:
-            cacheWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+            cacheWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
-        case .genericPasswordKeychain:
-            keychainWorker.update(value: value, forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
+        case .genericKeychain:
+            keychainWorker.update(object: object, forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
 
-        case .internetPasswordKeychain:
-            keychainWorker.update(value: value, forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+        case .internetKeychain:
+            keychainWorker.update(object: object, forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+
+        case .privateCloudDatabase:
+            cloudKitWorker.update(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+
+        case .publicCloudDatabase:
+            cloudKitWorker.update(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+
+        case .sharedCloudDatabase:
+            cloudKitWorker.update(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
-            ubiquitousKeyValueStoreWorker.update(value: value, forKey: key, completionHandler: completionHandler)
+            ubiquitousKeyValueStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(type: .unknownRepresentation)
+            let error = DataStoreError(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
     }
 
-    /// Removes the value of the specified default key.
+    /// Removes the object of the specified default key.
     ///
     /// - Parameters:
     ///   - key: The key to identify the data store manager object.
-    ///   - valueType: The type of value for the property identified by key.
+    ///   - objectType: The type of object for the property identified by key.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
@@ -377,16 +395,16 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func delete<T>(forKey key: String, withValueType valueType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-       delete(forKey: key, withValueType: valueType, forStorageType: defaultType, completionHandler: completionHandler)
+       delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
     }
 
-    /// Removes the value of the specified default key.
+    /// Removes the object of the specified default key.
     ///
     /// - Parameters:
     ///   - key: The key to identify the data store manager object.
-    ///   - valueType: The type of value for the property identified by key.
+    ///   - objectType: The type of object for the property identified by key.
     ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
@@ -397,7 +415,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func delete<T>(forKey key: String, withValueType valueType: T.Type, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -424,17 +442,26 @@ import Foundation
         case .cache:
             cacheWorker.delete(forKey: key, completionHandler: completionHandler)
 
-        case .genericPasswordKeychain:
+        case .genericKeychain:
             keychainWorker.delete(forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
 
-        case .internetPasswordKeychain:
+        case .internetKeychain:
             keychainWorker.delete(forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+
+        case .privateCloudDatabase:
+            cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+
+        case .publicCloudDatabase:
+            cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+
+        case .sharedCloudDatabase:
+            cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
             ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(type: .unknownRepresentation)
+            let error = DataStoreError(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
     }
@@ -442,7 +469,6 @@ import Foundation
     /// Empties the data store manager for the given type.
     ///
     /// - Parameters:
-    ///   - valueType: The type of value for the property identified by key.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
     ///                        The block has no return value and takes the following parameter:
@@ -460,7 +486,6 @@ import Foundation
     /// Empties the data store manager for the given type.
     ///
     /// - Parameters:
-    ///   - valueType: The type of value for the property identified by key.
     ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful flag.
     ///                        This block is executed asynchronously on your app's main thread.
@@ -498,17 +523,26 @@ import Foundation
         case .cache:
             cacheWorker.deleteAll(completionHandler: completionHandler)
 
-        case .genericPasswordKeychain:
+        case .genericKeychain:
             keychainWorker.deleteAll(forItemClass: .genericPassword, completionHandler: completionHandler)
 
-        case .internetPasswordKeychain:
+        case .internetKeychain:
             keychainWorker.deleteAll(forItemClass: .internetPassword, completionHandler: completionHandler)
+
+        case .privateCloudDatabase:
+            cloudKitWorker.deleteAll(forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+
+        case .publicCloudDatabase:
+            cloudKitWorker.deleteAll(forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+
+        case .sharedCloudDatabase:
+            cloudKitWorker.deleteAll(forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
 
         case .ubiquitousKeyValueStore:
             ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
 
         @unknown case _:
-            let error = DataStoreError(type: .unknownRepresentation)
+            let error = DataStoreError(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
     }
@@ -543,7 +577,7 @@ import Foundation
             completionHandler(true, nil)
 
         } else if oldSchemaVersion > newSchemaVersion {
-            let error = DataStoreError(type: .lowerSchemaVersion)
+            let error = DataStoreError(protocol: .lowerSchemaVersion(detail: "oldSchemaVersion: \(oldSchemaVersion), newSchemaVersion: \(newSchemaVersion)"))
             completionHandler(false, error)
 
         } else {

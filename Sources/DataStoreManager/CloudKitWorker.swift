@@ -62,7 +62,7 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create<T>(value: T, forKey key: String, forContainerType containerType: ContainerType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create<T>(object: T, forKey key: String, forContainerType containerType: ContainerType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             let recordType = self.recordType ?? key
 
@@ -75,25 +75,25 @@ extension DataStoreManager {
                 }
 
                 guard let records = cloudKitRecord else {
-                    self.createValue(value, forKey: key, forRecordType: recordType, forCloudKitDatabase: database, completionHandler: completionHandler)
+                    self.createValue(object, forKey: key, forRecordType: recordType, forCloudKitDatabase: database, completionHandler: completionHandler)
                     return
                 }
 
                 if !self.allowsDuplicateKey {
                     for record in records {
                         if let _ = record.object(forKey: key) as? T {
-                            let error = DataStoreError(type: .duplicateObject, comment: key)
+                            let error = DataStoreError(protocol: .duplicateObject(detail: key))
                             completionHandler(false, record.recordID, error)
                             return
                         }
                     }
                 }
 
-                self.createValue(value, forKey: key, forRecordType: recordType, forCloudKitDatabase: database, completionHandler: completionHandler)
+                self.createValue(object, forKey: key, forRecordType: recordType, forCloudKitDatabase: database, completionHandler: completionHandler)
             }
         }
 
-        func read<T>(forKey key: String, withValueType valueType: T.Type, forContainerType containerType: ContainerType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        func read<T>(forKey key: String, withObjectType objectType: T.Type, forContainerType containerType: ContainerType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
             let recordType = self.recordType ?? key
 
@@ -107,6 +107,7 @@ extension DataStoreManager {
 
                 for record in records {
                     if let object = record.object(forKey: key) as? T {
+                        // TODO: how to handle if allowed duplicate keys
                         DispatchQueue.main.async {
                             completionHandler(object, record.recordID, error)
                         }
@@ -118,12 +119,12 @@ extension DataStoreManager {
             }
         }
 
-        func update<T>(value: T, forKey key: String, forContainerType containerType: ContainerType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update<T>(object: T, forKey key: String, forContainerType containerType: ContainerType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             let recordType = self.recordType ?? key
 
             if let delegate = recordIDDelegate, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
-                updateValue(value, forKey: key, forRecordType: recordType, forRecordID: delegate(manager, key), forCloudKitDatabase: database, completionHandler: completionHandler)
+                updateValue(object, forKey: key, forRecordType: recordType, forRecordID: delegate(manager, key), forCloudKitDatabase: database, completionHandler: completionHandler)
 
             } else {
                 getCloudKitRecord(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecord, cloudKitDatabase, error) in
@@ -156,7 +157,7 @@ extension DataStoreManager {
             }
         }
 
-        func delete<T>(forKey key: String, withValueType valueType: T.Type, forContainerType containerType: ContainerType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func delete<T>(forKey key: String, withObjectType objectType: T.Type, forContainerType containerType: ContainerType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             let recordType = self.recordType ?? key
 
@@ -179,7 +180,6 @@ extension DataStoreManager {
                         return
                     }
 
-                    let error = DataStoreError(type: .deleteFailed)
                     for record in records {
                         if let _ = record.object(forKey: key) as? T {
                             // TODO: how to handle if allowed duplicate keys
@@ -199,6 +199,7 @@ extension DataStoreManager {
                         }
                     }
 
+                    let error = DataStoreError(protocol: .deleteFailed(detail: "recordID not found in \(records)."))
                     DispatchQueue.main.async {
                         completionHandler(false, nil, error)
                     }
@@ -209,7 +210,7 @@ extension DataStoreManager {
         func deleteAll(forContainerType containerType: ContainerType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let recordType = self.recordType else {
-                let error = DataStoreError(type: .datasourceNotAvailable, comment: "recordType")
+                let error = DataStoreError(protocol: .datasourceNotAvailable(detail: "recordType"))
                 completionHandler(false, nil, error)
                 return
             }
@@ -304,7 +305,7 @@ extension DataStoreManager {
                 return cloudKitContainer.publicCloudDatabase
 
             case .sharedCloudDatabase:
-                if #available(iOS 10.0, *) {
+                if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
                     return cloudKitContainer.sharedCloudDatabase
                 } else {
                     return nil
@@ -322,7 +323,7 @@ extension DataStoreManager {
             let query = CKQuery(recordType: recordType, predicate: predicate)
 
             guard let database = getDatabase(forContainerType: containerType) else {
-                let error = DataStoreError(type: .databaseNotAvailable)
+                let error = DataStoreError(protocol: .databaseNotAvailable)
                 completionHandler(nil, nil, error)
                 return
             }

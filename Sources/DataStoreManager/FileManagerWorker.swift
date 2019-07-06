@@ -14,7 +14,11 @@
 //  limitations under the License.
 //
 
+#if os(iOS)
 import UIKit
+#else
+import Foundation
+#endif
 
 // MARK: - FileManager
 
@@ -43,16 +47,16 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create(object: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
-                let error = DataStoreError(type: .documentURLNotAvailable)
+                let error = DataStoreError(protocol: .directoryURLNotAvailable)
                 completionHandler(false, nil, error)
                 return
             }
 
             let filePath = url.path + "/" + fileName
-            let data = (value as? AnySubclass)?.toData()
+            let data = (object as? AnySubclass)?.toData()
             let isSuccessful = fileManager.createFile(atPath: filePath, contents: data, attributes: nil)
             completionHandler(isSuccessful, nil, nil)
         }
@@ -60,7 +64,7 @@ extension DataStoreManager {
         func read(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
-                let error = DataStoreError(type: .documentURLNotAvailable)
+                let error = DataStoreError(protocol: .directoryURLNotAvailable)
                 completionHandler(nil, nil, error)
                 return
             }
@@ -70,17 +74,17 @@ extension DataStoreManager {
             completionHandler(object, nil, nil)
         }
 
-        func update(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update(object: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             // TODO: change to update file logic
             guard let url = getURL(for: directory, withFileName: fileName) else {
-                let error = DataStoreError(type: .documentURLNotAvailable)
+                let error = DataStoreError(protocol: .directoryURLNotAvailable)
                 completionHandler(false, nil, error)
                 return
             }
 
             let filePath = url.path + "/" + fileName
-            let data = (value as? AnySubclass)?.toData()
+            let data = (object as? AnySubclass)?.toData()
             let isSuccessful = fileManager.createFile(atPath: filePath, contents: data, attributes: nil)
             completionHandler(isSuccessful, nil, nil)
         }
@@ -88,7 +92,7 @@ extension DataStoreManager {
         func delete(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let url = getFullURL(forFileName: fileName, inDirectory: directory) else {
-                let error = DataStoreError(type: .documentFullURLNotAvailable)
+                let error = DataStoreError(protocol: .directoryFullURLNotAvailable)
                 completionHandler(false, nil, error)
                 return
             }
@@ -98,7 +102,6 @@ extension DataStoreManager {
                 completionHandler(true, nil, nil)
 
             } catch {
-                let error = DataStoreError(type: .deleteFailed)
                 completionHandler(false, nil, error)
             }
         }
@@ -106,7 +109,7 @@ extension DataStoreManager {
         func deleteAll(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let url = getURL(for: directory) else {
-                let error = DataStoreError(type: .documentURLNotAvailable)
+                let error = DataStoreError(protocol: .directoryURLNotAvailable)
                 completionHandler(false, nil, error)
                 return
             }
@@ -116,7 +119,7 @@ extension DataStoreManager {
                     delete(forKey: fileName, forDirectory: directory, completionHandler: completionHandler)
                 }
             } else {
-                let error = DataStoreError(type: .documentListNotAvailable)
+                let error = DataStoreError(protocol: .directoryListNotAvailable(detail: url.description))
                 completionHandler(false, nil, error)
             }
         }
@@ -154,7 +157,7 @@ extension DataStoreManager {
                 url = fileManager.urls(for: .coreServiceDirectory, in: .userDomainMask).first
 
             case .temporaryDirectory:
-                if #available(iOS 10.0, *) {
+                if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
                     url = fileManager.temporaryDirectory
 
                 } else {

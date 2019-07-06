@@ -52,29 +52,33 @@ import Security
     /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
     case cache
 
-    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services).
-    case genericPasswordKeychain
+    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
+    /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
+    /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassgenericpassword).
+    case genericKeychain
 
-    case internetPasswordKeychain
+    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
+    /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
+    /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassinternetpassword).
+    case internetKeychain
+
+    case privateCloudDatabase
+
+    case publicCloudDatabase
+
+    case sharedCloudDatabase
 
     /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
     case ubiquitousKeyValueStore
 }
 
-extension DataStoreStorageType : RawRepresentable, CustomStringConvertible, CustomDebugStringConvertible, CaseIterable {
+extension DataStoreStorageType : RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
 
     /// Creates a new instance with the specified raw value.
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
     ///
-    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil. For example:
-    /// ```
-    /// print(DataStoreStorageType(rawValue: "UserDefaults"))
-    /// // Prints "Optional("DataStoreStorageType.userDefaults")"
-    ///
-    /// print(DataStoreStorageType(rawValue: "Invalid"))
-    /// // Prints "nil"
-    /// ```
+    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
     public init?(rawValue: String) {
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
@@ -84,7 +88,7 @@ extension DataStoreStorageType : RawRepresentable, CustomStringConvertible, Cust
         return nil
     }
 
-    /// The raw representation of the value.
+    /// The corresponding value of the raw type.
     public var rawValue: String {
         switch self {
         case .userDefaults:
@@ -111,22 +115,31 @@ extension DataStoreStorageType : RawRepresentable, CustomStringConvertible, Cust
         case .cache:
             return "NSCache"
 
-        case .genericPasswordKeychain:
-            return "SecItem.genericPassword"
+        case .genericKeychain:
+            return "SecItem.kSecClassGenericPassword"
 
-        case .internetPasswordKeychain:
-            return "SecItem.internetPassword"
+        case .internetKeychain:
+            return "SecItem.kSecClassInternetPassword"
+
+        case .privateCloudDatabase:
+            return "CKContainer.privateCloudDatabase"
+
+        case .publicCloudDatabase:
+            return "CKContainer.publicCloudDatabase"
+
+        case .sharedCloudDatabase:
+            return "CKContainer.sharedCloudDatabase"
 
         case .ubiquitousKeyValueStore:
             return "NSUbiquitousKeyValueStore"
 
         @unknown case _:
             assertionFailure("Use a representation that was unknown when this code was compiled.")
-            return ""
+            return "Use a representation that was unknown when this code was compiled."
         }
     }
 
-    /// This `String` object.
+    /// A textual representation of this instance.
     public var description: String {
         switch self {
         case .userDefaults:
@@ -153,18 +166,27 @@ extension DataStoreStorageType : RawRepresentable, CustomStringConvertible, Cust
         case .cache:
             return "NSCache"
 
-        case .genericPasswordKeychain:
+        case .genericKeychain:
             return "SecItem"
 
-        case .internetPasswordKeychain:
+        case .internetKeychain:
             return "SecItem"
+
+        case .privateCloudDatabase:
+            return "CKContainer"
+
+        case .publicCloudDatabase:
+            return "CKContainer"
+
+        case .sharedCloudDatabase:
+            return "CKContainer"
 
         case .ubiquitousKeyValueStore:
             return "NSUbiquitousKeyValueStore"
 
         @unknown case _:
             assertionFailure("Use a representation that was unknown when this code was compiled.")
-            return ""
+            return "Use a representation that was unknown when this code was compiled."
         }
     }
 
@@ -174,56 +196,111 @@ extension DataStoreStorageType : RawRepresentable, CustomStringConvertible, Cust
     }
 }
 
+/// Constants that provide information regarding protocol type of data store manager.
 @objc public enum DataStoreProtocolType : Int {
 
+    /// The protocol type FTP.
     case ftp
+
+    /// The protocol type FTPAccount.
     case ftpAccount
+
+    /// The protocol type HTTP.
     case http
+
+    /// The protocol type IRC.
     case irc
+
+    /// The protocol type NNTP.
     case nntp
+
+    /// The protocol type POP3.
     case pop3
+
+    /// The protocol type SMTP.
     case smtp
+
+    /// The protocol type SOCKS.
     case socks
+
+    /// The protocol type IMAP.
     case imap
+
+    /// The protocol type LDAP.
     case ldap
+
+    /// The protocol type AppleTalk.
     case appleTalk
+
+    /// The protocol type AFP.
     case afp
+
+    /// The protocol type Telnet.
     case telnet
+
+    /// The protocol type SSH.
     case ssh
+
+    /// The protocol type FTPS.
     case ftps
+
+    /// The protocol type HTTPS.
     case https
+
+    /// The protocol type HTTPProxy.
     case httpProxy
+
+    /// The protocol type HTTPSProxy.
     case httpsProxy
+
+    /// The protocol type FTPProxy.
     case ftpProxy
+
+    /// The protocol type SMB.
     case smb
+
+    /// The protocol type RTSP.
     case rtsp
+
+    /// The protocol type RTSPProxy.
     case rtspProxy
+
+    /// The protocol type DAAP.
     case daap
+
+    /// The protocol type EPPC.
     case eppc
+
+    /// The protocol type IPP.
     case ipp
+
+    /// The protocol type NNTPS.
     case nntps
+
+    /// The protocol type LDAPS.
     case ldaps
+
+    /// The protocol type TelnetS.
     case telnetS
+
+    /// The protocol type IMAPS.
     case imaps
+
+    /// The protocol type IRCS.
     case ircs
+
+    /// The protocol type POP3S.
     case pop3S
 }
 
 
-extension DataStoreProtocolType: RawRepresentable, CustomStringConvertible, CustomDebugStringConvertible, CaseIterable {
+extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
 
     /// Creates a new instance with the specified raw value.
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
     ///
-    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil. For example:
-    /// ```
-    /// print(DataStoreProtocolType(rawValue: "FTP"))
-    /// // Prints "Optional("DataStoreStorageType.ftp")"
-    ///
-    /// print(DataStoreProtocolType(rawValue: "Invalid"))
-    /// // Prints "nil"
-    /// ```
+    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
     public init?(rawValue: String) {
         for type in DataStoreProtocolType.allCases {
             if type.rawValue == rawValue {
@@ -233,7 +310,7 @@ extension DataStoreProtocolType: RawRepresentable, CustomStringConvertible, Cust
         return nil
     }
 
-    /// The raw representation of the value.
+    /// The corresponding value of the raw type.
     public var rawValue: String {
         switch self {
         case .ftp:
@@ -331,11 +408,11 @@ extension DataStoreProtocolType: RawRepresentable, CustomStringConvertible, Cust
 
         @unknown case _:
             assertionFailure("Use a representation that was unknown when this code was compiled.")
-            return ""
+            return "Use a representation that was unknown when this code was compiled."
         }
     }
 
-    /// This `String` object.
+    /// A textual representation of this instance.
     public var description: String {
         switch self {
         case .ftp:
@@ -433,7 +510,7 @@ extension DataStoreProtocolType: RawRepresentable, CustomStringConvertible, Cust
 
         @unknown case _:
             assertionFailure("Use a representation that was unknown when this code was compiled.")
-            return ""
+            return "Use a representation that was unknown when this code was compiled."
         }
     }
 
@@ -443,44 +520,358 @@ extension DataStoreProtocolType: RawRepresentable, CustomStringConvertible, Cust
     }
 }
 
-@objc enum ErrorType : Int {
-    case bundleIdentifierNotAvailable       = -1000
-    case lowerSchemaVersion                 = -1100
-    case datasourceNotAvailable             = -2000
-    case createFailed                       = -3000
-    case updateFailed                       = -3001
-    case readFailed                         = -3002
-    case deleteFailed                       = -3003
-    case duplicateObject                    = -3100
-    case documentURLNotAvailable            = -4000
-    case documentFullURLNotAvailable        = -4001
-    case documentListNotAvailable           = -4100
-    case databaseNotAvailable               = -8000
-    case recordNotAvailable                 = -8001
-    case unknownRepresentation              = -9998
-    case unexpectedError                    = -9999
+/// Constants that provide information regarding authentication type of data store manager.
+@objc public enum DataStoreAuthenticationType : Int {
+
+    /// The authentication type NTLM.
+    case ntlm
+
+    /// The authentication type MSN.
+    case msn
+
+    /// The authentication type DPA.
+    case dpa
+
+    /// The authentication type RPA.
+    case rpa
+
+    /// The authentication type HTTPBasic.
+    case httpBasic
+
+    /// The authentication type HTTPDigest.
+    case httpDigest
+
+    /// The authentication type HTMLForm.
+    case htmlForm
+
+    /// The authentication type Default.
+    case `default`
 }
 
-extension ErrorType : CustomStringConvertible, CustomDebugStringConvertible {
+extension DataStoreAuthenticationType: RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
+
+    /// Creates a new instance with the specified raw value.
+    ///
+    /// - Parameter rawValue: The raw value to use for the new instance.
+    ///
+    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
+    public init?(rawValue: String) {
+        for type in DataStoreAuthenticationType.allCases {
+            if type.rawValue == rawValue {
+                self = type
+            }
+        }
+        return nil
+    }
+
+    /// The corresponding value of the raw type.
+    public var rawValue: String {
+        switch self {
+        case .ntlm:
+            return String(kSecAttrAuthenticationTypeNTLM)
+
+        case .msn:
+            return String(kSecAttrAuthenticationTypeMSN)
+
+        case .dpa:
+            return String(kSecAttrAuthenticationTypeDPA)
+
+        case .rpa:
+            return String(kSecAttrAuthenticationTypeRPA)
+
+        case .httpBasic:
+            return String(kSecAttrAuthenticationTypeHTTPBasic)
+
+        case .httpDigest:
+            return String(kSecAttrAuthenticationTypeHTTPDigest)
+
+        case .htmlForm:
+            return String(kSecAttrAuthenticationTypeHTMLForm)
+
+        case .default:
+            return String(kSecAttrAuthenticationTypeDefault)
+
+        @unknown case _:
+            assertionFailure("Use a representation that was unknown when this code was compiled.")
+            return "Use a representation that was unknown when this code was compiled."
+        }
+    }
+
+    /// A textual representation of this instance.
+    public var description: String {
+        switch self {
+        case .ntlm:
+            return "NTLM"
+
+        case .msn:
+            return "MSN"
+
+        case .dpa:
+            return "DPA"
+
+        case .rpa:
+            return "RPA"
+
+        case .httpBasic:
+            return "HTTPBasic"
+
+        case .httpDigest:
+            return "HTTPDigest"
+
+        case .htmlForm:
+            return "HTMLForm"
+
+        case .default:
+            return "Default"
+
+        @unknown case _:
+            assertionFailure("Use a representation that was unknown when this code was compiled.")
+            return "Use a representation that was unknown when this code was compiled."
+        }
+    }
+
+    /// A textual representation of this instance, suitable for debugging.
+    public var debugDescription: String {
+        return description
+    }
+}
+
+/// A type representing an error value.
+enum ErrorProtocol : Error {
+
+    /// The bundle identifier cannot be retrieved.
+    case bundleIdentifierNotAvailable
+
+    /// Current schema version is lower than old schema version.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case lowerSchemaVersion(detail: String)
+
+    /// The data source cannot be retrieved.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case datasourceNotAvailable(detail: String)
+
+    /// The object cannot be created.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case createFailed(detail: String)
+
+    /// The object cannot be retrieved.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case readFailed(detail: String)
+
+    /// The object cannot be updated.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case updateFailed(detail: String)
+
+    /// The object cannot be deleted.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case deleteFailed(detail: String)
+
+    /// The specified object already exists.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case duplicateObject(detail: String)
+
+    /// The directory URL cannot be retrieved.
+    case directoryURLNotAvailable
+
+    /// The directory URL with path cannot be retrieved.
+    case directoryFullURLNotAvailable
+
+    /// Contents of directory cannot be retrieved.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case directoryListNotAvailable(detail: String)
+
+    /// The database cannot be retrieved.
+    case databaseNotAvailable
+
+    /// Use a representation that was unknown when this code was compiled.
+    case unknownRepresentation
+}
+
+extension ErrorProtocol : CustomNSError, RawRepresentable, CaseIterable, LocalizedError, CustomStringConvertible, CustomDebugStringConvertible {
+
+    /// The key of the error.
+    static var key: String {
+        return "Error"
+    }
+
+    /// The domain of the error.
+    static var errorDomain: String {
+        return "com.sentulasia.DataStoreManager.error"
+    }
+
+    /// The error code within the given domain.
+    var errorCode: Int {
+        return rawValue
+    }
+
+    /// The user-info dictionary.
+    var errorUserInfo: [String : Any] {
+        return [
+            NSLocalizedDescriptionKey : NSLocalizedString(ErrorProtocol.key, value: errorDescription ?? "Unexpected error has occurred.", comment: description)
+        ]
+    }
+
+    static var allCases: [ErrorProtocol] {
+        return [
+            .bundleIdentifierNotAvailable,
+            .lowerSchemaVersion(detail: ""),
+            .datasourceNotAvailable(detail: ""),
+            .createFailed(detail: ""),
+            .readFailed(detail: ""),
+            .updateFailed(detail: ""),
+            .deleteFailed(detail: ""),
+            .duplicateObject(detail: ""),
+            .directoryURLNotAvailable,
+            .directoryFullURLNotAvailable,
+            .directoryListNotAvailable(detail: ""),
+            .databaseNotAvailable,
+            .unknownRepresentation
+        ]
+    }
+
+    /// Creates a new instance with the specified raw value.
+    ///
+    /// - Parameter rawValue: The raw value to use for the new instance.
+    ///
+    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
+    init?(rawValue: Int) {
+        for `protocol` in ErrorProtocol.allCases {
+            if `protocol`.rawValue == rawValue {
+                self = `protocol`
+            }
+        }
+        return nil
+    }
+
+    /// The corresponding value of the raw type.
+    var rawValue: Int {
+        switch self {
+        case .bundleIdentifierNotAvailable:
+            return -1000
+
+        case .lowerSchemaVersion:
+            return -1100
+
+        case .datasourceNotAvailable:
+            return -2000
+
+        case .createFailed:
+            return -3000
+
+        case .readFailed:
+            return -3001
+
+        case .updateFailed:
+            return -3002
+
+        case .deleteFailed:
+            return -3003
+
+        case .duplicateObject:
+            return -3100
+
+        case .directoryURLNotAvailable:
+            return -4000
+
+        case .directoryFullURLNotAvailable:
+            return -4001
+
+        case .directoryListNotAvailable:
+            return -4100
+
+        case .databaseNotAvailable:
+            return -8000
+
+        case .unknownRepresentation:
+            return -9000
+        }
+    }
+
+    /// A localized message describing what error occurred.
+    var errorDescription: String? {
+        switch self {
+        case .bundleIdentifierNotAvailable:
+            let message = description
+            return NSLocalizedString(message, comment: message)
+
+        case .lowerSchemaVersion(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: message)
+
+        case .datasourceNotAvailable(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: message)
+
+        case .createFailed(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: message)
+
+        case .updateFailed(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: message)
+
+        case .readFailed(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: message)
+
+        case .deleteFailed(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: message)
+
+        case .duplicateObject(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: message)
+
+        case .directoryURLNotAvailable:
+            let message = description
+            return NSLocalizedString(message, comment: message)
+
+        case .directoryFullURLNotAvailable:
+            let message = description
+            return NSLocalizedString(message, comment: message)
+
+        case .directoryListNotAvailable(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: message)
+
+        case .databaseNotAvailable:
+            let message = description
+            return NSLocalizedString(message, comment: message)
+
+        case .unknownRepresentation:
+            let message = description
+            return NSLocalizedString(message, comment: message)
+        }
+    }
+
+    /// A textual representation of this instance.
     var description: String {
         switch self {
         case .bundleIdentifierNotAvailable:
             return "The bundle identifier cannot be retrieved."
 
         case .lowerSchemaVersion:
-            return "Current schema version is lower than old schema version"
+            return "Current schema version is lower than old schema version."
 
         case .datasourceNotAvailable:
-            return "The data source cannot be retrieved."
+            return "Current schema version is lower than old schema version."
 
         case .createFailed:
             return "The object cannot be created."
 
-        case .updateFailed:
-            return "The object cannot be updated."
-
         case .readFailed:
             return "The object cannot be retrieved."
+
+        case .updateFailed:
+            return "The object cannot be updated."
 
         case .deleteFailed:
             return "The object cannot be deleted."
@@ -488,34 +879,65 @@ extension ErrorType : CustomStringConvertible, CustomDebugStringConvertible {
         case .duplicateObject:
             return "The specified object already exists."
 
-        case .documentURLNotAvailable:
-            return "The document URL cannot be retrieved."
+        case .directoryURLNotAvailable:
+            return "The directory URL cannot be retrieved."
 
-        case .documentFullURLNotAvailable:
-            return "The document URL with path cannot be retrieved."
+        case .directoryFullURLNotAvailable:
+            return "The directory URL with path cannot be retrieved."
 
-        case .documentListNotAvailable:
+        case .directoryListNotAvailable:
             return "Contents of directory cannot be retrieved."
 
         case .databaseNotAvailable:
             return "The database cannot be retrieved."
 
-        case .recordNotAvailable:
-            return "The record cannot be retrieved."
-
         case .unknownRepresentation:
-            return "Use a representation that was unknown when this code was compiled."
-
-        case .unexpectedError:
-            return "Unexpected error has occurred."
-
-        @unknown case _:
             return "Use a representation that was unknown when this code was compiled."
         }
     }
 
+    /// A textual representation of this instance, suitable for debugging.
     var debugDescription: String {
-        return description
+        switch self {
+        case .bundleIdentifierNotAvailable:
+            return "The bundle identifier cannot be retrieved."
+
+        case .lowerSchemaVersion:
+            return "Current schema version is lower than old schema version."
+
+        case .datasourceNotAvailable:
+            return "Current schema version is lower than old schema version."
+
+        case .createFailed:
+            return "The object cannot be created."
+
+        case .readFailed:
+            return "The object cannot be retrieved."
+
+        case .updateFailed:
+            return "The object cannot be updated."
+
+        case .deleteFailed:
+            return "The object cannot be deleted."
+
+        case .duplicateObject:
+            return "The specified object already exists."
+
+        case .directoryURLNotAvailable:
+            return "The directory URL cannot be retrieved."
+
+        case .directoryFullURLNotAvailable:
+            return "The directory URL with path cannot be retrieved."
+
+        case .directoryListNotAvailable:
+            return "Contents of directory cannot be retrieved."
+
+        case .databaseNotAvailable:
+            return "The database cannot be retrieved."
+
+        case .unknownRepresentation:
+            return "Use a representation that was unknown when this code was compiled."
+        }
     }
 }
 
@@ -527,22 +949,35 @@ extension ErrorType : CustomStringConvertible, CustomDebugStringConvertible {
 /// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
 /// for more information.
 class DataStoreError: NSError {
-    required init(type: ErrorType, comment: String = "") {
-        let userInfo =  [
-            NSLocalizedDescriptionKey: NSLocalizedString("Error", value: type.description, comment: comment),
-            NSLocalizedFailureReasonErrorKey: NSLocalizedString("Error", value: type.debugDescription, comment: comment)
-            ]
-        super.init(domain: "com.sentulasia.DataStoreManager.error", code: type.rawValue, userInfo: userInfo)
+
+    /// Returns an NSError object initialized for a given error type.
+    ///
+    /// - Parameters:
+    ///   - type: An error object type.
+    ///   - comment: The comment to place above the key-value pair in the strings file.
+    /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
+    required init(protocol: ErrorProtocol) {
+        super.init(domain: ErrorProtocol.errorDomain, code: `protocol`.rawValue, userInfo: `protocol`.errorUserInfo)
     }
 
-    required init(code: Int, value: String, comment: String = "") {
+    /// Returns an NSError object initialized for a given code.
+    ///
+    /// - Parameters:
+    ///   - code: The error code for the error.
+    ///   - value: The value to return if key is nil or if a localized string for key can’t be found in the table.
+    ///   - comment: The comment to place above the key-value pair in the strings file.
+    /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
+    required init(code: Int, value: String) {
         let userInfo =  [
-            NSLocalizedDescriptionKey: NSLocalizedString("Error", value: value, comment: comment),
-            NSLocalizedFailureReasonErrorKey: NSLocalizedString("Error", value: value, comment: comment)
+            NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: value, comment: value)
         ]
-        super.init(domain: "com.sentulasia.DataStoreManager.error", code: code, userInfo: userInfo)
+        super.init(domain: ErrorProtocol.errorDomain, code: code, userInfo: userInfo)
     }
 
+    /// Returns an object initialized from data in a given unarchiver.
+    ///
+    /// - Parameter aDecoder: An unarchiver object.
+    /// - Returns: `self`, initialized using the data in decoder.
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
