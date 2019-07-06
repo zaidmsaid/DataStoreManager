@@ -14,9 +14,11 @@
 //  limitations under the License.
 //
 
+#if os(iOS)
 import UIKit
-
-// MARK: - FileManager
+#else
+import Foundation
+#endif
 
 extension DataStoreManager {
 
@@ -43,65 +45,80 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func setValue(value: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func create(object: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
-                assertionFailure("Unable to get document URL")
-                completionHandler(false)
+                let error = ErrorObject(protocol: .directoryURLNotAvailable)
+                completionHandler(false, nil, error)
                 return
             }
 
             let filePath = url.path + "/" + fileName
-            let data = (value as? AnySubclass)?.toData()
+            let data = (object as? AnySubclass)?.toData()
             let isSuccessful = fileManager.createFile(atPath: filePath, contents: data, attributes: nil)
-            completionHandler(isSuccessful)
+            completionHandler(isSuccessful, nil, nil)
         }
 
-        func object(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func read(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
-                completionHandler(nil)
+                let error = ErrorObject(protocol: .directoryURLNotAvailable)
+                completionHandler(nil, nil, error)
                 return
             }
 
             let filePath = url.path + "/" + fileName
             let object = fileManager.contents(atPath: filePath)
-            completionHandler(object)
+            completionHandler(object, nil, nil)
         }
 
-        func removeObject(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func update(object: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            guard let url = getFullPath(forFileName: fileName, inDirectory: directory) else {
-                assertionFailure("Unable to get document URL")
-                completionHandler(false)
+            // TODO: change to update file logic
+            guard let url = getURL(for: directory, withFileName: fileName) else {
+                let error = ErrorObject(protocol: .directoryURLNotAvailable)
+                completionHandler(false, nil, error)
+                return
+            }
+
+            let filePath = url.path + "/" + fileName
+            let data = (object as? AnySubclass)?.toData()
+            let isSuccessful = fileManager.createFile(atPath: filePath, contents: data, attributes: nil)
+            completionHandler(isSuccessful, nil, nil)
+        }
+
+        func delete(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            guard let url = getFullURL(forFileName: fileName, inDirectory: directory) else {
+                let error = ErrorObject(protocol: .directoryFullURLNotAvailable)
+                completionHandler(false, nil, error)
                 return
             }
 
             do {
                 try fileManager.removeItem(at: url)
-                completionHandler(true)
+                completionHandler(true, nil, nil)
 
             } catch {
-                assertionFailure("Unable to remove at document URL")
-                completionHandler(false)
+                completionHandler(false, nil, error)
             }
         }
 
-        func removeAllObjects(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func deleteAll(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let url = getURL(for: directory) else {
-                assertionFailure("Unable to get document URL")
-                completionHandler(false)
+                let error = ErrorObject(protocol: .directoryURLNotAvailable)
+                completionHandler(false, nil, error)
                 return
             }
 
             if let files = list(at: url) {
                 for fileName in files {
-                    removeObject(forKey: fileName, forDirectory: directory, completionHandler: completionHandler)
+                    delete(forKey: fileName, forDirectory: directory, completionHandler: completionHandler)
                 }
             } else {
-                assertionFailure("Unable to get contents of document directory")
-                completionHandler(false)
+                let error = ErrorObject(protocol: .directoryListNotAvailable(detail: url.description))
+                completionHandler(false, nil, error)
             }
         }
 
@@ -138,7 +155,7 @@ extension DataStoreManager {
                 url = fileManager.urls(for: .coreServiceDirectory, in: .userDomainMask).first
 
             case .temporaryDirectory:
-                if #available(iOS 10.0, *) {
+                if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
                     url = fileManager.temporaryDirectory
 
                 } else {
@@ -159,7 +176,7 @@ extension DataStoreManager {
             return url
         }
 
-        private final func getFullPath(forFileName fileName: String, inDirectory directory: Directory) -> URL? {
+        private final func getFullURL(forFileName fileName: String, inDirectory directory: Directory) -> URL? {
 
             return getURL(for: directory, withFileName: fileName)?.appendingPathComponent(fileName)
         }
@@ -231,7 +248,11 @@ fileprivate extension DataConvertible {
 fileprivate extension DataConvertible where Self: ExpressibleByIntegerLiteral {
     init?(data: Data) {
         var value: Self = 0
-        guard data.count == MemoryLayout.size(ofValue: value) else { return nil }
+
+        guard data.count == MemoryLayout.size(ofValue: value) else {
+            return nil
+        }
+
         _ = withUnsafeMutableBytes(of: &value, { data.copyBytes(to: $0)} )
         self = value
     }
@@ -251,14 +272,20 @@ extension Decimal: DataConvertible {
 
 extension Bool: DataConvertible {
     init?(data: Data) {
-        guard data.count == MemoryLayout<Bool>.size else { return nil }
+        guard data.count == MemoryLayout<Bool>.size else {
+            return nil
+        }
+
         self = data.withUnsafeBytes { $0.load(as: Bool.self) }
     }
 }
 
 extension UInt16: DataConvertible {
     init?(data: Data) {
-        guard data.count == MemoryLayout<UInt16>.size else { return nil }
+        guard data.count == MemoryLayout<UInt16>.size else {
+            return nil
+        }
+
         self = data.withUnsafeBytes { $0.load(as: UInt16.self) }
     }
 
