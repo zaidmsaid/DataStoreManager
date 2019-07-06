@@ -26,9 +26,9 @@ class ViewController: UIViewController {
             }
     	}
 
-        manager.read(forKey: "Balance", withObjectType: Decimal.self, forType: .keychain) { (object, _, _) in
+        manager.read(forKey: "Balance", withObjectType: Decimal.self, forType: .genericKeychain) { (object, _, _) in
             if let object = object {
-                print("successfully read decimal \(object) from Keychain")
+                print("successfully read decimal \(object) from Generic Keychain")
             }
         }
 
@@ -52,9 +52,9 @@ class ViewController: UIViewController {
             }
     	}
 
-        manager.update(object: object, forKey: "Text", forType: .keychain) { (isSuccessful, _, _) in
+        manager.update(object: object, forKey: "Text", forType: .genericKeychain) { (isSuccessful, _, _) in
             if isSuccessful {
-                print("successfully update object at Keychain")
+                print("successfully update object at Generic Keychain")
             }
         }
 
