@@ -23,43 +23,75 @@ extension DataStoreManager {
     /// An interface to the SecItem.
     class KeychainWorker {
 
+        // MARK: - Type Aliases
+
+        /// Type to mean instance of DataStoreProtocolType.
+        public typealias ProtocolType = DataStoreProtocolType
+
         // MARK: - Properties
 
-        var service: String?
-        var account: String?
-        var accessGroup: String?
+        var dataStoreManager: DataStoreManager?
+
+        var genericPasswordService: String {
+            if let manager = dataStoreManager, let service = manager.dataSource?.genericPasswordKeychainService?(for: manager) {
+                return service
+            }
+            return Bundle.main.bundleIdentifier ?? "DataStoreManager"
+        }
+
+        var genericPasswordAccessGroup: String? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.genericPasswordKeychainAccessGroup?(for: manager)
+            }
+            return nil
+        }
+
+        var internetPasswordServer: URL? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.internetPasswordKeychainServer?(for: manager)
+            }
+            return nil
+        }
+
+        var internetPasswordProtocolType: ProtocolType? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.internetPasswordKeychainProtocolType?(for: manager)
+            }
+            return nil
+        }
+
+        var internetPasswordAuthenticationType: String? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.internetPasswordKeychainAuthenticationType?(for: manager)
+            }
+            return nil
+        }
+
+        var isSynchronizable: Bool {
+            if let manager = dataStoreManager, let isSynchronizable = manager.dataSource?.keychainIsSynchronizable?(for: manager) {
+                return isSynchronizable
+            }
+            return false
+        }
+
+        // MARK: - Enumerations
+
+        @objc enum ItemClass : Int {
+
+            case genericPassword
+            case internetPassword
+        }
 
         // MARK: - CRUD
 
-        func setValue(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func create(value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            object(forKey: key) { (object) in
-                if object == nil {
-                    var newItem = self.getKeychainItem(withService: self.service, account: self.account ?? key, accessGroup: self.accessGroup)
-                    newItem[kSecValueData as String] = value as AnyObject?
-                    let status = SecItemAdd(newItem as CFDictionary, nil)
-                    completionHandler(status == noErr)
-
-                } else {
-                    var newItem = [String : AnyObject]()
-                    newItem[kSecValueData as String] = value as AnyObject?
-
-                    let item = self.getKeychainItem(withService: self.service, account: self.account ?? key, accessGroup: self.accessGroup)
-                    let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
-
-                    guard status == noErr else {
-                        assertionFailure("Unable to update object to Keychain")
-                        completionHandler(false)
-                        return
-                    }
-                    completionHandler(true)
-                }
-            }
+            create(value, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
         }
 
-        func object(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func read(forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            var item = getKeychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
+            var item = getKeychainItem(forAccount: key, forItemClass: itemClass)
             item[kSecMatchLimit as String] = kSecMatchLimitOne
             item[kSecReturnAttributes as String] = kCFBooleanTrue
             item[kSecReturnData as String] = kCFBooleanTrue
@@ -69,68 +101,160 @@ extension DataStoreManager {
                 SecItemCopyMatching(item as CFDictionary, UnsafeMutablePointer($0))
             }
 
+            let error = DataStoreError(code: status.hashValue, value: status.description)
             guard status == noErr else {
-                assertionFailure("Unable to get object from Keychain")
-                completionHandler(nil)
+                completionHandler(nil, nil, error)
                 return
             }
+
             guard status == errSecItemNotFound else {
-                completionHandler(nil)
+                completionHandler(nil, nil, error)
                 return
             }
-            completionHandler(object)
+
+            completionHandler(object, nil, nil)
         }
 
-        func removeObject(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func update(value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            let item = getKeychainItem(withService: service, account: account ?? key, accessGroup: accessGroup)
+            update(value, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
+        }
+
+        func delete(forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            let item = getKeychainItem(forAccount: key, forItemClass: itemClass)
             let status = SecItemDelete(item as CFDictionary)
 
             guard status == noErr else {
-                assertionFailure("Unable to delete object from Keychain")
-                completionHandler(false)
+                let error = DataStoreError(type: .deleteFailed)
+                completionHandler(false, nil, error)
                 return
             }
+
             guard status == errSecItemNotFound else {
-                completionHandler(false)
+                let error = DataStoreError(type: .readFailed)
+                completionHandler(false, nil, error)
                 return
             }
-            completionHandler(true)
+
+            completionHandler(true, nil, nil)
         }
 
-        func removeAllObjects(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func deleteAll(forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             var item = [String : AnyObject]()
-            item[kSecClass as String] = kSecClassGenericPassword
-            item[kSecAttrService as String] = service as AnyObject?
-            if let accessGroup = self.accessGroup {
-                item[kSecAttrAccessGroup as String] = accessGroup as AnyObject
+
+            switch itemClass {
+            case .genericPassword:
+                item[kSecClass as String] = kSecClassGenericPassword
+                item[kSecAttrService as String] = genericPasswordService as AnyObject
+
+                #if !targetEnvironment(simulator)
+                if let accessGroup = self.genericPasswordAccessGroup {
+                    item[kSecAttrAccessGroup as String] = accessGroup as AnyObject
+                }
+                #endif
+
+            case .internetPassword:
+                if let server = internetPasswordServer {
+                    item[kSecAttrServer as String] = server.host as AnyObject
+                    item[kSecAttrPort as String] = server.port as AnyObject
+                }
+
+                if let protocolType = internetPasswordProtocolType {
+                    item[kSecAttrProtocol as String] = protocolType.rawValue as AnyObject
+                }
+
+                if let authenticationType = internetPasswordAuthenticationType {
+                    item[kSecAttrAuthenticationType as String] = authenticationType as AnyObject
+                }
             }
+
             let status = SecItemDelete(item as CFDictionary)
 
             guard status == errSecSuccess else {
-                assertionFailure("Unable to delete all object from Keychain")
-                completionHandler(false)
+                let error = DataStoreError(type: .deleteFailed)
+                completionHandler(false, nil, error)
                 return
             }
-            completionHandler(true)
+
+            completionHandler(true, nil, nil)
+        }
+
+        private func create(_ value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            var newItem = getKeychainItem(forAccount: key, forItemClass: itemClass)
+            newItem[kSecValueData as String] = value as AnyObject
+
+            let status = SecItemAdd(newItem as CFDictionary, nil)
+
+            guard status == noErr else {
+                let error = DataStoreError(type: .createFailed)
+                completionHandler(false, nil, error)
+                return
+            }
+            
+            completionHandler(true, nil, nil)
+        }
+
+        private func update(_ value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            var newItem = [String : AnyObject]()
+            newItem[kSecValueData as String] = value as AnyObject
+
+            let item = getKeychainItem(forAccount: key, forItemClass: itemClass)
+            let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
+
+            guard status == noErr else {
+                let error = DataStoreError(type: .updateFailed)
+                completionHandler(false, nil, error)
+                return
+            }
+
+            completionHandler(true, nil, nil)
         }
 
         // MARK: - Helper
 
-        private final func getKeychainItem(withService service: String?, account: String? = nil, accessGroup: String? = nil) -> [String : AnyObject] {
-            let secAttrService: AnyObject = service as AnyObject? ?? Bundle.main.bundleIdentifier as AnyObject? ?? "DataStoreManager" as AnyObject
-            var item = [String : AnyObject]()
-            item[kSecClass as String] = kSecClassGenericPassword
-            item[kSecAttrService as String] = secAttrService
+        private final func getKeychainItem(forAccount account: String, forItemClass itemClass: ItemClass) -> [String : AnyObject] {
 
-            if let account = account {
-                item[kSecAttrGeneric as String] = account as AnyObject?
-                item[kSecAttrAccount as String] = account as AnyObject?
+            var item = [String : AnyObject]()
+
+            switch itemClass {
+            case .genericPassword:
+                let secAttrService: AnyObject = genericPasswordService as AnyObject
+                item[kSecClass as String] = kSecClassGenericPassword
+                item[kSecAttrService as String] = secAttrService
+                item[kSecAttrGeneric as String] = account as AnyObject
+
+                #if !targetEnvironment(simulator)
+                if let accessGroup = self.genericPasswordAccessGroup {
+                    item[kSecAttrAccessGroup as String] = accessGroup as AnyObject
+                }
+                #endif
+                
+            case .internetPassword:
+                if let server = internetPasswordServer {
+                    item[kSecAttrServer as String] = server.host as AnyObject
+                    item[kSecAttrPort as String] = server.port as AnyObject
+                }
+
+                if let protocolType = internetPasswordProtocolType {
+                    item[kSecAttrProtocol as String] = protocolType.rawValue as AnyObject
+                }
+
+                if let authenticationType = internetPasswordAuthenticationType {
+                    item[kSecAttrAuthenticationType as String] = authenticationType as AnyObject
+                }
+
+            @unknown case _:
+                assertionFailure("Use a representation that was unknown when this code was compiled.")
             }
 
-            if let accessGroup = accessGroup {
-                item[kSecAttrAccessGroup as String] = accessGroup as AnyObject?
+            item[kSecAttrAccount as String] = account as AnyObject
+
+            if isSynchronizable {
+                item[kSecAttrSynchronizable as String] = kSecAttrSynchronizableAny
             }
 
             return item

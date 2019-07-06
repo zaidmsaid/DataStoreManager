@@ -25,7 +25,14 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
-        var suiteName: String?
+        var dataStoreManager: DataStoreManager?
+
+        var suiteName: String? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.userDefaultsSuiteName?(for: manager)
+            }
+            return nil
+        }
 
         lazy var userDefaults: UserDefaults = {
             return UserDefaults(suiteName: suiteName) ?? UserDefaults.standard
@@ -33,37 +40,48 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func setValue(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func create(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            userDefaults.setValue(value, forKey: key)
-            userDefaults.synchronize()
-            completionHandler(true)
+            setValue(value, forKey: key, completionHandler: completionHandler)
         }
 
-        func object(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func read(forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
             userDefaults.synchronize()
             let object = userDefaults.object(forKey: key)
-            completionHandler(object)
+            completionHandler(object, nil, nil)
         }
 
-        func removeObject(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func update(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            setValue(value, forKey: key, completionHandler: completionHandler)
+        }
+
+        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             userDefaults.removeObject(forKey: key)
             userDefaults.synchronize()
-            completionHandler(true)
+            completionHandler(true, nil, nil)
         }
 
-        func removeAllObjects(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
-                assertionFailure("Unable to get bundle identifier")
-                completionHandler(false)
+                let error = DataStoreError(type: .bundleIdentifierNotAvailable)
+                completionHandler(false, nil, error)
                 return
             }
+
             userDefaults.removePersistentDomain(forName: bundleIdentifier)
             userDefaults.synchronize()
-            completionHandler(true)
+            completionHandler(true, nil, nil)
+        }
+
+        private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            userDefaults.setValue(value, forKey: key)
+            userDefaults.synchronize()
+            completionHandler(true, nil, nil)
         }
     }
 }

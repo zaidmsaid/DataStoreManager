@@ -15,21 +15,12 @@
 ```swift
 import DataStoreManager
 
-class ViewController: UIViewController, DataStoreManagerDataSource {
+class ViewController: UIViewController {
 
-    let manager = DataStoreManager()
+    let manager = DataStoreManager(identifier: "Example")
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        manager.dataSource = self
-        manager.tag = 3
-    }
-    .
-    .
-    .
     func fetchFromDataStore() {
-    	manager.object(forKey: "Age", withValueType: Int.self) { (object) in
+    	manager.object(forKey: "Age", withValueType: Int.self, forType: .userDefaults) { (object) in
             if let object = object {
                 print("successfully read \(object) from UserDefaults")
             }
@@ -55,33 +46,31 @@ class ViewController: UIViewController, DataStoreManagerDataSource {
     }
 
     func storeToDataStore(object: Any) {
-    	manager.setValue(value: object, forKey: "Text") { (isSuccessful) in
+    	manager.setValue(value: object, forKey: "Text", forType: .userDefaults) { (isSuccessful) in
             if isSuccessful {
-    	        print("successfully write object at UserDefaults")
+    	        print("successfully write object to UserDefaults")
             }
     	}
 
         manager.setValue(value: object, forKey: "Text", forType: .keychain) { (isSuccessful) in
             if isSuccessful {
-                print("successfully write object at Keychain")
+                print("successfully write object to Keychain")
             }
         }
 
     	manager.setValue(value: object, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
             if isSuccessful {
-    	        print("successfully write file at Inbox Document Directory")
+    	        print("successfully write file to Inbox Document Directory")
             }
     	}
-    }
-    .
-    .
-    .
-    func defaultStorageType(for manager: DataStoreManager) -> DataStoreManager.StorageType {
-        if manager.tag == 3 {
-            return .userDefaults
-        } else {
-            return .keychain
-        }
+
+    	let exampleModel = DynamicModel(name: "Text", number: 123)
+
+    	manager.setValue(value: exampleModel, forKey: "aUniqueHashHere", forType: .privateCloudDatabase) { (isSuccessful) in
+            if isSuccessful {
+    	        print("successfully write model to CloudKit Private Database")
+            }
+    	}
     }
 }
 ```
