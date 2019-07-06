@@ -20,55 +20,55 @@ class ViewController: UIViewController {
     let manager = DataStoreManager(identifier: "Example")
 
     func fetchFromDataStore() {
-    	manager.object(forKey: "Age", withValueType: Int.self, forType: .userDefaults) { (object) in
+    	manager.read(forKey: "Age", withObjectType: Int.self, forType: .userDefaults) { (object, _, _) in
             if let object = object {
-                print("successfully read \(object) from UserDefaults")
+                print("successfully read int \(object) from UserDefaults")
             }
     	}
 
-        manager.object(forKey: "Balance", withValueType: Decimal.self, forType: .keychain) { (object) in
+        manager.read(forKey: "Balance", withObjectType: Decimal.self, forType: .keychain) { (object, _, _) in
             if let object = object {
-                print("successfully read \(object) from Keychain")
+                print("successfully read decimal \(object) from Keychain")
             }
         }
 
-    	manager.object(forKey: "temp_file.txt", withValueType: String.self, forType: .temporaryDirectory) { (object) in
+    	manager.read(forKey: "temp_file.txt", withObjectType: String.self, forType: .temporaryDirectory) { (object, _, _) in
             if let object = object {
-    	        print("successfully read \(object) from /tmp")
+    	        print("successfully read string \(object) from /tmp")
             }
     	}
 
-    	manager.object(forKey: "Image", withValueType: UIImage.self, forType: .cache) { (object) in
+    	manager.read(forKey: "Image", withObjectType: UIImage.self, forType: .cache) { (object, _, _) in
             if let object = object {
-                print("successfully read \(object) from NSCache")
+                print("successfully read image \(object) from NSCache")
             }
         }
     }
 
     func storeToDataStore(object: Any) {
-    	manager.setValue(value: object, forKey: "Text", forType: .userDefaults) { (isSuccessful) in
+    	manager.create(object: object, forKey: "Text", forType: .userDefaults) { (isSuccessful, _, _) in
             if isSuccessful {
-    	        print("successfully write object to UserDefaults")
+    	        print("successfully create object at UserDefaults")
             }
     	}
 
-        manager.setValue(value: object, forKey: "Text", forType: .keychain) { (isSuccessful) in
+        manager.update(object: object, forKey: "Text", forType: .keychain) { (isSuccessful, _, _) in
             if isSuccessful {
-                print("successfully write object to Keychain")
+                print("successfully update object at Keychain")
             }
         }
 
-    	manager.setValue(value: object, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful) in
+    	manager.create(object: object, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful, _, _) in
             if isSuccessful {
-    	        print("successfully write file to Inbox Document Directory")
+    	        print("successfully create file at Inbox Document Directory")
             }
     	}
 
     	let exampleModel = DynamicModel(name: "Text", number: 123)
 
-    	manager.setValue(value: exampleModel, forKey: "aUniqueHashHere", forType: .privateCloudDatabase) { (isSuccessful) in
+    	manager.create(object: exampleModel, forKey: "column_name", forType: .privateCloudDatabase) { (isSuccessful, recordID, _) in
             if isSuccessful {
-    	        print("successfully write model to CloudKit Private Database")
+    	        print("successfully create model at CloudKit Private Database with ID \(recordID)")
             }
     	}
     }
@@ -125,7 +125,7 @@ To install it, simply add the following line to your **Package.swift**:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.6.0"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.7.0"))
 ]
 ```
 
@@ -133,7 +133,7 @@ or more strict:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.6.0"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.7.0"))
 ]
 ```
 
