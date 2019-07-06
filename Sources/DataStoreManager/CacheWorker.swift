@@ -16,8 +16,6 @@
 
 import Foundation
 
-// MARK: - NSCache
-
 extension DataStoreManager {
 
     /// An interface to the NSCache.
@@ -26,9 +24,14 @@ extension DataStoreManager {
         // MARK: - Properties
 
         var dataStoreManager: DataStoreManager?
-        var totalCostLimit: Int?
-        var totalCostLimitDataSource: ((DataStoreManager) -> Int)?
-        var costDataSource: ((DataStoreManager, Any) -> Int)?
+        var costDelegate: ((DataStoreManager, Any) -> Int)?
+
+        var totalCostLimit: Int {
+            if let manager = dataStoreManager, let totalCostLimit = manager.dataSource?.cacheTotalCostLimit?(for: manager) {
+                return totalCostLimit
+            }
+            return 0
+        }
 
         lazy var cache: NSCache<NSString, AnyObject> = {
             return NSCache<NSString, AnyObject>()
@@ -37,9 +40,7 @@ extension DataStoreManager {
         // MARK: - Init
 
         init() {
-            if let manager = dataStoreManager, let datasource = totalCostLimitDataSource {
-                cache.totalCostLimit = datasource(manager)
-            }
+            cache.totalCostLimit = totalCostLimit
             NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
         }
 
@@ -48,37 +49,48 @@ extension DataStoreManager {
         }
 
         @objc private func didReceiveMemoryWarning() {
-            removeAllObjects { (_) in }
+            deleteAll { (_, _, _) in
+            }
         }
 
         // MARK: - CRUD
 
-        func setValue(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            if let manager = dataStoreManager, let datasource = costDataSource {
-                cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: datasource(manager, value))
+            setValue(object, forKey: key, completionHandler: completionHandler)
+        }
+
+        func read(forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            let object = cache.object(forKey: NSString(string: key))
+            completionHandler(object, nil, nil)
+        }
+
+        func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            setValue(object, forKey: key, completionHandler: completionHandler)
+        }
+
+        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            cache.removeObject(forKey: NSString(string: key))
+            completionHandler(true, nil, nil)
+        }
+
+        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            cache.removeAllObjects()
+            completionHandler(true, nil, nil)
+        }
+
+        private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            if let manager = dataStoreManager, let delegate = costDelegate {
+                cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: delegate(manager, value))
             } else {
                 cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: 0)
             }
-            completionHandler(true)
-        }
-
-        func object(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
-
-            let object = cache.object(forKey: NSString(string: key))
-            completionHandler(object)
-        }
-
-        func removeObject(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
-
-            cache.removeObject(forKey: NSString(string: key))
-            completionHandler(true)
-        }
-
-        func removeAllObjects(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
-
-            cache.removeAllObjects()
-            completionHandler(true)
+            completionHandler(true, nil, nil)
         }
     }
 }

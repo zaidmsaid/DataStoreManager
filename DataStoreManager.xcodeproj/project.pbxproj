@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
-		B886C18F22CC368A00EBEBE4 /* DataStoreStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* DataStoreStorageType.swift */; };
+		B886C18F22CC368A00EBEBE4 /* DataStoreManager+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* DataStoreManager+Models.swift */; };
 		B8C2CF3522C8E6640080102C /* DataStoreManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2CF2B22C8E6640080102C /* DataStoreManager.framework */; };
 		B8C2CF3A22C8E6640080102C /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
 		B8C2CF3C22C8E6640080102C /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,6 +16,7 @@
 		B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
 		B8C2CF4E22C9080E0080102C /* DataStoreManager+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */; };
 		B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
+		B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
 		B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
 		B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
 /* End PBXBuildFile section */
@@ -32,7 +33,7 @@
 
 /* Begin PBXFileReference section */
 		B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousKeyValueStoreWorker.swift; sourceTree = "<group>"; };
-		B886C18E22CC368A00EBEBE4 /* DataStoreStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreStorageType.swift; sourceTree = "<group>"; };
+		B886C18E22CC368A00EBEBE4 /* DataStoreManager+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStoreManager+Models.swift"; sourceTree = "<group>"; };
 		B8C2CF2B22C8E6640080102C /* DataStoreManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF2E22C8E6640080102C /* DataStoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStoreManager.h; sourceTree = "<group>"; };
 		B8C2CF2F22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,6 +44,7 @@
 		B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWorker.swift; sourceTree = "<group>"; };
 		B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStoreManager+Protocol.swift"; sourceTree = "<group>"; };
 		B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerWorker.swift; sourceTree = "<group>"; };
+		B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitWorker.swift; sourceTree = "<group>"; };
 		B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
 		B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,8 +112,9 @@
 				B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */,
 				B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */,
 				B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */,
+				B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */,
 				B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */,
-				B886C18E22CC368A00EBEBE4 /* DataStoreStorageType.swift */,
+				B886C18E22CC368A00EBEBE4 /* DataStoreManager+Models.swift */,
 				B8C2CF4D22C9080E0080102C /* DataStoreManager+Protocol.swift */,
 				B8C2CF2E22C8E6640080102C /* DataStoreManager.h */,
 			);
@@ -238,10 +241,11 @@
 				B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */,
 				B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */,
 				B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */,
-				B886C18F22CC368A00EBEBE4 /* DataStoreStorageType.swift in Sources */,
+				B886C18F22CC368A00EBEBE4 /* DataStoreManager+Models.swift in Sources */,
 				B8C2CF4E22C9080E0080102C /* DataStoreManager+Protocol.swift in Sources */,
 				B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */,
 				B8C2CF4A22C8EE980080102C /* DataStoreManager.swift in Sources */,
+				B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */,
 				B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

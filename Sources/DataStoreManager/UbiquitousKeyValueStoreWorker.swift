@@ -16,8 +16,6 @@
 
 import Foundation
 
-// MARK: - NSUbiquitousKeyValueStore
-
 extension DataStoreManager {
 
     /// An interface to the NSUbiquitousKeyValueStore.
@@ -45,35 +43,45 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func setValue(value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            ubiquitousKeyValueStore.setValue(value, forKey: key)
-            ubiquitousKeyValueStore.synchronize()
-            completionHandler(true)
+            setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func object(forKey key: String, completionHandler: @escaping (_ object: Any?) -> Void) {
+        func read(forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
             ubiquitousKeyValueStore.synchronize()
             let object = ubiquitousKeyValueStore.object(forKey: key)
-            completionHandler(object)
+            completionHandler(object, nil, nil)
         }
 
-        func removeObject(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            setValue(object, forKey: key, completionHandler: completionHandler)
+        }
+
+        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             ubiquitousKeyValueStore.removeObject(forKey: key)
             ubiquitousKeyValueStore.synchronize()
-            completionHandler(true)
+            completionHandler(true, nil, nil)
         }
 
-        func removeAllObjects(completionHandler: @escaping (_ isSuccessful: Bool) -> Void) {
+        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             let keys = ubiquitousKeyValueStore.dictionaryRepresentation.keys
             for key in keys {
                 ubiquitousKeyValueStore.removeObject(forKey: key)
             }
             ubiquitousKeyValueStore.synchronize()
-            completionHandler(true)
+            completionHandler(true, nil, nil)
+        }
+
+        private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+            ubiquitousKeyValueStore.setValue(value, forKey: key)
+            ubiquitousKeyValueStore.synchronize()
+            completionHandler(true, nil, nil)
         }
     }
 }
