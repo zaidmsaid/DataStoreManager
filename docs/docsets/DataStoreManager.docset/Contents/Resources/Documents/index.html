@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DataStoreManager  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="DataStoreManager  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">DataStoreManager Docs</a> (67% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">DataStoreManager Reference</a>
+        <img id="carat" src="img/carat.png" />
+        DataStoreManager  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreManager.html">DataStoreManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreManager/CacheWorker.html">– CacheWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreManager/CloudKitWorker.html">– CloudKitWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreManager/KeychainWorker.html">– KeychainWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreManager/UbiquitousKeyValueStoreWorker.html">– UbiquitousKeyValueStoreWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/DataStoreStorageType.html">DataStoreStorageType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ErrorObject.html">ErrorObject</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/DataStoreAuthenticationType.html">DataStoreAuthenticationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/DataStoreProtocolType.html">DataStoreProtocolType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ErrorProtocol.html">ErrorProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UIImage.html">UIImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UInt16.html">UInt16</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/DataStoreManagerDataSource.html">DataStoreManagerDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/DataStoreManagerDelegate.html">DataStoreManagerDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='datastoremanager' class='heading'>DataStoreManager</h1>
+
+<p><a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat" alt="Swift 5"></a>
+<a href="http://www.apple.com/ios/"><img src="https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat" alt="Platform"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/carthage-compatible-brightgreen.svg?style=flat" alt="Carthage"></a>
+<a href="http://cocoapods.org/pods/DataStoreManager"><img src="https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat" alt="CocoaPods"></a>
+<a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?style=flat" alt="License"></a>
+<a href="https://zaidmsaid.github.io/DataStoreManager/"><img src="https://zaidmsaid.github.io/DataStoreManager/badge.svg" alt="Documentation"></a>
+<a href="http://twitter.com/SentulAsia"><img src="https://img.shields.io/badge/twitter-@SentulAsia-blue.svg?style=flat" alt="Twitter"></a></p>
+
+<p><a href="https://github.com/zaidmsaid/DataStoreManager">DataStoreManager</a> is a persistent data framework written in Swift and can be used with Objective-C.</p>
+<h2 id='getting-started' class='heading'>Getting Started</h2>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">DataStoreManager</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">manager</span> <span class="o">=</span> <span class="kt">DataStoreManager</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+
+    <span class="kd">func</span> <span class="nf">fetchFromDataStore</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Age"</span><span class="p">,</span> <span class="nv">withObjectType</span><span class="p">:</span> <span class="kt">Int</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">userDefaults</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read int </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from UserDefaults"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Balance"</span><span class="p">,</span> <span class="nv">withObjectType</span><span class="p">:</span> <span class="kt">Decimal</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">genericKeychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read decimal </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from Generic Keychain"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"temp_file.txt"</span><span class="p">,</span> <span class="nv">withObjectType</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">temporaryDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read string </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from /tmp"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">manager</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">forKey</span><span class="p">:</span> <span class="s">"Image"</span><span class="p">,</span> <span class="nv">withObjectType</span><span class="p">:</span> <span class="kt">UIImage</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">cache</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully read image </span><span class="se">\(</span><span class="n">object</span><span class="se">)</span><span class="s"> from NSCache"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">storeToDataStore</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">userDefaults</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully create object at UserDefaults"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">manager</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">genericKeychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully update object at Generic Keychain"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Inbox/file.txt"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">documentDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully create file at Inbox Document Directory"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">let</span> <span class="nv">exampleModel</span> <span class="o">=</span> <span class="kt">DynamicModel</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">number</span><span class="p">:</span> <span class="mi">123</span><span class="p">)</span>
+
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">exampleModel</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"column_name"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">privateCloudDatabase</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">recordID</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"successfully create model at CloudKit Private Database with ID </span><span class="se">\(</span><span class="n">recordID</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='prerequisites' class='heading'>Prerequisites</h3>
+
+<ul>
+<li>iOS 8.0+</li>
+<li>Xcode 10.2+</li>
+</ul>
+<h3 id='installing' class='heading'>Installing</h3>
+<h4 id='img-src-https-cloud-githubusercontent-com-assets-432536-5252404-443d64f4-7952-11e4-9d26-fc5cc664cb61-png-width-24-height-24-a-href-https-github-com-carthage-carthage-carthage-a' class='heading'><img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> <a href="https://github.com/Carthage/Carthage">Carthage</a></h4>
+
+<p>To install it, simply add the following line to your <strong>Cartfile</strong>:</p>
+<pre class="highlight ruby"><code><span class="n">github</span> <span class="s2">"zaidmsaid/DataStoreManager"</span>
+</code></pre>
+
+<p>Then run <code>carthage update</code>.</p>
+
+<p>Follow the current instructions in <a href="https://github.com/Carthage/Carthage#adding-frameworks-to-an-application">Carthage&rsquo;s README</a>
+for up to date installation instructions.</p>
+<h4 id='img-src-https-raw-githubusercontent-com-zaidmsaid-datastoremanager-master-resources-img-cocoapods-png-width-24-height-24-a-href-http-cocoapods-org-cocoapods-a' class='heading'><img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/cocoapods.png" width="24" height="24"> <a href="http://cocoapods.org">CocoaPods</a></h4>
+
+<p>To install it, simply add the following line to your <strong>Podfile</strong>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s2">"DataStoreManager"</span>
+</code></pre>
+
+<p>You will also need to make sure you&rsquo;re opting into using frameworks:</p>
+<pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
+</code></pre>
+
+<p>Then run <code>pod install</code> with CocoaPods 1.6.0 or newer.</p>
+<h4 id='img-src-https-raw-githubusercontent-com-zaidmsaid-datastoremanager-master-resources-img-swift-png-width-24-height-24-a-href-https-swift-org-package-manager-swift-package-manager-a' class='heading'><img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/swift.png" width="24" height="24"> <a href="https://swift.org/package-manager/">Swift Package Manager</a></h4>
+
+<p>To install it, simply add the following line to your <strong>Package.swift</strong>:</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.7.0"</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre>
+
+<p>or more strict:</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.7.0"</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre>
+
+<p>Then run <code>swift package update</code>.</p>
+<h4 id='img-src-https-git-scm-com-images-logos-downloads-git-icon-1788c-png-width-24-height-24-a-href-https-github-com-zaidmsaid-datastoremanager-git-submodule-a' class='heading'><img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" width="24" height="24"> <a href="https://github.com/zaidmsaid/DataStoreManager">Git Submodule</a></h4>
+
+<p>To install DataStoreManager to your project, simply follow the following steps:</p>
+
+<ol>
+<li>Add DataStoreManager as a <a href="http://git-scm.com/docs/git-submodule">submodule</a> by opening the Terminal, <code>cd</code>-ing into your top-level project directory, and entering the command <code>git submodule add https://github.com/zaidmsaid/DataStoreManager.git</code></li>
+<li>Open the <code><a href="Classes/DataStoreManager.html">DataStoreManager</a></code> folder, and drag <code>DataStoreManager.xcodeproj</code> into the file navigator of your app project.</li>
+<li>In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the <q>Targets</q> heading in the sidebar.</li>
+<li>Ensure that the deployment target of <code>DataStoreManager.framework</code> matches that of the application target.</li>
+<li>In the tab bar at the top of that window, open the <q>Build Phases</q> panel.</li>
+<li>Expand the <q>Link Binary with Libraries</q> group, and add <code>DataStoreManager.framework</code>.</li>
+<li>Click on the <code>+</code> button at the top left of the panel and select <q>New Copy Files Phase</q>. Rename this new phase to <q>Copy Frameworks</q>, set the <q>Destination</q> to <q>Frameworks</q>, and add <code>DataStoreManager.framework</code>.</li>
+</ol>
+<h3 id='documentation' class='heading'>Documentation</h3>
+
+<p>Having trouble with DataStoreManager? Check out our <a href="https://zaidmsaid.github.io/DataStoreManager/">documentation</a>.</p>
+<h2 id='built-with' class='heading'>Built With</h2>
+
+<ul>
+<li><a href="https://developer.apple.com/xcode/ide/">Xcode</a> - The IDE used</li>
+<li><a href="https://github.com/realm/jazzy">jazzy</a> - Used to generate docs</li>
+</ul>
+<h2 id='contributing' class='heading'>Contributing</h2>
+
+<p>Please read <a href="https://github.com/zaidmsaid/DataStoreManager/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> and <a href="https://github.com/zaidmsaid/DataStoreManager/blob/master/CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a> for details on our code of conduct, and the process for submitting pull requests to us.</p>
+<h2 id='versioning' class='heading'>Versioning</h2>
+
+<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/zaidmsaid/DataStoreManager/tags">tags on this repository</a>.</p>
+<h2 id='authors' class='heading'>Authors</h2>
+
+<ul>
+<li><a href="http://github.com/SentulAsia"><strong>Zaid M. Said</strong></a> - <em>Initial work</em> - <a href="https://twitter.com/SentulAsia">@SentulAsia</a></li>
+</ul>
+
+<p>See also the list of <a href="https://github.com/zaidmsaid/DataStoreManager/graphs/contributors">contributors</a> who participated in this project.</p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>This project is licensed under the Apache License, Version 2.0 - see the <a href="https://github.com/zaidmsaid/DataStoreManager/blob/master/LICENSE">LICENSE</a> file for details</p>
+<h2 id='acknowledgments' class='heading'>Acknowledgments</h2>
+
+<ul>
+<li>Hat tip to anyone whose code was used</li>
+</ul>
+
+<p><img src="https://ga-beacon.appspot.com/UA-22180067-6/DataStoreManager/README.md?pixel" alt="analytics"></p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

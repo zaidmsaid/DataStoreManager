@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DataStoreManagerDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/DataStoreManagerDelegate" class="dashAnchor"></a>
+    <a title="DataStoreManagerDelegate Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">DataStoreManager Docs</a> (67% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">DataStoreManager Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        DataStoreManagerDelegate Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager.html">DataStoreManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/CacheWorker.html">– CacheWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/CloudKitWorker.html">– CloudKitWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/KeychainWorker.html">– KeychainWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/UbiquitousKeyValueStoreWorker.html">– UbiquitousKeyValueStoreWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreStorageType.html">DataStoreStorageType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ErrorObject.html">ErrorObject</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/DataStoreAuthenticationType.html">DataStoreAuthenticationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DataStoreProtocolType.html">DataStoreProtocolType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ErrorProtocol.html">ErrorProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImage.html">UIImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/DataStoreManagerDataSource.html">DataStoreManagerDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DataStoreManagerDelegate.html">DataStoreManagerDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>DataStoreManagerDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DataStoreManagerDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Methods for performing actions in a data store manager.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Core"></a>
+                <a name="//apple_ref/swift/Section/Core" class="dashAnchor"></a>
+                <a href="#/Core">
+                  <h3 class="section-name">Core</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:"></a>
+                    <a name="//apple_ref/swift/Method/dataStoreManager(_:performMigrationFromOldVersion:forType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:">dataStoreManager(_:performMigrationFromOldVersion:forType:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tells the delegate that the specified storage type of a data store needs to perform migration.</p>
+
+<p>Handle the logic to perform the migration. For example:</p>
+<pre class="highlight swift"><code><span class="k">switch</span> <span class="n">version</span> <span class="p">{</span>
+<span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nf">migrateFromVersionZeroToOne</span><span class="p">()</span>
+    <span class="k">fallthrough</span>
+<span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nf">migrateFromVersionOneToTwo</span><span class="p">()</span>
+<span class="k">default</span><span class="p">:</span>
+    <span class="k">break</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>After the delegate method is called, the schema version will be updated to the version defined in
+<a href="https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:currentSchemaVersionForType:">dataStoreManager(_:currentSchemaVersionForType:)</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">performMigrationFromOldVersion</span> <span class="nv">version</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">forType</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreStorageType.html">DataStoreStorageType</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The data store manager object informing the delegate of this event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The old schema version for reference to do migration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A storage type constant.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Cache"></a>
+                <a name="//apple_ref/swift/Section/Cache" class="dashAnchor"></a>
+                <a href="#/Cache">
+                  <h3 class="section-name">Cache</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:cacheCostLimitForObject:"></a>
+                    <a name="//apple_ref/swift/Method/dataStoreManager(_:cacheCostLimitForObject:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:cacheCostLimitForObject:">dataStoreManager(_:cacheCostLimitForObject:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the delegate for the cost with which associate to the object.</p>
+
+<p>When memory is limited or when the total cost of the cache eclipses the maximum allowed total cost, the cache could begin an
+eviction process to remove some of its elements. However, this eviction process is not in a guaranteed order. As a consequence,
+if you try to manipulate the cost values to achieve some specific behavior, the consequences could be detrimental to your program.
+Typically, the obvious cost is the size of the value in bytes. If that information is not readily available, you should not go
+through the trouble of trying to compute it, as doing so will drive up the cost of using the cache. Pass in 0 for the cost value
+if you otherwise have nothing useful to pass.</p>
+
+<p>Unlike an <code>NSMutableDictionary</code> object, a cache does not copy the key objects that are put into it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">cacheCostLimitForObject</span> <span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>object</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The object to be cached.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code>cost</code> value is used to compute a sum encompassing the costs of all the objects in the cache.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Cloud%20Kit%20Container"></a>
+                <a name="//apple_ref/swift/Section/Cloud Kit Container" class="dashAnchor"></a>
+                <a href="#/Cloud%20Kit%20Container">
+                  <h3 class="section-name">Cloud Kit Container</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:cloudKitContainerRecordIDForKey:"></a>
+                    <a name="//apple_ref/swift/Method/dataStoreManager(_:cloudKitContainerRecordIDForKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:cloudKitContainerRecordIDForKey:">dataStoreManager(_:cloudKitContainerRecordIDForKey:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the delegate for the cloud kit container record type of the data store manager.</p>
+
+<p>Use this string to differentiate between different record types in your app. The string is primarily for your benefit,
+so choose type names that reflect the data in the corresponding records.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">cloudKitContainerRecordIDForKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CKRecord</span><span class="o">.</span><span class="kt">ID</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The key to identify the data store manager object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The app-defined string that identifies the type of the record.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
