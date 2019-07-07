@@ -282,7 +282,7 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
     case pop3S
 }
 
-extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
+extension DataStoreProtocolType : RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
 
     // MARK: - Initializers
 
@@ -543,7 +543,7 @@ extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringCon
     case `default`
 }
 
-extension DataStoreAuthenticationType: RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
+extension DataStoreAuthenticationType : RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
 
     // MARK: - Initializers
 
@@ -918,7 +918,7 @@ extension DataStoreManager {
     /// localized error descriptions suitable for display to the user in its user info dictionary. See
     /// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
     /// for more information.
-    class ErrorObject: NSError {
+    class ErrorObject : NSError {
 
         // MARK: - Initializers
 
