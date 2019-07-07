@@ -77,9 +77,11 @@ enum ErrorProtocol : Error {
     case unknownRepresentation
 }
 
+// MARK: - RawRepresentable
+
 extension ErrorProtocol : RawRepresentable, CaseIterable {
 
-    // MARK: - Initializers
+    // MARK: Initializers
 
     /// Creates a new instance with the specified raw value.
     ///
@@ -96,7 +98,7 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
         return nil
     }
 
-    // MARK: - Properties
+    // MARK: Properties
 
     /// The corresponding value of the raw type.
     var rawValue: Int {
@@ -142,6 +144,7 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
         }
     }
 
+    /// A collection of all values of this type.
     static var allCases: [ErrorProtocol] {
         return [
             .bundleIdentifierNotAvailable,
@@ -160,6 +163,8 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
         ]
     }
 }
+
+// MARK: - CustomNSError
 
 extension ErrorProtocol : CustomNSError {
 
@@ -185,6 +190,8 @@ extension ErrorProtocol : CustomNSError {
         ]
     }
 }
+
+// MARK: - LocalizedError
 
 extension ErrorProtocol : LocalizedError {
 
@@ -246,6 +253,8 @@ extension ErrorProtocol : LocalizedError {
     }
 }
 
+// MARK: - CustomStringConvertible
+
 extension ErrorProtocol : CustomStringConvertible {
 
     /// A textual representation of this instance.
@@ -292,6 +301,8 @@ extension ErrorProtocol : CustomStringConvertible {
         }
     }
 }
+
+// MARK: - CustomDebugStringConvertible
 
 extension ErrorProtocol : CustomDebugStringConvertible {
 

@@ -115,9 +115,11 @@ import Foundation
     case pop3S
 }
 
+// MARK: - RawRepresentable
+
 extension DataStoreProtocolType : RawRepresentable, CaseIterable {
 
-    // MARK: - Initializers
+    // MARK: Initializers
 
     /// Creates a new instance with the specified raw value.
     ///
@@ -134,7 +136,7 @@ extension DataStoreProtocolType : RawRepresentable, CaseIterable {
         return nil
     }
 
-    // MARK: - Properties
+    // MARK: Properties
 
     /// The corresponding value of the raw type.
     public var rawValue: String {
@@ -238,6 +240,8 @@ extension DataStoreProtocolType : RawRepresentable, CaseIterable {
         }
     }
 }
+
+// MARK: - CustomStringConvertible
 
 extension DataStoreProtocolType : CustomStringConvertible {
 
@@ -343,6 +347,8 @@ extension DataStoreProtocolType : CustomStringConvertible {
         }
     }
 }
+
+// MARK: - CustomDebugStringConvertible
 
 extension DataStoreProtocolType : CustomDebugStringConvertible {
 
