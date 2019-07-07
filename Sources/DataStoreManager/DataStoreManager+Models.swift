@@ -17,134 +17,118 @@
 import Security
 
 /// Constants that provide information regarding storage type of data store manager.
-@objc public enum DataStoreStorageType : Int {
+@objcMembers open class DataStoreStorageType : NSObject {
 
-    // MARK: - Enumerations
+    // MARK: - Initializers
 
-    /// The storage type [UserDefaults](apple-reference-documentation://hsARFaqWd3).
-    case userDefaults
-
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the search path document directory.
-    case documentDirectory
-
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the search path user home directories (`/Users`).
-    case userDirectory
-
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the search path various user-visible documentation, support, and
-    /// configuration files (`/Library`).
-    case libraryDirectory
-
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the search path supported applications (`/Applications`).
-    case applicationDirectory
-
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the search path core services (`System/Library/CoreServices`).
-    case coreServiceDirectory
-
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the temporary directory for the current user.
-    case temporaryDirectory
-
-    /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
-    case cache
-
-    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
-    /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
-    /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassgenericpassword).
-    case genericKeychain
-
-    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
-    /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
-    /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassinternetpassword).
-    case internetKeychain
-
-    case privateCloudDatabase
-
-    case publicCloudDatabase
-
-    case sharedCloudDatabase
-
-    /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
-    case ubiquitousKeyValueStore
-}
-
-extension DataStoreStorageType : RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
-
-    // MARK: - Init
+    /// Creates a new instance with the specified raw value.
+    ///
+    /// - Parameter rawValue: The raw value to use for the new instance.
+    init(_ rawValue: RawValue) {
+        self.rawValue = rawValue
+        super.init()
+    }
 
     /// Creates a new instance with the specified raw value.
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
     ///
     /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
-    public init?(rawValue: String) {
+    public required init?(rawValue: RawValue) {
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
-                self = type
+                self.rawValue = rawValue
+                super.init()
+                return
             }
         }
         return nil
     }
 
+    // MARK: - Type Aliases
+
+    public typealias RawValue = String
+
     // MARK: - Properties
 
     /// The corresponding value of the raw type.
-    public var rawValue: String {
-        switch self {
-        case .userDefaults:
-            return "UserDefaults"
+    public final var rawValue: String
 
-        case .documentDirectory:
-            return "FileManager.documentDirectory"
+    /// The storage type [UserDefaults](apple-reference-documentation://hsARFaqWd3).
+    public static let userDefaults = DataStoreStorageType("UserDefaults")
 
-        case .userDirectory:
-            return "FileManager.userDirectory"
+    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// with the search path document directory.
+    public static let documentDirectory = DataStoreStorageType("FileManager.documentDirectory")
 
-        case .libraryDirectory:
-            return "FileManager.libraryDirectory"
+    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// with the search path user home directories (`/Users`).
+    public static let userDirectory = DataStoreStorageType("FileManager.userDirectory")
 
-        case .applicationDirectory:
-            return "FileManager.applicationDirectory"
+    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// with the search path various user-visible documentation, support, and
+    /// configuration files (`/Library`).
+    public static let libraryDirectory = DataStoreStorageType("FileManager.libraryDirectory")
 
-        case .coreServiceDirectory:
-            return "FileManager.coreServiceDirectory"
+    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// with the search path supported applications (`/Applications`).
+    public static let applicationDirectory = DataStoreStorageType("FileManager.applicationDirectory")
 
-        case .temporaryDirectory:
-            return "FileManager.temporaryDirectory"
+    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// with the search path core services (`System/Library/CoreServices`).
+    public static let coreServiceDirectory = DataStoreStorageType("FileManager.coreServiceDirectory")
 
-        case .cache:
-            return "NSCache"
+    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// with the temporary directory for the current user.
+    public static let temporaryDirectory = DataStoreStorageType("FileManager.temporaryDirectory")
 
-        case .genericKeychain:
-            return "SecItem.kSecClassGenericPassword"
+    /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
+    public static let cache = DataStoreStorageType("NSCache")
 
-        case .internetKeychain:
-            return "SecItem.kSecClassInternetPassword"
+    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
+    /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
+    /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassgenericpassword).
+    public static let genericKeychain = DataStoreStorageType("SecItem.kSecClassGenericPassword")
 
-        case .privateCloudDatabase:
-            return "CKContainer.privateCloudDatabase"
+    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
+    /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
+    /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassinternetpassword).
+    public static let internetKeychain = DataStoreStorageType("SecItem.kSecClassInternetPassword")
 
-        case .publicCloudDatabase:
-            return "CKContainer.publicCloudDatabase"
+    public static let privateCloudDatabase = DataStoreStorageType("CKContainer.privateCloudDatabase")
 
-        case .sharedCloudDatabase:
-            return "CKContainer.sharedCloudDatabase"
+    public static let publicCloudDatabase = DataStoreStorageType("CKContainer.publicCloudDatabase")
 
-        case .ubiquitousKeyValueStore:
-            return "NSUbiquitousKeyValueStore"
+    public static let sharedCloudDatabase = DataStoreStorageType("CKContainer.sharedCloudDatabase")
 
-        @unknown case _:
-            assertionFailure("Use a representation that was unknown when this code was compiled.")
-            return "Use a representation that was unknown when this code was compiled."
-        }
+    /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
+    public static let ubiquitousKeyValueStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
+
+    /// A collection of all values of this type.
+    public static var allCases: [DataStoreStorageType] {
+        return [
+            DataStoreStorageType.userDefaults,
+            DataStoreStorageType.documentDirectory,
+            DataStoreStorageType.userDirectory,
+            DataStoreStorageType.libraryDirectory,
+            DataStoreStorageType.applicationDirectory,
+            DataStoreStorageType.coreServiceDirectory,
+            DataStoreStorageType.temporaryDirectory,
+            DataStoreStorageType.cache,
+            DataStoreStorageType.genericKeychain,
+            DataStoreStorageType.internetKeychain,
+            DataStoreStorageType.privateCloudDatabase,
+            DataStoreStorageType.publicCloudDatabase,
+            DataStoreStorageType.sharedCloudDatabase,
+            DataStoreStorageType.ubiquitousKeyValueStore
+        ]
     }
+}
+
+extension DataStoreStorageType : RawRepresentable, CaseIterable {
 
     /// A textual representation of this instance.
-    public var description: String {
+    open override var description: String {
         switch self {
         case .userDefaults:
             return "UserDefaults"
@@ -188,15 +172,14 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable, CustomStringCon
         case .ubiquitousKeyValueStore:
             return "NSUbiquitousKeyValueStore"
 
-        @unknown case _:
-            assertionFailure("Use a representation that was unknown when this code was compiled.")
+        default:
             return "Use a representation that was unknown when this code was compiled."
         }
     }
 
     /// A textual representation of this instance, suitable for debugging.
-    public var debugDescription: String {
-        return description
+    open override var debugDescription: String {
+        return rawValue
     }
 }
 
@@ -301,7 +284,7 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable, CustomStringCon
 
 extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
 
-    // MARK: - Init
+    // MARK: - Initializers
 
     /// Creates a new instance with the specified raw value.
     ///
@@ -312,6 +295,7 @@ extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringCon
         for type in DataStoreProtocolType.allCases {
             if type.rawValue == rawValue {
                 self = type
+                return
             }
         }
         return nil
@@ -561,7 +545,7 @@ extension DataStoreProtocolType: RawRepresentable, CaseIterable, CustomStringCon
 
 extension DataStoreAuthenticationType: RawRepresentable, CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
 
-    // MARK: - Init
+    // MARK: - Initializers
 
     /// Creates a new instance with the specified raw value.
     ///
@@ -572,6 +556,7 @@ extension DataStoreAuthenticationType: RawRepresentable, CaseIterable, CustomStr
         for type in DataStoreAuthenticationType.allCases {
             if type.rawValue == rawValue {
                 self = type
+                return
             }
         }
         return nil
@@ -714,7 +699,7 @@ enum ErrorProtocol : Error {
 
 extension ErrorProtocol : RawRepresentable, CaseIterable, CustomNSError, LocalizedError, CustomStringConvertible, CustomDebugStringConvertible {
 
-    // MARK: - Init
+    // MARK: - Initializers
 
     /// Creates a new instance with the specified raw value.
     ///
@@ -725,6 +710,7 @@ extension ErrorProtocol : RawRepresentable, CaseIterable, CustomNSError, Localiz
         for `protocol` in ErrorProtocol.allCases {
             if `protocol`.rawValue == rawValue {
                 self = `protocol`
+                return
             }
         }
         return nil
@@ -812,7 +798,7 @@ extension ErrorProtocol : RawRepresentable, CaseIterable, CustomNSError, Localiz
     /// The user-info dictionary.
     var errorUserInfo: [String : Any] {
         return [
-            NSLocalizedDescriptionKey : NSLocalizedString(ErrorProtocol.key, value: errorDescription ?? "Unexpected error has occurred.", comment: description)
+            NSLocalizedDescriptionKey : NSLocalizedString(ErrorProtocol.key, value: debugDescription, comment: description)
         ]
     }
 
@@ -919,46 +905,7 @@ extension ErrorProtocol : RawRepresentable, CaseIterable, CustomNSError, Localiz
 
     /// A textual representation of this instance, suitable for debugging.
     var debugDescription: String {
-        switch self {
-        case .bundleIdentifierNotAvailable:
-            return "The bundle identifier cannot be retrieved."
-
-        case .lowerSchemaVersion:
-            return "Current schema version is lower than old schema version."
-
-        case .datasourceNotAvailable:
-            return "Current schema version is lower than old schema version."
-
-        case .createFailed:
-            return "The object cannot be created."
-
-        case .readFailed:
-            return "The object cannot be retrieved."
-
-        case .updateFailed:
-            return "The object cannot be updated."
-
-        case .deleteFailed:
-            return "The object cannot be deleted."
-
-        case .duplicateObject:
-            return "The specified object already exists."
-
-        case .directoryURLNotAvailable:
-            return "The directory URL cannot be retrieved."
-
-        case .directoryFullURLNotAvailable:
-            return "The directory URL with path cannot be retrieved."
-
-        case .directoryListNotAvailable:
-            return "Contents of directory cannot be retrieved."
-
-        case .databaseNotAvailable:
-            return "The database cannot be retrieved."
-
-        case .unknownRepresentation:
-            return "Use a representation that was unknown when this code was compiled."
-        }
+        return errorDescription ?? "Unexpected error has occurred."
     }
 }
 
@@ -973,7 +920,7 @@ extension DataStoreManager {
     /// for more information.
     class ErrorObject: NSError {
 
-        // MARK: - Init
+        // MARK: - Initializers
 
         /// Returns an NSError object initialized for a given error type.
         ///

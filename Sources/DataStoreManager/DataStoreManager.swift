@@ -19,6 +19,22 @@ import Foundation
 /// An interface to the data store manager, where you store key-value pairs persistently across launches of your app.
 @objcMembers open class DataStoreManager : NSObject {
 
+    // MARK: - Initializers
+
+    /// Return a data store manager with the specified identifier.
+    ///
+    /// - Parameter identifier: A string identifying the data store manager object.
+    ///
+    /// Initialize a new data store manager object immediately after memory for it has been allocated.
+    ///
+    /// - Returns: An initialized object, or `nil` if an object could not be created for some reason that
+    ///            would not result in an exception.
+    public required init(identifier: String) {
+        self.ID = identifier
+        self.defaultType = .userDefaults
+        super.init()
+    }
+
     // MARK: - Type Aliases
 
     /// Type to mean instance of DataStoreStorageType.
@@ -108,22 +124,6 @@ import Foundation
     private let ID: String
     private var defaultType: StorageType
 
-    // MARK: - Init
-
-    /// Return a data store manager with the specified identifier.
-    ///
-    /// - Parameter identifier: A string identifying the data store manager object.
-    ///
-    /// Initialize a new data store manager object immediately after memory for it has been allocated.
-    ///
-    /// - Returns: An initialized object, or `nil` if an object could not be created for some reason that
-    ///            would not result in an exception.
-    public required init(identifier: String) {
-        self.ID = identifier
-        self.defaultType = .userDefaults
-        super.init()
-    }
-
     // MARK: - CRUD
 
     /// Create the property of the receiver specified by a given key to a given object.
@@ -205,7 +205,7 @@ import Foundation
         case .ubiquitousKeyValueStore:
             ubiquitousKeyValueStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
-        @unknown case _:
+        default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
@@ -290,7 +290,7 @@ import Foundation
         case .ubiquitousKeyValueStore:
             ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
 
-        @unknown case _:
+        default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(nil, nil, error)
         }
@@ -375,7 +375,7 @@ import Foundation
         case .ubiquitousKeyValueStore:
             ubiquitousKeyValueStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
-        @unknown case _:
+        default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
@@ -460,7 +460,7 @@ import Foundation
         case .ubiquitousKeyValueStore:
             ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
 
-        @unknown case _:
+        default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }
@@ -541,7 +541,7 @@ import Foundation
         case .ubiquitousKeyValueStore:
             ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
 
-        @unknown case _:
+        default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
         }

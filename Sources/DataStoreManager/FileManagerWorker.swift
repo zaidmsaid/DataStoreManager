@@ -25,12 +25,6 @@ extension DataStoreManager {
     /// An interface to the FileManager.
     class FileManagerWorker {
 
-        // MARK: - Properties
-
-        lazy var fileManager: FileManager = {
-            return FileManager.default
-        }()
-
         // MARK: - Enumerations
 
         @objc enum Directory : Int {
@@ -42,6 +36,12 @@ extension DataStoreManager {
             case coreServiceDirectory
             case temporaryDirectory
         }
+
+        // MARK: - Properties
+
+        lazy var fileManager: FileManager = {
+            return FileManager.default
+        }()
 
         // MARK: - CRUD
 

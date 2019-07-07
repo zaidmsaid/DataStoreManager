@@ -21,13 +21,7 @@ extension DataStoreManager {
     /// An interface to the NSUbiquitousKeyValueStore.
     class UbiquitousKeyValueStoreWorker {
 
-        // MARK: - Properties
-
-        private lazy var ubiquitousKeyValueStore: NSUbiquitousKeyValueStore = {
-            return NSUbiquitousKeyValueStore.default
-        }()
-
-        // MARK: - Init
+        // MARK: - Initializers
 
         init() {
             NotificationCenter.default.addObserver(self, selector: #selector(onUbiquitousKeyValueStoreDidChangeExternally(notification:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousKeyValueStore)
@@ -40,6 +34,12 @@ extension DataStoreManager {
         @objc private func onUbiquitousKeyValueStoreDidChangeExternally(notification: Notification) {
             // TODO: let userInfo = notification.userInfo
         }
+
+        // MARK: - Properties
+
+        private lazy var ubiquitousKeyValueStore: NSUbiquitousKeyValueStore = {
+            return NSUbiquitousKeyValueStore.default
+        }()
 
         // MARK: - CRUD
 
