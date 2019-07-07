@@ -106,7 +106,7 @@ for up to date installation instructions.
 To install it, simply add the following line to your **Podfile**:
 
 ```ruby
-pod 'DataStoreManager'
+pod "DataStoreManager"
 ```
 
 You will also need to make sure you're opting into using frameworks:
