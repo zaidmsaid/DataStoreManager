@@ -24,6 +24,14 @@ extension DataStoreManager {
     /// An interface to the SecItem.
     class KeychainWorker {
 
+        // MARK: - Enumerations
+
+        @objc enum ItemClass : Int {
+
+            case genericPassword
+            case internetPassword
+        }
+
         // MARK: - Type Aliases
 
         /// Type to mean instance of DataStoreProtocolType.
@@ -90,14 +98,6 @@ extension DataStoreManager {
                 return manager.dataSource?.keychainLocalAuthenticationContext?(for: manager)
             }
             return nil
-        }
-
-        // MARK: - Enumerations
-
-        @objc enum ItemClass : Int {
-
-            case genericPassword
-            case internetPassword
         }
 
         // MARK: - CRUD

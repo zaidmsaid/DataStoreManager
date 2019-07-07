@@ -14,7 +14,7 @@
     <a title="DataStoreManager Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DataStoreManager Docs</a> (65% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (67% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -40,9 +40,6 @@
                 <a href="../Classes/DataStoreManager/CloudKitWorker.html">– CloudKitWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DataStoreManager/ErrorObject.html">– ErrorObject</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
               </li>
               <li class="nav-group-task">
@@ -54,6 +51,12 @@
               <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreStorageType.html">DataStoreStorageType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ErrorObject.html">ErrorObject</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -64,9 +67,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/DataStoreProtocolType.html">DataStoreProtocolType</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/DataStoreStorageType.html">DataStoreStorageType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ErrorProtocol.html">ErrorProtocol</a>
@@ -120,6 +120,70 @@
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
+                <a name="/Initializers"></a>
+                <a name="//apple_ref/swift/Section/Initializers" class="dashAnchor"></a>
+                <a href="#/Initializers">
+                  <h3 class="section-name">Initializers</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreManager(im)initWithIdentifier:"></a>
+                    <a name="//apple_ref/swift/Method/init(identifier:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreManager(im)initWithIdentifier:">init(identifier:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return a data store manager with the specified identifier.</p>
+
+<p>Initialize a new data store manager object immediately after memory for it has been allocated.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A string identifying the data store manager object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An initialized object, or <code>nil</code> if an object could not be created for some reason that
+       would not result in an exception.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <a name="/Type%20Aliases"></a>
                 <a name="//apple_ref/swift/Section/Type Aliases" class="dashAnchor"></a>
                 <a href="#/Type%20Aliases">
@@ -147,7 +211,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StorageType</span> <span class="o">=</span> <span class="kt"><a href="../Enums/DataStoreStorageType.html">DataStoreStorageType</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StorageType</span> <span class="o">=</span> <span class="kt"><a href="../Classes/DataStoreStorageType.html">DataStoreStorageType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -474,70 +538,6 @@ protocol. The delegate is not retained.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Init"></a>
-                <a name="//apple_ref/swift/Section/Init" class="dashAnchor"></a>
-                <a href="#/Init">
-                  <h3 class="section-name">Init</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreManager(im)initWithIdentifier:"></a>
-                    <a name="//apple_ref/swift/Method/init(identifier:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreManager(im)initWithIdentifier:">init(identifier:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Return a data store manager with the specified identifier.</p>
-
-<p>Initialize a new data store manager object immediately after memory for it has been allocated.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>identifier</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A string identifying the data store manager object.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>An initialized object, or <code>nil</code> if an object could not be created for some reason that
-       would not result in an exception.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
                 <a name="/CRUD"></a>
                 <a name="//apple_ref/swift/Section/CRUD" class="dashAnchor"></a>
                 <a href="#/CRUD">
@@ -659,9 +659,9 @@ protocol. The delegate is not retained.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC6create6object6forKey0F11StorageType17completionHandleryx_SSAA0abhI0OySb_ypSgs5Error_pSgtctlF"></a>
+                    <a name="/s:16DataStoreManagerAAC6create6object6forKey0F11StorageType17completionHandleryx_SSAA0abhI0CySb_ypSgs5Error_pSgtctlF"></a>
                     <a name="//apple_ref/swift/Method/create(object:forKey:forStorageType:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC6create6object6forKey0F11StorageType17completionHandleryx_SSAA0abhI0OySb_ypSgs5Error_pSgtctlF">create(object:forKey:forStorageType:completionHandler:)</a>
+                    <a class="token" href="#/s:16DataStoreManagerAAC6create6object6forKey0F11StorageType17completionHandleryx_SSAA0abhI0CySb_ypSgs5Error_pSgtctlF">create(object:forKey:forStorageType:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -893,9 +893,9 @@ protocol. The delegate is not retained.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC4read6forKey14withObjectType0e7StorageI017completionHandlerySS_xmAA0abjI0OyypSg_AJs5Error_pSgtctlF"></a>
+                    <a name="/s:16DataStoreManagerAAC4read6forKey14withObjectType0e7StorageI017completionHandlerySS_xmAA0abjI0CyypSg_AJs5Error_pSgtctlF"></a>
                     <a name="//apple_ref/swift/Method/read(forKey:withObjectType:forStorageType:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC4read6forKey14withObjectType0e7StorageI017completionHandlerySS_xmAA0abjI0OyypSg_AJs5Error_pSgtctlF">read(forKey:withObjectType:forStorageType:completionHandler:)</a>
+                    <a class="token" href="#/s:16DataStoreManagerAAC4read6forKey14withObjectType0e7StorageI017completionHandlerySS_xmAA0abjI0CyypSg_AJs5Error_pSgtctlF">read(forKey:withObjectType:forStorageType:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1127,9 +1127,9 @@ protocol. The delegate is not retained.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC6update6object6forKey0F11StorageType17completionHandleryx_SSAA0abhI0OySb_ypSgs5Error_pSgtctlF"></a>
+                    <a name="/s:16DataStoreManagerAAC6update6object6forKey0F11StorageType17completionHandleryx_SSAA0abhI0CySb_ypSgs5Error_pSgtctlF"></a>
                     <a name="//apple_ref/swift/Method/update(object:forKey:forStorageType:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC6update6object6forKey0F11StorageType17completionHandleryx_SSAA0abhI0OySb_ypSgs5Error_pSgtctlF">update(object:forKey:forStorageType:completionHandler:)</a>
+                    <a class="token" href="#/s:16DataStoreManagerAAC6update6object6forKey0F11StorageType17completionHandleryx_SSAA0abhI0CySb_ypSgs5Error_pSgtctlF">update(object:forKey:forStorageType:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1361,9 +1361,9 @@ protocol. The delegate is not retained.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManagerAAC6delete6forKey14withObjectType0e7StorageI017completionHandlerySS_xmAA0abjI0OySb_ypSgs5Error_pSgtctlF"></a>
+                    <a name="/s:16DataStoreManagerAAC6delete6forKey14withObjectType0e7StorageI017completionHandlerySS_xmAA0abjI0CySb_ypSgs5Error_pSgtctlF"></a>
                     <a name="//apple_ref/swift/Method/delete(forKey:withObjectType:forStorageType:completionHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC6delete6forKey14withObjectType0e7StorageI017completionHandlerySS_xmAA0abjI0OySb_ypSgs5Error_pSgtctlF">delete(forKey:withObjectType:forStorageType:completionHandler:)</a>
+                    <a class="token" href="#/s:16DataStoreManagerAAC6delete6forKey14withObjectType0e7StorageI017completionHandlerySS_xmAA0abjI0CySb_ypSgs5Error_pSgtctlF">delete(forKey:withObjectType:forStorageType:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1826,44 +1826,6 @@ delegate method.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CloudKitWorker</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:16DataStoreManagerAAC11ErrorObjectC"></a>
-                    <a name="//apple_ref/swift/Class/ErrorObject" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManagerAAC11ErrorObjectC">ErrorObject</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Information about an error condition including a domain, a domain-specific error code, and application-specific information.</p>
-
-<p>Objective-C methods can signal an error condition by returning an <code>NSError</code> object by reference, which provides additional
-information about the kind of error and any underlying cause, if one can be determined. An <code>NSError</code> object may also provide
-localized error descriptions suitable for display to the user in its user info dictionary. See
-<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806">Error Handling Programming Guide</a>
-for more information.</p>
-
-                        <a href="../Classes/DataStoreManager/ErrorObject.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">ErrorObject</span> <span class="p">:</span> <span class="kt">NSError</span></code></pre>
 
                         </div>
                       </div>
