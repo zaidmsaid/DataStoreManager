@@ -301,49 +301,46 @@ extension ErrorProtocol : CustomDebugStringConvertible {
     }
 }
 
-extension DataStoreManager {
+/// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
+///
+/// Objective-C methods can signal an error condition by returning an `NSError` object by reference, which provides additional
+/// information about the kind of error and any underlying cause, if one can be determined. An `NSError` object may also provide
+/// localized error descriptions suitable for display to the user in its user info dictionary. See
+/// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
+/// for more information.
+class ErrorObject : NSError {
 
-    /// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
+    // MARK: - Initializers
+
+    /// Returns an NSError object initialized for a given error type.
     ///
-    /// Objective-C methods can signal an error condition by returning an `NSError` object by reference, which provides additional
-    /// information about the kind of error and any underlying cause, if one can be determined. An `NSError` object may also provide
-    /// localized error descriptions suitable for display to the user in its user info dictionary. See
-    /// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
-    /// for more information.
-    class ErrorObject : NSError {
+    /// - Parameters:
+    ///   - type: An error object type.
+    ///   - comment: The comment to place above the key-value pair in the strings file.
+    /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
+    required init(protocol: ErrorProtocol) {
+        super.init(domain: ErrorProtocol.errorDomain, code: `protocol`.rawValue, userInfo: `protocol`.errorUserInfo)
+    }
 
-        // MARK: - Initializers
+    /// Returns an NSError object initialized for a given code.
+    ///
+    /// - Parameters:
+    ///   - code: The error code for the error.
+    ///   - value: The value to return if key is nil or if a localized string for key can’t be found in the table.
+    ///   - comment: The comment to place above the key-value pair in the strings file.
+    /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
+    required init(code: Int, value: String) {
+        let userInfo =  [
+            NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: value, comment: value)
+        ]
+        super.init(domain: ErrorProtocol.errorDomain, code: code, userInfo: userInfo)
+    }
 
-        /// Returns an NSError object initialized for a given error type.
-        ///
-        /// - Parameters:
-        ///   - type: An error object type.
-        ///   - comment: The comment to place above the key-value pair in the strings file.
-        /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
-        required init(protocol: ErrorProtocol) {
-            super.init(domain: ErrorProtocol.errorDomain, code: `protocol`.rawValue, userInfo: `protocol`.errorUserInfo)
-        }
-
-        /// Returns an NSError object initialized for a given code.
-        ///
-        /// - Parameters:
-        ///   - code: The error code for the error.
-        ///   - value: The value to return if key is nil or if a localized string for key can’t be found in the table.
-        ///   - comment: The comment to place above the key-value pair in the strings file.
-        /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
-        required init(code: Int, value: String) {
-            let userInfo =  [
-                NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: value, comment: value)
-            ]
-            super.init(domain: ErrorProtocol.errorDomain, code: code, userInfo: userInfo)
-        }
-
-        /// Returns an object initialized from data in a given unarchiver.
-        ///
-        /// - Parameter aDecoder: An unarchiver object.
-        /// - Returns: `self`, initialized using the data in decoder.
-        required init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-        }
+    /// Returns an object initialized from data in a given unarchiver.
+    ///
+    /// - Parameter aDecoder: An unarchiver object.
+    /// - Returns: `self`, initialized using the data in decoder.
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }
