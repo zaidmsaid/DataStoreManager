@@ -125,6 +125,8 @@ import Security
     }
 }
 
+// MARK: - CustomStringConvertible
+
 extension DataStoreStorageType : RawRepresentable, CaseIterable {
 
     /// A textual representation of this instance.
@@ -177,6 +179,8 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
         }
     }
 }
+
+// MARK: - CustomDebugStringConvertible
 
 extension DataStoreStorageType {
 

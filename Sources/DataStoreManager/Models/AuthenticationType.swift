@@ -46,9 +46,11 @@ import Foundation
     case `default`
 }
 
+// MARK: - RawRepresentable
+
 extension DataStoreAuthenticationType : RawRepresentable, CaseIterable {
 
-    // MARK: - Initializers
+    // MARK: Initializers
 
     /// Creates a new instance with the specified raw value.
     ///
@@ -65,7 +67,7 @@ extension DataStoreAuthenticationType : RawRepresentable, CaseIterable {
         return nil
     }
 
-    // MARK: - Properties
+    // MARK: Properties
 
     /// The corresponding value of the raw type.
     public var rawValue: String {
@@ -100,6 +102,8 @@ extension DataStoreAuthenticationType : RawRepresentable, CaseIterable {
         }
     }
 }
+
+// MARK: - CustomStringConvertible
 
 extension DataStoreAuthenticationType : CustomStringConvertible {
 
@@ -136,6 +140,8 @@ extension DataStoreAuthenticationType : CustomStringConvertible {
         }
     }
 }
+
+// MARK: - CustomDebugStringConvertible
 
 extension DataStoreAuthenticationType : CustomDebugStringConvertible {
 
