@@ -21,6 +21,17 @@ extension DataStoreManager {
     /// An interface to the CKContainer.
     class CloudKitWorker {
 
+        // MARK: - Enumerations
+
+        @objc enum ContainerType : Int {
+
+            case privateCloudDatabase
+
+            case publicCloudDatabase
+
+            case sharedCloudDatabase
+        }
+
         // MARK: - Properties
 
         var dataStoreManager: DataStoreManager?
@@ -46,17 +57,6 @@ extension DataStoreManager {
             }
             return CKContainer.default()
         }()
-
-        // MARK: - Enumerations
-
-        @objc enum ContainerType : Int {
-
-            case privateCloudDatabase
-
-            case publicCloudDatabase
-
-            case sharedCloudDatabase
-        }
 
         // MARK: - CRUD
 

@@ -21,6 +21,22 @@ extension DataStoreManager {
     /// An interface to the NSCache.
     class CacheWorker {
 
+        // MARK: - Initializers
+
+        init() {
+            cache.totalCostLimit = totalCostLimit
+            NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+        }
+
+        deinit {
+            NotificationCenter.default.removeObserver(self, name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+        }
+
+        @objc private func didReceiveMemoryWarning() {
+            deleteAll { (_, _, _) in
+            }
+        }
+
         // MARK: - Properties
 
         var dataStoreManager: DataStoreManager?
@@ -36,22 +52,6 @@ extension DataStoreManager {
         lazy var cache: NSCache<NSString, AnyObject> = {
             return NSCache<NSString, AnyObject>()
         }()
-
-        // MARK: - Init
-
-        init() {
-            cache.totalCostLimit = totalCostLimit
-            NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
-        }
-
-        deinit {
-            NotificationCenter.default.removeObserver(self, name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
-        }
-
-        @objc private func didReceiveMemoryWarning() {
-            deleteAll { (_, _, _) in
-            }
-        }
 
         // MARK: - CRUD
 

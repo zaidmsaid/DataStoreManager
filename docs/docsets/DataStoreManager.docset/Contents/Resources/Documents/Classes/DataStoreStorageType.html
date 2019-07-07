@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DataStoreStorageType Enumeration Reference</title>
+    <title>DataStoreStorageType Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,18 +10,18 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/DataStoreStorageType" class="dashAnchor"></a>
-    <a title="DataStoreStorageType Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Class/DataStoreStorageType" class="dashAnchor"></a>
+    <a title="DataStoreStorageType Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DataStoreManager Docs</a> (65% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (67% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="../index.html">DataStoreManager Reference</a>
         <img id="carat" src="../img/carat.png" />
-        DataStoreStorageType Enumeration Reference
+        DataStoreStorageType Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -40,9 +40,6 @@
                 <a href="../Classes/DataStoreManager/CloudKitWorker.html">– CloudKitWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DataStoreManager/ErrorObject.html">– ErrorObject</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
               </li>
               <li class="nav-group-task">
@@ -54,6 +51,12 @@
               <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataStoreStorageType.html">DataStoreStorageType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ErrorObject.html">ErrorObject</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -64,9 +67,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/DataStoreProtocolType.html">DataStoreProtocolType</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/DataStoreStorageType.html">DataStoreStorageType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ErrorProtocol.html">ErrorProtocol</a>
@@ -109,8 +109,8 @@
             <h1>DataStoreStorageType</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">DataStoreStorageType</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">DataStoreStorageType</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
               </div>
@@ -120,19 +120,19 @@
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Enumerations"></a>
-                <a name="//apple_ref/swift/Section/Enumerations" class="dashAnchor"></a>
-                <a href="#/Enumerations">
-                  <h3 class="section-name">Enumerations</h3>
+                <a name="/Initializers"></a>
+                <a name="//apple_ref/swift/Section/Initializers" class="dashAnchor"></a>
+                <a href="#/Initializers">
+                  <h3 class="section-name">Initializers</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUserDefaults"></a>
-                    <a name="//apple_ref/swift/Element/userDefaults" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUserDefaults">userDefaults</a>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(im)init:"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(im)init:">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -140,16 +140,35 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hsARFaqWd3">UserDefaults</a>.</p>
+                        <p>Creates a new instance with the specified raw value.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">userDefaults</span></code></pre>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreStorageType.html#/s:SY8RawValueQa">RawValue</a></span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The raw value to use for the new instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -157,382 +176,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeDocumentDirectory"></a>
-                    <a name="//apple_ref/swift/Element/documentDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeDocumentDirectory">documentDirectory</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
-with the search path document directory.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">documentDirectory</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUserDirectory"></a>
-                    <a name="//apple_ref/swift/Element/userDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUserDirectory">userDirectory</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
-with the search path user home directories (<code>/Users</code>).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">userDirectory</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeLibraryDirectory"></a>
-                    <a name="//apple_ref/swift/Element/libraryDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeLibraryDirectory">libraryDirectory</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
-with the search path various user-visible documentation, support, and
-configuration files (<code>/Library</code>).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">libraryDirectory</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeApplicationDirectory"></a>
-                    <a name="//apple_ref/swift/Element/applicationDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeApplicationDirectory">applicationDirectory</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
-with the search path supported applications (<code>/Applications</code>).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">applicationDirectory</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeCoreServiceDirectory"></a>
-                    <a name="//apple_ref/swift/Element/coreServiceDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeCoreServiceDirectory">coreServiceDirectory</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
-with the search path core services (<code>System/Library/CoreServices</code>).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">coreServiceDirectory</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeTemporaryDirectory"></a>
-                    <a name="//apple_ref/swift/Element/temporaryDirectory" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeTemporaryDirectory">temporaryDirectory</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
-with the temporary directory for the current user.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">temporaryDirectory</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeCache"></a>
-                    <a name="//apple_ref/swift/Element/cache" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeCache">cache</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hs3dlYnTwl">NSCache</a>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">cache</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeGenericKeychain"></a>
-                    <a name="//apple_ref/swift/Element/genericKeychain" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeGenericKeychain">genericKeychain</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="https://developer.apple.com/documentation/security/keychain_services">SecItem</a>
-with <a href="https://developer.apple.com/documentation/security/ksecclass">kSecClass</a> value defined as
-<a href="https://developer.apple.com/documentation/security/ksecclassgenericpassword">kSecClassGenericPassword</a>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">genericKeychain</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeInternetKeychain"></a>
-                    <a name="//apple_ref/swift/Element/internetKeychain" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeInternetKeychain">internetKeychain</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="https://developer.apple.com/documentation/security/keychain_services">SecItem</a>
-with <a href="https://developer.apple.com/documentation/security/ksecclass">kSecClass</a> value defined as
-<a href="https://developer.apple.com/documentation/security/ksecclassinternetpassword">kSecClassGenericPassword</a>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">internetKeychain</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypePrivateCloudDatabase"></a>
-                    <a name="//apple_ref/swift/Element/privateCloudDatabase" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypePrivateCloudDatabase">privateCloudDatabase</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">privateCloudDatabase</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypePublicCloudDatabase"></a>
-                    <a name="//apple_ref/swift/Element/publicCloudDatabase" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypePublicCloudDatabase">publicCloudDatabase</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">publicCloudDatabase</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeSharedCloudDatabase"></a>
-                    <a name="//apple_ref/swift/Element/sharedCloudDatabase" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeSharedCloudDatabase">sharedCloudDatabase</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">sharedCloudDatabase</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUbiquitousKeyValueStore"></a>
-                    <a name="//apple_ref/swift/Element/ubiquitousKeyValueStore" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@E@DataStoreStorageType@DataStoreStorageTypeUbiquitousKeyValueStore">ubiquitousKeyValueStore</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The storage type <a href="apple-reference-documentation://hskNNwzU6H">NSUbiquitousKeyValueStore</a>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">ubiquitousKeyValueStore</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Init"></a>
-                <a name="//apple_ref/swift/Section/Init" class="dashAnchor"></a>
-                <a href="#/Init">
-                  <h3 class="section-name">Init</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:16DataStoreManager0aB11StorageTypeO8rawValueACSgSS_tcfc"></a>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(im)initWithRawValue:"></a>
                     <a name="//apple_ref/swift/Method/init(rawValue:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManager0aB11StorageTypeO8rawValueACSgSS_tcfc">init(rawValue:)</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(im)initWithRawValue:">init(rawValue:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -549,7 +195,7 @@ with <a href="https://developer.apple.com/documentation/security/ksecclass">kSec
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreStorageType.html#/s:SY8RawValueQa">RawValue</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -579,6 +225,43 @@ with <a href="https://developer.apple.com/documentation/security/ksecclass">kSec
             </div>
             <div class="task-group">
               <div class="task-name-container">
+                <a name="/Type%20Aliases"></a>
+                <a name="//apple_ref/swift/Section/Type Aliases" class="dashAnchor"></a>
+                <a href="#/Type%20Aliases">
+                  <h3 class="section-name">Type Aliases</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SY8RawValueQa"></a>
+                    <a name="//apple_ref/swift/Alias/RawValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SY8RawValueQa">RawValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">RawValue</span> <span class="o">=</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <a name="/Properties"></a>
                 <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
                 <a href="#/Properties">
@@ -589,9 +272,9 @@ with <a href="https://developer.apple.com/documentation/security/ksecclass">kSec
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManager0aB11StorageTypeO8rawValueSSvp"></a>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(py)rawValue"></a>
                     <a name="//apple_ref/swift/Property/rawValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManager0aB11StorageTypeO8rawValueSSvp">rawValue</a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(py)rawValue">rawValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -606,7 +289,7 @@ with <a href="https://developer.apple.com/documentation/security/ksecclass">kSec
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="k">var</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -616,9 +299,436 @@ with <a href="https://developer.apple.com/documentation/security/ksecclass">kSec
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManager0aB11StorageTypeO11descriptionSSvp"></a>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)userDefaults"></a>
+                    <a name="//apple_ref/swift/Variable/userDefaults" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)userDefaults">userDefaults</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hsARFaqWd3">UserDefaults</a>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">userDefaults</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)documentDirectory"></a>
+                    <a name="//apple_ref/swift/Variable/documentDirectory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)documentDirectory">documentDirectory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
+with the search path document directory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">documentDirectory</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)userDirectory"></a>
+                    <a name="//apple_ref/swift/Variable/userDirectory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)userDirectory">userDirectory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
+with the search path user home directories (<code>/Users</code>).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">userDirectory</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)libraryDirectory"></a>
+                    <a name="//apple_ref/swift/Variable/libraryDirectory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)libraryDirectory">libraryDirectory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
+with the search path various user-visible documentation, support, and
+configuration files (<code>/Library</code>).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">libraryDirectory</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)applicationDirectory"></a>
+                    <a name="//apple_ref/swift/Variable/applicationDirectory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)applicationDirectory">applicationDirectory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
+with the search path supported applications (<code>/Applications</code>).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">applicationDirectory</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)coreServiceDirectory"></a>
+                    <a name="//apple_ref/swift/Variable/coreServiceDirectory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)coreServiceDirectory">coreServiceDirectory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
+with the search path core services (<code>System/Library/CoreServices</code>).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">coreServiceDirectory</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)temporaryDirectory"></a>
+                    <a name="//apple_ref/swift/Variable/temporaryDirectory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)temporaryDirectory">temporaryDirectory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hsQQiy1kjA">FileManager</a>
+with the temporary directory for the current user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">temporaryDirectory</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)cache"></a>
+                    <a name="//apple_ref/swift/Variable/cache" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)cache">cache</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hs3dlYnTwl">NSCache</a>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)genericKeychain"></a>
+                    <a name="//apple_ref/swift/Variable/genericKeychain" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)genericKeychain">genericKeychain</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="https://developer.apple.com/documentation/security/keychain_services">SecItem</a>
+with <a href="https://developer.apple.com/documentation/security/ksecclass">kSecClass</a> value defined as
+<a href="https://developer.apple.com/documentation/security/ksecclassgenericpassword">kSecClassGenericPassword</a>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">genericKeychain</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)internetKeychain"></a>
+                    <a name="//apple_ref/swift/Variable/internetKeychain" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)internetKeychain">internetKeychain</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="https://developer.apple.com/documentation/security/keychain_services">SecItem</a>
+with <a href="https://developer.apple.com/documentation/security/ksecclass">kSecClass</a> value defined as
+<a href="https://developer.apple.com/documentation/security/ksecclassinternetpassword">kSecClassGenericPassword</a>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">internetKeychain</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)privateCloudDatabase"></a>
+                    <a name="//apple_ref/swift/Variable/privateCloudDatabase" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)privateCloudDatabase">privateCloudDatabase</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">privateCloudDatabase</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)publicCloudDatabase"></a>
+                    <a name="//apple_ref/swift/Variable/publicCloudDatabase" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)publicCloudDatabase">publicCloudDatabase</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">publicCloudDatabase</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)sharedCloudDatabase"></a>
+                    <a name="//apple_ref/swift/Variable/sharedCloudDatabase" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)sharedCloudDatabase">sharedCloudDatabase</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">sharedCloudDatabase</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)ubiquitousKeyValueStore"></a>
+                    <a name="//apple_ref/swift/Variable/ubiquitousKeyValueStore" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)ubiquitousKeyValueStore">ubiquitousKeyValueStore</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The storage type <a href="apple-reference-documentation://hskNNwzU6H">NSUbiquitousKeyValueStore</a>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">ubiquitousKeyValueStore</span><span class="p">:</span> <span class="kt">DataStoreStorageType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)allCases"></a>
+                    <a name="//apple_ref/swift/Variable/allCases" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(cs)DataStoreStorageType(cpy)allCases">allCases</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A collection of all values of this type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">allCases</span><span class="p">:</span> <span class="p">[</span><span class="kt">DataStoreStorageType</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CustomStringConvertible"></a>
+                <a name="//apple_ref/swift/Section/CustomStringConvertible" class="dashAnchor"></a>
+                <a href="#/CustomStringConvertible">
+                  <h3 class="section-name">CustomStringConvertible</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@DataStoreManager@objc(cs)DataStoreStorageType(py)description"></a>
                     <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManager0aB11StorageTypeO11descriptionSSvp">description</a>
+                    <a class="token" href="#/c:@CM@DataStoreManager@objc(cs)DataStoreStorageType(py)description">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -633,19 +743,30 @@ with <a href="https://developer.apple.com/documentation/security/ksecclass">kSec
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CustomDebugStringConvertible"></a>
+                <a name="//apple_ref/swift/Section/CustomDebugStringConvertible" class="dashAnchor"></a>
+                <a href="#/CustomDebugStringConvertible">
+                  <h3 class="section-name">CustomDebugStringConvertible</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16DataStoreManager0aB11StorageTypeO16debugDescriptionSSvp"></a>
+                    <a name="/c:@CM@DataStoreManager@objc(cs)DataStoreStorageType(py)debugDescription"></a>
                     <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16DataStoreManager0aB11StorageTypeO16debugDescriptionSSvp">debugDescription</a>
+                    <a class="token" href="#/c:@CM@DataStoreManager@objc(cs)DataStoreStorageType(py)debugDescription">debugDescription</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -660,7 +781,7 @@ with <a href="https://developer.apple.com/documentation/security/ksecclass">kSec
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
