@@ -75,9 +75,56 @@ class ViewController: UIViewController {
 }
 ```
 
+Available storage types:
+
+```swift
+/// UserDefaults
+.userDefaults
+
+/// FileManager (~/Documents)
+.documentDirectory
+
+/// FileManager (/Users)
+.userDirectory
+
+/// FileManager (/Library)
+.libraryDirectory
+
+/// FileManager (/Applications)
+.applicationDirectory
+
+/// FileManager (/System/Library/CoreServices)
+.coreServiceDirectory
+
+/// FileManager (/tmp)
+.temporaryDirectory
+
+/// NSCache
+.cache
+
+/// Keychain (kSecClass: kSecClassGenericPassword)
+.genericKeychain
+
+/// Keychain (kSecClass: kSecClassInternetPassword)
+.internetKeychain
+
+/// CKContainer (.privateCloudDatabase)
+.privateCloudDatabase
+
+/// CKContainer (.publicCloudDatabase)
+.publicCloudDatabase
+
+/// CKContainer (.sharedCloudDatabase)
+.sharedCloudDatabase
+
+/// NSUbiquitousKeyValueStore
+.ubiquitousKeyValueStore
+```
+
 ### Prerequisites
 
 * iOS 8.0+
+* macOS 10.10+ (not tested)
 * Xcode 10.2+
 
 ### Installing
