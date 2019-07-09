@@ -188,10 +188,10 @@ import Foundation
             cacheWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
         case .genericKeychain:
-            keychainWorker.create(object: object, forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
+            keychainWorker.create(object: object, forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
-            keychainWorker.create(object: object, forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+            keychainWorker.create(object: object, forKey: key, forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             cloudKitWorker.create(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
@@ -273,10 +273,10 @@ import Foundation
             cacheWorker.read(forKey: key, completionHandler: completionHandler)
 
         case .genericKeychain:
-            keychainWorker.read(forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
+            keychainWorker.read(forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
-            keychainWorker.read(forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+            keychainWorker.read(forKey: key, forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
@@ -358,10 +358,10 @@ import Foundation
             cacheWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
         case .genericKeychain:
-            keychainWorker.update(object: object, forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
+            keychainWorker.update(object: object, forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
-            keychainWorker.update(object: object, forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+            keychainWorker.update(object: object, forKey: key, forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             cloudKitWorker.update(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
@@ -443,10 +443,10 @@ import Foundation
             cacheWorker.delete(forKey: key, completionHandler: completionHandler)
 
         case .genericKeychain:
-            keychainWorker.delete(forKey: key, forItemClass: .genericPassword, completionHandler: completionHandler)
+            keychainWorker.delete(forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
-            keychainWorker.delete(forKey: key, forItemClass: .internetPassword, completionHandler: completionHandler)
+            keychainWorker.delete(forKey: key, forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
@@ -524,10 +524,10 @@ import Foundation
             cacheWorker.deleteAll(completionHandler: completionHandler)
 
         case .genericKeychain:
-            keychainWorker.deleteAll(forItemClass: .genericPassword, completionHandler: completionHandler)
+            keychainWorker.deleteAll(forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
-            keychainWorker.deleteAll(forItemClass: .internetPassword, completionHandler: completionHandler)
+            keychainWorker.deleteAll(forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             cloudKitWorker.deleteAll(forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
@@ -577,7 +577,7 @@ import Foundation
             completionHandler(true, nil)
 
         } else if oldSchemaVersion > newSchemaVersion {
-            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: "oldSchemaVersion: \(oldSchemaVersion), newSchemaVersion: \(newSchemaVersion)"))
+            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: "The oldSchemaVersion is \(oldSchemaVersion), newSchemaVersion is \(newSchemaVersion)."))
             completionHandler(false, error)
 
         } else {
