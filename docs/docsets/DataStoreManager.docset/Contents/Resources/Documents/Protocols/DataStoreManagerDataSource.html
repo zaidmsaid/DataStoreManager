@@ -14,7 +14,7 @@
     <a title="DataStoreManagerDataSource Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DataStoreManager Docs</a> (67% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (68% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -386,9 +386,9 @@ point in time, or possibly never, all depending on the implementation details of
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)genericPasswordKeychainServiceFor:"></a>
-                    <a name="//apple_ref/swift/Method/genericPasswordKeychainService(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)genericPasswordKeychainServiceFor:">genericPasswordKeychainService(for:)</a>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)genericKeychainServiceFor:"></a>
+                    <a name="//apple_ref/swift/Method/genericKeychainService(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)genericKeychainServiceFor:">genericKeychainService(for:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -396,7 +396,7 @@ point in time, or possibly never, all depending on the implementation details of
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Asks the data source for the generic password keychain service of the data store manager.</p>
+                        <p>Asks the data source for the generic keychain service of the data store manager.</p>
 
                       </div>
                       <div class="declaration">
@@ -404,7 +404,7 @@ point in time, or possibly never, all depending on the implementation details of
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">genericPasswordKeychainService</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">genericKeychainService</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -437,9 +437,9 @@ point in time, or possibly never, all depending on the implementation details of
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)genericPasswordKeychainAccessGroupFor:"></a>
-                    <a name="//apple_ref/swift/Method/genericPasswordKeychainAccessGroup(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)genericPasswordKeychainAccessGroupFor:">genericPasswordKeychainAccessGroup(for:)</a>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)genericKeychainAccessGroupFor:"></a>
+                    <a name="//apple_ref/swift/Method/genericKeychainAccessGroup(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)genericKeychainAccessGroupFor:">genericKeychainAccessGroup(for:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -447,7 +447,7 @@ point in time, or possibly never, all depending on the implementation details of
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Asks the data source for the generic password keychain access group of the data store manager.</p>
+                        <p>Asks the data source for the generic keychain access group of the data store manager.</p>
 
 <p>For an app to access a keychain item, one of the groups to which the app belongs must be the item’s group.
 The list of an app’s access groups consists of the following string identifiers, in this order:</p>
@@ -471,7 +471,7 @@ is only accessible to the app creating the item, since no other app can be in th
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">genericPasswordKeychainAccessGroup</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">genericKeychainAccessGroup</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -504,9 +504,9 @@ is only accessible to the app creating the item, since no other app can be in th
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetPasswordKeychainServerFor:"></a>
-                    <a name="//apple_ref/swift/Method/internetPasswordKeychainServer(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetPasswordKeychainServerFor:">internetPasswordKeychainServer(for:)</a>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetKeychainServerFor:"></a>
+                    <a name="//apple_ref/swift/Method/internetKeychainServer(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetKeychainServerFor:">internetKeychainServer(for:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -522,7 +522,7 @@ is only accessible to the app creating the item, since no other app can be in th
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">internetPasswordKeychainServer</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URL</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">internetKeychainServer</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URL</span></code></pre>
 
                         </div>
                       </div>
@@ -532,9 +532,9 @@ is only accessible to the app creating the item, since no other app can be in th
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetPasswordKeychainProtocolTypeFor:"></a>
-                    <a name="//apple_ref/swift/Method/internetPasswordKeychainProtocolType(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetPasswordKeychainProtocolTypeFor:">internetPasswordKeychainProtocolType(for:)</a>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetKeychainProtocolTypeFor:"></a>
+                    <a name="//apple_ref/swift/Method/internetKeychainProtocolType(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetKeychainProtocolTypeFor:">internetKeychainProtocolType(for:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -550,7 +550,7 @@ is only accessible to the app creating the item, since no other app can be in th
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">internetPasswordKeychainProtocolType</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/DataStoreProtocolType.html">DataStoreProtocolType</a></span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">internetKeychainProtocolType</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/DataStoreProtocolType.html">DataStoreProtocolType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -560,9 +560,9 @@ is only accessible to the app creating the item, since no other app can be in th
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetPasswordKeychainAuthenticationTypeFor:"></a>
-                    <a name="//apple_ref/swift/Method/internetPasswordKeychainAuthenticationType(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetPasswordKeychainAuthenticationTypeFor:">internetPasswordKeychainAuthenticationType(for:)</a>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetKeychainAuthenticationTypeFor:"></a>
+                    <a name="//apple_ref/swift/Method/internetKeychainAuthenticationType(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)internetKeychainAuthenticationTypeFor:">internetKeychainAuthenticationType(for:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -578,7 +578,7 @@ is only accessible to the app creating the item, since no other app can be in th
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">internetPasswordKeychainAuthenticationType</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/DataStoreAuthenticationType.html">DataStoreAuthenticationType</a></span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">internetKeychainAuthenticationType</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/DataStoreAuthenticationType.html">DataStoreAuthenticationType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -939,7 +939,7 @@ so choose type names that reflect the data in the corresponding records.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-07)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

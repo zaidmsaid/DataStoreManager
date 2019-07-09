@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-#if os(iOS) || os(OSX)
+#if os(iOS) || os(macOS)
 import LocalAuthentication
 #else
 import Foundation
@@ -64,13 +64,13 @@ import Foundation
 
     // MARK: Keychain
 
-    /// Asks the data source for the generic password keychain service of the data store manager.
+    /// Asks the data source for the generic keychain service of the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
     /// - Returns: The corresponding value is a string that represents the service associated with this item.
-    @objc optional func genericPasswordKeychainService(for manager: DataStoreManager) -> String
+    @objc optional func genericKeychainService(for manager: DataStoreManager) -> String
 
-    /// Asks the data source for the generic password keychain access group of the data store manager.
+    /// Asks the data source for the generic keychain access group of the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager requesting this information.
     /// - Returns: The corresponding value is a string that indicates the item’s one and only access group.
@@ -87,13 +87,13 @@ import Foundation
     /// If you don’t explicitly set a group, keychain services defaults to the app’s first access group, which is either
     /// the first keychain access group, or the app ID when the app has no keychain groups. In the latter case, the item
     /// is only accessible to the app creating the item, since no other app can be in that group.
-    @objc optional func genericPasswordKeychainAccessGroup(for manager: DataStoreManager) -> String
+    @objc optional func genericKeychainAccessGroup(for manager: DataStoreManager) -> String
 
-    @objc optional func internetPasswordKeychainServer(for manager: DataStoreManager) -> URL
+    @objc optional func internetKeychainServer(for manager: DataStoreManager) -> URL
 
-    @objc optional func internetPasswordKeychainProtocolType(for manager: DataStoreManager) -> DataStoreProtocolType
+    @objc optional func internetKeychainProtocolType(for manager: DataStoreManager) -> DataStoreProtocolType
 
-    @objc optional func internetPasswordKeychainAuthenticationType(for manager: DataStoreManager) -> DataStoreAuthenticationType
+    @objc optional func internetKeychainAuthenticationType(for manager: DataStoreManager) -> DataStoreAuthenticationType
 
     /// Asks the data source to verify that the keychain of the data store manager is synchronized through iCloud.
     ///
@@ -108,7 +108,7 @@ import Foundation
     ///            authenticate. When performing user authentication, the system includes the string in the user prompt.
     ///            The app is responsible for text localization.
     @available(iOS 8.0, *)
-    @available(OSX 10.10, *)
+    @available(macOS 10.10, *)
     @available(tvOS, unavailable)
     @available(watchOS, unavailable)
     @objc optional func keychainOperationPrompt(for manager: DataStoreManager) -> String
@@ -134,7 +134,7 @@ import Foundation
     ///              key in your app’s Info.plist file if your app allows biometric authentication. Otherwise, authorization
     ///              requests may fail.
     @available(iOS 8.0, *)
-    @available(OSX 10.10, *)
+    @available(macOS 10.10, *)
     @available(tvOS, unavailable)
     @available(watchOS, unavailable)
     @objc optional func keychainLocalAuthenticationContext(for manager: DataStoreManager) -> LAContext
