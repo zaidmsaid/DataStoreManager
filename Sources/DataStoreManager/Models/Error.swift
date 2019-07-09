@@ -267,7 +267,7 @@ extension ErrorProtocol : CustomStringConvertible {
             return "Current schema version is lower than old schema version."
 
         case .datasourceNotAvailable:
-            return "Current schema version is lower than old schema version."
+            return "The data source cannot be retrieved."
 
         case .createFailed:
             return "The object cannot be created."

@@ -20,6 +20,8 @@ import UIKit
 import Foundation
 #endif
 
+// MARK: - FileManager
+
 extension DataStoreManager {
 
     /// An interface to the FileManager.
@@ -89,7 +91,7 @@ extension DataStoreManager {
 
         func delete(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            guard let url = getFullURL(forFileName: fileName, inDirectory: directory) else {
+            guard let url = getURL(for: directory, withFileName: fileName)?.appendingPathComponent(fileName) else {
                 let error = ErrorObject(protocol: .directoryFullURLNotAvailable)
                 completionHandler(false, nil, error)
                 return
@@ -117,7 +119,7 @@ extension DataStoreManager {
                     delete(forKey: fileName, forDirectory: directory, completionHandler: completionHandler)
                 }
             } else {
-                let error = ErrorObject(protocol: .directoryListNotAvailable(detail: url.description))
+                let error = ErrorObject(protocol: .directoryListNotAvailable(detail: "The URL is \(url.description)."))
                 completionHandler(false, nil, error)
             }
         }
@@ -155,7 +157,7 @@ extension DataStoreManager {
                 url = fileManager.urls(for: .coreServiceDirectory, in: .userDomainMask).first
 
             case .temporaryDirectory:
-                if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
+                if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
                     url = fileManager.temporaryDirectory
 
                 } else {
@@ -174,11 +176,6 @@ extension DataStoreManager {
             }
 
             return url
-        }
-
-        private final func getFullURL(forFileName fileName: String, inDirectory directory: Directory) -> URL? {
-
-            return getURL(for: directory, withFileName: fileName)?.appendingPathComponent(fileName)
         }
 
         private final func list(at directory: URL) -> [String]? {

@@ -15,9 +15,11 @@
 //
 
 import Security
-#if os(iOS) || os(OSX)
+#if os(iOS) || os(macOS)
 import LocalAuthentication
 #endif
+
+// MARK: - SecItem
 
 extension DataStoreManager {
 
@@ -28,8 +30,8 @@ extension DataStoreManager {
 
         @objc enum ItemClass : Int {
 
-            case genericPassword
-            case internetPassword
+            case generic
+            case internet
         }
 
         // MARK: - Type Aliases
@@ -44,37 +46,37 @@ extension DataStoreManager {
 
         var dataStoreManager: DataStoreManager?
 
-        var genericPasswordService: String {
-            if let manager = dataStoreManager, let service = manager.dataSource?.genericPasswordKeychainService?(for: manager) {
+        var genericKeychainService: String {
+            if let manager = dataStoreManager, let service = manager.dataSource?.genericKeychainService?(for: manager) {
                 return service
             }
             return Bundle.main.bundleIdentifier ?? "DataStoreManager"
         }
 
-        var genericPasswordAccessGroup: String? {
+        var genericKeychainAccessGroup: String? {
             if let manager = dataStoreManager {
-                return manager.dataSource?.genericPasswordKeychainAccessGroup?(for: manager)
+                return manager.dataSource?.genericKeychainAccessGroup?(for: manager)
             }
             return nil
         }
 
-        var internetPasswordServer: URL? {
+        var internetKeychainServer: URL? {
             if let manager = dataStoreManager {
-                return manager.dataSource?.internetPasswordKeychainServer?(for: manager)
+                return manager.dataSource?.internetKeychainServer?(for: manager)
             }
             return nil
         }
 
-        var internetPasswordProtocolType: ProtocolType? {
+        var internetKeychainProtocolType: ProtocolType? {
             if let manager = dataStoreManager {
-                return manager.dataSource?.internetPasswordKeychainProtocolType?(for: manager)
+                return manager.dataSource?.internetKeychainProtocolType?(for: manager)
             }
             return nil
         }
 
-        var internetPasswordAuthenticationType: AuthenticationType? {
+        var internetKeychainAuthenticationType: AuthenticationType? {
             if let manager = dataStoreManager {
-                return manager.dataSource?.internetPasswordKeychainAuthenticationType?(for: manager)
+                return manager.dataSource?.internetKeychainAuthenticationType?(for: manager)
             }
             return nil
         }
@@ -163,29 +165,29 @@ extension DataStoreManager {
             var item = [String : AnyObject]()
 
             switch itemClass {
-            case .genericPassword:
+            case .generic:
                 item[kSecClass as String] = kSecClassGenericPassword
-                item[kSecAttrService as String] = genericPasswordService as AnyObject
+                item[kSecAttrService as String] = genericKeychainService as AnyObject
 
                 #if !targetEnvironment(simulator)
-                if let accessGroup = self.genericPasswordAccessGroup {
+                if let accessGroup = self.genericKeychainAccessGroup {
                     item[kSecAttrAccessGroup as String] = accessGroup as AnyObject
                 }
                 #endif
 
-            case .internetPassword:
+            case .internet:
                 item[kSecClass as String] = kSecClassInternetPassword
 
-                if let server = internetPasswordServer {
+                if let server = internetKeychainServer {
                     item[kSecAttrServer as String] = server.host as AnyObject
                     item[kSecAttrPort as String] = server.port as AnyObject
                 }
 
-                if let protocolType = internetPasswordProtocolType {
+                if let protocolType = internetKeychainProtocolType {
                     item[kSecAttrProtocol as String] = protocolType.rawValue as AnyObject
                 }
 
-                if let authenticationType = internetPasswordAuthenticationType {
+                if let authenticationType = internetKeychainAuthenticationType {
                     item[kSecAttrAuthenticationType as String] = authenticationType.rawValue as AnyObject
                 }
             }
@@ -245,31 +247,31 @@ extension DataStoreManager {
             var item = [String : AnyObject]()
 
             switch itemClass {
-            case .genericPassword:
-                let secAttrService: AnyObject = genericPasswordService as AnyObject
+            case .generic:
+                let secAttrService: AnyObject = genericKeychainService as AnyObject
                 item[kSecClass as String] = kSecClassGenericPassword
                 item[kSecAttrService as String] = secAttrService
                 item[kSecAttrGeneric as String] = account as AnyObject
 
                 #if !targetEnvironment(simulator)
-                if let accessGroup = self.genericPasswordAccessGroup {
+                if let accessGroup = self.genericKeychainAccessGroup {
                     item[kSecAttrAccessGroup as String] = accessGroup as AnyObject
                 }
                 #endif
                 
-            case .internetPassword:
+            case .internet:
                 item[kSecClass as String] = kSecClassInternetPassword
 
-                if let server = internetPasswordServer {
+                if let server = internetKeychainServer {
                     item[kSecAttrServer as String] = server.host as AnyObject
                     item[kSecAttrPort as String] = server.port as AnyObject
                 }
 
-                if let protocolType = internetPasswordProtocolType {
+                if let protocolType = internetKeychainProtocolType {
                     item[kSecAttrProtocol as String] = protocolType.rawValue as AnyObject
                 }
 
-                if let authenticationType = internetPasswordAuthenticationType {
+                if let authenticationType = internetKeychainAuthenticationType {
                     item[kSecAttrAuthenticationType as String] = authenticationType.rawValue as AnyObject
                 }
 
@@ -284,13 +286,13 @@ extension DataStoreManager {
             }
 
             #if !os(watchOS) && !os(tvOS)
-            if #available(iOS 8.0, OSX 10.10, *) {
+            if #available(iOS 8.0, macOS 10.10, *) {
                 if let useOperationPrompt = operationPrompt {
                     item[kSecUseOperationPrompt as String] = useOperationPrompt as AnyObject
                 }
             }
 
-            if #available(iOS 9.0, OSX 10.11, *) {
+            if #available(iOS 9.0, macOS 10.11, *) {
                 if let useAuthenticationContext = localAuthenticationContext {
                     item[kSecUseAuthenticationContext as String] = useAuthenticationContext as AnyObject
                 }

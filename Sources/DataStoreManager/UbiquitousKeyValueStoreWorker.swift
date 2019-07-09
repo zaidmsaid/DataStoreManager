@@ -16,6 +16,8 @@
 
 import Foundation
 
+// MARK: - NSUbiquitousKeyValueStore
+
 extension DataStoreManager {
 
     /// An interface to the NSUbiquitousKeyValueStore.

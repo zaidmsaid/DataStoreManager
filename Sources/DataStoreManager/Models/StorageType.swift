@@ -54,6 +54,31 @@ import Security
     /// The corresponding value of the raw type.
     public final var rawValue: String
 
+    /// A collection of all values of this type.
+    public static var allCases: [DataStoreStorageType] {
+        return [
+            DataStoreStorageType.userDefaults,
+            DataStoreStorageType.documentDirectory,
+            DataStoreStorageType.userDirectory,
+            DataStoreStorageType.libraryDirectory,
+            DataStoreStorageType.applicationDirectory,
+            DataStoreStorageType.coreServiceDirectory,
+            DataStoreStorageType.temporaryDirectory,
+            DataStoreStorageType.cache,
+            DataStoreStorageType.genericKeychain,
+            DataStoreStorageType.internetKeychain,
+            DataStoreStorageType.privateCloudDatabase,
+            DataStoreStorageType.publicCloudDatabase,
+            DataStoreStorageType.sharedCloudDatabase,
+            DataStoreStorageType.ubiquitousKeyValueStore
+        ]
+    }
+}
+
+extension DataStoreStorageType : RawRepresentable, CaseIterable {
+
+    // MARK: - Enumerations
+
     /// The storage type [UserDefaults](apple-reference-documentation://hsARFaqWd3).
     public static let userDefaults = DataStoreStorageType("UserDefaults")
 
@@ -95,39 +120,25 @@ import Security
     /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassinternetpassword).
     public static let internetKeychain = DataStoreStorageType("SecItem.kSecClassInternetPassword")
 
+    /// The storage type [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// with [privateCloudDatabase](apple-reference-documentation://hsl8OIqKuV).
     public static let privateCloudDatabase = DataStoreStorageType("CKContainer.privateCloudDatabase")
 
+    /// The storage type [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// with [publicCloudDatabase](apple-reference-documentation://hsr3N4H2SH).
     public static let publicCloudDatabase = DataStoreStorageType("CKContainer.publicCloudDatabase")
 
+    /// The storage type [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// with [sharedCloudDatabase](apple-reference-documentation://hse91QSrM6).
     public static let sharedCloudDatabase = DataStoreStorageType("CKContainer.sharedCloudDatabase")
 
     /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
     public static let ubiquitousKeyValueStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
-
-    /// A collection of all values of this type.
-    public static var allCases: [DataStoreStorageType] {
-        return [
-            DataStoreStorageType.userDefaults,
-            DataStoreStorageType.documentDirectory,
-            DataStoreStorageType.userDirectory,
-            DataStoreStorageType.libraryDirectory,
-            DataStoreStorageType.applicationDirectory,
-            DataStoreStorageType.coreServiceDirectory,
-            DataStoreStorageType.temporaryDirectory,
-            DataStoreStorageType.cache,
-            DataStoreStorageType.genericKeychain,
-            DataStoreStorageType.internetKeychain,
-            DataStoreStorageType.privateCloudDatabase,
-            DataStoreStorageType.publicCloudDatabase,
-            DataStoreStorageType.sharedCloudDatabase,
-            DataStoreStorageType.ubiquitousKeyValueStore
-        ]
-    }
 }
 
 // MARK: - CustomStringConvertible
 
-extension DataStoreStorageType : RawRepresentable, CaseIterable {
+extension DataStoreStorageType {
 
     /// A textual representation of this instance.
     open override var description: String {
@@ -175,6 +186,7 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
             return "NSUbiquitousKeyValueStore"
 
         default:
+            assertionFailure("Use a representation that was unknown when this code was compiled.")
             return "Use a representation that was unknown when this code was compiled."
         }
     }
@@ -230,6 +242,7 @@ extension DataStoreStorageType {
             return "NSUbiquitousKeyValueStore"
 
         default:
+            assertionFailure("Use a representation that was unknown when this code was compiled.")
             return "Use a representation that was unknown when this code was compiled."
         }
     }

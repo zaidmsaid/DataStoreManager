@@ -16,6 +16,8 @@
 
 import Foundation
 
+// MARK: - UserDefaults
+
 extension DataStoreManager {
 
     /// An interface to the UserDefaults.
