@@ -75,6 +75,7 @@ class ViewController: UIViewController {
 }
 ```
 
+
 Available storage types:
 
 ```swift
