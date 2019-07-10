@@ -199,25 +199,31 @@ import Foundation
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.create(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .publicCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.create(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .sharedCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.create(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .ubiquitousKeyValueStore:
-            #if !os(watchOS)
+            #if os(watchOS)
+            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
+            completionHandler(false, nil, error)
+            #else
             ubiquitousKeyValueStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
             #endif
 
@@ -298,25 +304,31 @@ import Foundation
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .publicCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .sharedCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .ubiquitousKeyValueStore:
-            #if !os(watchOS)
+            #if os(watchOS)
+            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
+            completionHandler(false, nil, error)
+            #else
             ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
             #endif
 
@@ -397,25 +409,31 @@ import Foundation
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.update(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .publicCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.update(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .sharedCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.update(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .ubiquitousKeyValueStore:
-            #if !os(watchOS)
+            #if os(watchOS)
+            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
+            completionHandler(false, nil, error)
+            #else
             ubiquitousKeyValueStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
             #endif
 
@@ -496,25 +514,31 @@ import Foundation
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .publicCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .sharedCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .ubiquitousKeyValueStore:
-            #if !os(watchOS)
+            #if os(watchOS)
+            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
+            completionHandler(false, nil, error)
+            #else
             ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
             #endif
 
@@ -591,25 +615,31 @@ import Foundation
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.deleteAll(forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .publicCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.deleteAll(forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .sharedCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
                 cloudKitWorker.deleteAll(forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
             } else {
-                // Fallback on earlier versions
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
+                completionHandler(false, nil, error)
             }
 
         case .ubiquitousKeyValueStore:
-            #if !os(watchOS)
+            #if os(watchOS)
+            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
+            completionHandler(false, nil, error)
+            #else
             ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
             #endif
 

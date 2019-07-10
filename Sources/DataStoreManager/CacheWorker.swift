@@ -16,10 +16,10 @@
 
 #if os(iOS) || os(tvOS)
 import UIKit
-#elseif os(watchOS)
-import Foundation
-#else
+#elseif os(macOS)
 import Cocoa
+#else
+import Foundation
 #endif
 
 // MARK: - NSCache

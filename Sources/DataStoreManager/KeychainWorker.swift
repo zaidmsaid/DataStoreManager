@@ -290,7 +290,7 @@ extension DataStoreManager {
                 item[kSecAttrSynchronizable as String] = kSecAttrSynchronizableAny
             }
 
-            #if !os(watchOS) && !os(tvOS)
+            #if os(iOS) || os(macOS)
             if #available(iOS 8.0, macOS 10.10, *) {
                 if let useOperationPrompt = operationPrompt {
                     item[kSecUseOperationPrompt as String] = useOperationPrompt as AnyObject

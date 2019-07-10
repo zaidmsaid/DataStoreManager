@@ -63,6 +63,8 @@
 		B8D1ADBD22D5990F00CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
 		B8D1ADBE22D5991200CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
 		B8D1ADBF22D5991500CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
+		B8D1ADC822D5A56900CF5EAB /* DataStoreManager_watchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */; };
+		B8D1ADC922D5A56E00CF5EAB /* DataStoreManager_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1ADA722D5957B00CF5EAB /* DataStoreManager_tvOS.framework */; };
 		B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
 		B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
 		B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
@@ -82,6 +84,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = B8D1AD0622D581C400CF5EAB;
 			remoteInfo = "DataStoreManager-macOS";
+		};
+		B8D1ADC422D5A54600CF5EAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8D1AD5222D58F6C00CF5EAB;
+			remoteInfo = "DataStoreManager-watchOS";
+		};
+		B8D1ADC622D5A54A00CF5EAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8D1ADA622D5957B00CF5EAB;
+			remoteInfo = "DataStoreManager-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -122,6 +138,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8D1ADC922D5A56E00CF5EAB /* DataStoreManager_tvOS.framework in Frameworks */,
+				B8D1ADC822D5A56900CF5EAB /* DataStoreManager_watchOS.framework in Frameworks */,
 				B8D1AD1F22D5833800CF5EAB /* DataStoreManager_macOS.framework in Frameworks */,
 				B8C2CF3522C8E6640080102C /* DataStoreManager_iOS.framework in Frameworks */,
 			);
@@ -310,6 +328,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				B8D1ADC722D5A54A00CF5EAB /* PBXTargetDependency */,
+				B8D1ADC522D5A54600CF5EAB /* PBXTargetDependency */,
 				B8D1AD1D22D5832D00CF5EAB /* PBXTargetDependency */,
 				B8C2CF3722C8E6640080102C /* PBXTargetDependency */,
 			);
@@ -560,6 +580,16 @@
 			isa = PBXTargetDependency;
 			target = B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */;
 			targetProxy = B8D1AD1C22D5832D00CF5EAB /* PBXContainerItemProxy */;
+		};
+		B8D1ADC522D5A54600CF5EAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */;
+			targetProxy = B8D1ADC422D5A54600CF5EAB /* PBXContainerItemProxy */;
+		};
+		B8D1ADC722D5A54A00CF5EAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8D1ADA622D5957B00CF5EAB /* DataStoreManager-tvOS */;
+			targetProxy = B8D1ADC622D5A54A00CF5EAB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
