@@ -62,13 +62,13 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios, "8.0"
+  # s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   s.ios.deployment_target = "8.0"
-  # s.osx.deployment_target = "10.7"
-  # s.watchos.deployment_target = "2.0"
-  # s.tvos.deployment_target = "9.0"
+  s.osx.deployment_target = "10.10"
+  s.watchos.deployment_target = "2.0"
+  s.tvos.deployment_target = "9.0"
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -114,8 +114,8 @@ Pod::Spec.new do |s|
   #  the lib prefix of their name.
   #
 
-  s.framework = "XCTest"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
+  # s.framework = "SomeFramework"
+  s.frameworks = "XCTest", "Security", "LocalAuthentication", "CloudKit"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"

@@ -11,7 +11,7 @@
 		B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
 		B8C2CF3522C8E6640080102C /* DataStoreManager_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */; };
 		B8C2CF3A22C8E6640080102C /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
-		B8C2CF3C22C8E6640080102C /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8C2CF3C22C8E6640080102C /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8C2CF4A22C8EE980080102C /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
 		B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
 		B8C2CF4E22C9080E0080102C /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
@@ -20,7 +20,6 @@
 		B8C9485922D1AF4D00B0E72D /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
 		B8C9485B22D1AF8300B0E72D /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
 		B8C9485E22D1B0B300B0E72D /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
-		B8D1AD0F22D5829E00CF5EAB /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8D1AD1022D582F400CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
 		B8D1AD1122D582F700CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
 		B8D1AD1222D582FA00CF5EAB /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
@@ -33,7 +32,6 @@
 		B8D1AD1922D5830C00CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
 		B8D1AD1A22D5830E00CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
 		B8D1AD1B22D5831100CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
-		B8D1AD1F22D5833800CF5EAB /* DataStoreManager_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */; };
 		B8D1AD2022D583E000CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
 		B8D1AD5D22D591FD00CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
 		B8D1AD5E22D5920000CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
@@ -48,8 +46,6 @@
 		B8D1AD6722D5923B00CF5EAB /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
 		B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
 		B8D1AD6922D5924200CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
-		B8D1ADB122D598AF00CF5EAB /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8D1ADB222D598BA00CF5EAB /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8D1ADB322D598E700CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
 		B8D1ADB422D598EC00CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
 		B8D1ADB522D598EF00CF5EAB /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
@@ -63,8 +59,9 @@
 		B8D1ADBD22D5990F00CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
 		B8D1ADBE22D5991200CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
 		B8D1ADBF22D5991500CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
-		B8D1ADC822D5A56900CF5EAB /* DataStoreManager_watchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */; };
-		B8D1ADC922D5A56E00CF5EAB /* DataStoreManager_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1ADA722D5957B00CF5EAB /* DataStoreManager_tvOS.framework */; };
+		B8D1ADCD22D5B44B00CF5EAB /* DataStoreManager-Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = B8D1ADCA22D5B40E00CF5EAB /* DataStoreManager-Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8D1ADCE22D5B46000CF5EAB /* DataStoreManager-WatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8D1ADCB22D5B41800CF5EAB /* DataStoreManager-WatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8D1ADCF22D5B46D00CF5EAB /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
 		B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
 		B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
@@ -78,34 +75,13 @@
 			remoteGlobalIDString = B8C2CF2A22C8E6640080102C;
 			remoteInfo = DataStoreManager;
 		};
-		B8D1AD1C22D5832D00CF5EAB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8D1AD0622D581C400CF5EAB;
-			remoteInfo = "DataStoreManager-macOS";
-		};
-		B8D1ADC422D5A54600CF5EAB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8D1AD5222D58F6C00CF5EAB;
-			remoteInfo = "DataStoreManager-watchOS";
-		};
-		B8D1ADC622D5A54A00CF5EAB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8D1ADA622D5957B00CF5EAB;
-			remoteInfo = "DataStoreManager-tvOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousKeyValueStoreWorker.swift; sourceTree = "<group>"; };
 		B886C18E22CC368A00EBEBE4 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
 		B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8C2CF2E22C8E6640080102C /* DataStoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStoreManager.h; sourceTree = "<group>"; };
+		B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-UIKit.h"; sourceTree = "<group>"; };
 		B8C2CF2F22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8C2CF3422C8E6640080102C /* DataStoreManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataStoreManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
@@ -121,6 +97,8 @@
 		B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D1ADA722D5957B00CF5EAB /* DataStoreManager_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8D1ADCA22D5B40E00CF5EAB /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
+		B8D1ADCB22D5B41800CF5EAB /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
 		B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitWorker.swift; sourceTree = "<group>"; };
 		B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
 		B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWorker.swift; sourceTree = "<group>"; };
@@ -138,9 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D1ADC922D5A56E00CF5EAB /* DataStoreManager_tvOS.framework in Frameworks */,
-				B8D1ADC822D5A56900CF5EAB /* DataStoreManager_watchOS.framework in Frameworks */,
-				B8D1AD1F22D5833800CF5EAB /* DataStoreManager_macOS.framework in Frameworks */,
 				B8C2CF3522C8E6640080102C /* DataStoreManager_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,7 +196,9 @@
 				B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */,
 				B8C9485522D1AEDD00B0E72D /* Models */,
 				B8C9485C22D1B0A000B0E72D /* Protocols */,
-				B8C2CF2E22C8E6640080102C /* DataStoreManager.h */,
+				B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */,
+				B8D1ADCA22D5B40E00CF5EAB /* DataStoreManager-Cocoa.h */,
+				B8D1ADCB22D5B41800CF5EAB /* DataStoreManager-WatchKit.h */,
 			);
 			path = DataStoreManager;
 			sourceTree = "<group>";
@@ -268,7 +245,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C2CF3C22C8E6640080102C /* DataStoreManager.h in Headers */,
+				B8C2CF3C22C8E6640080102C /* DataStoreManager-UIKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +253,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D1AD0F22D5829E00CF5EAB /* DataStoreManager.h in Headers */,
+				B8D1ADCD22D5B44B00CF5EAB /* DataStoreManager-Cocoa.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +261,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D1ADB122D598AF00CF5EAB /* DataStoreManager.h in Headers */,
+				B8D1ADCE22D5B46000CF5EAB /* DataStoreManager-WatchKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +269,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D1ADB222D598BA00CF5EAB /* DataStoreManager.h in Headers */,
+				B8D1ADCF22D5B46D00CF5EAB /* DataStoreManager-UIKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,9 +305,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B8D1ADC722D5A54A00CF5EAB /* PBXTargetDependency */,
-				B8D1ADC522D5A54600CF5EAB /* PBXTargetDependency */,
-				B8D1AD1D22D5832D00CF5EAB /* PBXTargetDependency */,
 				B8C2CF3722C8E6640080102C /* PBXTargetDependency */,
 			);
 			name = DataStoreManagerTests;
@@ -575,21 +549,6 @@
 			isa = PBXTargetDependency;
 			target = B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */;
 			targetProxy = B8C2CF3622C8E6640080102C /* PBXContainerItemProxy */;
-		};
-		B8D1AD1D22D5832D00CF5EAB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */;
-			targetProxy = B8D1AD1C22D5832D00CF5EAB /* PBXContainerItemProxy */;
-		};
-		B8D1ADC522D5A54600CF5EAB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */;
-			targetProxy = B8D1ADC422D5A54600CF5EAB /* PBXContainerItemProxy */;
-		};
-		B8D1ADC722D5A54A00CF5EAB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8D1ADA622D5957B00CF5EAB /* DataStoreManager-tvOS */;
-			targetProxy = B8D1ADC622D5A54A00CF5EAB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

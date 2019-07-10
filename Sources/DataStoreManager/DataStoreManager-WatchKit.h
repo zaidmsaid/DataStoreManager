@@ -14,8 +14,6 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
-#import <Cocoa/Cocoa.h>
 #import <WatchKit/WatchKit.h>
 
 //! Project version number for DataStoreManager.

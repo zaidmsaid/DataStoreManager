@@ -125,8 +125,8 @@ Available storage types:
 
 * iOS 8.0+
 * macOS 10.10+
-* tvOS 9.0+
 * watchOS 2.0+
+* tvOS 9.0+
 * Xcode 10.2+
 
 ### Installing
