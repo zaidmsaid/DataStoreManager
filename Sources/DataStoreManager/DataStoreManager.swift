@@ -35,11 +35,6 @@ import Foundation
         super.init()
     }
 
-    // MARK: - Type Aliases
-
-    /// Type to mean instance of DataStoreStorageType.
-    public typealias StorageType = DataStoreStorageType
-
     // MARK: - Properties
 
     /// Returns the data store manager framework short version string.
@@ -124,7 +119,7 @@ import Foundation
     }()
 
     private let ID: String
-    private var defaultType: StorageType
+    private var defaultType: DataStoreStorageType
 
     // MARK: - CRUD
 
@@ -142,7 +137,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func create<T>(object: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         create(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -162,7 +157,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func create<T>(object: T, forKey key: String, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -267,7 +262,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func read<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: StorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -352,7 +347,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func update<T>(object: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -372,7 +367,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func update<T>(object: T, forKey key: String, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -477,7 +472,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -578,7 +573,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func deleteAll(forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -666,7 +661,7 @@ import Foundation
     /// if the schema version is the same or not.If the schema needs to be migrated, it will call
     /// [dataStoreManager(_:performMigrationFromOldVersion:forType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:)
     /// delegate method.
-    open func migrateSchema(forStorageType storageType: StorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
+    open func migrateSchema(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
 
         let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"
 
