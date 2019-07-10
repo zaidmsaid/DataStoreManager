@@ -14,7 +14,9 @@
 //  limitations under the License.
 //
 
+#if TARGET_OS_WATCH
 #import <WatchKit/WatchKit.h>
+#endif
 
 //! Project version number for DataStoreManager.
 FOUNDATION_EXPORT double DataStoreManagerVersionNumber;
