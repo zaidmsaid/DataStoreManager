@@ -17,8 +17,10 @@
 import XCTest
 #if os(iOS)
 @testable import DataStoreManager_iOS
-#else
+#elseif os(macOS)
 @testable import DataStoreManager_macOS
+#elseif os(watchOS)
+@testable import DataStoreManager_watchOS
 #endif
 
 final class DataStoreManagerTests: XCTestCase {

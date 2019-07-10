@@ -37,6 +37,20 @@
 		B8D1AD2022D583E000CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
 		B8D1AD2222D5849E00CF5EAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD2122D5849E00CF5EAB /* UIKit.framework */; };
 		B8D1AD4D22D58E1C00CF5EAB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD4C22D58E1C00CF5EAB /* Cocoa.framework */; };
+		B8D1AD5C22D5904700CF5EAB /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD5B22D5904700CF5EAB /* WatchKit.framework */; };
+		B8D1AD5D22D591FD00CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
+		B8D1AD5E22D5920000CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
+		B8D1AD5F22D5920200CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
+		B8D1AD6022D5920500CF5EAB /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
+		B8D1AD6122D5921200CF5EAB /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
+		B8D1AD6222D5922900CF5EAB /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
+		B8D1AD6322D5922C00CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
+		B8D1AD6422D5922F00CF5EAB /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
+		B8D1AD6522D5923200CF5EAB /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
+		B8D1AD6622D5923700CF5EAB /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
+		B8D1AD6722D5923B00CF5EAB /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
+		B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
+		B8D1AD6922D5924200CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
 		B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
 		B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
 		B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
@@ -79,6 +93,8 @@
 		B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D1AD2122D5849E00CF5EAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B8D1AD4C22D58E1C00CF5EAB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8D1AD5B22D5904700CF5EAB /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.2.sdk/System/Library/Frameworks/WatchKit.framework; sourceTree = DEVELOPER_DIR; };
 		B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitWorker.swift; sourceTree = "<group>"; };
 		B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
 		B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWorker.swift; sourceTree = "<group>"; };
@@ -110,6 +126,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8D1AD5022D58F6C00CF5EAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8D1AD5C22D5904700CF5EAB /* WatchKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,6 +153,7 @@
 				B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */,
 				B8C2CF3422C8E6640080102C /* DataStoreManagerTests.xctest */,
 				B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */,
+				B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,6 +224,7 @@
 		B8D1AD1E22D5833800CF5EAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B8D1AD5B22D5904700CF5EAB /* WatchKit.framework */,
 				B8D1AD4C22D58E1C00CF5EAB /* Cocoa.framework */,
 				B8D1AD2122D5849E00CF5EAB /* UIKit.framework */,
 			);
@@ -221,6 +247,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D1AD0F22D5829E00CF5EAB /* DataStoreManager.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8D1AD4E22D58F6C00CF5EAB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +315,24 @@
 			productReference = B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8D1AD5822D58F6C00CF5EAB /* Build configuration list for PBXNativeTarget "DataStoreManager-watchOS" */;
+			buildPhases = (
+				B8D1AD4E22D58F6C00CF5EAB /* Headers */,
+				B8D1AD4F22D58F6C00CF5EAB /* Sources */,
+				B8D1AD5022D58F6C00CF5EAB /* Frameworks */,
+				B8D1AD5122D58F6C00CF5EAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DataStoreManager-watchOS";
+			productName = DataStoreManager;
+			productReference = B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -302,6 +353,9 @@
 					B8D1AD0622D581C400CF5EAB = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
+					B8D1AD5222D58F6C00CF5EAB = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 				};
 			};
 			buildConfigurationList = B8C2CF2522C8E6640080102C /* Build configuration list for PBXProject "DataStoreManager" */;
@@ -318,6 +372,7 @@
 			targets = (
 				B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */,
 				B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */,
+				B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */,
 				B8C2CF3322C8E6640080102C /* DataStoreManagerTests */,
 			);
 		};
@@ -339,6 +394,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8D1AD0522D581C400CF5EAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8D1AD5122D58F6C00CF5EAB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -393,6 +455,26 @@
 				B8D1AD1222D582FA00CF5EAB /* FileManagerWorker.swift in Sources */,
 				B8D1AD1122D582F700CF5EAB /* UserDefaultsWorker.swift in Sources */,
 				B8D1AD1022D582F400CF5EAB /* DataStoreManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8D1AD4F22D58F6C00CF5EAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8D1AD5D22D591FD00CF5EAB /* Delegate.swift in Sources */,
+				B8D1AD5E22D5920000CF5EAB /* DataSource.swift in Sources */,
+				B8D1AD5F22D5920200CF5EAB /* Error.swift in Sources */,
+				B8D1AD6022D5920500CF5EAB /* AuthenticationType.swift in Sources */,
+				B8D1AD6122D5921200CF5EAB /* ProtocolType.swift in Sources */,
+				B8D1AD6222D5922900CF5EAB /* StorageType.swift in Sources */,
+				B8D1AD6322D5922C00CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */,
+				B8D1AD6422D5922F00CF5EAB /* CloudKitWorker.swift in Sources */,
+				B8D1AD6522D5923200CF5EAB /* KeychainWorker.swift in Sources */,
+				B8D1AD6622D5923700CF5EAB /* CacheWorker.swift in Sources */,
+				B8D1AD6722D5923B00CF5EAB /* FileManagerWorker.swift in Sources */,
+				B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */,
+				B8D1AD6922D5924200CF5EAB /* DataStoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +763,62 @@
 			};
 			name = Release;
 		};
+		B8D1AD5922D58F6C00CF5EAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		B8D1AD5A22D58F6C00CF5EAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -716,6 +854,15 @@
 			buildConfigurations = (
 				B8D1AD0D22D581C400CF5EAB /* Debug */,
 				B8D1AD0E22D581C400CF5EAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8D1AD5822D58F6C00CF5EAB /* Build configuration list for PBXNativeTarget "DataStoreManager-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8D1AD5922D58F6C00CF5EAB /* Debug */,
+				B8D1AD5A22D58F6C00CF5EAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
