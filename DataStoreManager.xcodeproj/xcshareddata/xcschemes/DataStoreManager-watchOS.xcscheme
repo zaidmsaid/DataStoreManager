@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8C2CF2A22C8E6640080102C"
-               BuildableName = "DataStoreManager_iOS.framework"
-               BlueprintName = "DataStoreManager-iOS"
+               BlueprintIdentifier = "B8D1AD5222D58F6C00CF5EAB"
+               BuildableName = "DataStoreManager_watchOS.framework"
+               BlueprintName = "DataStoreManager-watchOS"
                ReferencedContainer = "container:DataStoreManager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8C2CF2A22C8E6640080102C"
-            BuildableName = "DataStoreManager_iOS.framework"
-            BlueprintName = "DataStoreManager-iOS"
+            BlueprintIdentifier = "B8D1AD5222D58F6C00CF5EAB"
+            BuildableName = "DataStoreManager_watchOS.framework"
+            BlueprintName = "DataStoreManager-watchOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8C2CF2A22C8E6640080102C"
-            BuildableName = "DataStoreManager_iOS.framework"
-            BlueprintName = "DataStoreManager-iOS"
+            BlueprintIdentifier = "B8D1AD5222D58F6C00CF5EAB"
+            BuildableName = "DataStoreManager_watchOS.framework"
+            BlueprintName = "DataStoreManager-watchOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8C2CF2A22C8E6640080102C"
-            BuildableName = "DataStoreManager_iOS.framework"
-            BlueprintName = "DataStoreManager-iOS"
+            BlueprintIdentifier = "B8D1AD5222D58F6C00CF5EAB"
+            BuildableName = "DataStoreManager_watchOS.framework"
+            BlueprintName = "DataStoreManager-watchOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8C2CF3322C8E6640080102C"
+               BuildableName = "DataStoreManagerTests-iOS.xctest"
+               BlueprintName = "DataStoreManagerTests-iOS"
+               ReferencedContainer = "container:DataStoreManager.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B8D1AD0622D581C400CF5EAB"
+            BuildableName = "DataStoreManager_macOS.framework"
+            BlueprintName = "DataStoreManager-macOS"
+            ReferencedContainer = "container:DataStoreManager.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
