@@ -21,6 +21,7 @@ import Foundation
 extension DataStoreManager {
 
     /// An interface to the NSUbiquitousKeyValueStore.
+    @available(watchOS, unavailable)
     class UbiquitousKeyValueStoreWorker {
 
         // MARK: - Initializers

@@ -109,6 +109,7 @@ import Foundation
     }()
 
     /// An interface to the CKContainer.
+    @available(watchOSApplicationExtension 3.0, *)
     lazy var cloudKitWorker: CloudKitWorker = {
         let worker = CloudKitWorker()
         worker.dataStoreManager = self
@@ -117,6 +118,7 @@ import Foundation
     }()
 
     /// An interface to the NSUbiquitousKeyValueStore.
+    @available(watchOS, unavailable)
     lazy var ubiquitousKeyValueStoreWorker: UbiquitousKeyValueStoreWorker = {
         return UbiquitousKeyValueStoreWorker()
     }()
@@ -194,16 +196,30 @@ import Foundation
             keychainWorker.create(object: object, forKey: key, forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
-            cloudKitWorker.create(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.create(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .publicCloudDatabase:
-            cloudKitWorker.create(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.create(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .sharedCloudDatabase:
-            cloudKitWorker.create(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.create(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .ubiquitousKeyValueStore:
+            #if !os(watchOS)
             ubiquitousKeyValueStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
+            #endif
 
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)
@@ -279,16 +295,30 @@ import Foundation
             keychainWorker.read(forKey: key, forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
-            cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .publicCloudDatabase:
-            cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .sharedCloudDatabase:
-            cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .ubiquitousKeyValueStore:
+            #if !os(watchOS)
             ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
+            #endif
 
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)
@@ -364,16 +394,30 @@ import Foundation
             keychainWorker.update(object: object, forKey: key, forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
-            cloudKitWorker.update(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.update(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .publicCloudDatabase:
-            cloudKitWorker.update(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.update(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .sharedCloudDatabase:
-            cloudKitWorker.update(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.update(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .ubiquitousKeyValueStore:
+            #if !os(watchOS)
             ubiquitousKeyValueStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
+            #endif
 
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)
@@ -449,16 +493,30 @@ import Foundation
             keychainWorker.delete(forKey: key, forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
-            cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .publicCloudDatabase:
-            cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .sharedCloudDatabase:
-            cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .ubiquitousKeyValueStore:
+            #if !os(watchOS)
             ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
+            #endif
 
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)
@@ -530,16 +588,30 @@ import Foundation
             keychainWorker.deleteAll(forItemClass: .internet, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
-            cloudKitWorker.deleteAll(forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.deleteAll(forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .publicCloudDatabase:
-            cloudKitWorker.deleteAll(forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.deleteAll(forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .sharedCloudDatabase:
-            cloudKitWorker.deleteAll(forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.deleteAll(forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
+            } else {
+                // Fallback on earlier versions
+            }
 
         case .ubiquitousKeyValueStore:
+            #if !os(watchOS)
             ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
+            #endif
 
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)

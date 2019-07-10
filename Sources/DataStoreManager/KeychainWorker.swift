@@ -14,6 +14,7 @@
 //  limitations under the License.
 //
 
+import Foundation
 import Security
 #if os(iOS) || os(macOS)
 import LocalAuthentication
@@ -89,18 +90,22 @@ extension DataStoreManager {
         }
 
         var operationPrompt: String? {
+            #if os(iOS) || os(macOS)
             if let manager = dataStoreManager {
                 return manager.dataSource?.keychainOperationPrompt?(for: manager)
             }
+            #endif
             return nil
         }
 
+        #if os(iOS) || os(macOS)
         var localAuthenticationContext: LAContext? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.keychainLocalAuthenticationContext?(for: manager)
             }
             return nil
         }
+        #endif
 
         // MARK: - CRUD
 

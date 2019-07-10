@@ -109,8 +109,8 @@ import Foundation
     ///            The app is responsible for text localization.
     @available(iOS 8.0, *)
     @available(macOS 10.10, *)
-    @available(tvOS, unavailable)
     @available(watchOS, unavailable)
+    @available(tvOS, unavailable)
     @objc optional func keychainOperationPrompt(for manager: DataStoreManager) -> String
 
     /// Asks the data source for the keychain local authentication context to use of the data store manager.
@@ -135,8 +135,8 @@ import Foundation
     ///              requests may fail.
     @available(iOS 8.0, *)
     @available(macOS 10.10, *)
-    @available(tvOS, unavailable)
     @available(watchOS, unavailable)
+    @available(tvOS, unavailable)
     @objc optional func keychainLocalAuthenticationContext(for manager: DataStoreManager) -> LAContext
 
     // MARK: Cloud Kit Container

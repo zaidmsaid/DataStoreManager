@@ -21,6 +21,7 @@ import CloudKit
 extension DataStoreManager {
 
     /// An interface to the CKContainer.
+    @available(watchOSApplicationExtension 3.0, *)
     class CloudKitWorker {
 
         // MARK: - Enumerations

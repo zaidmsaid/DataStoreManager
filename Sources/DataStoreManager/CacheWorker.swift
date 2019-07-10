@@ -14,8 +14,10 @@
 //  limitations under the License.
 //
 
-#if os(iOS) || os(watchOS) || os(tvOS)
+#if os(iOS) || os(tvOS)
 import UIKit
+#elseif os(watchOS)
+import Foundation
 #else
 import Cocoa
 #endif
@@ -31,13 +33,13 @@ extension DataStoreManager {
 
         init() {
             cache.totalCostLimit = totalCostLimit
-            #if os(iOS) || os(watchOS) || os(tvOS)
+            #if os(iOS) || os(tvOS)
             NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
             #endif
         }
 
         deinit {
-            #if os(iOS) || os(watchOS) || os(tvOS)
+            #if os(iOS) || os(tvOS)
             NotificationCenter.default.removeObserver(self, name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
             #endif
         }
