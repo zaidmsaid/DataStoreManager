@@ -14,13 +14,7 @@
 //  limitations under the License.
 //
 
-#if TARGET_OS_WATCH
 #import <WatchKit/WatchKit.h>
-#elseif TARGET_OS_IOS
-#import <UIKit/UIKit.h>
-#else
-#import <Cocoa/Cocoa.h>
-#endif
 
 //! Project version number for DataStoreManager.
 FOUNDATION_EXPORT double DataStoreManagerVersionNumber;
