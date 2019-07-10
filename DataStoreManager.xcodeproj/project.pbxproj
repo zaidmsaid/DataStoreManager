@@ -77,14 +77,12 @@
 
 /* Begin PBXFileReference section */
 		B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousKeyValueStoreWorker.swift; sourceTree = "<group>"; };
-		B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8C2CF3422C8E6640080102C /* DataStoreManagerTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B886C18E22CC368A00EBEBE4 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
+		B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-UIKit.h"; sourceTree = "<group>"; };
 		B8C2CF2F22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8C2CF3422C8E6640080102C /* DataStoreManagerTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
 		B8C2CF3B22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8C2CF4922C8EE980080102C /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
@@ -95,6 +93,8 @@
 		B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationType.swift; sourceTree = "<group>"; };
 		B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolType.swift; sourceTree = "<group>"; };
 		B8C9485D22D1B0B300B0E72D /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
+		B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D59F1222D69476000BD1AD /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
 		B8D59F1322D6948F000BD1AD /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
 		B8D59F1622D697AD000BD1AD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -276,6 +276,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		B82A946622D629FD00AB64F4 /* DataStoreManagerTests-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B82A946F22D629FE00AB64F4 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-macOS" */;
+			buildPhases = (
+				B82A946322D629FD00AB64F4 /* Sources */,
+				B82A946422D629FD00AB64F4 /* Frameworks */,
+				B82A946522D629FD00AB64F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B82A946E22D629FE00AB64F4 /* PBXTargetDependency */,
+			);
+			name = "DataStoreManagerTests-macOS";
+			productName = DataStoreManagerTests;
+			productReference = B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8C2CF3F22C8E6640080102C /* Build configuration list for PBXNativeTarget "DataStoreManager-iOS" */;
@@ -329,24 +347,6 @@
 			productName = DataStoreManager;
 			productReference = B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		B82A946622D629FD00AB64F4 /* DataStoreManagerTests-macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B82A946F22D629FE00AB64F4 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-macOS" */;
-			buildPhases = (
-				B82A946322D629FD00AB64F4 /* Sources */,
-				B82A946422D629FD00AB64F4 /* Frameworks */,
-				B82A946522D629FD00AB64F4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B82A946E22D629FE00AB64F4 /* PBXTargetDependency */,
-			);
-			name = "DataStoreManagerTests-macOS";
-			productName = DataStoreManagerTests;
-			productReference = B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */ = {
 			isa = PBXNativeTarget;
