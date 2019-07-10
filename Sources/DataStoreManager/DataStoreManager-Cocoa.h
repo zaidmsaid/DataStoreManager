@@ -14,12 +14,8 @@
 //  limitations under the License.
 //
 
-#if TARGET_OS_WATCH
-#import <WatchKit/WatchKit.h>
-#elseif TARGET_OS_OSX
+#if TARGET_OS_OSX
 #import <Cocoa/Cocoa.h>
-#elseif TARGET_OS_IOS || TARGET_OS_TV
-#import <UIKit/UIKit.h>
 #endif
 
 //! Project version number for DataStoreManager.
