@@ -14,12 +14,12 @@
 //  limitations under the License.
 //
 
-#if TARGET_OS_MAC
-#import <Cocoa/Cocoa.h>
-#elseif TARGET_OS_WATCH
+#if TARGET_OS_WATCH
 #import <WatchKit/WatchKit.h>
-#else
+#elseif TARGET_OS_IOS
 #import <UIKit/UIKit.h>
+#else
+#import <Cocoa/Cocoa.h>
 #endif
 
 //! Project version number for DataStoreManager.
