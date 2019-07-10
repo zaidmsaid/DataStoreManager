@@ -10,7 +10,6 @@
 		B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
 		B82A943E22D624CA00AB64F4 /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B82A943F22D624D500AB64F4 /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B82A946A22D629FE00AB64F4 /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82A946922D629FE00AB64F4 /* DataStoreManagerTests.swift */; };
 		B82A946C22D629FE00AB64F4 /* DataStoreManager_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */; };
 		B82D10F622D5BE3E00670392 /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
@@ -51,6 +50,10 @@
 		B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
 		B8D1AD6922D5924200CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
 		B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
+		B8EC6C1A22D68C2E006CC3E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8EC6C1922D68C2E006CC3E3 /* UIKit.framework */; };
+		B8EC6C1C22D68C36006CC3E3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8EC6C1B22D68C36006CC3E3 /* Cocoa.framework */; };
+		B8EC6C1E22D68C3F006CC3E3 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8EC6C1D22D68C3F006CC3E3 /* WatchKit.framework */; };
+		B8EC6C1F22D68D10006CC3E3 /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
 		B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
 		B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
 /* End PBXBuildFile section */
@@ -75,8 +78,6 @@
 /* Begin PBXFileReference section */
 		B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousKeyValueStoreWorker.swift; sourceTree = "<group>"; };
 		B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B82A946922D629FE00AB64F4 /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
-		B82A946B22D629FE00AB64F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B886C18E22CC368A00EBEBE4 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
 		B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF2E22C8E6640080102C /* DataStoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStoreManager.h; sourceTree = "<group>"; };
@@ -95,6 +96,9 @@
 		B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitWorker.swift; sourceTree = "<group>"; };
+		B8EC6C1922D68C2E006CC3E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B8EC6C1B22D68C36006CC3E3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		B8EC6C1D22D68C3F006CC3E3 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.2.sdk/System/Library/Frameworks/WatchKit.framework; sourceTree = DEVELOPER_DIR; };
 		B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
 		B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EC6C1A22D68C2E006CC3E3 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EC6C1C22D68C36006CC3E3 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,27 +140,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8EC6C1E22D68C3F006CC3E3 /* WatchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B82A946822D629FE00AB64F4 /* DataStoreManagerTests */ = {
-			isa = PBXGroup;
-			children = (
-				B82A946922D629FE00AB64F4 /* DataStoreManagerTests.swift */,
-				B82A946B22D629FE00AB64F4 /* Info.plist */,
-			);
-			path = DataStoreManagerTests;
-			sourceTree = "<group>";
-		};
 		B8C2CF2122C8E6640080102C = {
 			isa = PBXGroup;
 			children = (
 				B8C2CF2D22C8E6640080102C /* Sources */,
 				B8C2CF3822C8E6640080102C /* Tests */,
-				B82A946822D629FE00AB64F4 /* DataStoreManagerTests */,
 				B8C2CF2C22C8E6640080102C /* Products */,
 				B8D1AD1E22D5833800CF5EAB /* Frameworks */,
 			);
@@ -238,6 +235,9 @@
 		B8D1AD1E22D5833800CF5EAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B8EC6C1D22D68C3F006CC3E3 /* WatchKit.framework */,
+				B8EC6C1B22D68C36006CC3E3 /* Cocoa.framework */,
+				B8EC6C1922D68C2E006CC3E3 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -457,7 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82A946A22D629FE00AB64F4 /* DataStoreManagerTests.swift in Sources */,
+				B8EC6C1F22D68D10006CC3E3 /* DataStoreManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +552,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = DataStoreManagerTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -573,7 +573,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = DataStoreManagerTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
