@@ -38,10 +38,10 @@ extension DataStoreManager {
         // MARK: - Type Aliases
 
         /// Type to mean instance of DataStoreProtocolType.
-        public typealias ProtocolType = DataStoreProtocolType
+        typealias ProtocolType = DataStoreProtocolType
 
         /// Type to mean instance of DataStoreAuthenticationType.
-        public typealias AuthenticationType = DataStoreAuthenticationType
+        typealias AuthenticationType = DataStoreAuthenticationType
 
         // MARK: - Properties
 

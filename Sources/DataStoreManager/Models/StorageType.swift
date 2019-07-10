@@ -14,6 +14,7 @@
 //  limitations under the License.
 //
 
+import Foundation
 import Security
 
 /// Constants that provide information regarding storage type of data store manager.
@@ -24,7 +25,7 @@ import Security
     /// Creates a new instance with the specified raw value.
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
-    init(_ rawValue: RawValue) {
+    init(_ rawValue: String) {
         self.rawValue = rawValue
         super.init()
     }
@@ -34,7 +35,7 @@ import Security
     /// - Parameter rawValue: The raw value to use for the new instance.
     ///
     /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
-    public required init?(rawValue: RawValue) {
+    public required init?(rawValue: String) {
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
                 self.rawValue = rawValue
@@ -44,10 +45,6 @@ import Security
         }
         return nil
     }
-
-    // MARK: - Type Aliases
-
-    public typealias RawValue = String
 
     // MARK: - Properties
 
