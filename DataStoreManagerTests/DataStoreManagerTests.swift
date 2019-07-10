@@ -15,13 +15,8 @@
 //
 
 import XCTest
-#if os(macOS)
-@testable import DataStoreManager_macOS
-#elseif os(iOS)
-@testable import DataStoreManager_iOS
-#endif
 
-final class DataStoreManagerTests: XCTestCase {
+class DataStoreManagerTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -43,7 +38,4 @@ final class DataStoreManagerTests: XCTestCase {
         }
     }
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
