@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
+		B82A942622D61D8F00AB64F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82A942522D61D8F00AB64F4 /* UIKit.framework */; };
+		B82A942722D61D9800AB64F4 /* UIKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = B82A942522D61D8F00AB64F4 /* UIKit.framework */; };
+		B82A942922D61DA400AB64F4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82A942822D61DA400AB64F4 /* Cocoa.framework */; };
+		B82A942A22D61DAD00AB64F4 /* Cocoa.framework in Resources */ = {isa = PBXBuildFile; fileRef = B82A942822D61DA400AB64F4 /* Cocoa.framework */; };
+		B82A942C22D61DB700AB64F4 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82A942B22D61DB700AB64F4 /* WatchKit.framework */; };
+		B82A942D22D61DC100AB64F4 /* WatchKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = B82A942B22D61DB700AB64F4 /* WatchKit.framework */; };
 		B82D10F622D5BE3E00670392 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B82D10FC22D5CC1800670392 /* DataStoreManager-Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = B82D10FB22D5CBE800670392 /* DataStoreManager-Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B82D10FD22D5CC2000670392 /* DataStoreManager-WatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B82D10FA22D5CBDE00670392 /* DataStoreManager-WatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,6 +71,9 @@
 
 /* Begin PBXFileReference section */
 		B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousKeyValueStoreWorker.swift; sourceTree = "<group>"; };
+		B82A942522D61D8F00AB64F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B82A942822D61DA400AB64F4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		B82A942B22D61DB700AB64F4 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.2.sdk/System/Library/Frameworks/WatchKit.framework; sourceTree = DEVELOPER_DIR; };
 		B82D10FA22D5CBDE00670392 /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
 		B82D10FB22D5CBE800670392 /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
 		B886C18E22CC368A00EBEBE4 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
@@ -94,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82A942622D61D8F00AB64F4 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82A942922D61DA400AB64F4 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82A942C22D61DB700AB64F4 /* WatchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +223,9 @@
 		B8D1AD1E22D5833800CF5EAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B82A942B22D61DB700AB64F4 /* WatchKit.framework */,
+				B82A942822D61DA400AB64F4 /* Cocoa.framework */,
+				B82A942522D61D8F00AB64F4 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -336,9 +351,11 @@
 					};
 					B8D1AD0622D581C400CF5EAB = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					B8D1AD5222D58F6C00CF5EAB = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -367,6 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82A942722D61D9800AB64F4 /* UIKit.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +399,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82A942A22D61DAD00AB64F4 /* Cocoa.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82A942D22D61DC100AB64F4 /* WatchKit.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +709,7 @@
 		B8D1AD0D22D581C400CF5EAB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -710,6 +731,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -717,6 +739,7 @@
 		B8D1AD0E22D581C400CF5EAB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -746,6 +769,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -764,6 +788,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -774,6 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
