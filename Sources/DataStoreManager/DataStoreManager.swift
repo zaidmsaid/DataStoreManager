@@ -242,7 +242,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func read(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func read(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
         if let objectType = getObjectType(from: object) {
             read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
         } else {
@@ -266,7 +266,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func read(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func read(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
         if let objectType = getObjectType(from: object) {
             read(forKey: key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
         } else {
@@ -499,7 +499,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func delete(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func delete(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
         if let objectType = getObjectType(from: object) {
             delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
         } else {
@@ -523,7 +523,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func delete(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func delete(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
         if let objectType = getObjectType(from: object) {
             delete(forKey: key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
         } else {
