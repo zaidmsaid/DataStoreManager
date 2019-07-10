@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
-		B82D10F622D5BE3E00670392 /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B82D10F722D5BE4400670392 /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B82D10F822D5BE4A00670392 /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B82D10F922D5BE5000670392 /* DataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B82D10F622D5BE3E00670392 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B82D10F922D5BE5000670392 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B82D10FC22D5CC1800670392 /* DataStoreManager-Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = B82D10FB22D5CBE800670392 /* DataStoreManager-Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B82D10FD22D5CC2000670392 /* DataStoreManager-WatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B82D10FA22D5CBDE00670392 /* DataStoreManager-WatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
 		B8C2CF3522C8E6640080102C /* DataStoreManager_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */; };
 		B8C2CF3A22C8E6640080102C /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
@@ -79,9 +79,11 @@
 
 /* Begin PBXFileReference section */
 		B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousKeyValueStoreWorker.swift; sourceTree = "<group>"; };
+		B82D10FA22D5CBDE00670392 /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
+		B82D10FB22D5CBE800670392 /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
 		B886C18E22CC368A00EBEBE4 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
 		B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8C2CF2E22C8E6640080102C /* DataStoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStoreManager.h; sourceTree = "<group>"; };
+		B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-UIKit.h"; sourceTree = "<group>"; };
 		B8C2CF2F22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8C2CF3422C8E6640080102C /* DataStoreManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataStoreManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
@@ -194,7 +196,9 @@
 				B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */,
 				B8C9485522D1AEDD00B0E72D /* Models */,
 				B8C9485C22D1B0A000B0E72D /* Protocols */,
-				B8C2CF2E22C8E6640080102C /* DataStoreManager.h */,
+				B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */,
+				B82D10FB22D5CBE800670392 /* DataStoreManager-Cocoa.h */,
+				B82D10FA22D5CBDE00670392 /* DataStoreManager-WatchKit.h */,
 			);
 			path = DataStoreManager;
 			sourceTree = "<group>";
@@ -241,7 +245,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82D10F622D5BE3E00670392 /* DataStoreManager.h in Headers */,
+				B82D10F622D5BE3E00670392 /* DataStoreManager-UIKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +253,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82D10F722D5BE4400670392 /* DataStoreManager.h in Headers */,
+				B82D10FC22D5CC1800670392 /* DataStoreManager-Cocoa.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +261,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82D10F822D5BE4A00670392 /* DataStoreManager.h in Headers */,
+				B82D10FD22D5CC2000670392 /* DataStoreManager-WatchKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +269,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82D10F922D5BE5000670392 /* DataStoreManager.h in Headers */,
+				B82D10F922D5BE5000670392 /* DataStoreManager-UIKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
