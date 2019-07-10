@@ -17,7 +17,7 @@
 import Foundation
 
 /// An interface to the data store manager, where you store key-value pairs persistently across launches of your app.
-@objcMembers open class DataStoreManager : NSObject {
+@objc open class DataStoreManager : NSObject {
 
     // MARK: - Initializers
 
@@ -29,7 +29,7 @@ import Foundation
     ///
     /// - Returns: An initialized object, or `nil` if an object could not be created for some reason that
     ///            would not result in an exception.
-    public required init(identifier: String) {
+    @objc public required init(identifier: String) {
         self.ID = identifier
         self.defaultType = .userDefaults
         super.init()
@@ -38,19 +38,19 @@ import Foundation
     // MARK: - Properties
 
     /// Returns the data store manager framework short version string.
-    open var version: String? {
+    @objc open var version: String? {
         return Bundle(for: DataStoreManager.self).object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
 
     /// Returns the identifier of the data store manager.
-    open var identifier: String {
+    @objc open var identifier: String {
         return ID
     }
 
     /// An integer that you can use to identify data store manager objects in your application.
     ///
     /// The default value is 0. You can set the value of this tag and use that value to identify the data store manager later.
-    open var tag: Int = 0 {
+    @objc open var tag: Int = 0 {
         willSet {
         }
     }
@@ -59,7 +59,7 @@ import Foundation
     ///
     /// The data source must adopt the [DataStoreManagerDataSource](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html)
     /// protocol. The data source is not retained.
-    open weak var dataSource: DataStoreManagerDataSource? {
+    @objc open weak var dataSource: DataStoreManagerDataSource? {
         willSet {
             if let defaultType = newValue?.defaultStorageType?(for: self) {
                 self.defaultType = defaultType
@@ -71,7 +71,7 @@ import Foundation
     ///
     /// The delegate must adopt the [DataStoreManagerDelegate](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html)
     /// protocol. The delegate is not retained.
-    open weak var delegate: DataStoreManagerDelegate? {
+    @objc open weak var delegate: DataStoreManagerDelegate? {
         willSet {
         }
     }
@@ -137,7 +137,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         create(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -157,7 +157,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func create(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func create(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -225,6 +225,53 @@ import Foundation
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
+        }
+    }
+
+    /// Returns the object associated with the specified key.
+    ///
+    /// - Parameters:
+    ///   - object: The object for the property identified by key.
+    ///   - key: The key to identify the data store manager object.
+    ///   - completionHandler: The block to execute with the associated object.
+    ///                        This block is executed asynchronously on your app's main thread.
+    ///                        The block has no return value and takes the following parameter:
+    /// - Parameter object: The object associated with the specified key, or nil if the key was not found.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
+    ///                    in the error object to determine whether a problem has a workaround.
+    open func read(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        if let objectType = getObjectType(from: object) {
+            read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
+        } else {
+            let error = ErrorObject(protocol: .readFailed(detail: "Unable to get object type for \(object)."))
+            completionHandler(nil, nil, error)
+        }
+    }
+
+    /// Returns the object associated with the specified key.
+    ///
+    /// - Parameters:
+    ///   - object: The object for the property identified by key.
+    ///   - key: The key to identify the data store manager object.
+    ///   - storageType: A storage type constant.
+    ///   - completionHandler: The block to execute with the associated object.
+    ///                        This block is executed asynchronously on your app's main thread.
+    ///                        The block has no return value and takes the following parameter:
+    /// - Parameter object: The object associated with the specified key, or nil if the key was not found.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
+    ///                    in the error object to determine whether a problem has a workaround.
+    open func read(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        if let objectType = getObjectType(from: object) {
+            read(forKey: key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
+        } else {
+            let error = ErrorObject(protocol: .readFailed(detail: "Unable to get object type for \(object)."))
+            completionHandler(nil, nil, error)
         }
     }
 
@@ -347,7 +394,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -367,7 +414,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -435,6 +482,53 @@ import Foundation
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
+        }
+    }
+
+    /// Removes the object of the specified default key.
+    ///
+    /// - Parameters:
+    ///   - object: The object for the property identified by key.
+    ///   - key: The key to identify the data store manager object.
+    ///   - completionHandler: The block to execute with the successful flag.
+    ///                        This block is executed asynchronously on your app's main thread.
+    ///                        The block has no return value and takes the following parameter:
+    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
+    ///                    in the error object to determine whether a problem has a workaround.
+    open func delete(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        if let objectType = getObjectType(from: object) {
+            delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
+        } else {
+            let error = ErrorObject(protocol: .deleteFailed(detail: "Unable to get object type for \(object)."))
+            completionHandler(nil, nil, error)
+        }
+    }
+
+    /// Removes the object of the specified default key.
+    ///
+    /// - Parameters:
+    ///   - object: The object for the property identified by key.
+    ///   - key: The key to identify the data store manager object.
+    ///   - storageType: A storage type constant.
+    ///   - completionHandler: The block to execute with the successful flag.
+    ///                        This block is executed asynchronously on your app's main thread.
+    ///                        The block has no return value and takes the following parameter:
+    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
+    ///                    in the error object to determine whether a problem has a workaround.
+    open func delete(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        if let objectType = getObjectType(from: object) {
+            delete(forKey: key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
+        } else {
+            let error = ErrorObject(protocol: .deleteFailed(detail: "Unable to get object type for \(object)."))
+            completionHandler(nil, nil, error)
         }
     }
 
@@ -555,7 +649,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         deleteAll(forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -573,7 +667,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    @objc open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -661,7 +755,7 @@ import Foundation
     /// if the schema version is the same or not.If the schema needs to be migrated, it will call
     /// [dataStoreManager(_:performMigrationFromOldVersion:forType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:)
     /// delegate method.
-    open func migrateSchema(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
+    @objc open func migrateSchema(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
 
         let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"
 
@@ -679,6 +773,31 @@ import Foundation
 
         } else {
             completionHandler(true, nil)
+        }
+    }
+
+    private func getObjectType<T>(from object: T) -> T.Type? {
+        switch object {
+        case is String:
+            return String.self as? T.Type
+
+        case is Bool:
+            return Bool.self as? T.Type
+
+        case is Int:
+            return Int.self as? T.Type
+
+        case is Float:
+            return Float.self as? T.Type
+
+        case is Double:
+            return Double.self as? T.Type
+
+        case is Data:
+            return Data.self as? T.Type
+
+        default:
+            return Any.self as? T.Type
         }
     }
 }
