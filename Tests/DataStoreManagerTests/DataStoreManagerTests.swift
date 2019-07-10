@@ -15,7 +15,11 @@
 //
 
 import XCTest
-@testable import DataStoreManager
+#if os(iOS)
+@testable import DataStoreManager_iOS
+#else
+@testable import DataStoreManager_macOS
+#endif
 
 final class DataStoreManagerTests: XCTestCase {
 

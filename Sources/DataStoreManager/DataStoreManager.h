@@ -15,6 +15,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Cocoa/Cocoa.h>
 
 //! Project version number for DataStoreManager.
 FOUNDATION_EXPORT double DataStoreManagerVersionNumber;
