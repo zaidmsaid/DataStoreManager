@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-#if os(iOS) || os(watchOS) || os(tvOS)
+#if os(iOS) || os(watchOS)
 import UIKit
 #else
 import Cocoa
@@ -197,7 +197,7 @@ fileprivate protocol AnySubclass: Any {
 
 fileprivate extension AnySubclass {
     func toData() -> Data? {
-        #if os(iOS) || os(watchOS) || os(tvOS)
+        #if os(iOS) || os(watchOS)
         if self is UIImage {
             return (self as? UIImage)?.data
         }
@@ -307,7 +307,7 @@ extension String: DataConvertible {
     }
 }
 
-#if os(iOS) || os(watchOS) || os(tvOS)
+#if os(iOS) || os(watchOS)
 extension UIImage: DataConvertible {
     var data: Data {
         if let pngData = self.pngData() {
