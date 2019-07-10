@@ -137,7 +137,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         create(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -157,7 +157,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func create(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -242,7 +242,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func read(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
         if let objectType = getObjectType(from: object) {
             read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
         } else {
@@ -266,7 +266,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func read(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
         if let objectType = getObjectType(from: object) {
             read(forKey: key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
         } else {
@@ -394,7 +394,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -414,7 +414,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -499,7 +499,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func delete(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete(object: Any, forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
         if let objectType = getObjectType(from: object) {
             delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
         } else {
@@ -523,7 +523,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func delete(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
         if let objectType = getObjectType(from: object) {
             delete(forKey: key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
         } else {
@@ -649,7 +649,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         deleteAll(forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -667,7 +667,7 @@ import Foundation
     ///                       and it is the object that uniquely identifies a record in a database.
     /// - Parameter error: An error object, or `nil` if it was completed successfully. Use the information
     ///                    in the error object to determine whether a problem has a workaround.
-    @objc open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
