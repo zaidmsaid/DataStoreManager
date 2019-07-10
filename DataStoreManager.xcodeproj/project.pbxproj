@@ -10,6 +10,22 @@
 		B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
 		B82A946C22D629FE00AB64F4 /* DataStoreManager_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */; };
 		B82D10F622D5BE3E00670392 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B83A5D0422D6A821007DF85B /* DataStoreManager_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */; };
+		B83A5D0A22D6A883007DF85B /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B83A5D0B22D6A8B5007DF85B /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
+		B83A5D0C22D6A977007DF85B /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
+		B83A5D0D22D6A979007DF85B /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
+		B83A5D0E22D6A97C007DF85B /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
+		B83A5D0F22D6A980007DF85B /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
+		B83A5D1022D6A983007DF85B /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
+		B83A5D1122D6A986007DF85B /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
+		B83A5D1222D6A98A007DF85B /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
+		B83A5D1322D6A98D007DF85B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
+		B83A5D1422D6A990007DF85B /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
+		B83A5D1522D6A998007DF85B /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
+		B83A5D1622D6A99B007DF85B /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
+		B83A5D1722D6A99F007DF85B /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
+		B83A5D1822D6A9A2007DF85B /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
 		B83B2A3822D69FB900BFBAF2 /* DataStoreManager-Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = B83B2A3622D69F6A00BFBAF2 /* DataStoreManager-Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B83B2A3922D69FC000BFBAF2 /* DataStoreManager-WatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B83B2A3722D69F8600BFBAF2 /* DataStoreManager-WatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
@@ -63,6 +79,13 @@
 			remoteGlobalIDString = B8D1AD0622D581C400CF5EAB;
 			remoteInfo = "DataStoreManager-macOS";
 		};
+		B83A5D0522D6A821007DF85B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B83A5CF222D6A802007DF85B;
+			remoteInfo = DataStoreManager;
+		};
 		B8C2CF3622C8E6640080102C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
@@ -75,6 +98,8 @@
 /* Begin PBXFileReference section */
 		B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousKeyValueStoreWorker.swift; sourceTree = "<group>"; };
 		B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B83A5CFF22D6A821007DF85B /* DataStoreManagerTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83B2A3622D69F6A00BFBAF2 /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
 		B83B2A3722D69F8600BFBAF2 /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
 		B886C18E22CC368A00EBEBE4 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
@@ -105,6 +130,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B82A946C22D629FE00AB64F4 /* DataStoreManager_macOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B83A5CF022D6A802007DF85B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B83A5CFC22D6A821007DF85B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B83A5D0422D6A821007DF85B /* DataStoreManager_tvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,8 +196,10 @@
 				B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */,
 				B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */,
 				B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */,
+				B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */,
 				B8C2CF3422C8E6640080102C /* DataStoreManagerTests-iOS.xctest */,
 				B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */,
+				B83A5CFF22D6A821007DF85B /* DataStoreManagerTests-tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,6 +279,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		B83A5CEE22D6A802007DF85B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B83A5D0A22D6A883007DF85B /* DataStoreManager-UIKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8C2CF2622C8E6640080102C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -280,6 +330,42 @@
 			name = "DataStoreManagerTests-macOS";
 			productName = DataStoreManagerTests;
 			productReference = B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B83A5CF222D6A802007DF85B /* DataStoreManager-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B83A5CFA22D6A802007DF85B /* Build configuration list for PBXNativeTarget "DataStoreManager-tvOS" */;
+			buildPhases = (
+				B83A5CEE22D6A802007DF85B /* Headers */,
+				B83A5CEF22D6A802007DF85B /* Sources */,
+				B83A5CF022D6A802007DF85B /* Frameworks */,
+				B83A5CF122D6A802007DF85B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DataStoreManager-tvOS";
+			productName = DataStoreManager;
+			productReference = B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B83A5CFE22D6A821007DF85B /* DataStoreManagerTests-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B83A5D0722D6A821007DF85B /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-tvOS" */;
+			buildPhases = (
+				B83A5CFB22D6A821007DF85B /* Sources */,
+				B83A5CFC22D6A821007DF85B /* Frameworks */,
+				B83A5CFD22D6A821007DF85B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B83A5D0622D6A821007DF85B /* PBXTargetDependency */,
+			);
+			name = "DataStoreManagerTests-tvOS";
+			productName = DataStoreManagerTests;
+			productReference = B83A5CFF22D6A821007DF85B /* DataStoreManagerTests-tvOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */ = {
@@ -368,6 +454,12 @@
 					B82A946622D629FD00AB64F4 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
+					B83A5CF222D6A802007DF85B = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					B83A5CFE22D6A821007DF85B = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					B8C2CF2A22C8E6640080102C = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
@@ -400,14 +492,30 @@
 				B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */,
 				B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */,
 				B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */,
+				B83A5CF222D6A802007DF85B /* DataStoreManager-tvOS */,
 				B8C2CF3322C8E6640080102C /* DataStoreManagerTests-iOS */,
 				B82A946622D629FD00AB64F4 /* DataStoreManagerTests-macOS */,
+				B83A5CFE22D6A821007DF85B /* DataStoreManagerTests-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B82A946522D629FD00AB64F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B83A5CF122D6A802007DF85B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B83A5CFD22D6A821007DF85B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -450,6 +558,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8EC6C1F22D68D10006CC3E3 /* DataStoreManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B83A5CEF22D6A802007DF85B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B83A5D0C22D6A977007DF85B /* Delegate.swift in Sources */,
+				B83A5D0D22D6A979007DF85B /* DataSource.swift in Sources */,
+				B83A5D0E22D6A97C007DF85B /* Error.swift in Sources */,
+				B83A5D0F22D6A980007DF85B /* AuthenticationType.swift in Sources */,
+				B83A5D1022D6A983007DF85B /* ProtocolType.swift in Sources */,
+				B83A5D1122D6A986007DF85B /* StorageType.swift in Sources */,
+				B83A5D1222D6A98A007DF85B /* UbiquitousKeyValueStoreWorker.swift in Sources */,
+				B83A5D1322D6A98D007DF85B /* CloudKitWorker.swift in Sources */,
+				B83A5D1422D6A990007DF85B /* KeychainWorker.swift in Sources */,
+				B83A5D1522D6A998007DF85B /* CacheWorker.swift in Sources */,
+				B83A5D1622D6A99B007DF85B /* FileManagerWorker.swift in Sources */,
+				B83A5D1722D6A99F007DF85B /* UserDefaultsWorker.swift in Sources */,
+				B83A5D1822D6A9A2007DF85B /* DataStoreManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B83A5CFB22D6A821007DF85B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B83A5D0B22D6A8B5007DF85B /* DataStoreManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +665,11 @@
 			target = B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */;
 			targetProxy = B82A946D22D629FE00AB64F4 /* PBXContainerItemProxy */;
 		};
+		B83A5D0622D6A821007DF85B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B83A5CF222D6A802007DF85B /* DataStoreManager-tvOS */;
+			targetProxy = B83A5D0522D6A821007DF85B /* PBXContainerItemProxy */;
+		};
 		B8C2CF3722C8E6640080102C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */;
@@ -576,6 +717,102 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B83A5CF822D6A802007DF85B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		B83A5CF922D6A802007DF85B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		B83A5D0822D6A821007DF85B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		B83A5D0922D6A821007DF85B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -918,6 +1155,24 @@
 			buildConfigurations = (
 				B82A947022D629FE00AB64F4 /* Debug */,
 				B82A947122D629FE00AB64F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B83A5CFA22D6A802007DF85B /* Build configuration list for PBXNativeTarget "DataStoreManager-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B83A5CF822D6A802007DF85B /* Debug */,
+				B83A5CF922D6A802007DF85B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B83A5D0722D6A821007DF85B /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B83A5D0822D6A821007DF85B /* Debug */,
+				B83A5D0922D6A821007DF85B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
