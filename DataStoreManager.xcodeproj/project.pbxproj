@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
 		B82D10F622D5BE3E00670392 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B82D10F922D5BE5000670392 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B82D10FC22D5CC1800670392 /* DataStoreManager-Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = B82D10FB22D5CBE800670392 /* DataStoreManager-Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B82D10FD22D5CC2000670392 /* DataStoreManager-WatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B82D10FA22D5CBDE00670392 /* DataStoreManager-WatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
@@ -49,19 +48,6 @@
 		B8D1AD6722D5923B00CF5EAB /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
 		B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
 		B8D1AD6922D5924200CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
-		B8D1ADB322D598E700CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
-		B8D1ADB422D598EC00CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
-		B8D1ADB522D598EF00CF5EAB /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
-		B8D1ADB622D598F200CF5EAB /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
-		B8D1ADB722D598F500CF5EAB /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
-		B8D1ADB822D598FA00CF5EAB /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
-		B8D1ADB922D598FD00CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
-		B8D1ADBA22D5990700CF5EAB /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
-		B8D1ADBB22D5990A00CF5EAB /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
-		B8D1ADBC22D5990C00CF5EAB /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
-		B8D1ADBD22D5990F00CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
-		B8D1ADBE22D5991200CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
-		B8D1ADBF22D5991500CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
 		B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
 		B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
 		B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
@@ -98,7 +84,6 @@
 		B8C9485D22D1B0B300B0E72D /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
 		B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8D1ADA722D5957B00CF5EAB /* DataStoreManager_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitWorker.swift; sourceTree = "<group>"; };
 		B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
 		B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWorker.swift; sourceTree = "<group>"; };
@@ -134,13 +119,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1ADA422D5957B00CF5EAB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -161,7 +139,6 @@
 				B8C2CF3422C8E6640080102C /* DataStoreManagerTests.xctest */,
 				B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */,
 				B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */,
-				B8D1ADA722D5957B00CF5EAB /* DataStoreManager_tvOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,14 +242,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1ADA222D5957B00CF5EAB /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B82D10F922D5BE5000670392 /* DataStoreManager-UIKit.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -348,24 +317,6 @@
 			productReference = B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B8D1ADA622D5957B00CF5EAB /* DataStoreManager-tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B8D1ADAE22D5957B00CF5EAB /* Build configuration list for PBXNativeTarget "DataStoreManager-tvOS" */;
-			buildPhases = (
-				B8D1ADA222D5957B00CF5EAB /* Headers */,
-				B8D1ADA322D5957B00CF5EAB /* Sources */,
-				B8D1ADA422D5957B00CF5EAB /* Frameworks */,
-				B8D1ADA522D5957B00CF5EAB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "DataStoreManager-tvOS";
-			productName = DataStoreManager;
-			productReference = B8D1ADA722D5957B00CF5EAB /* DataStoreManager_tvOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -389,9 +340,6 @@
 					B8D1AD5222D58F6C00CF5EAB = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
-					B8D1ADA622D5957B00CF5EAB = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
 				};
 			};
 			buildConfigurationList = B8C2CF2522C8E6640080102C /* Build configuration list for PBXProject "DataStoreManager" */;
@@ -409,7 +357,6 @@
 				B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */,
 				B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */,
 				B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */,
-				B8D1ADA622D5957B00CF5EAB /* DataStoreManager-tvOS */,
 				B8C2CF3322C8E6640080102C /* DataStoreManagerTests */,
 			);
 		};
@@ -438,13 +385,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8D1AD5122D58F6C00CF5EAB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8D1ADA522D5957B00CF5EAB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -519,26 +459,6 @@
 				B8D1AD6722D5923B00CF5EAB /* FileManagerWorker.swift in Sources */,
 				B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */,
 				B8D1AD6922D5924200CF5EAB /* DataStoreManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8D1ADA322D5957B00CF5EAB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B8D1ADBF22D5991500CF5EAB /* Delegate.swift in Sources */,
-				B8D1ADBE22D5991200CF5EAB /* DataSource.swift in Sources */,
-				B8D1ADBD22D5990F00CF5EAB /* Error.swift in Sources */,
-				B8D1ADBC22D5990C00CF5EAB /* AuthenticationType.swift in Sources */,
-				B8D1ADBB22D5990A00CF5EAB /* ProtocolType.swift in Sources */,
-				B8D1ADBA22D5990700CF5EAB /* StorageType.swift in Sources */,
-				B8D1ADB922D598FD00CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */,
-				B8D1ADB822D598FA00CF5EAB /* CloudKitWorker.swift in Sources */,
-				B8D1ADB722D598F500CF5EAB /* KeychainWorker.swift in Sources */,
-				B8D1ADB622D598F200CF5EAB /* CacheWorker.swift in Sources */,
-				B8D1ADB522D598EF00CF5EAB /* FileManagerWorker.swift in Sources */,
-				B8D1ADB422D598EC00CF5EAB /* UserDefaultsWorker.swift in Sources */,
-				B8D1ADB322D598E700CF5EAB /* DataStoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,60 +798,6 @@
 			};
 			name = Release;
 		};
-		B8D1ADAC22D5957B00CF5EAB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = C8C5YY57VR;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Debug;
-		};
-		B8D1ADAD22D5957B00CF5EAB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = C8C5YY57VR;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -976,15 +842,6 @@
 			buildConfigurations = (
 				B8D1AD5922D58F6C00CF5EAB /* Debug */,
 				B8D1AD5A22D58F6C00CF5EAB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B8D1ADAE22D5957B00CF5EAB /* Build configuration list for PBXNativeTarget "DataStoreManager-tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B8D1ADAC22D5957B00CF5EAB /* Debug */,
-				B8D1ADAD22D5957B00CF5EAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

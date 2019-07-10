@@ -126,7 +126,6 @@ Available storage types:
 * iOS 8.0+
 * macOS 10.10+
 * watchOS 2.0+
-* tvOS 9.0+
 * Xcode 10.2+
 
 ### Installing
@@ -174,7 +173,7 @@ To install it, simply add the following line to your **Package.swift**:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.8.3"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.8.4"))
 ]
 ```
 
@@ -182,7 +181,7 @@ or more strict:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.8.3"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.8.4"))
 ]
 ```
 
