@@ -23,6 +23,15 @@ import Foundation
 /// The methods adopted by the object you use to manage data for a data store manager.
 @objc public protocol DataStoreManagerDataSource: class {
 
+    // MARK: - Type Aliases
+
+    /// Type to mean instance of LAContext.
+    #if os(iOS) || os(macOS)
+    typealias LocalAuthenticationContext = LAContext
+    #else
+    typealias LocalAuthenticationContext = String
+    #endif
+
     // MARK: Core
 
     /// Asks the data source for the default storage type for the data store manager.
@@ -109,8 +118,8 @@ import Foundation
     ///            The app is responsible for text localization.
     @available(iOS 8.0, *)
     @available(macOS 10.10, *)
-    @available(tvOS, unavailable)
     @available(watchOS, unavailable)
+    @available(tvOS, unavailable)
     @objc optional func keychainOperationPrompt(for manager: DataStoreManager) -> String
 
     /// Asks the data source for the keychain local authentication context to use of the data store manager.
@@ -135,9 +144,9 @@ import Foundation
     ///              requests may fail.
     @available(iOS 8.0, *)
     @available(macOS 10.10, *)
-    @available(tvOS, unavailable)
     @available(watchOS, unavailable)
-    @objc optional func keychainLocalAuthenticationContext(for manager: DataStoreManager) -> LAContext
+    @available(tvOS, unavailable)
+    @objc optional func keychainLocalAuthenticationContext(for manager: DataStoreManager) -> LocalAuthenticationContext
 
     // MARK: Cloud Kit Container
 

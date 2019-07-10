@@ -83,7 +83,7 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
     public static let userDefaults = DataStoreStorageType("UserDefaults")
 
     /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the search path document directory.
+    /// with the search path document directory (`~/Documents`).
     public static let documentDirectory = DataStoreStorageType("FileManager.documentDirectory")
 
     /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
@@ -100,11 +100,11 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
     public static let applicationDirectory = DataStoreStorageType("FileManager.applicationDirectory")
 
     /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the search path core services (`System/Library/CoreServices`).
+    /// with the search path core services (`/System/Library/CoreServices`).
     public static let coreServiceDirectory = DataStoreStorageType("FileManager.coreServiceDirectory")
 
     /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the temporary directory for the current user.
+    /// with the temporary directory for the current user (`/tmp`).
     public static let temporaryDirectory = DataStoreStorageType("FileManager.temporaryDirectory")
 
     /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).

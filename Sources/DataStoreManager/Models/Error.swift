@@ -24,6 +24,16 @@ enum ErrorProtocol : Error {
     /// The bundle identifier cannot be retrieved.
     case bundleIdentifierNotAvailable
 
+    /// The platform cannot use this property or function.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case platformNotSupported(detail: String)
+
+    /// The platform version cannot use this property or function.
+    ///
+    /// - Parameter detail: The detail to place after description of the error description.
+    case platformVersionNotSupported(detail: String)
+
     /// Current schema version is lower than old schema version.
     ///
     /// - Parameter detail: The detail to place after description of the error description.
@@ -106,8 +116,14 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
         case .bundleIdentifierNotAvailable:
             return -1000
 
-        case .lowerSchemaVersion:
+        case .platformNotSupported:
             return -1100
+
+        case .platformVersionNotSupported:
+            return -1200
+
+        case .lowerSchemaVersion:
+            return -1300
 
         case .datasourceNotAvailable:
             return -2000
@@ -148,6 +164,8 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
     static var allCases: [ErrorProtocol] {
         return [
             .bundleIdentifierNotAvailable,
+            .platformNotSupported(detail: ""),
+            .platformVersionNotSupported(detail: ""),
             .lowerSchemaVersion(detail: ""),
             .datasourceNotAvailable(detail: ""),
             .createFailed(detail: ""),
@@ -200,6 +218,14 @@ extension ErrorProtocol : LocalizedError {
         switch self {
         case .bundleIdentifierNotAvailable:
             let message = description
+            return NSLocalizedString(message, comment: description)
+
+        case .platformNotSupported(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
+            return NSLocalizedString(message, comment: description)
+
+        case .platformVersionNotSupported(let detail):
+            let message = detail.isEmpty ? description : description + " " + detail
             return NSLocalizedString(message, comment: description)
 
         case .lowerSchemaVersion(let detail):
@@ -262,6 +288,12 @@ extension ErrorProtocol : CustomStringConvertible {
         switch self {
         case .bundleIdentifierNotAvailable:
             return "The bundle identifier cannot be retrieved."
+
+        case .platformNotSupported:
+            return "The platform cannot use this property or function."
+
+        case .platformVersionNotSupported:
+            return "The platform version cannot use this property or function."
 
         case .lowerSchemaVersion:
             return "Current schema version is lower than old schema version."

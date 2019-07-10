@@ -205,10 +205,10 @@
 <span class="c1">/// NSCache</span>
 <span class="o">.</span><span class="n">cache</span>
 
-<span class="c1">/// Keychain (kSecClass: kSecClassGenericPassword)</span>
+<span class="c1">/// Keychain (kSecClassGenericPassword)</span>
 <span class="o">.</span><span class="n">genericKeychain</span>
 
-<span class="c1">/// Keychain (kSecClass: kSecClassInternetPassword)</span>
+<span class="c1">/// Keychain (kSecClassInternetPassword)</span>
 <span class="o">.</span><span class="n">internetKeychain</span>
 
 <span class="c1">/// CKContainer (.privateCloudDatabase)</span>
@@ -227,7 +227,9 @@
 
 <ul>
 <li>iOS 8.0+</li>
-<li>macOS 10.10+ (not tested)</li>
+<li>macOS 10.10+</li>
+<li>tvOS 9.0+</li>
+<li>watchOS 2.0+</li>
 <li>Xcode 10.2+</li>
 </ul>
 <h3 id='installing' class='heading'>Installing</h3>
@@ -256,13 +258,13 @@ for up to date installation instructions.</p>
 
 <p>To install it, simply add the following line to your <strong>Package.swift</strong>:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.7.0"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.8.0"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 
 <p>or more strict:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.7.0"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.8.0"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 

@@ -74,5 +74,6 @@ import CloudKit
     ///
     /// Use this string to differentiate between different record types in your app. The string is primarily for your benefit,
     /// so choose type names that reflect the data in the corresponding records.
+    @available(watchOSApplicationExtension 3.0, *)
     @objc optional func dataStoreManager(_ manager: DataStoreManager, cloudKitContainerRecordIDForKey key: String) -> CKRecord.ID
 }

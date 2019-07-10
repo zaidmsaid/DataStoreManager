@@ -14,10 +14,10 @@
 //  limitations under the License.
 //
 
-#if os(iOS)
+#if os(iOS) || os(watchOS) || os(tvOS)
 import UIKit
 #else
-import Foundation
+import Cocoa
 #endif
 
 // MARK: - FileManager
@@ -197,6 +197,11 @@ fileprivate protocol AnySubclass: Any {
 
 fileprivate extension AnySubclass {
     func toData() -> Data? {
+        #if os(iOS) || os(watchOS) || os(tvOS)
+        if self is UIImage {
+            return (self as? UIImage)?.data
+        }
+        #endif
         switch self {
         case is Bool:
             return (self as? Bool)?.data
@@ -218,9 +223,6 @@ fileprivate extension AnySubclass {
 
         case is String:
             return (self as? String)?.data
-
-        case is UIImage:
-            return (self as? UIImage)?.data
 
         case is Data:
             return self as? Data
@@ -305,6 +307,7 @@ extension String: DataConvertible {
     }
 }
 
+#if os(iOS) || os(watchOS) || os(tvOS)
 extension UIImage: DataConvertible {
     var data: Data {
         if let pngData = self.pngData() {
@@ -313,3 +316,4 @@ extension UIImage: DataConvertible {
         return withUnsafeBytes(of: self) { Data($0) }
     }
 }
+#endif
