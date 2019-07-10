@@ -75,7 +75,6 @@ class ViewController: UIViewController {
 }
 ```
 
-
 Available storage types:
 
 ```swift
@@ -103,10 +102,10 @@ Available storage types:
 /// NSCache
 .cache
 
-/// Keychain (kSecClass: kSecClassGenericPassword)
+/// Keychain (kSecClassGenericPassword)
 .genericKeychain
 
-/// Keychain (kSecClass: kSecClassInternetPassword)
+/// Keychain (kSecClassInternetPassword)
 .internetKeychain
 
 /// CKContainer (.privateCloudDatabase)
@@ -125,7 +124,9 @@ Available storage types:
 ### Prerequisites
 
 * iOS 8.0+
-* macOS 10.10+ (not tested)
+* macOS 10.10+
+* tvOS 9.0+
+* watchOS 2.0+
 * Xcode 10.2+
 
 ### Installing
