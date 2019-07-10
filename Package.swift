@@ -21,14 +21,13 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
     ],
     targets: {
-        var targets: [Target] =
-            [
+        var targets: [Target] = [
             // Targets are the basic building blocks of a package. A target can define a module or a test suite.
             // Targets can depend on other targets in this package, and on products in packages which this package depends on.
             .testTarget(
                 name: "DataStoreManagerTests",
                 dependencies: ["DataStoreManager"]),
-            ]
+        ]
         #if os(iOS)
         targets.append(contentsOf: [
             .target(
@@ -55,6 +54,6 @@ let package = Package(
             ])
         #endif
         return targets
-    }(),
+}(),
     swiftLanguageVersions: [.v5]
 )
