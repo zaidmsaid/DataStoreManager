@@ -121,7 +121,7 @@ Available storage types:
 .sharedCloudDatabase
 
 /// NSUbiquitousKeyValueStore
-.ubiquitousKeyValueStore
+.ubiquitousCloudStore
 ```
 
 ### Prerequisites
