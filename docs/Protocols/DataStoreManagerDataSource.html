@@ -40,13 +40,16 @@
                 <a href="../Classes/DataStoreManager/CloudKitWorker.html">– CloudKitWorker</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/DataStoreManager/CoreDataWorker.html">– CoreDataWorker</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/FileManagerWorker.html">– FileManagerWorker</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/KeychainWorker.html">– KeychainWorker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/DataStoreManager/UbiquitousKeyValueStoreWorker.html">– UbiquitousKeyValueStoreWorker</a>
+                <a href="../Classes/DataStoreManager/UbiquitousCloudStoreWorker.html">– UbiquitousCloudStoreWorker</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DataStoreManager/UserDefaultsWorker.html">– UserDefaultsWorker</a>
@@ -424,6 +427,73 @@ point in time, or possibly never, all depending on the implementation details of
                       <div>
                         <h4>Return Value</h4>
                         <p>The number of total cost limit.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Core%20Data"></a>
+                <a name="//apple_ref/swift/Section/Core Data" class="dashAnchor"></a>
+                <a href="#/Core%20Data">
+                  <h3 class="section-name">Core Data</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)coreDataEntityDescriptionFor:"></a>
+                    <a name="//apple_ref/swift/Method/coreDataEntityDescription(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)coreDataEntityDescriptionFor:">coreDataEntityDescription(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">coreDataEntityDescription</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSEntityDescription</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)coreDataManagedObjectContextFor:"></a>
+                    <a name="//apple_ref/swift/Method/coreDataManagedObjectContext(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)coreDataManagedObjectContextFor:">coreDataManagedObjectContext(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">coreDataManagedObjectContext</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSManagedObjectContext</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -933,6 +1003,62 @@ so choose type names that reflect the data in the corresponding records.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The app-defined string that identifies the type of the record.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)cloudKitContainerPredicateFor:"></a>
+                    <a name="//apple_ref/swift/Method/cloudKitContainerPredicate(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)cloudKitContainerPredicateFor:">cloudKitContainerPredicate(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cloudKitContainerPredicate</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSPredicate</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)cloudKitContainerZoneIDFor:"></a>
+                    <a name="//apple_ref/swift/Method/cloudKitContainerZoneID(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)cloudKitContainerZoneIDFor:">cloudKitContainerZoneID(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">cloudKitContainerZoneID</span><span class="p">(</span><span class="k">for</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CKRecordZone</span><span class="o">.</span><span class="kt">ID</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

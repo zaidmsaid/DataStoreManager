@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
+		B81933F022CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */; };
 		B82A946C22D629FE00AB64F4 /* DataStoreManager_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */; };
 		B82D10F622D5BE3E00670392 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B83A5D0422D6A821007DF85B /* DataStoreManager_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */; };
@@ -19,7 +19,7 @@
 		B83A5D0F22D6A980007DF85B /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
 		B83A5D1022D6A983007DF85B /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
 		B83A5D1122D6A986007DF85B /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
-		B83A5D1222D6A98A007DF85B /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
+		B83A5D1222D6A98A007DF85B /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */; };
 		B83A5D1322D6A98D007DF85B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
 		B83A5D1422D6A990007DF85B /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
 		B83A5D1522D6A998007DF85B /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
@@ -28,6 +28,10 @@
 		B83A5D1822D6A9A2007DF85B /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
 		B83B2A3822D69FB900BFBAF2 /* DataStoreManager-Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = B83B2A3622D69F6A00BFBAF2 /* DataStoreManager-Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B83B2A3922D69FC000BFBAF2 /* DataStoreManager-WatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B83B2A3722D69F8600BFBAF2 /* DataStoreManager-WatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B866E13322D6FB2A00728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E13222D6FB1000728705 /* CoreDataWorker.swift */; };
+		B866E13422D6FB3100728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E13222D6FB1000728705 /* CoreDataWorker.swift */; };
+		B866E13522D6FB3800728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E13222D6FB1000728705 /* CoreDataWorker.swift */; };
+		B866E13622D6FB3E00728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E13222D6FB1000728705 /* CoreDataWorker.swift */; };
 		B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
 		B8C2CF3522C8E6640080102C /* DataStoreManager_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */; };
 		B8C2CF3A22C8E6640080102C /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
@@ -51,14 +55,14 @@
 		B8D1AD1922D5830C00CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
 		B8D1AD1A22D5830E00CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
 		B8D1AD1B22D5831100CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
-		B8D1AD2022D583E000CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
+		B8D1AD2022D583E000CF5EAB /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */; };
 		B8D1AD5D22D591FD00CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
 		B8D1AD5E22D5920000CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
 		B8D1AD5F22D5920200CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
 		B8D1AD6022D5920500CF5EAB /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
 		B8D1AD6122D5921200CF5EAB /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
 		B8D1AD6222D5922900CF5EAB /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
-		B8D1AD6322D5922C00CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */; };
+		B8D1AD6322D5922C00CF5EAB /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */; };
 		B8D1AD6422D5922F00CF5EAB /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
 		B8D1AD6522D5923200CF5EAB /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
 		B8D1AD6622D5923700CF5EAB /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
@@ -96,12 +100,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousKeyValueStoreWorker.swift; sourceTree = "<group>"; };
+		B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousCloudStoreWorker.swift; sourceTree = "<group>"; };
 		B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83A5CFF22D6A821007DF85B /* DataStoreManagerTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83B2A3622D69F6A00BFBAF2 /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
 		B83B2A3722D69F8600BFBAF2 /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
+		B866E13222D6FB1000728705 /* CoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataWorker.swift; sourceTree = "<group>"; };
 		B886C18E22CC368A00EBEBE4 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
 		B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-UIKit.h"; sourceTree = "<group>"; };
@@ -229,9 +234,10 @@
 				B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */,
 				B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */,
 				B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */,
+				B866E13222D6FB1000728705 /* CoreDataWorker.swift */,
 				B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */,
 				B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */,
-				B81933EF22CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift */,
+				B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */,
 				B8C9485522D1AEDD00B0E72D /* Models */,
 				B8C9485C22D1B0A000B0E72D /* Protocols */,
 				B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */,
@@ -571,9 +577,10 @@
 				B83A5D0F22D6A980007DF85B /* AuthenticationType.swift in Sources */,
 				B83A5D1022D6A983007DF85B /* ProtocolType.swift in Sources */,
 				B83A5D1122D6A986007DF85B /* StorageType.swift in Sources */,
-				B83A5D1222D6A98A007DF85B /* UbiquitousKeyValueStoreWorker.swift in Sources */,
+				B83A5D1222D6A98A007DF85B /* UbiquitousCloudStoreWorker.swift in Sources */,
 				B83A5D1322D6A98D007DF85B /* CloudKitWorker.swift in Sources */,
 				B83A5D1422D6A990007DF85B /* KeychainWorker.swift in Sources */,
+				B866E13622D6FB3E00728705 /* CoreDataWorker.swift in Sources */,
 				B83A5D1522D6A998007DF85B /* CacheWorker.swift in Sources */,
 				B83A5D1622D6A99B007DF85B /* FileManagerWorker.swift in Sources */,
 				B83A5D1722D6A99F007DF85B /* UserDefaultsWorker.swift in Sources */,
@@ -599,9 +606,10 @@
 				B8C9485922D1AF4D00B0E72D /* AuthenticationType.swift in Sources */,
 				B8C9485B22D1AF8300B0E72D /* ProtocolType.swift in Sources */,
 				B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */,
-				B81933F022CA6A1800A754CA /* UbiquitousKeyValueStoreWorker.swift in Sources */,
+				B81933F022CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift in Sources */,
 				B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */,
 				B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */,
+				B866E13322D6FB2A00728705 /* CoreDataWorker.swift in Sources */,
 				B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */,
 				B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */,
 				B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */,
@@ -627,9 +635,10 @@
 				B8D1AD1822D5830900CF5EAB /* AuthenticationType.swift in Sources */,
 				B8D1AD1722D5830700CF5EAB /* ProtocolType.swift in Sources */,
 				B8D1AD1622D5830500CF5EAB /* StorageType.swift in Sources */,
-				B8D1AD2022D583E000CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */,
+				B8D1AD2022D583E000CF5EAB /* UbiquitousCloudStoreWorker.swift in Sources */,
 				B8D1AD1522D5830200CF5EAB /* CloudKitWorker.swift in Sources */,
 				B8D1AD1422D582FF00CF5EAB /* KeychainWorker.swift in Sources */,
+				B866E13422D6FB3100728705 /* CoreDataWorker.swift in Sources */,
 				B8D1AD1322D582FC00CF5EAB /* CacheWorker.swift in Sources */,
 				B8D1AD1222D582FA00CF5EAB /* FileManagerWorker.swift in Sources */,
 				B8D1AD1122D582F700CF5EAB /* UserDefaultsWorker.swift in Sources */,
@@ -647,9 +656,10 @@
 				B8D1AD6022D5920500CF5EAB /* AuthenticationType.swift in Sources */,
 				B8D1AD6122D5921200CF5EAB /* ProtocolType.swift in Sources */,
 				B8D1AD6222D5922900CF5EAB /* StorageType.swift in Sources */,
-				B8D1AD6322D5922C00CF5EAB /* UbiquitousKeyValueStoreWorker.swift in Sources */,
+				B8D1AD6322D5922C00CF5EAB /* UbiquitousCloudStoreWorker.swift in Sources */,
 				B8D1AD6422D5922F00CF5EAB /* CloudKitWorker.swift in Sources */,
 				B8D1AD6522D5923200CF5EAB /* KeychainWorker.swift in Sources */,
+				B866E13522D6FB3800728705 /* CoreDataWorker.swift in Sources */,
 				B8D1AD6622D5923700CF5EAB /* CacheWorker.swift in Sources */,
 				B8D1AD6722D5923B00CF5EAB /* FileManagerWorker.swift in Sources */,
 				B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */,

@@ -14,10 +14,10 @@
 //  limitations under the License.
 //
 
+import CloudKit
+import CoreData
 #if os(iOS) || os(macOS)
 import LocalAuthentication
-#else
-import Foundation
 #endif
 
 /// The methods adopted by the object you use to manage data for a data store manager.
@@ -70,6 +70,18 @@ import Foundation
     /// This is not a strict limit, and if the cache goes over the limit, an object in the cache could be evicted instantly, at a later
     /// point in time, or possibly never, all depending on the implementation details of the cache.
     @objc optional func cacheTotalCostLimit(for manager: DataStoreManager) -> Int
+
+    // MARK: Core Data
+
+    @objc optional func coreDataEntityDescription(for manager: DataStoreManager) -> NSEntityDescription
+
+    @objc optional func coreDataManagedObjectContext(for manager: DataStoreManager) -> NSManagedObjectContext
+
+    @available(*, unavailable)
+    @objc optional func coreDataCompoundPredicate(for manager: DataStoreManager) -> NSCompoundPredicate
+
+    @available(*, unavailable)
+    @objc optional func coreDataPredicate(for manager: DataStoreManager) -> NSPredicate
 
     // MARK: Keychain
 
@@ -164,6 +176,11 @@ import Foundation
     /// Use this string to differentiate between different record types in your app. The string is primarily for your benefit,
     /// so choose type names that reflect the data in the corresponding records.
     @objc optional func cloudKitContainerRecordType(for manager: DataStoreManager) -> String
+
+    @objc optional func cloudKitContainerPredicate(for manager: DataStoreManager) -> NSPredicate
+
+    @available(watchOSApplicationExtension 3.0, *)
+    @objc optional func cloudKitContainerZoneID(for manager: DataStoreManager) -> CKRecordZone.ID
 
     /// Asks the data source to verify that the cloud kit container of data source manager allows duplicate key.
     ///

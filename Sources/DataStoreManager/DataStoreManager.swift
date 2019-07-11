@@ -96,6 +96,13 @@ import Foundation
         return worker
     }()
 
+    /// An interface to the CoreData.
+    lazy var coreDataWorker: CoreDataWorker = {
+        let worker = CoreDataWorker()
+        worker.dataStoreManager = self
+        return worker
+    }()
+
     /// An interface to the SecItem.
     lazy var keychainWorker: KeychainWorker = {
         let worker = KeychainWorker()
@@ -114,8 +121,11 @@ import Foundation
 
     /// An interface to the NSUbiquitousKeyValueStore.
     @available(watchOS, unavailable)
-    lazy var ubiquitousKeyValueStoreWorker: UbiquitousKeyValueStoreWorker = {
-        return UbiquitousKeyValueStoreWorker()
+    lazy var ubiquitousCloudStoreWorker: UbiquitousCloudStoreWorker = {
+        let worker = UbiquitousCloudStoreWorker()
+        worker.dataStoreManager = self
+        worker.notificationDelegate = self.delegate?.dataStoreManager(_:ubiquitousCloudStoreDidChangeExternallyWithUserInfo:)
+        return UbiquitousCloudStoreWorker()
     }()
 
     private let ID: String
@@ -184,6 +194,9 @@ import Foundation
         case .cache:
             cacheWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
+        case .coreData:
+            coreDataWorker.create(object: object, forKey: key, completionHandler: completionHandler)
+
         case .genericKeychain:
             keychainWorker.create(object: object, forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
@@ -214,12 +227,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
             #endif
 
         default:
@@ -289,6 +302,9 @@ import Foundation
         case .cache:
             cacheWorker.read(forKey: key, completionHandler: completionHandler)
 
+        case .coreData:
+            coreDataWorker.read(forKey: key, withObjectType: objectType, completionHandler: completionHandler)
+
         case .genericKeychain:
             keychainWorker.read(forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
@@ -319,12 +335,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.read(forKey: key, completionHandler: completionHandler)
             #endif
 
         default:
@@ -394,6 +410,9 @@ import Foundation
         case .cache:
             cacheWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
+        case .coreData:
+            coreDataWorker.update(object: object, forKey: key, completionHandler: completionHandler)
+
         case .genericKeychain:
             keychainWorker.update(object: object, forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
@@ -424,12 +443,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
             #endif
 
         default:
@@ -499,6 +518,9 @@ import Foundation
         case .cache:
             cacheWorker.delete(forKey: key, completionHandler: completionHandler)
 
+        case .coreData:
+            coreDataWorker.delete(forKey: key, withObjectType: objectType, completionHandler: completionHandler)
+
         case .genericKeychain:
             keychainWorker.delete(forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
@@ -529,12 +551,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.delete(forKey: key, completionHandler: completionHandler)
             #endif
 
         default:
@@ -600,6 +622,9 @@ import Foundation
         case .cache:
             cacheWorker.deleteAll(completionHandler: completionHandler)
 
+        case .coreData:
+            coreDataWorker.deleteAll(completionHandler: completionHandler)
+
         case .genericKeychain:
             keychainWorker.deleteAll(forItemClass: .generic, completionHandler: completionHandler)
 
@@ -630,12 +655,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.deleteAll(completionHandler: completionHandler)
             #endif
 
         default:

@@ -76,4 +76,8 @@ import CloudKit
     /// so choose type names that reflect the data in the corresponding records.
     @available(watchOSApplicationExtension 3.0, *)
     @objc optional func dataStoreManager(_ manager: DataStoreManager, cloudKitContainerRecordIDForKey key: String) -> CKRecord.ID
+
+    // MARK: iCloud Key-value Storage
+
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, ubiquitousCloudStoreDidChangeExternallyWithUserInfo userInfo: [AnyHashable : Any]?)
 }

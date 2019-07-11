@@ -22,25 +22,24 @@ extension DataStoreManager {
 
     /// An interface to the NSUbiquitousKeyValueStore.
     @available(watchOS, unavailable)
-    class UbiquitousKeyValueStoreWorker {
+    class UbiquitousCloudStoreWorker {
 
         // MARK: - Initializers
 
         init() {
-            NotificationCenter.default.addObserver(self, selector: #selector(onUbiquitousKeyValueStoreDidChangeExternally(notification:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousKeyValueStore)
+            NotificationCenter.default.addObserver(self, selector: #selector(onUbiquitousCloudStoreDidChangeExternally(notification:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousCloudStore)
         }
 
         deinit {
-            NotificationCenter.default.removeObserver(self, name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousKeyValueStore)
-        }
-
-        @objc private func onUbiquitousKeyValueStoreDidChangeExternally(notification: Notification) {
-            // TODO: let userInfo = notification.userInfo
+            NotificationCenter.default.removeObserver(self, name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousCloudStore)
         }
 
         // MARK: - Properties
 
-        private lazy var ubiquitousKeyValueStore: NSUbiquitousKeyValueStore = {
+        var dataStoreManager: DataStoreManager?
+        var notificationDelegate: ((DataStoreManager, [AnyHashable : Any]?) -> Void)?
+
+        private lazy var ubiquitousCloudStore: NSUbiquitousKeyValueStore = {
             return NSUbiquitousKeyValueStore.default
         }()
 
@@ -53,8 +52,8 @@ extension DataStoreManager {
 
         func read(forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            ubiquitousKeyValueStore.synchronize()
-            let object = ubiquitousKeyValueStore.object(forKey: key)
+            ubiquitousCloudStore.synchronize()
+            let object = ubiquitousCloudStore.object(forKey: key)
             completionHandler(object, nil, nil)
         }
 
@@ -65,26 +64,34 @@ extension DataStoreManager {
 
         func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            ubiquitousKeyValueStore.removeObject(forKey: key)
-            ubiquitousKeyValueStore.synchronize()
+            ubiquitousCloudStore.removeObject(forKey: key)
+            ubiquitousCloudStore.synchronize()
             completionHandler(true, nil, nil)
         }
 
         func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            let keys = ubiquitousKeyValueStore.dictionaryRepresentation.keys
+            let keys = ubiquitousCloudStore.dictionaryRepresentation.keys
             for key in keys {
-                ubiquitousKeyValueStore.removeObject(forKey: key)
+                ubiquitousCloudStore.removeObject(forKey: key)
             }
-            ubiquitousKeyValueStore.synchronize()
+            ubiquitousCloudStore.synchronize()
             completionHandler(true, nil, nil)
         }
 
         private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            ubiquitousKeyValueStore.setValue(value, forKey: key)
-            ubiquitousKeyValueStore.synchronize()
+            ubiquitousCloudStore.setValue(value, forKey: key)
+            ubiquitousCloudStore.synchronize()
             completionHandler(true, nil, nil)
+        }
+
+        // MARK: - Helpers
+
+        @objc private func onUbiquitousCloudStoreDidChangeExternally(notification: Notification) {
+            if let manager = dataStoreManager, let delegate = notificationDelegate {
+                delegate(manager, notification.userInfo)
+            }
         }
     }
 }

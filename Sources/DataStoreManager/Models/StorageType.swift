@@ -62,12 +62,13 @@ import Security
             DataStoreStorageType.coreServiceDirectory,
             DataStoreStorageType.temporaryDirectory,
             DataStoreStorageType.cache,
+            DataStoreStorageType.coreData,
             DataStoreStorageType.genericKeychain,
             DataStoreStorageType.internetKeychain,
             DataStoreStorageType.privateCloudDatabase,
             DataStoreStorageType.publicCloudDatabase,
             DataStoreStorageType.sharedCloudDatabase,
-            DataStoreStorageType.ubiquitousKeyValueStore
+            DataStoreStorageType.ubiquitousCloudStore
         ]
     }
 }
@@ -107,6 +108,8 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
     /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
     public static let cache = DataStoreStorageType("NSCache")
 
+    public static let coreData = DataStoreStorageType("CoreData")
+
     /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
     /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
     /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassgenericpassword).
@@ -130,7 +133,7 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
     public static let sharedCloudDatabase = DataStoreStorageType("CKContainer.sharedCloudDatabase")
 
     /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
-    public static let ubiquitousKeyValueStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
+    public static let ubiquitousCloudStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
 }
 
 // MARK: - CustomStringConvertible
@@ -164,6 +167,9 @@ extension DataStoreStorageType {
         case .cache:
             return "NSCache"
 
+        case .coreData:
+            return "CoreData"
+
         case .genericKeychain:
             return "SecItem"
 
@@ -179,7 +185,7 @@ extension DataStoreStorageType {
         case .sharedCloudDatabase:
             return "CKContainer"
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             return "NSUbiquitousKeyValueStore"
 
         default:
@@ -220,6 +226,9 @@ extension DataStoreStorageType {
         case .cache:
             return "NSCache"
 
+        case .coreData:
+            return "CoreData"
+
         case .genericKeychain:
             return "SecItem"
 
@@ -235,7 +244,7 @@ extension DataStoreStorageType {
         case .sharedCloudDatabase:
             return "CKContainer"
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             return "NSUbiquitousKeyValueStore"
 
         default:

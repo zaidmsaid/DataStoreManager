@@ -40,21 +40,35 @@ extension DataStoreManager {
         var dataStoreManager: DataStoreManager?
         var recordIDDelegate: ((DataStoreManager, String) -> CKRecord.ID)?
 
-        var recordType: String? {
+        private var recordType: String? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.cloudKitContainerRecordType?(for: manager)
             }
             return nil
         }
 
-        var allowsDuplicateKey: Bool {
+        private var predicate: NSPredicate {
+            if let manager = dataStoreManager, let predicate = manager.dataSource?.cloudKitContainerPredicate?(for: manager) {
+                return predicate
+            }
+            return NSPredicate(value: true)
+        }
+
+        private var zoneID: CKRecordZone.ID? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.cloudKitContainerZoneID?(for: manager)
+            }
+            return nil
+        }
+
+        private var allowsDuplicateKey: Bool {
             if let manager = dataStoreManager, let allowsDuplicateKey = manager.dataSource?.cloudKitContainerAllowsDuplicateKey?(for: manager) {
                 return allowsDuplicateKey
             }
             return false
         }
 
-        lazy var cloudKitContainer: CKContainer = {
+        private lazy var cloudKitContainer: CKContainer = {
             if let manager = dataStoreManager, let containerIdentifier = manager.dataSource?.cloudKitContainerIdentifier?(for: manager) {
                 return CKContainer(identifier: containerIdentifier)
             }
@@ -67,7 +81,7 @@ extension DataStoreManager {
 
             let recordType = self.recordType ?? key
 
-            getCloudKitRecord(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecord, cloudKitDatabase, error) in
+            getCloudKitRecords(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecords, cloudKitDatabase, error) in
                 guard let database = cloudKitDatabase else {
                     DispatchQueue.main.async {
                         completionHandler(false, nil, error)
@@ -75,7 +89,7 @@ extension DataStoreManager {
                     return
                 }
 
-                guard let records = cloudKitRecord else {
+                guard let records = cloudKitRecords else {
                     self.createValue(object, forKey: key, forRecordType: recordType, forCloudKitDatabase: database, completionHandler: completionHandler)
                     return
                 }
@@ -98,8 +112,8 @@ extension DataStoreManager {
 
             let recordType = self.recordType ?? key
 
-            getCloudKitRecord(forRecordType: recordType, forContainerType: containerType) { (cloudKitRecord, _, error) in
-                guard let records = cloudKitRecord else {
+            getCloudKitRecords(forRecordType: recordType, forContainerType: containerType) { (cloudKitRecords, _, error) in
+                guard let records = cloudKitRecords else {
                     DispatchQueue.main.async {
                         completionHandler(nil, nil, error)
                     }
@@ -128,7 +142,7 @@ extension DataStoreManager {
                 updateValue(object, forKey: key, forRecordType: recordType, forRecordID: delegate(manager, key), forCloudKitDatabase: database, completionHandler: completionHandler)
 
             } else {
-                getCloudKitRecord(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecord, cloudKitDatabase, error) in
+                getCloudKitRecords(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecords, cloudKitDatabase, error) in
                     guard let database = cloudKitDatabase else {
                         DispatchQueue.main.async {
                             completionHandler(false, nil, error)
@@ -136,7 +150,7 @@ extension DataStoreManager {
                         return
                     }
 
-                    guard let records = cloudKitRecord else {
+                    guard let records = cloudKitRecords else {
                         DispatchQueue.main.async {
                             completionHandler(false, nil, error)
                         }
@@ -166,7 +180,7 @@ extension DataStoreManager {
                 delete(forRecordID: delegate(manager, key), forCloudKitDatabase: database, completionHandler: completionHandler)
 
             } else {
-                getCloudKitRecord(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecord, cloudKitDatabase, error) in
+                getCloudKitRecords(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecords, cloudKitDatabase, error) in
                     guard let database = cloudKitDatabase else {
                         DispatchQueue.main.async {
                             completionHandler(false, nil, error)
@@ -174,7 +188,7 @@ extension DataStoreManager {
                         return
                     }
 
-                    guard let records = cloudKitRecord else {
+                    guard let records = cloudKitRecords else {
                         DispatchQueue.main.async {
                             completionHandler(false, nil, error)
                         }
@@ -216,7 +230,7 @@ extension DataStoreManager {
                 return
             }
 
-            getCloudKitRecord(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecord, cloudKitDatabase, error) in
+            getCloudKitRecords(forRecordType: recordType, forContainerType: containerType) { [unowned self] (cloudKitRecords, cloudKitDatabase, error) in
                 guard let database = cloudKitDatabase else {
                     DispatchQueue.main.async {
                         completionHandler(false, nil, error)
@@ -224,7 +238,7 @@ extension DataStoreManager {
                     return
                 }
 
-                guard let records = cloudKitRecord else {
+                guard let records = cloudKitRecords else {
                     DispatchQueue.main.async {
                         completionHandler(false, nil, error)
                     }
@@ -294,7 +308,7 @@ extension DataStoreManager {
             })
         }
 
-        // MARK: - Helper
+        // MARK: - Helpers
 
         private final func getDatabase(forContainerType containerType: ContainerType) -> CKDatabase? {
 
@@ -318,9 +332,8 @@ extension DataStoreManager {
             }
         }
 
-        private final func getCloudKitRecord(forRecordType recordType: String, forContainerType containerType: ContainerType, completionHandler: @escaping (_ cloudKitRecord: [CKRecord]?, _ cloudKitDatabase: CKDatabase?, _ error: Error?) -> Void) {
+        private final func getCloudKitRecords(forRecordType recordType: String, forContainerType containerType: ContainerType, completionHandler: @escaping (_ cloudKitRecords: [CKRecord]?, _ cloudKitDatabase: CKDatabase?, _ error: Error?) -> Void) {
 
-            let predicate = NSPredicate(value: true)
             let query = CKQuery(recordType: recordType, predicate: predicate)
 
             guard let database = getDatabase(forContainerType: containerType) else {
@@ -329,7 +342,7 @@ extension DataStoreManager {
                 return
             }
 
-            database.perform(query, inZoneWith: nil) { (record, error) in
+            database.perform(query, inZoneWith: zoneID) { (record, error) in
                 guard error == nil else {
                     completionHandler(nil, database, error)
                     return
