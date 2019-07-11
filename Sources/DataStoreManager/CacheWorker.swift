@@ -54,14 +54,14 @@ extension DataStoreManager {
         var dataStoreManager: DataStoreManager?
         var costDelegate: ((DataStoreManager, Any) -> Int)?
 
-        var totalCostLimit: Int {
+        private var totalCostLimit: Int {
             if let manager = dataStoreManager, let totalCostLimit = manager.dataSource?.cacheTotalCostLimit?(for: manager) {
                 return totalCostLimit
             }
             return 0
         }
 
-        lazy var cache: NSCache<NSString, AnyObject> = {
+        private lazy var cache: NSCache<NSString, AnyObject> = {
             return NSCache<NSString, AnyObject>()
         }()
 

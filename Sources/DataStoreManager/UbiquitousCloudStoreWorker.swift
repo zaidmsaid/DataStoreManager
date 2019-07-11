@@ -43,12 +43,6 @@ extension DataStoreManager {
             return NSUbiquitousKeyValueStore.default
         }()
 
-        @objc private func onUbiquitousCloudStoreDidChangeExternally(notification: Notification) {
-            if let manager = dataStoreManager, let delegate = notificationDelegate {
-                delegate(manager, notification.userInfo)
-            }
-        }
-
         // MARK: - CRUD
 
         func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
@@ -90,6 +84,14 @@ extension DataStoreManager {
             ubiquitousCloudStore.setValue(value, forKey: key)
             ubiquitousCloudStore.synchronize()
             completionHandler(true, nil, nil)
+        }
+
+        // MARK: - Helpers
+
+        @objc private func onUbiquitousCloudStoreDidChangeExternally(notification: Notification) {
+            if let manager = dataStoreManager, let delegate = notificationDelegate {
+                delegate(manager, notification.userInfo)
+            }
         }
     }
 }

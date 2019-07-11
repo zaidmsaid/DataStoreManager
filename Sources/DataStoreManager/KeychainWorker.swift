@@ -47,59 +47,57 @@ extension DataStoreManager {
 
         var dataStoreManager: DataStoreManager?
 
-        var genericKeychainService: String {
+        private var genericKeychainService: String {
             if let manager = dataStoreManager, let service = manager.dataSource?.genericKeychainService?(for: manager) {
                 return service
             }
             return Bundle.main.bundleIdentifier ?? "DataStoreManager"
         }
 
-        var genericKeychainAccessGroup: String? {
+        private var genericKeychainAccessGroup: String? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.genericKeychainAccessGroup?(for: manager)
             }
             return nil
         }
 
-        var internetKeychainServer: URL? {
+        private var internetKeychainServer: URL? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.internetKeychainServer?(for: manager)
             }
             return nil
         }
 
-        var internetKeychainProtocolType: ProtocolType? {
+        private var internetKeychainProtocolType: ProtocolType? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.internetKeychainProtocolType?(for: manager)
             }
             return nil
         }
 
-        var internetKeychainAuthenticationType: AuthenticationType? {
+        private var internetKeychainAuthenticationType: AuthenticationType? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.internetKeychainAuthenticationType?(for: manager)
             }
             return nil
         }
 
-        var isSynchronizable: Bool {
+        private var isSynchronizable: Bool {
             if let manager = dataStoreManager, let isSynchronizable = manager.dataSource?.keychainIsSynchronizable?(for: manager) {
                 return isSynchronizable
             }
             return false
         }
 
-        var operationPrompt: String? {
-            #if os(iOS) || os(macOS)
+        #if os(iOS) || os(macOS)
+        private var operationPrompt: String? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.keychainOperationPrompt?(for: manager)
             }
-            #endif
             return nil
         }
 
-        #if os(iOS) || os(macOS)
-        var localAuthenticationContext: LAContext? {
+        private var localAuthenticationContext: LAContext? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.keychainLocalAuthenticationContext?(for: manager)
             }
@@ -116,14 +114,14 @@ extension DataStoreManager {
 
         func read(forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            var item = getKeychainItem(forAccount: key, forItemClass: itemClass)
-            item[kSecMatchLimit as String] = kSecMatchLimitOne
-            item[kSecReturnAttributes as String] = kCFBooleanTrue
-            item[kSecReturnData as String] = kCFBooleanTrue
+            var query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
+            query[kSecMatchLimit as String] = kSecMatchLimitOne
+            query[kSecReturnAttributes as String] = kCFBooleanTrue
+            query[kSecReturnData as String] = kCFBooleanTrue
 
             var object: AnyObject?
             let status = withUnsafeMutablePointer(to: &object) {
-                SecItemCopyMatching(item as CFDictionary, UnsafeMutablePointer($0))
+                SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0))
             }
 
             let error = ErrorObject(code: status.hashValue, value: status.description)
@@ -147,8 +145,8 @@ extension DataStoreManager {
 
         func delete(forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            let item = getKeychainItem(forAccount: key, forItemClass: itemClass)
-            let status = SecItemDelete(item as CFDictionary)
+            let query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
+            let status = SecItemDelete(query as CFDictionary)
 
             guard status == noErr else {
                 let error = ErrorObject(protocol: .deleteFailed(detail: status.description))
@@ -167,41 +165,41 @@ extension DataStoreManager {
 
         func deleteAll(forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            var item = [String : AnyObject]()
+            var query = [String : AnyObject]()
 
             switch itemClass {
             case .generic:
-                item[kSecClass as String] = kSecClassGenericPassword
-                item[kSecAttrService as String] = genericKeychainService as AnyObject
+                query[kSecClass as String] = kSecClassGenericPassword
+                query[kSecAttrService as String] = genericKeychainService as AnyObject
 
                 #if !targetEnvironment(simulator)
                 if let accessGroup = self.genericKeychainAccessGroup {
-                    item[kSecAttrAccessGroup as String] = accessGroup as AnyObject
+                    query[kSecAttrAccessGroup as String] = accessGroup as AnyObject
                 }
                 #endif
 
             case .internet:
-                item[kSecClass as String] = kSecClassInternetPassword
+                query[kSecClass as String] = kSecClassInternetPassword
 
                 if let server = internetKeychainServer {
-                    item[kSecAttrServer as String] = server.host as AnyObject
-                    item[kSecAttrPort as String] = server.port as AnyObject
+                    query[kSecAttrServer as String] = server.host as AnyObject
+                    query[kSecAttrPort as String] = server.port as AnyObject
                 }
 
                 if let protocolType = internetKeychainProtocolType {
-                    item[kSecAttrProtocol as String] = protocolType.rawValue as AnyObject
+                    query[kSecAttrProtocol as String] = protocolType.rawValue as AnyObject
                 }
 
                 if let authenticationType = internetKeychainAuthenticationType {
-                    item[kSecAttrAuthenticationType as String] = authenticationType.rawValue as AnyObject
+                    query[kSecAttrAuthenticationType as String] = authenticationType.rawValue as AnyObject
                 }
             }
 
             #if arch(i386) || arch(x86_64)
-            item[kSecMatchLimit as String] = kSecMatchLimitAll
+            query[kSecMatchLimit as String] = kSecMatchLimitAll
             #endif
 
-            let status = SecItemDelete(item as CFDictionary)
+            let status = SecItemDelete(query as CFDictionary)
 
             guard status == errSecSuccess else {
                 let error = ErrorObject(protocol: .deleteFailed(detail: status.description))
@@ -214,10 +212,10 @@ extension DataStoreManager {
 
         private func create(_ value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            var newItem = getKeychainItem(forAccount: key, forItemClass: itemClass)
-            newItem[kSecValueData as String] = value as AnyObject
+            var query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
+            query[kSecValueData as String] = value as AnyObject
 
-            let status = SecItemAdd(newItem as CFDictionary, nil)
+            let status = SecItemAdd(query as CFDictionary, nil)
 
             guard status == noErr else {
                 let error = ErrorObject(protocol: .createFailed(detail: status.description))
@@ -230,11 +228,11 @@ extension DataStoreManager {
 
         private func update(_ value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            var newItem = [String : AnyObject]()
-            newItem[kSecValueData as String] = value as AnyObject
+            var newQuery = [String : AnyObject]()
+            newQuery[kSecValueData as String] = value as AnyObject
 
-            let item = getKeychainItem(forAccount: key, forItemClass: itemClass)
-            let status = SecItemUpdate(item as CFDictionary, newItem as CFDictionary)
+            let query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
+            let status = SecItemUpdate(query as CFDictionary, newQuery as CFDictionary)
 
             guard status == noErr else {
                 let error = ErrorObject(protocol: .updateFailed(detail: status.description))
@@ -245,68 +243,68 @@ extension DataStoreManager {
             completionHandler(true, nil, nil)
         }
 
-        // MARK: - Helper
+        // MARK: - Helpers
 
-        private final func getKeychainItem(forAccount account: String, forItemClass itemClass: ItemClass) -> [String : AnyObject] {
+        private final func getKeychainQuery(forAccount account: String, forItemClass itemClass: ItemClass) -> [String : AnyObject] {
 
-            var item = [String : AnyObject]()
+            var query = [String : AnyObject]()
 
             switch itemClass {
             case .generic:
                 let secAttrService: AnyObject = genericKeychainService as AnyObject
-                item[kSecClass as String] = kSecClassGenericPassword
-                item[kSecAttrService as String] = secAttrService
-                item[kSecAttrGeneric as String] = account as AnyObject
+                query[kSecClass as String] = kSecClassGenericPassword
+                query[kSecAttrService as String] = secAttrService
+                query[kSecAttrGeneric as String] = account as AnyObject
 
                 #if !targetEnvironment(simulator)
                 if let accessGroup = self.genericKeychainAccessGroup {
-                    item[kSecAttrAccessGroup as String] = accessGroup as AnyObject
+                    query[kSecAttrAccessGroup as String] = accessGroup as AnyObject
                 }
                 #endif
                 
             case .internet:
-                item[kSecClass as String] = kSecClassInternetPassword
+                query[kSecClass as String] = kSecClassInternetPassword
 
                 if let server = internetKeychainServer {
-                    item[kSecAttrServer as String] = server.host as AnyObject
-                    item[kSecAttrPort as String] = server.port as AnyObject
+                    query[kSecAttrServer as String] = server.host as AnyObject
+                    query[kSecAttrPort as String] = server.port as AnyObject
                 }
 
                 if let protocolType = internetKeychainProtocolType {
-                    item[kSecAttrProtocol as String] = protocolType.rawValue as AnyObject
+                    query[kSecAttrProtocol as String] = protocolType.rawValue as AnyObject
                 }
 
                 if let authenticationType = internetKeychainAuthenticationType {
-                    item[kSecAttrAuthenticationType as String] = authenticationType.rawValue as AnyObject
+                    query[kSecAttrAuthenticationType as String] = authenticationType.rawValue as AnyObject
                 }
 
             @unknown case _:
                 assertionFailure("Use a representation that was unknown when this code was compiled.")
             }
 
-            item[kSecAttrAccount as String] = account as AnyObject
+            query[kSecAttrAccount as String] = account as AnyObject
 
             if isSynchronizable {
-                item[kSecAttrSynchronizable as String] = kSecAttrSynchronizableAny
+                query[kSecAttrSynchronizable as String] = kSecAttrSynchronizableAny
             }
 
             #if os(iOS) || os(macOS)
             if #available(iOS 8.0, macOS 10.10, *) {
                 if let useOperationPrompt = operationPrompt {
-                    item[kSecUseOperationPrompt as String] = useOperationPrompt as AnyObject
+                    query[kSecUseOperationPrompt as String] = useOperationPrompt as AnyObject
                 }
             }
 
             if #available(iOS 9.0, macOS 10.11, *) {
                 if let useAuthenticationContext = localAuthenticationContext {
-                    item[kSecUseAuthenticationContext as String] = useAuthenticationContext as AnyObject
+                    query[kSecUseAuthenticationContext as String] = useAuthenticationContext as AnyObject
                 }
             }
             #endif
 
-            item[kSecMatchLimit as String] = kSecMatchLimitOne
+            query[kSecMatchLimit as String] = kSecMatchLimitOne
 
-            return item
+            return query
         }
     }
 }

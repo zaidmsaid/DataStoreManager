@@ -62,6 +62,7 @@ import Security
             DataStoreStorageType.coreServiceDirectory,
             DataStoreStorageType.temporaryDirectory,
             DataStoreStorageType.cache,
+            DataStoreStorageType.coreData,
             DataStoreStorageType.genericKeychain,
             DataStoreStorageType.internetKeychain,
             DataStoreStorageType.privateCloudDatabase,
@@ -106,6 +107,8 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
 
     /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
     public static let cache = DataStoreStorageType("NSCache")
+
+    public static let coreData = DataStoreStorageType("CoreData")
 
     /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
     /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
@@ -164,6 +167,9 @@ extension DataStoreStorageType {
         case .cache:
             return "NSCache"
 
+        case .coreData:
+            return "CoreData"
+
         case .genericKeychain:
             return "SecItem"
 
@@ -219,6 +225,9 @@ extension DataStoreStorageType {
 
         case .cache:
             return "NSCache"
+
+        case .coreData:
+            return "CoreData"
 
         case .genericKeychain:
             return "SecItem"
