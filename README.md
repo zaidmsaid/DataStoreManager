@@ -174,7 +174,7 @@ To install it, simply add the following line to your **Package.swift**:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.9"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.9.1"))
 ]
 ```
 
@@ -182,7 +182,7 @@ or more strict:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.9"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.9.1"))
 ]
 ```
 
