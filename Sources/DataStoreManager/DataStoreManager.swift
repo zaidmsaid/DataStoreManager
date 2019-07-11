@@ -473,7 +473,7 @@ import Foundation
     ///                    in the error object to determine whether a problem has a workaround.
     open func delete<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-       delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
+        delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
     }
 
     /// Removes the object of the specified default key.
