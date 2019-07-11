@@ -102,6 +102,9 @@ Available storage types:
 /// NSCache
 .cache
 
+/// CoreData
+.coreData
+
 /// Keychain (kSecClassGenericPassword)
 .genericKeychain
 
