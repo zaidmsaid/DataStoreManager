@@ -114,8 +114,11 @@ import Foundation
 
     /// An interface to the NSUbiquitousKeyValueStore.
     @available(watchOS, unavailable)
-    lazy var ubiquitousKeyValueStoreWorker: UbiquitousKeyValueStoreWorker = {
-        return UbiquitousKeyValueStoreWorker()
+    lazy var ubiquitousCloudStoreWorker: UbiquitousCloudStoreWorker = {
+        let worker = UbiquitousCloudStoreWorker()
+        worker.dataStoreManager = self
+        worker.notificationDelegate = self.delegate?.dataStoreManager(_:ubiquitousCloudStoreDidChangeExternallyWithUserInfo:)
+        return UbiquitousCloudStoreWorker()
     }()
 
     private let ID: String
@@ -214,12 +217,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
             #endif
 
         default:
@@ -319,12 +322,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.read(forKey: key, completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.read(forKey: key, completionHandler: completionHandler)
             #endif
 
         default:
@@ -424,12 +427,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
             #endif
 
         default:
@@ -529,12 +532,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.delete(forKey: key, completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.delete(forKey: key, completionHandler: completionHandler)
             #endif
 
         default:
@@ -630,12 +633,12 @@ import Foundation
                 completionHandler(false, nil, error)
             }
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             #if os(watchOS)
             let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
             completionHandler(false, nil, error)
             #else
-            ubiquitousKeyValueStoreWorker.deleteAll(completionHandler: completionHandler)
+            ubiquitousCloudStoreWorker.deleteAll(completionHandler: completionHandler)
             #endif
 
         default:

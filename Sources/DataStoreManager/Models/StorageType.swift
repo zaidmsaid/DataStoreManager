@@ -67,7 +67,7 @@ import Security
             DataStoreStorageType.privateCloudDatabase,
             DataStoreStorageType.publicCloudDatabase,
             DataStoreStorageType.sharedCloudDatabase,
-            DataStoreStorageType.ubiquitousKeyValueStore
+            DataStoreStorageType.ubiquitousCloudStore
         ]
     }
 }
@@ -130,7 +130,7 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
     public static let sharedCloudDatabase = DataStoreStorageType("CKContainer.sharedCloudDatabase")
 
     /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
-    public static let ubiquitousKeyValueStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
+    public static let ubiquitousCloudStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
 }
 
 // MARK: - CustomStringConvertible
@@ -179,7 +179,7 @@ extension DataStoreStorageType {
         case .sharedCloudDatabase:
             return "CKContainer"
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             return "NSUbiquitousKeyValueStore"
 
         default:
@@ -235,7 +235,7 @@ extension DataStoreStorageType {
         case .sharedCloudDatabase:
             return "CKContainer"
 
-        case .ubiquitousKeyValueStore:
+        case .ubiquitousCloudStore:
             return "NSUbiquitousKeyValueStore"
 
         default:
