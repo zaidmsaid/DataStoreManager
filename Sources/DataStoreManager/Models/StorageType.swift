@@ -62,9 +62,9 @@ import Security
             DataStoreStorageType.coreServiceDirectory,
             DataStoreStorageType.temporaryDirectory,
             DataStoreStorageType.cache,
-            DataStoreStorageType.coreData,
             DataStoreStorageType.genericKeychain,
             DataStoreStorageType.internetKeychain,
+            DataStoreStorageType.coreData,
             DataStoreStorageType.privateCloudDatabase,
             DataStoreStorageType.publicCloudDatabase,
             DataStoreStorageType.sharedCloudDatabase,
@@ -108,17 +108,17 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
     /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
     public static let cache = DataStoreStorageType("NSCache")
 
-    public static let coreData = DataStoreStorageType("CoreData")
-
-    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
+    /// The storage type [Security](https://developer.apple.com/documentation/security/keychain_services)
     /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
     /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassgenericpassword).
-    public static let genericKeychain = DataStoreStorageType("SecItem.kSecClassGenericPassword")
+    public static let genericKeychain = DataStoreStorageType("Security.kSecClassGenericPassword")
 
-    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
+    /// The storage type [Security](https://developer.apple.com/documentation/security/keychain_services)
     /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
     /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassinternetpassword).
-    public static let internetKeychain = DataStoreStorageType("SecItem.kSecClassInternetPassword")
+    public static let internetKeychain = DataStoreStorageType("Security.kSecClassInternetPassword")
+
+    public static let coreData = DataStoreStorageType("CoreData")
 
     /// The storage type [CKContainer](apple-reference-documentation://hsS7IJpn_8)
     /// with [privateCloudDatabase](apple-reference-documentation://hsl8OIqKuV).
@@ -167,14 +167,14 @@ extension DataStoreStorageType {
         case .cache:
             return "NSCache"
 
-        case .coreData:
-            return "CoreData"
-
         case .genericKeychain:
-            return "SecItem"
+            return "Security"
 
         case .internetKeychain:
-            return "SecItem"
+            return "Security"
+
+        case .coreData:
+            return "CoreData"
 
         case .privateCloudDatabase:
             return "CKContainer"
@@ -226,14 +226,14 @@ extension DataStoreStorageType {
         case .cache:
             return "NSCache"
 
-        case .coreData:
-            return "CoreData"
-
         case .genericKeychain:
-            return "SecItem"
+            return "Security"
 
         case .internetKeychain:
-            return "SecItem"
+            return "Security"
+
+        case .coreData:
+            return "CoreData"
 
         case .privateCloudDatabase:
             return "CKContainer"
