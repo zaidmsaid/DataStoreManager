@@ -389,6 +389,20 @@
 			productReference = 2E33C528213836E2007FB33D /* DataStoreManagerTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		B7394873229F194200C47603 /* DataStoreManagerPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27DA777119672452005FFA76 /* Build configuration list for PBXNativeTarget "DataStoreManagerPackageDescription" */;
+			buildPhases = (
+				27B38EB61977637200385025 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DataStoreManagerPackageDescription;
+			productName = DataStoreManagerPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
 		B866E16422D81CA900728705 /* DataStoreManager-macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B866E17A22D81CA900728705 /* Build configuration list for PBXNativeTarget "DataStoreManager-macOS" */;
@@ -459,38 +473,6 @@
 			name = "DataStoreManager-tvOS";
 			productName = DataStoreManager;
 			productReference = B866E1AD22D81F7600728705 /* DataStoreManager_tvOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		B866E1B422D81F7600728705 /* DataStoreManagerTests-tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B866E1C322D81F7700728705 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-tvOS" */;
-			buildPhases = (
-				B866E1B122D81F7600728705 /* Sources */,
-				B866E1B222D81F7600728705 /* Frameworks */,
-				B866E1B322D81F7600728705 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B866E1B822D81F7700728705 /* PBXTargetDependency */,
-			);
-			name = "DataStoreManagerTests-tvOS";
-			productName = DataStoreManagerTests;
-			productReference = B866E1B522D81F7700728705 /* DataStoreManagerTests-tvOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B7394873229F194200C47603 /* DataStoreManagerPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 27DA777119672452005FFA76 /* Build configuration list for PBXNativeTarget "DataStoreManagerPackageDescription" */;
-			buildPhases = (
-				27B38EB61977637200385025 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DataStoreManagerPackageDescription;
-			productName = DataStoreManagerPackageDescription;
 			productType = "com.apple.product-type.framework";
 		};
 		B866E1B422D81F7600728705 /* DataStoreManagerTests-tvOS */ = {
@@ -626,6 +608,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		27B38EB61977637200385025 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				B8E3CDB022D8ED6C00F3887F /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2E33C51A213836E2007FB33D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -735,14 +725,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		27B38EB61977637200385025 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				B8E3CDB022D8ED6C00F3887F /* Package.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -750,16 +732,6 @@
 			isa = PBXTargetDependency;
 			target = 2E33C51E213836E2007FB33D /* DataStoreManager-iOS */;
 			targetProxy = 2E33C52A213836E2007FB33D /* PBXContainerItemProxy */;
-		};
-		B866E17022D81CA900728705 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B866E16422D81CA900728705 /* DataStoreManager-macOS */;
-			targetProxy = B866E16F22D81CA900728705 /* PBXContainerItemProxy */;
-		};
-		B866E1B822D81F7700728705 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B866E1AC22D81F7600728705 /* DataStoreManager-tvOS */;
-			targetProxy = B866E1B722D81F7700728705 /* PBXContainerItemProxy */;
 		};
 		A92771C9219650370052CF36 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -771,9 +743,31 @@
 			target = B866E16C22D81CA900728705 /* DataStoreManagerTests-macOS */;
 			targetProxy = B8E3CDAA22D8EAF100F3887F /* PBXContainerItemProxy */;
 		};
+		B866E17022D81CA900728705 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B866E16422D81CA900728705 /* DataStoreManager-macOS */;
+			targetProxy = B866E16F22D81CA900728705 /* PBXContainerItemProxy */;
+		};
+		B866E1B822D81F7700728705 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B866E1AC22D81F7600728705 /* DataStoreManager-tvOS */;
+			targetProxy = B866E1B722D81F7700728705 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		27B38ED51977637200385025 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27DA779319672452005FFA76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
 		2E33C531213836E2007FB33D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -915,7 +909,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -923,7 +916,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -946,14 +938,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -995,6 +985,36 @@
 			};
 			name = Release;
 		};
+		A99E5248217E895A00195EE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		A99E5249217E895A00195EE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		A99E524B217E895A00195EE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A99E524C217E895A00195EE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		B866E17622D81CA900728705 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1017,13 +1037,11 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -1048,13 +1066,11 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -1125,14 +1141,12 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -1156,14 +1170,12 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
@@ -1187,7 +1199,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = appletvos;
@@ -1195,7 +1206,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -1217,7 +1227,6 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = appletvos;
@@ -1225,7 +1234,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -1274,51 +1282,27 @@
 			};
 			name = Release;
 		};
-		27B38ED51977637200385025 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		27DA779319672452005FFA76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		A99E524B217E895A00195EE1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		A99E524C217E895A00195EE1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		A99E5248217E895A00195EE1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		A99E5249217E895A00195EE1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		27DA777119672452005FFA76 /* Build configuration list for PBXNativeTarget "DataStoreManagerPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A99E524B217E895A00195EE1 /* Debug */,
+				A99E524C217E895A00195EE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27DA779419672452005FFA76 /* Build configuration list for PBXAggregateTarget "DataStoreManagerPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A99E5248217E895A00195EE1 /* Debug */,
+				A99E5249217E895A00195EE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2E33C519213836E2007FB33D /* Build configuration list for PBXProject "DataStoreManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1342,6 +1326,15 @@
 			buildConfigurations = (
 				2E33C537213836E2007FB33D /* Debug */,
 				2E33C538213836E2007FB33D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A90F67C121927EB300C780CE /* Build configuration list for PBXAggregateTarget "DataStoreManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27B38ED51977637200385025 /* Debug */,
+				27DA779319672452005FFA76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1387,33 +1380,6 @@
 			buildConfigurations = (
 				B866E1C022D81F7700728705 /* Debug */,
 				B866E1C122D81F7700728705 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A90F67C121927EB300C780CE /* Build configuration list for PBXAggregateTarget "DataStoreManager" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				27B38ED51977637200385025 /* Debug */,
-				27DA779319672452005FFA76 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		27DA777119672452005FFA76 /* Build configuration list for PBXNativeTarget "DataStoreManagerPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A99E524B217E895A00195EE1 /* Debug */,
-				A99E524C217E895A00195EE1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		27DA779419672452005FFA76 /* Build configuration list for PBXAggregateTarget "DataStoreManagerPackageTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A99E5248217E895A00195EE1 /* Debug */,
-				A99E5249217E895A00195EE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
