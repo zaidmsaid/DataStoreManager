@@ -16,7 +16,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B83A5CFE22D6A821007DF85B"
+               BlueprintIdentifier = "B866E1B422D81F7600728705"
                BuildableName = "DataStoreManagerTests-tvOS.xctest"
                BlueprintName = "DataStoreManagerTests-tvOS"
                ReferencedContainer = "container:DataStoreManager.xcodeproj">
