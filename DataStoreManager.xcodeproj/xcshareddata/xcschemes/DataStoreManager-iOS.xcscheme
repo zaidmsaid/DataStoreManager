@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8C2CF2A22C8E6640080102C"
+               BlueprintIdentifier = "2E33C51E213836E2007FB33D"
                BuildableName = "DataStoreManager_iOS.framework"
                BlueprintName = "DataStoreManager-iOS"
                ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8C2CF3322C8E6640080102C"
+               BlueprintIdentifier = "2E33C527213836E2007FB33D"
                BuildableName = "DataStoreManagerTests-iOS.xctest"
                BlueprintName = "DataStoreManagerTests-iOS"
                ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8C2CF2A22C8E6640080102C"
+            BlueprintIdentifier = "2E33C51E213836E2007FB33D"
             BuildableName = "DataStoreManager_iOS.framework"
             BlueprintName = "DataStoreManager-iOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -64,7 +64,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8C2CF2A22C8E6640080102C"
+            BlueprintIdentifier = "2E33C51E213836E2007FB33D"
             BuildableName = "DataStoreManager_iOS.framework"
             BlueprintName = "DataStoreManager-iOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -74,7 +74,7 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -82,7 +82,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8C2CF2A22C8E6640080102C"
+            BlueprintIdentifier = "2E33C51E213836E2007FB33D"
             BuildableName = "DataStoreManager_iOS.framework"
             BlueprintName = "DataStoreManager-iOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -93,7 +93,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
