@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8D1AD0622D581C400CF5EAB"
+               BlueprintIdentifier = "B866E16422D81CA900728705"
                BuildableName = "DataStoreManager_macOS.framework"
                BlueprintName = "DataStoreManager-macOS"
                ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8C2CF3322C8E6640080102C"
-               BuildableName = "DataStoreManagerTests-iOS.xctest"
-               BlueprintName = "DataStoreManagerTests-iOS"
+               BlueprintIdentifier = "B866E16C22D81CA900728705"
+               BuildableName = "DataStoreManagerTests-macOS.xctest"
+               BlueprintName = "DataStoreManagerTests-macOS"
                ReferencedContainer = "container:DataStoreManager.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8D1AD0622D581C400CF5EAB"
+            BlueprintIdentifier = "B866E16422D81CA900728705"
             BuildableName = "DataStoreManager_macOS.framework"
             BlueprintName = "DataStoreManager-macOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -64,7 +64,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8D1AD0622D581C400CF5EAB"
+            BlueprintIdentifier = "B866E16422D81CA900728705"
             BuildableName = "DataStoreManager_macOS.framework"
             BlueprintName = "DataStoreManager-macOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -82,7 +82,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8D1AD0622D581C400CF5EAB"
+            BlueprintIdentifier = "B866E16422D81CA900728705"
             BuildableName = "DataStoreManager_macOS.framework"
             BlueprintName = "DataStoreManager-macOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
