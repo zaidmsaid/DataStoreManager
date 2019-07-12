@@ -14,11 +14,11 @@
 //  limitations under the License.
 //
 
-import CloudKit
-import CoreData
 #if os(iOS) || os(macOS)
 import LocalAuthentication
 #endif
+import CoreData
+import CloudKit
 
 /// The methods adopted by the object you use to manage data for a data store manager.
 @objc public protocol DataStoreManagerDataSource: class {
