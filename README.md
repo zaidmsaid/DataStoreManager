@@ -10,7 +10,7 @@
 
 [DataStoreManager](https://github.com/zaidmsaid/DataStoreManager) is a persistent data framework written in Swift and can be used with Objective-C.
 
-## Getting Started
+## Usage
 
 ```swift
 import DataStoreManager
@@ -102,14 +102,14 @@ Available storage types:
 /// NSCache
 .cache
 
-/// CoreData
-.coreData
-
 /// Keychain (kSecClassGenericPassword)
 .genericKeychain
 
 /// Keychain (kSecClassInternetPassword)
 .internetKeychain
+
+/// CoreData
+.coreData
 
 /// CKContainer (.privateCloudDatabase)
 .privateCloudDatabase
@@ -177,7 +177,7 @@ To install it, simply add the following line to your **Package.swift**:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.9.1"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .upToNextMinor(from: "0.9.3"))
 ]
 ```
 
@@ -185,7 +185,7 @@ or more strict:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.9.1"))
+    .package(url: "https://github.com/zaidmsaid/DataStoreManager.git", .exact("0.9.3"))
 ]
 ```
 

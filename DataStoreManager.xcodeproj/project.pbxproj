@@ -6,6 +6,31 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A92771C8219650370052CF36 /* DataStoreManager */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A90F67C121927EB300C780CE /* Build configuration list for PBXAggregateTarget "DataStoreManager" */;
+			buildPhases = (
+			);
+			dependencies = (
+				A92771C9219650370052CF36 /* PBXTargetDependency */,
+			);
+			name = DataStoreManager;
+			productName = DataStoreManager;
+		};
+		A975D1A3218A810600FCB372 /* DataStoreManagerPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27DA779419672452005FFA76 /* Build configuration list for PBXAggregateTarget "DataStoreManagerPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				A92771CB219650420052CF36 /* PBXTargetDependency */,
+			);
+			name = DataStoreManagerPackageTests;
+			productName = DataStoreManagerPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2E33C529213836E2007FB33D /* DataStoreManager_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E33C51F213836E2007FB33D /* DataStoreManager_iOS.framework */; };
 		2E33C52E213836E2007FB33D /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */; };
@@ -73,6 +98,8 @@
 		B866E1D122D821C200728705 /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14722D805D100728705 /* ProtocolType.swift */; };
 		B866E1D222D821C500728705 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14C22D8189200728705 /* DataSource.swift */; };
 		B866E1D322D821C700728705 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14B22D8189200728705 /* Delegate.swift */; };
+		B8E3CD9F22D88D9B00F3887F /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E3CD9D22D88D9B00F3887F /* XCTestManifests.swift */; };
+		B8E3CDB022D8ED6C00F3887F /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E3CD9C22D88D8200F3887F /* Package.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,14 +124,26 @@
 			remoteGlobalIDString = B866E1AC22D81F7600728705;
 			remoteInfo = DataStoreManager;
 		};
+		B8E3CDAA22D8EAF100F3887F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E33C516213836E2007FB33D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B866E16C22D81CA900728705;
+			remoteInfo = "DataStoreManagerTests-macOS";
+		};
+		B8E3CDAB22D8EAF100F3887F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E33C516213836E2007FB33D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B866E16422D81CA900728705;
+			remoteInfo = "DataStoreManager-macOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2E33C51F213836E2007FB33D /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E33C523213836E2007FB33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E33C528213836E2007FB33D /* DataStoreManagerTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
-		2E33C52F213836E2007FB33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B866E13E22D8035000728705 /* DataStoreManager-UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-UIKit.h"; sourceTree = "<group>"; };
 		B866E13F22D8035000728705 /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
 		B866E14022D8035000728705 /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
@@ -127,6 +166,8 @@
 		B866E19122D81E5A00728705 /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B866E1AD22D81F7600728705 /* DataStoreManager_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B866E1B522D81F7700728705 /* DataStoreManagerTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8E3CD9C22D88D8200F3887F /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		B8E3CD9D22D88D9B00F3887F /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +229,7 @@
 		2E33C515213836E2007FB33D = {
 			isa = PBXGroup;
 			children = (
+				B8E3CD9C22D88D8200F3887F /* Package.swift */,
 				2E33C521213836E2007FB33D /* Sources */,
 				2E33C52C213836E2007FB33D /* Tests */,
 				2E33C520213836E2007FB33D /* Products */,
@@ -212,7 +254,9 @@
 			isa = PBXGroup;
 			children = (
 				B8FE3D3422C6FBFC00042AC0 /* DataStoreManager */,
-				2E33C523213836E2007FB33D /* Info.plist */,
+				B866E13F22D8035000728705 /* DataStoreManager-Cocoa.h */,
+				B866E13E22D8035000728705 /* DataStoreManager-UIKit.h */,
+				B866E14022D8035000728705 /* DataStoreManager-WatchKit.h */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -221,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				B8FE3D3322C6FBAF00042AC0 /* DataStoreManagerTests */,
-				2E33C52F213836E2007FB33D /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -250,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */,
+				B8E3CD9D22D88D9B00F3887F /* XCTestManifests.swift */,
 			);
 			path = DataStoreManagerTests;
 			sourceTree = "<group>";
@@ -267,9 +311,6 @@
 				B866E15C22D818C400728705 /* UserDefaultsWorker.swift */,
 				B866E14422D804F700728705 /* Models */,
 				B866E14F22D8189A00728705 /* Protocols */,
-				B866E13F22D8035000728705 /* DataStoreManager-Cocoa.h */,
-				B866E13E22D8035000728705 /* DataStoreManager-UIKit.h */,
-				B866E14022D8035000728705 /* DataStoreManager-WatchKit.h */,
 			);
 			path = DataStoreManager;
 			sourceTree = "<group>";
@@ -438,6 +479,38 @@
 			productReference = B866E1B522D81F7700728705 /* DataStoreManagerTests-tvOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		B7394873229F194200C47603 /* DataStoreManagerPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27DA777119672452005FFA76 /* Build configuration list for PBXNativeTarget "DataStoreManagerPackageDescription" */;
+			buildPhases = (
+				27B38EB61977637200385025 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DataStoreManagerPackageDescription;
+			productName = DataStoreManagerPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		B866E1B422D81F7600728705 /* DataStoreManagerTests-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B866E1C322D81F7700728705 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-tvOS" */;
+			buildPhases = (
+				B866E1B122D81F7600728705 /* Sources */,
+				B866E1B222D81F7600728705 /* Frameworks */,
+				B866E1B322D81F7600728705 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B866E1B822D81F7700728705 /* PBXTargetDependency */,
+			);
+			name = "DataStoreManagerTests-tvOS";
+			productName = DataStoreManagerTests;
+			productReference = B866E1B522D81F7700728705 /* DataStoreManagerTests-tvOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -449,11 +522,11 @@
 				ORGANIZATIONNAME = "Kiple Sdn Bhd";
 				TargetAttributes = {
 					2E33C51E213836E2007FB33D = {
-						CreatedOnToolsVersion = 9.4.1;
+						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
 					};
 					2E33C527213836E2007FB33D = {
-						CreatedOnToolsVersion = 9.4.1;
+						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
 					};
 					B866E16422D81CA900728705 = {
@@ -488,7 +561,10 @@
 			targets = (
 				2E33C51E213836E2007FB33D /* DataStoreManager-iOS */,
 				2E33C527213836E2007FB33D /* DataStoreManagerTests-iOS */,
+				A92771C8219650370052CF36 /* DataStoreManager */,
 				B866E16422D81CA900728705 /* DataStoreManager-macOS */,
+				B7394873229F194200C47603 /* DataStoreManagerPackageDescription */,
+				A975D1A3218A810600FCB372 /* DataStoreManagerPackageTests */,
 				B866E16C22D81CA900728705 /* DataStoreManagerTests-macOS */,
 				B866E19022D81E5A00728705 /* DataStoreManager-watchOS */,
 				B866E1AC22D81F7600728705 /* DataStoreManager-tvOS */,
@@ -605,6 +681,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B866E18B22D81DAF00728705 /* DataStoreManagerTests.swift in Sources */,
+				B8E3CD9F22D88D9B00F3887F /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +735,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27B38EB61977637200385025 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				B8E3CDB022D8ED6C00F3887F /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -675,6 +760,16 @@
 			isa = PBXTargetDependency;
 			target = B866E1AC22D81F7600728705 /* DataStoreManager-tvOS */;
 			targetProxy = B866E1B722D81F7700728705 /* PBXContainerItemProxy */;
+		};
+		A92771C9219650370052CF36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B866E16422D81CA900728705 /* DataStoreManager-macOS */;
+			targetProxy = B8E3CDAB22D8EAF100F3887F /* PBXContainerItemProxy */;
+		};
+		A92771CB219650420052CF36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B866E16C22D81CA900728705 /* DataStoreManagerTests-macOS */;
+			targetProxy = B8E3CDAA22D8EAF100F3887F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -713,7 +808,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0.9.3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -732,6 +827,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -776,7 +872,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0.9.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -789,6 +885,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -811,7 +908,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManager_Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -842,7 +939,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManager_Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -866,7 +963,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManagerTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -885,7 +982,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManagerTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -910,7 +1007,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManager_Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -942,7 +1039,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManager_Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -969,13 +1066,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManagerTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
@@ -993,13 +1090,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManagerTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1019,7 +1116,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManager_Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1051,7 +1148,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManager_Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1081,7 +1178,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManager_Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1112,7 +1209,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManager_Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1138,7 +1235,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManagerTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1161,7 +1258,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = DataStoreManager.xcodeproj/DataStoreManagerTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1174,6 +1271,48 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 12.2;
+			};
+			name = Release;
+		};
+		27B38ED51977637200385025 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27DA779319672452005FFA76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		A99E524B217E895A00195EE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A99E524C217E895A00195EE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A99E5248217E895A00195EE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		A99E5249217E895A00195EE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 			};
 			name = Release;
 		};
@@ -1248,6 +1387,33 @@
 			buildConfigurations = (
 				B866E1C022D81F7700728705 /* Debug */,
 				B866E1C122D81F7700728705 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A90F67C121927EB300C780CE /* Build configuration list for PBXAggregateTarget "DataStoreManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27B38ED51977637200385025 /* Debug */,
+				27DA779319672452005FFA76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27DA777119672452005FFA76 /* Build configuration list for PBXNativeTarget "DataStoreManagerPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A99E524B217E895A00195EE1 /* Debug */,
+				A99E524C217E895A00195EE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27DA779419672452005FFA76 /* Build configuration list for PBXAggregateTarget "DataStoreManagerPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A99E5248217E895A00195EE1 /* Debug */,
+				A99E5249217E895A00195EE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

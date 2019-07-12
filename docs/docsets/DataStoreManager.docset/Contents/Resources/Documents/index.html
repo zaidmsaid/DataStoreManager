@@ -120,7 +120,7 @@
 <a href="http://twitter.com/SentulAsia"><img src="https://img.shields.io/badge/twitter-@SentulAsia-blue.svg?style=flat" alt="Twitter"></a></p>
 
 <p><a href="https://github.com/zaidmsaid/DataStoreManager">DataStoreManager</a> is a persistent data framework written in Swift and can be used with Objective-C.</p>
-<h2 id='getting-started' class='heading'>Getting Started</h2>
+<h2 id='usage' class='heading'>Usage</h2>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">DataStoreManager</span>
 
 <span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
@@ -208,14 +208,14 @@
 <span class="c1">/// NSCache</span>
 <span class="o">.</span><span class="n">cache</span>
 
-<span class="c1">/// CoreData</span>
-<span class="o">.</span><span class="n">coreData</span>
-
 <span class="c1">/// Keychain (kSecClassGenericPassword)</span>
 <span class="o">.</span><span class="n">genericKeychain</span>
 
 <span class="c1">/// Keychain (kSecClassInternetPassword)</span>
 <span class="o">.</span><span class="n">internetKeychain</span>
+
+<span class="c1">/// CoreData</span>
+<span class="o">.</span><span class="n">coreData</span>
 
 <span class="c1">/// CKContainer (.privateCloudDatabase)</span>
 <span class="o">.</span><span class="n">privateCloudDatabase</span>
@@ -227,7 +227,7 @@
 <span class="o">.</span><span class="n">sharedCloudDatabase</span>
 
 <span class="c1">/// NSUbiquitousKeyValueStore</span>
-<span class="o">.</span><span class="n">ubiquitousKeyValueStore</span>
+<span class="o">.</span><span class="n">ubiquitousCloudStore</span>
 </code></pre>
 <h3 id='prerequisites' class='heading'>Prerequisites</h3>
 
@@ -249,7 +249,7 @@
 
 <p>Follow the current instructions in <a href="https://github.com/Carthage/Carthage#adding-frameworks-to-an-application">Carthage&rsquo;s README</a>
 for up to date installation instructions.</p>
-<h4 id='img-src-https-raw-githubusercontent-com-zaidmsaid-datastoremanager-master-resources-img-cocoapods-png-width-24-height-24-a-href-http-cocoapods-org-cocoapods-a' class='heading'><img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/cocoapods.png" width="24" height="24"> <a href="http://cocoapods.org">CocoaPods</a></h4>
+<h4 id='img-src-https-raw-githubusercontent-com-zaidmsaid-datastoremanager-master-resources-cocoapods-png-width-24-height-24-a-href-http-cocoapods-org-cocoapods-a' class='heading'><img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/cocoapods.png" width="24" height="24"> <a href="http://cocoapods.org">CocoaPods</a></h4>
 
 <p>To install it, simply add the following line to your <strong>Podfile</strong>:</p>
 <pre class="highlight ruby"><code><span class="n">pod</span> <span class="s2">"DataStoreManager"</span>
@@ -260,17 +260,17 @@ for up to date installation instructions.</p>
 </code></pre>
 
 <p>Then run <code>pod install</code> with CocoaPods 1.6.0 or newer.</p>
-<h4 id='img-src-https-raw-githubusercontent-com-zaidmsaid-datastoremanager-master-resources-img-swift-png-width-24-height-24-a-href-https-swift-org-package-manager-swift-package-manager-a' class='heading'><img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/img/swift.png" width="24" height="24"> <a href="https://swift.org/package-manager/">Swift Package Manager</a></h4>
+<h4 id='img-src-https-raw-githubusercontent-com-zaidmsaid-datastoremanager-master-resources-swift-png-width-24-height-24-a-href-https-swift-org-package-manager-swift-package-manager-a' class='heading'><img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/swift.png" width="24" height="24"> <a href="https://swift.org/package-manager/">Swift Package Manager</a></h4>
 
 <p>To install it, simply add the following line to your <strong>Package.swift</strong>:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.9.1"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.9.2"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 
 <p>or more strict:</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.9.1"</span><span class="p">))</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/zaidmsaid/DataStoreManager.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">exact</span><span class="p">(</span><span class="s">"0.9.2"</span><span class="p">))</span>
 <span class="p">]</span>
 </code></pre>
 
@@ -324,7 +324,7 @@ for up to date installation instructions.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-11)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
