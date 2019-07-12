@@ -7,381 +7,319 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B81933F022CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */; };
-		B82A946C22D629FE00AB64F4 /* DataStoreManager_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */; };
-		B82D10F622D5BE3E00670392 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B83A5D0422D6A821007DF85B /* DataStoreManager_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */; };
-		B83A5D0A22D6A883007DF85B /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B83A5D0B22D6A8B5007DF85B /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
-		B83A5D0C22D6A977007DF85B /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
-		B83A5D0D22D6A979007DF85B /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
-		B83A5D0E22D6A97C007DF85B /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
-		B83A5D0F22D6A980007DF85B /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
-		B83A5D1022D6A983007DF85B /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
-		B83A5D1122D6A986007DF85B /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
-		B83A5D1222D6A98A007DF85B /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */; };
-		B83A5D1322D6A98D007DF85B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
-		B83A5D1422D6A990007DF85B /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
-		B83A5D1522D6A998007DF85B /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
-		B83A5D1622D6A99B007DF85B /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
-		B83A5D1722D6A99F007DF85B /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
-		B83A5D1822D6A9A2007DF85B /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
-		B83B2A3822D69FB900BFBAF2 /* DataStoreManager-Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = B83B2A3622D69F6A00BFBAF2 /* DataStoreManager-Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B83B2A3922D69FC000BFBAF2 /* DataStoreManager-WatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B83B2A3722D69F8600BFBAF2 /* DataStoreManager-WatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B866E13322D6FB2A00728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E13222D6FB1000728705 /* CoreDataWorker.swift */; };
-		B866E13422D6FB3100728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E13222D6FB1000728705 /* CoreDataWorker.swift */; };
-		B866E13522D6FB3800728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E13222D6FB1000728705 /* CoreDataWorker.swift */; };
-		B866E13622D6FB3E00728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E13222D6FB1000728705 /* CoreDataWorker.swift */; };
-		B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
-		B8C2CF3522C8E6640080102C /* DataStoreManager_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */; };
-		B8C2CF3A22C8E6640080102C /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
-		B8C2CF4A22C8EE980080102C /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
-		B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
-		B8C2CF4E22C9080E0080102C /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
-		B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
-		B8C9485722D1AEFB00B0E72D /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
-		B8C9485922D1AF4D00B0E72D /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
-		B8C9485B22D1AF8300B0E72D /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
-		B8C9485E22D1B0B300B0E72D /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
-		B8D1AD1022D582F400CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
-		B8D1AD1122D582F700CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
-		B8D1AD1222D582FA00CF5EAB /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
-		B8D1AD1322D582FC00CF5EAB /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
-		B8D1AD1422D582FF00CF5EAB /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
-		B8D1AD1522D5830200CF5EAB /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
-		B8D1AD1622D5830500CF5EAB /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
-		B8D1AD1722D5830700CF5EAB /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
-		B8D1AD1822D5830900CF5EAB /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
-		B8D1AD1922D5830C00CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
-		B8D1AD1A22D5830E00CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
-		B8D1AD1B22D5831100CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
-		B8D1AD2022D583E000CF5EAB /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */; };
-		B8D1AD5D22D591FD00CF5EAB /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485D22D1B0B300B0E72D /* Delegate.swift */; };
-		B8D1AD5E22D5920000CF5EAB /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4D22C9080E0080102C /* DataSource.swift */; };
-		B8D1AD5F22D5920200CF5EAB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485622D1AEFB00B0E72D /* Error.swift */; };
-		B8D1AD6022D5920500CF5EAB /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */; };
-		B8D1AD6122D5921200CF5EAB /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */; };
-		B8D1AD6222D5922900CF5EAB /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886C18E22CC368A00EBEBE4 /* StorageType.swift */; };
-		B8D1AD6322D5922C00CF5EAB /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */; };
-		B8D1AD6422D5922F00CF5EAB /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
-		B8D1AD6522D5923200CF5EAB /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
-		B8D1AD6622D5923700CF5EAB /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
-		B8D1AD6722D5923B00CF5EAB /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */; };
-		B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */; };
-		B8D1AD6922D5924200CF5EAB /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF4922C8EE980080102C /* DataStoreManager.swift */; };
-		B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */; };
-		B8EC6C1F22D68D10006CC3E3 /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */; };
-		B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */; };
-		B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */; };
+		2E33C529213836E2007FB33D /* DataStoreManager_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E33C51F213836E2007FB33D /* DataStoreManager_iOS.framework */; };
+		2E33C52E213836E2007FB33D /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */; };
+		B866E14122D8036900728705 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B866E13E22D8035000728705 /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B866E14322D804F000728705 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14222D804F000728705 /* Error.swift */; };
+		B866E14622D805C700728705 /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14522D805C700728705 /* AuthenticationType.swift */; };
+		B866E14822D805D100728705 /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14722D805D100728705 /* ProtocolType.swift */; };
+		B866E14A22D805D800728705 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14922D805D800728705 /* StorageType.swift */; };
+		B866E14D22D8189200728705 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14B22D8189200728705 /* Delegate.swift */; };
+		B866E14E22D8189200728705 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14C22D8189200728705 /* DataSource.swift */; };
+		B866E15322D818B400728705 /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15022D818B400728705 /* CloudKitWorker.swift */; };
+		B866E15422D818B400728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15122D818B400728705 /* CoreDataWorker.swift */; };
+		B866E15522D818B400728705 /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15222D818B400728705 /* CacheWorker.swift */; };
+		B866E15922D818BD00728705 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15622D818BD00728705 /* DataStoreManager.swift */; };
+		B866E15A22D818BD00728705 /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15722D818BD00728705 /* KeychainWorker.swift */; };
+		B866E15B22D818BD00728705 /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15822D818BD00728705 /* FileManagerWorker.swift */; };
+		B866E15E22D818C400728705 /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15C22D818C400728705 /* UserDefaultsWorker.swift */; };
+		B866E15F22D818C400728705 /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15D22D818C400728705 /* UbiquitousCloudStoreWorker.swift */; };
+		B866E16E22D81CA900728705 /* DataStoreManager_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B866E16522D81CA900728705 /* DataStoreManager_macOS.framework */; };
+		B866E17C22D81D5800728705 /* DataStoreManager-Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = B866E13F22D8035000728705 /* DataStoreManager-Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B866E17D22D81D6E00728705 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15622D818BD00728705 /* DataStoreManager.swift */; };
+		B866E17E22D81D7900728705 /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15222D818B400728705 /* CacheWorker.swift */; };
+		B866E17F22D81D7C00728705 /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15022D818B400728705 /* CloudKitWorker.swift */; };
+		B866E18022D81D8000728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15122D818B400728705 /* CoreDataWorker.swift */; };
+		B866E18122D81D8300728705 /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15822D818BD00728705 /* FileManagerWorker.swift */; };
+		B866E18222D81D8600728705 /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15722D818BD00728705 /* KeychainWorker.swift */; };
+		B866E18322D81D8800728705 /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15D22D818C400728705 /* UbiquitousCloudStoreWorker.swift */; };
+		B866E18422D81D8A00728705 /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15C22D818C400728705 /* UserDefaultsWorker.swift */; };
+		B866E18522D81D8D00728705 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14922D805D800728705 /* StorageType.swift */; };
+		B866E18622D81D8F00728705 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14222D804F000728705 /* Error.swift */; };
+		B866E18722D81D9000728705 /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14522D805C700728705 /* AuthenticationType.swift */; };
+		B866E18822D81D9200728705 /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14722D805D100728705 /* ProtocolType.swift */; };
+		B866E18922D81D9500728705 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14C22D8189200728705 /* DataSource.swift */; };
+		B866E18A22D81D9700728705 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14B22D8189200728705 /* Delegate.swift */; };
+		B866E18B22D81DAF00728705 /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */; };
+		B866E19922D81EAE00728705 /* DataStoreManager-WatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B866E14022D8035000728705 /* DataStoreManager-WatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B866E19A22D81ECC00728705 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15622D818BD00728705 /* DataStoreManager.swift */; };
+		B866E19B22D81ECF00728705 /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15222D818B400728705 /* CacheWorker.swift */; };
+		B866E19C22D81ED200728705 /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15022D818B400728705 /* CloudKitWorker.swift */; };
+		B866E19D22D81ED500728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15122D818B400728705 /* CoreDataWorker.swift */; };
+		B866E19E22D81ED800728705 /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15822D818BD00728705 /* FileManagerWorker.swift */; };
+		B866E19F22D81EDC00728705 /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15722D818BD00728705 /* KeychainWorker.swift */; };
+		B866E1A022D81EE000728705 /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15D22D818C400728705 /* UbiquitousCloudStoreWorker.swift */; };
+		B866E1A122D81EE300728705 /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15C22D818C400728705 /* UserDefaultsWorker.swift */; };
+		B866E1A222D81EE600728705 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14922D805D800728705 /* StorageType.swift */; };
+		B866E1A322D81EE900728705 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14222D804F000728705 /* Error.swift */; };
+		B866E1A422D81EEB00728705 /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14522D805C700728705 /* AuthenticationType.swift */; };
+		B866E1A522D81EEE00728705 /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14722D805D100728705 /* ProtocolType.swift */; };
+		B866E1A622D81EF000728705 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14C22D8189200728705 /* DataSource.swift */; };
+		B866E1A722D81EF200728705 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14B22D8189200728705 /* Delegate.swift */; };
+		B866E1B622D81F7700728705 /* DataStoreManager_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B866E1AD22D81F7600728705 /* DataStoreManager_tvOS.framework */; };
+		B866E1C422D81FC500728705 /* DataStoreManager-UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B866E13E22D8035000728705 /* DataStoreManager-UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B866E1C522D8216E00728705 /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */; };
+		B866E1C622D821A500728705 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15622D818BD00728705 /* DataStoreManager.swift */; };
+		B866E1C722D821A800728705 /* CacheWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15222D818B400728705 /* CacheWorker.swift */; };
+		B866E1C822D821AB00728705 /* CloudKitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15022D818B400728705 /* CloudKitWorker.swift */; };
+		B866E1C922D821AE00728705 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15122D818B400728705 /* CoreDataWorker.swift */; };
+		B866E1CA22D821B000728705 /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15822D818BD00728705 /* FileManagerWorker.swift */; };
+		B866E1CB22D821B300728705 /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15722D818BD00728705 /* KeychainWorker.swift */; };
+		B866E1CC22D821B600728705 /* UbiquitousCloudStoreWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15D22D818C400728705 /* UbiquitousCloudStoreWorker.swift */; };
+		B866E1CD22D821B800728705 /* UserDefaultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E15C22D818C400728705 /* UserDefaultsWorker.swift */; };
+		B866E1CE22D821BA00728705 /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14922D805D800728705 /* StorageType.swift */; };
+		B866E1CF22D821BD00728705 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14222D804F000728705 /* Error.swift */; };
+		B866E1D022D821BF00728705 /* AuthenticationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14522D805C700728705 /* AuthenticationType.swift */; };
+		B866E1D122D821C200728705 /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14722D805D100728705 /* ProtocolType.swift */; };
+		B866E1D222D821C500728705 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14C22D8189200728705 /* DataSource.swift */; };
+		B866E1D322D821C700728705 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B866E14B22D8189200728705 /* Delegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B82A946D22D629FE00AB64F4 /* PBXContainerItemProxy */ = {
+		2E33C52A213836E2007FB33D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
+			containerPortal = 2E33C516213836E2007FB33D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B8D1AD0622D581C400CF5EAB;
-			remoteInfo = "DataStoreManager-macOS";
-		};
-		B83A5D0522D6A821007DF85B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B83A5CF222D6A802007DF85B;
+			remoteGlobalIDString = 2E33C51E213836E2007FB33D;
 			remoteInfo = DataStoreManager;
 		};
-		B8C2CF3622C8E6640080102C /* PBXContainerItemProxy */ = {
+		B866E16F22D81CA900728705 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B8C2CF2222C8E6640080102C /* Project object */;
+			containerPortal = 2E33C516213836E2007FB33D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B8C2CF2A22C8E6640080102C;
+			remoteGlobalIDString = B866E16422D81CA900728705;
+			remoteInfo = DataStoreManager;
+		};
+		B866E1B722D81F7700728705 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E33C516213836E2007FB33D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B866E1AC22D81F7600728705;
 			remoteInfo = DataStoreManager;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousCloudStoreWorker.swift; sourceTree = "<group>"; };
-		B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B83A5CFF22D6A821007DF85B /* DataStoreManagerTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B83B2A3622D69F6A00BFBAF2 /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
-		B83B2A3722D69F8600BFBAF2 /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
-		B866E13222D6FB1000728705 /* CoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataWorker.swift; sourceTree = "<group>"; };
-		B886C18E22CC368A00EBEBE4 /* StorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
-		B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-UIKit.h"; sourceTree = "<group>"; };
-		B8C2CF2F22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8C2CF3422C8E6640080102C /* DataStoreManagerTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
-		B8C2CF3B22C8E6640080102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8C2CF4922C8EE980080102C /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
-		B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWorker.swift; sourceTree = "<group>"; };
-		B8C2CF4D22C9080E0080102C /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
-		B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerWorker.swift; sourceTree = "<group>"; };
-		B8C9485622D1AEFB00B0E72D /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationType.swift; sourceTree = "<group>"; };
-		B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolType.swift; sourceTree = "<group>"; };
-		B8C9485D22D1B0B300B0E72D /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
-		B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitWorker.swift; sourceTree = "<group>"; };
-		B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
-		B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWorker.swift; sourceTree = "<group>"; };
+		2E33C51F213836E2007FB33D /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E33C523213836E2007FB33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E33C528213836E2007FB33D /* DataStoreManagerTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
+		2E33C52F213836E2007FB33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B866E13E22D8035000728705 /* DataStoreManager-UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-UIKit.h"; sourceTree = "<group>"; };
+		B866E13F22D8035000728705 /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
+		B866E14022D8035000728705 /* DataStoreManager-WatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-WatchKit.h"; sourceTree = "<group>"; };
+		B866E14222D804F000728705 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		B866E14522D805C700728705 /* AuthenticationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationType.swift; sourceTree = "<group>"; };
+		B866E14722D805D100728705 /* ProtocolType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolType.swift; sourceTree = "<group>"; };
+		B866E14922D805D800728705 /* StorageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
+		B866E14B22D8189200728705 /* Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
+		B866E14C22D8189200728705 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		B866E15022D818B400728705 /* CloudKitWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitWorker.swift; sourceTree = "<group>"; };
+		B866E15122D818B400728705 /* CoreDataWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataWorker.swift; sourceTree = "<group>"; };
+		B866E15222D818B400728705 /* CacheWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheWorker.swift; sourceTree = "<group>"; };
+		B866E15622D818BD00728705 /* DataStoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
+		B866E15722D818BD00728705 /* KeychainWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
+		B866E15822D818BD00728705 /* FileManagerWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerWorker.swift; sourceTree = "<group>"; };
+		B866E15C22D818C400728705 /* UserDefaultsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsWorker.swift; sourceTree = "<group>"; };
+		B866E15D22D818C400728705 /* UbiquitousCloudStoreWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UbiquitousCloudStoreWorker.swift; sourceTree = "<group>"; };
+		B866E16522D81CA900728705 /* DataStoreManager_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B866E16D22D81CA900728705 /* DataStoreManagerTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B866E19122D81E5A00728705 /* DataStoreManager_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B866E1AD22D81F7600728705 /* DataStoreManager_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B866E1B522D81F7700728705 /* DataStoreManagerTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B82A946422D629FD00AB64F4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B82A946C22D629FE00AB64F4 /* DataStoreManager_macOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B83A5CF022D6A802007DF85B /* Frameworks */ = {
+		2E33C51B213836E2007FB33D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B83A5CFC22D6A821007DF85B /* Frameworks */ = {
+		2E33C525213836E2007FB33D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83A5D0422D6A821007DF85B /* DataStoreManager_tvOS.framework in Frameworks */,
+				2E33C529213836E2007FB33D /* DataStoreManager_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8C2CF2822C8E6640080102C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8C2CF3122C8E6640080102C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B8C2CF3522C8E6640080102C /* DataStoreManager_iOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8D1AD0422D581C400CF5EAB /* Frameworks */ = {
+		B866E16222D81CA900728705 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1AD5022D58F6C00CF5EAB /* Frameworks */ = {
+		B866E16A22D81CA900728705 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B866E16E22D81CA900728705 /* DataStoreManager_macOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B866E18E22D81E5A00728705 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B866E1AA22D81F7600728705 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B866E1B222D81F7600728705 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B866E1B622D81F7700728705 /* DataStoreManager_tvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B8C2CF2122C8E6640080102C = {
+		2E33C515213836E2007FB33D = {
 			isa = PBXGroup;
 			children = (
-				B8C2CF2D22C8E6640080102C /* Sources */,
-				B8C2CF3822C8E6640080102C /* Tests */,
-				B8C2CF2C22C8E6640080102C /* Products */,
-				B8D1AD1E22D5833800CF5EAB /* Frameworks */,
+				2E33C521213836E2007FB33D /* Sources */,
+				2E33C52C213836E2007FB33D /* Tests */,
+				2E33C520213836E2007FB33D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B8C2CF2C22C8E6640080102C /* Products */ = {
+		2E33C520213836E2007FB33D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */,
-				B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */,
-				B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */,
-				B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */,
-				B8C2CF3422C8E6640080102C /* DataStoreManagerTests-iOS.xctest */,
-				B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */,
-				B83A5CFF22D6A821007DF85B /* DataStoreManagerTests-tvOS.xctest */,
+				2E33C51F213836E2007FB33D /* DataStoreManager_iOS.framework */,
+				2E33C528213836E2007FB33D /* DataStoreManagerTests-iOS.xctest */,
+				B866E16522D81CA900728705 /* DataStoreManager_macOS.framework */,
+				B866E16D22D81CA900728705 /* DataStoreManagerTests-macOS.xctest */,
+				B866E19122D81E5A00728705 /* DataStoreManager_watchOS.framework */,
+				B866E1AD22D81F7600728705 /* DataStoreManager_tvOS.framework */,
+				B866E1B522D81F7700728705 /* DataStoreManagerTests-tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B8C2CF2D22C8E6640080102C /* Sources */ = {
+		2E33C521213836E2007FB33D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B8C2CF4522C8E69D0080102C /* DataStoreManager */,
-				B8C2CF2F22C8E6640080102C /* Info.plist */,
+				B8FE3D3422C6FBFC00042AC0 /* DataStoreManager */,
+				2E33C523213836E2007FB33D /* Info.plist */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		B8C2CF3822C8E6640080102C /* Tests */ = {
+		2E33C52C213836E2007FB33D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B8C2CF4622C8E6C80080102C /* DataStoreManagerTests */,
-				B8C2CF3B22C8E6640080102C /* Info.plist */,
+				B8FE3D3322C6FBAF00042AC0 /* DataStoreManagerTests */,
+				2E33C52F213836E2007FB33D /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		B8C2CF4522C8E69D0080102C /* DataStoreManager */ = {
+		B866E14422D804F700728705 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B8C2CF4922C8EE980080102C /* DataStoreManager.swift */,
-				B8C2CF4B22C8F1E30080102C /* UserDefaultsWorker.swift */,
-				B8C2CF4F22C9180F0080102C /* FileManagerWorker.swift */,
-				B8F88E8B22C9C1CF00414B3E /* CacheWorker.swift */,
-				B866E13222D6FB1000728705 /* CoreDataWorker.swift */,
-				B8F88E8922C9A57E00414B3E /* KeychainWorker.swift */,
-				B8E1ED4622CD0506008D0D7B /* CloudKitWorker.swift */,
-				B81933EF22CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift */,
-				B8C9485522D1AEDD00B0E72D /* Models */,
-				B8C9485C22D1B0A000B0E72D /* Protocols */,
-				B8C2CF2E22C8E6640080102C /* DataStoreManager-UIKit.h */,
-				B83B2A3622D69F6A00BFBAF2 /* DataStoreManager-Cocoa.h */,
-				B83B2A3722D69F8600BFBAF2 /* DataStoreManager-WatchKit.h */,
-			);
-			path = DataStoreManager;
-			sourceTree = "<group>";
-		};
-		B8C2CF4622C8E6C80080102C /* DataStoreManagerTests */ = {
-			isa = PBXGroup;
-			children = (
-				B8C2CF3922C8E6640080102C /* DataStoreManagerTests.swift */,
-			);
-			path = DataStoreManagerTests;
-			sourceTree = "<group>";
-		};
-		B8C9485522D1AEDD00B0E72D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B886C18E22CC368A00EBEBE4 /* StorageType.swift */,
-				B8C9485A22D1AF8300B0E72D /* ProtocolType.swift */,
-				B8C9485822D1AF4D00B0E72D /* AuthenticationType.swift */,
-				B8C9485622D1AEFB00B0E72D /* Error.swift */,
+				B866E14922D805D800728705 /* StorageType.swift */,
+				B866E14222D804F000728705 /* Error.swift */,
+				B866E14522D805C700728705 /* AuthenticationType.swift */,
+				B866E14722D805D100728705 /* ProtocolType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		B8C9485C22D1B0A000B0E72D /* Protocols */ = {
+		B866E14F22D8189A00728705 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				B8C2CF4D22C9080E0080102C /* DataSource.swift */,
-				B8C9485D22D1B0B300B0E72D /* Delegate.swift */,
+				B866E14C22D8189200728705 /* DataSource.swift */,
+				B866E14B22D8189200728705 /* Delegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		B8D1AD1E22D5833800CF5EAB /* Frameworks */ = {
+		B8FE3D3322C6FBAF00042AC0 /* DataStoreManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */,
 			);
-			name = Frameworks;
+			path = DataStoreManagerTests;
+			sourceTree = "<group>";
+		};
+		B8FE3D3422C6FBFC00042AC0 /* DataStoreManager */ = {
+			isa = PBXGroup;
+			children = (
+				B866E15622D818BD00728705 /* DataStoreManager.swift */,
+				B866E15222D818B400728705 /* CacheWorker.swift */,
+				B866E15022D818B400728705 /* CloudKitWorker.swift */,
+				B866E15122D818B400728705 /* CoreDataWorker.swift */,
+				B866E15822D818BD00728705 /* FileManagerWorker.swift */,
+				B866E15722D818BD00728705 /* KeychainWorker.swift */,
+				B866E15D22D818C400728705 /* UbiquitousCloudStoreWorker.swift */,
+				B866E15C22D818C400728705 /* UserDefaultsWorker.swift */,
+				B866E14422D804F700728705 /* Models */,
+				B866E14F22D8189A00728705 /* Protocols */,
+				B866E13F22D8035000728705 /* DataStoreManager-Cocoa.h */,
+				B866E13E22D8035000728705 /* DataStoreManager-UIKit.h */,
+				B866E14022D8035000728705 /* DataStoreManager-WatchKit.h */,
+			);
+			path = DataStoreManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		B83A5CEE22D6A802007DF85B /* Headers */ = {
+		2E33C51C213836E2007FB33D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83A5D0A22D6A883007DF85B /* DataStoreManager-UIKit.h in Headers */,
+				B866E14122D8036900728705 /* DataStoreManager-UIKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8C2CF2622C8E6640080102C /* Headers */ = {
+		B866E16022D81CA900728705 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82D10F622D5BE3E00670392 /* DataStoreManager-UIKit.h in Headers */,
+				B866E17C22D81D5800728705 /* DataStoreManager-Cocoa.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1AD0222D581C400CF5EAB /* Headers */ = {
+		B866E18C22D81E5A00728705 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83B2A3822D69FB900BFBAF2 /* DataStoreManager-Cocoa.h in Headers */,
+				B866E19922D81EAE00728705 /* DataStoreManager-WatchKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1AD4E22D58F6C00CF5EAB /* Headers */ = {
+		B866E1A822D81F7600728705 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83B2A3922D69FC000BFBAF2 /* DataStoreManager-WatchKit.h in Headers */,
+				B866E1C422D81FC500728705 /* DataStoreManager-UIKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B82A946622D629FD00AB64F4 /* DataStoreManagerTests-macOS */ = {
+		2E33C51E213836E2007FB33D /* DataStoreManager-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B82A946F22D629FE00AB64F4 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-macOS" */;
+			buildConfigurationList = 2E33C533213836E2007FB33D /* Build configuration list for PBXNativeTarget "DataStoreManager-iOS" */;
 			buildPhases = (
-				B82A946322D629FD00AB64F4 /* Sources */,
-				B82A946422D629FD00AB64F4 /* Frameworks */,
-				B82A946522D629FD00AB64F4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B82A946E22D629FE00AB64F4 /* PBXTargetDependency */,
-			);
-			name = "DataStoreManagerTests-macOS";
-			productName = DataStoreManagerTests;
-			productReference = B82A946722D629FD00AB64F4 /* DataStoreManagerTests-macOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B83A5CF222D6A802007DF85B /* DataStoreManager-tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B83A5CFA22D6A802007DF85B /* Build configuration list for PBXNativeTarget "DataStoreManager-tvOS" */;
-			buildPhases = (
-				B83A5CEE22D6A802007DF85B /* Headers */,
-				B83A5CEF22D6A802007DF85B /* Sources */,
-				B83A5CF022D6A802007DF85B /* Frameworks */,
-				B83A5CF122D6A802007DF85B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "DataStoreManager-tvOS";
-			productName = DataStoreManager;
-			productReference = B83A5CF322D6A802007DF85B /* DataStoreManager_tvOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		B83A5CFE22D6A821007DF85B /* DataStoreManagerTests-tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B83A5D0722D6A821007DF85B /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-tvOS" */;
-			buildPhases = (
-				B83A5CFB22D6A821007DF85B /* Sources */,
-				B83A5CFC22D6A821007DF85B /* Frameworks */,
-				B83A5CFD22D6A821007DF85B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B83A5D0622D6A821007DF85B /* PBXTargetDependency */,
-			);
-			name = "DataStoreManagerTests-tvOS";
-			productName = DataStoreManagerTests;
-			productReference = B83A5CFF22D6A821007DF85B /* DataStoreManagerTests-tvOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B8C2CF3F22C8E6640080102C /* Build configuration list for PBXNativeTarget "DataStoreManager-iOS" */;
-			buildPhases = (
-				B8C2CF2622C8E6640080102C /* Headers */,
-				B8C2CF2722C8E6640080102C /* Sources */,
-				B8C2CF2822C8E6640080102C /* Frameworks */,
-				B8C2CF2922C8E6640080102C /* Resources */,
+				2E33C51A213836E2007FB33D /* Sources */,
+				2E33C51B213836E2007FB33D /* Frameworks */,
+				2E33C51C213836E2007FB33D /* Headers */,
+				2E33C51D213836E2007FB33D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -389,35 +327,35 @@
 			);
 			name = "DataStoreManager-iOS";
 			productName = DataStoreManager;
-			productReference = B8C2CF2B22C8E6640080102C /* DataStoreManager_iOS.framework */;
+			productReference = 2E33C51F213836E2007FB33D /* DataStoreManager_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B8C2CF3322C8E6640080102C /* DataStoreManagerTests-iOS */ = {
+		2E33C527213836E2007FB33D /* DataStoreManagerTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8C2CF4222C8E6640080102C /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-iOS" */;
+			buildConfigurationList = 2E33C536213836E2007FB33D /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-iOS" */;
 			buildPhases = (
-				B8C2CF3022C8E6640080102C /* Sources */,
-				B8C2CF3122C8E6640080102C /* Frameworks */,
-				B8C2CF3222C8E6640080102C /* Resources */,
+				2E33C524213836E2007FB33D /* Sources */,
+				2E33C525213836E2007FB33D /* Frameworks */,
+				2E33C526213836E2007FB33D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B8C2CF3722C8E6640080102C /* PBXTargetDependency */,
+				2E33C52B213836E2007FB33D /* PBXTargetDependency */,
 			);
 			name = "DataStoreManagerTests-iOS";
 			productName = DataStoreManagerTests;
-			productReference = B8C2CF3422C8E6640080102C /* DataStoreManagerTests-iOS.xctest */;
+			productReference = 2E33C528213836E2007FB33D /* DataStoreManagerTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */ = {
+		B866E16422D81CA900728705 /* DataStoreManager-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8D1AD0C22D581C400CF5EAB /* Build configuration list for PBXNativeTarget "DataStoreManager-macOS" */;
+			buildConfigurationList = B866E17A22D81CA900728705 /* Build configuration list for PBXNativeTarget "DataStoreManager-macOS" */;
 			buildPhases = (
-				B8D1AD0222D581C400CF5EAB /* Headers */,
-				B8D1AD0322D581C400CF5EAB /* Sources */,
-				B8D1AD0422D581C400CF5EAB /* Frameworks */,
-				B8D1AD0522D581C400CF5EAB /* Resources */,
+				B866E16022D81CA900728705 /* Headers */,
+				B866E16122D81CA900728705 /* Sources */,
+				B866E16222D81CA900728705 /* Frameworks */,
+				B866E16322D81CA900728705 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -425,17 +363,35 @@
 			);
 			name = "DataStoreManager-macOS";
 			productName = DataStoreManager;
-			productReference = B8D1AD0722D581C400CF5EAB /* DataStoreManager_macOS.framework */;
+			productReference = B866E16522D81CA900728705 /* DataStoreManager_macOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */ = {
+		B866E16C22D81CA900728705 /* DataStoreManagerTests-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8D1AD5822D58F6C00CF5EAB /* Build configuration list for PBXNativeTarget "DataStoreManager-watchOS" */;
+			buildConfigurationList = B866E17B22D81CA900728705 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-macOS" */;
 			buildPhases = (
-				B8D1AD4E22D58F6C00CF5EAB /* Headers */,
-				B8D1AD4F22D58F6C00CF5EAB /* Sources */,
-				B8D1AD5022D58F6C00CF5EAB /* Frameworks */,
-				B8D1AD5122D58F6C00CF5EAB /* Resources */,
+				B866E16922D81CA900728705 /* Sources */,
+				B866E16A22D81CA900728705 /* Frameworks */,
+				B866E16B22D81CA900728705 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B866E17022D81CA900728705 /* PBXTargetDependency */,
+			);
+			name = "DataStoreManagerTests-macOS";
+			productName = DataStoreManagerTests;
+			productReference = B866E16D22D81CA900728705 /* DataStoreManagerTests-macOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B866E19022D81E5A00728705 /* DataStoreManager-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B866E19622D81E5A00728705 /* Build configuration list for PBXNativeTarget "DataStoreManager-watchOS" */;
+			buildPhases = (
+				B866E18C22D81E5A00728705 /* Headers */,
+				B866E18D22D81E5A00728705 /* Sources */,
+				B866E18E22D81E5A00728705 /* Frameworks */,
+				B866E18F22D81E5A00728705 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -443,113 +399,148 @@
 			);
 			name = "DataStoreManager-watchOS";
 			productName = DataStoreManager;
-			productReference = B8D1AD5322D58F6C00CF5EAB /* DataStoreManager_watchOS.framework */;
+			productReference = B866E19122D81E5A00728705 /* DataStoreManager_watchOS.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		B866E1AC22D81F7600728705 /* DataStoreManager-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B866E1C222D81F7700728705 /* Build configuration list for PBXNativeTarget "DataStoreManager-tvOS" */;
+			buildPhases = (
+				B866E1A822D81F7600728705 /* Headers */,
+				B866E1A922D81F7600728705 /* Sources */,
+				B866E1AA22D81F7600728705 /* Frameworks */,
+				B866E1AB22D81F7600728705 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DataStoreManager-tvOS";
+			productName = DataStoreManager;
+			productReference = B866E1AD22D81F7600728705 /* DataStoreManager_tvOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B866E1B422D81F7600728705 /* DataStoreManagerTests-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B866E1C322D81F7700728705 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-tvOS" */;
+			buildPhases = (
+				B866E1B122D81F7600728705 /* Sources */,
+				B866E1B222D81F7600728705 /* Frameworks */,
+				B866E1B322D81F7600728705 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B866E1B822D81F7700728705 /* PBXTargetDependency */,
+			);
+			name = "DataStoreManagerTests-tvOS";
+			productName = DataStoreManagerTests;
+			productReference = B866E1B522D81F7700728705 /* DataStoreManagerTests-tvOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B8C2CF2222C8E6640080102C /* Project object */ = {
+		2E33C516213836E2007FB33D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = "Zaid M. Said";
+				ORGANIZATIONNAME = "Kiple Sdn Bhd";
 				TargetAttributes = {
-					B82A946622D629FD00AB64F4 = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
-					B83A5CF222D6A802007DF85B = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
-					B83A5CFE22D6A821007DF85B = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
-					B8C2CF2A22C8E6640080102C = {
-						CreatedOnToolsVersion = 10.2.1;
+					2E33C51E213836E2007FB33D = {
+						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1020;
 					};
-					B8C2CF3322C8E6640080102C = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
-					B8D1AD0622D581C400CF5EAB = {
-						CreatedOnToolsVersion = 10.2.1;
+					2E33C527213836E2007FB33D = {
+						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1020;
 					};
-					B8D1AD5222D58F6C00CF5EAB = {
+					B866E16422D81CA900728705 = {
 						CreatedOnToolsVersion = 10.2.1;
-						LastSwiftMigration = 1020;
+					};
+					B866E16C22D81CA900728705 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					B866E19022D81E5A00728705 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					B866E1AC22D81F7600728705 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					B866E1B422D81F7600728705 = {
+						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
-			buildConfigurationList = B8C2CF2522C8E6640080102C /* Build configuration list for PBXProject "DataStoreManager" */;
+			buildConfigurationList = 2E33C519213836E2007FB33D /* Build configuration list for PBXProject "DataStoreManager" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = B8C2CF2122C8E6640080102C;
-			productRefGroup = B8C2CF2C22C8E6640080102C /* Products */;
+			mainGroup = 2E33C515213836E2007FB33D;
+			productRefGroup = 2E33C520213836E2007FB33D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */,
-				B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */,
-				B8D1AD5222D58F6C00CF5EAB /* DataStoreManager-watchOS */,
-				B83A5CF222D6A802007DF85B /* DataStoreManager-tvOS */,
-				B8C2CF3322C8E6640080102C /* DataStoreManagerTests-iOS */,
-				B82A946622D629FD00AB64F4 /* DataStoreManagerTests-macOS */,
-				B83A5CFE22D6A821007DF85B /* DataStoreManagerTests-tvOS */,
+				2E33C51E213836E2007FB33D /* DataStoreManager-iOS */,
+				2E33C527213836E2007FB33D /* DataStoreManagerTests-iOS */,
+				B866E16422D81CA900728705 /* DataStoreManager-macOS */,
+				B866E16C22D81CA900728705 /* DataStoreManagerTests-macOS */,
+				B866E19022D81E5A00728705 /* DataStoreManager-watchOS */,
+				B866E1AC22D81F7600728705 /* DataStoreManager-tvOS */,
+				B866E1B422D81F7600728705 /* DataStoreManagerTests-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B82A946522D629FD00AB64F4 /* Resources */ = {
+		2E33C51D213836E2007FB33D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B83A5CF122D6A802007DF85B /* Resources */ = {
+		2E33C526213836E2007FB33D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B83A5CFD22D6A821007DF85B /* Resources */ = {
+		B866E16322D81CA900728705 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8C2CF2922C8E6640080102C /* Resources */ = {
+		B866E16B22D81CA900728705 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8C2CF3222C8E6640080102C /* Resources */ = {
+		B866E18F22D81E5A00728705 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1AD0522D581C400CF5EAB /* Resources */ = {
+		B866E1AB22D81F7600728705 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1AD5122D58F6C00CF5EAB /* Resources */ = {
+		B866E1B322D81F7600728705 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -559,274 +550,136 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B82A946322D629FD00AB64F4 /* Sources */ = {
+		2E33C51A213836E2007FB33D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8EC6C1F22D68D10006CC3E3 /* DataStoreManagerTests.swift in Sources */,
+				B866E14D22D8189200728705 /* Delegate.swift in Sources */,
+				B866E14E22D8189200728705 /* DataSource.swift in Sources */,
+				B866E14822D805D100728705 /* ProtocolType.swift in Sources */,
+				B866E14622D805C700728705 /* AuthenticationType.swift in Sources */,
+				B866E14322D804F000728705 /* Error.swift in Sources */,
+				B866E14A22D805D800728705 /* StorageType.swift in Sources */,
+				B866E15E22D818C400728705 /* UserDefaultsWorker.swift in Sources */,
+				B866E15F22D818C400728705 /* UbiquitousCloudStoreWorker.swift in Sources */,
+				B866E15A22D818BD00728705 /* KeychainWorker.swift in Sources */,
+				B866E15B22D818BD00728705 /* FileManagerWorker.swift in Sources */,
+				B866E15422D818B400728705 /* CoreDataWorker.swift in Sources */,
+				B866E15322D818B400728705 /* CloudKitWorker.swift in Sources */,
+				B866E15522D818B400728705 /* CacheWorker.swift in Sources */,
+				B866E15922D818BD00728705 /* DataStoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B83A5CEF22D6A802007DF85B /* Sources */ = {
+		2E33C524213836E2007FB33D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83A5D0C22D6A977007DF85B /* Delegate.swift in Sources */,
-				B83A5D0D22D6A979007DF85B /* DataSource.swift in Sources */,
-				B83A5D0E22D6A97C007DF85B /* Error.swift in Sources */,
-				B83A5D0F22D6A980007DF85B /* AuthenticationType.swift in Sources */,
-				B83A5D1022D6A983007DF85B /* ProtocolType.swift in Sources */,
-				B83A5D1122D6A986007DF85B /* StorageType.swift in Sources */,
-				B83A5D1222D6A98A007DF85B /* UbiquitousCloudStoreWorker.swift in Sources */,
-				B83A5D1322D6A98D007DF85B /* CloudKitWorker.swift in Sources */,
-				B83A5D1422D6A990007DF85B /* KeychainWorker.swift in Sources */,
-				B866E13622D6FB3E00728705 /* CoreDataWorker.swift in Sources */,
-				B83A5D1522D6A998007DF85B /* CacheWorker.swift in Sources */,
-				B83A5D1622D6A99B007DF85B /* FileManagerWorker.swift in Sources */,
-				B83A5D1722D6A99F007DF85B /* UserDefaultsWorker.swift in Sources */,
-				B83A5D1822D6A9A2007DF85B /* DataStoreManager.swift in Sources */,
+				2E33C52E213836E2007FB33D /* DataStoreManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B83A5CFB22D6A821007DF85B /* Sources */ = {
+		B866E16122D81CA900728705 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83A5D0B22D6A8B5007DF85B /* DataStoreManagerTests.swift in Sources */,
+				B866E18A22D81D9700728705 /* Delegate.swift in Sources */,
+				B866E18922D81D9500728705 /* DataSource.swift in Sources */,
+				B866E18822D81D9200728705 /* ProtocolType.swift in Sources */,
+				B866E18722D81D9000728705 /* AuthenticationType.swift in Sources */,
+				B866E18622D81D8F00728705 /* Error.swift in Sources */,
+				B866E18522D81D8D00728705 /* StorageType.swift in Sources */,
+				B866E18422D81D8A00728705 /* UserDefaultsWorker.swift in Sources */,
+				B866E18322D81D8800728705 /* UbiquitousCloudStoreWorker.swift in Sources */,
+				B866E18222D81D8600728705 /* KeychainWorker.swift in Sources */,
+				B866E18122D81D8300728705 /* FileManagerWorker.swift in Sources */,
+				B866E18022D81D8000728705 /* CoreDataWorker.swift in Sources */,
+				B866E17F22D81D7C00728705 /* CloudKitWorker.swift in Sources */,
+				B866E17E22D81D7900728705 /* CacheWorker.swift in Sources */,
+				B866E17D22D81D6E00728705 /* DataStoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8C2CF2722C8E6640080102C /* Sources */ = {
+		B866E16922D81CA900728705 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C9485E22D1B0B300B0E72D /* Delegate.swift in Sources */,
-				B8C2CF4E22C9080E0080102C /* DataSource.swift in Sources */,
-				B8C9485722D1AEFB00B0E72D /* Error.swift in Sources */,
-				B8C9485922D1AF4D00B0E72D /* AuthenticationType.swift in Sources */,
-				B8C9485B22D1AF8300B0E72D /* ProtocolType.swift in Sources */,
-				B886C18F22CC368A00EBEBE4 /* StorageType.swift in Sources */,
-				B81933F022CA6A1800A754CA /* UbiquitousCloudStoreWorker.swift in Sources */,
-				B8E1ED4722CD0506008D0D7B /* CloudKitWorker.swift in Sources */,
-				B8F88E8A22C9A57E00414B3E /* KeychainWorker.swift in Sources */,
-				B866E13322D6FB2A00728705 /* CoreDataWorker.swift in Sources */,
-				B8F88E8C22C9C1CF00414B3E /* CacheWorker.swift in Sources */,
-				B8C2CF5022C9180F0080102C /* FileManagerWorker.swift in Sources */,
-				B8C2CF4C22C8F1E30080102C /* UserDefaultsWorker.swift in Sources */,
-				B8C2CF4A22C8EE980080102C /* DataStoreManager.swift in Sources */,
+				B866E18B22D81DAF00728705 /* DataStoreManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8C2CF3022C8E6640080102C /* Sources */ = {
+		B866E18D22D81E5A00728705 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C2CF3A22C8E6640080102C /* DataStoreManagerTests.swift in Sources */,
+				B866E1A722D81EF200728705 /* Delegate.swift in Sources */,
+				B866E1A622D81EF000728705 /* DataSource.swift in Sources */,
+				B866E1A522D81EEE00728705 /* ProtocolType.swift in Sources */,
+				B866E1A422D81EEB00728705 /* AuthenticationType.swift in Sources */,
+				B866E1A322D81EE900728705 /* Error.swift in Sources */,
+				B866E1A222D81EE600728705 /* StorageType.swift in Sources */,
+				B866E1A122D81EE300728705 /* UserDefaultsWorker.swift in Sources */,
+				B866E1A022D81EE000728705 /* UbiquitousCloudStoreWorker.swift in Sources */,
+				B866E19F22D81EDC00728705 /* KeychainWorker.swift in Sources */,
+				B866E19E22D81ED800728705 /* FileManagerWorker.swift in Sources */,
+				B866E19D22D81ED500728705 /* CoreDataWorker.swift in Sources */,
+				B866E19C22D81ED200728705 /* CloudKitWorker.swift in Sources */,
+				B866E19B22D81ECF00728705 /* CacheWorker.swift in Sources */,
+				B866E19A22D81ECC00728705 /* DataStoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1AD0322D581C400CF5EAB /* Sources */ = {
+		B866E1A922D81F7600728705 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D1AD1B22D5831100CF5EAB /* Delegate.swift in Sources */,
-				B8D1AD1A22D5830E00CF5EAB /* DataSource.swift in Sources */,
-				B8D1AD1922D5830C00CF5EAB /* Error.swift in Sources */,
-				B8D1AD1822D5830900CF5EAB /* AuthenticationType.swift in Sources */,
-				B8D1AD1722D5830700CF5EAB /* ProtocolType.swift in Sources */,
-				B8D1AD1622D5830500CF5EAB /* StorageType.swift in Sources */,
-				B8D1AD2022D583E000CF5EAB /* UbiquitousCloudStoreWorker.swift in Sources */,
-				B8D1AD1522D5830200CF5EAB /* CloudKitWorker.swift in Sources */,
-				B8D1AD1422D582FF00CF5EAB /* KeychainWorker.swift in Sources */,
-				B866E13422D6FB3100728705 /* CoreDataWorker.swift in Sources */,
-				B8D1AD1322D582FC00CF5EAB /* CacheWorker.swift in Sources */,
-				B8D1AD1222D582FA00CF5EAB /* FileManagerWorker.swift in Sources */,
-				B8D1AD1122D582F700CF5EAB /* UserDefaultsWorker.swift in Sources */,
-				B8D1AD1022D582F400CF5EAB /* DataStoreManager.swift in Sources */,
+				B866E1D322D821C700728705 /* Delegate.swift in Sources */,
+				B866E1D222D821C500728705 /* DataSource.swift in Sources */,
+				B866E1D122D821C200728705 /* ProtocolType.swift in Sources */,
+				B866E1D022D821BF00728705 /* AuthenticationType.swift in Sources */,
+				B866E1CF22D821BD00728705 /* Error.swift in Sources */,
+				B866E1CE22D821BA00728705 /* StorageType.swift in Sources */,
+				B866E1CD22D821B800728705 /* UserDefaultsWorker.swift in Sources */,
+				B866E1CC22D821B600728705 /* UbiquitousCloudStoreWorker.swift in Sources */,
+				B866E1CB22D821B300728705 /* KeychainWorker.swift in Sources */,
+				B866E1CA22D821B000728705 /* FileManagerWorker.swift in Sources */,
+				B866E1C922D821AE00728705 /* CoreDataWorker.swift in Sources */,
+				B866E1C822D821AB00728705 /* CloudKitWorker.swift in Sources */,
+				B866E1C722D821A800728705 /* CacheWorker.swift in Sources */,
+				B866E1C622D821A500728705 /* DataStoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8D1AD4F22D58F6C00CF5EAB /* Sources */ = {
+		B866E1B122D81F7600728705 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D1AD5D22D591FD00CF5EAB /* Delegate.swift in Sources */,
-				B8D1AD5E22D5920000CF5EAB /* DataSource.swift in Sources */,
-				B8D1AD5F22D5920200CF5EAB /* Error.swift in Sources */,
-				B8D1AD6022D5920500CF5EAB /* AuthenticationType.swift in Sources */,
-				B8D1AD6122D5921200CF5EAB /* ProtocolType.swift in Sources */,
-				B8D1AD6222D5922900CF5EAB /* StorageType.swift in Sources */,
-				B8D1AD6322D5922C00CF5EAB /* UbiquitousCloudStoreWorker.swift in Sources */,
-				B8D1AD6422D5922F00CF5EAB /* CloudKitWorker.swift in Sources */,
-				B8D1AD6522D5923200CF5EAB /* KeychainWorker.swift in Sources */,
-				B866E13522D6FB3800728705 /* CoreDataWorker.swift in Sources */,
-				B8D1AD6622D5923700CF5EAB /* CacheWorker.swift in Sources */,
-				B8D1AD6722D5923B00CF5EAB /* FileManagerWorker.swift in Sources */,
-				B8D1AD6822D5923E00CF5EAB /* UserDefaultsWorker.swift in Sources */,
-				B8D1AD6922D5924200CF5EAB /* DataStoreManager.swift in Sources */,
+				B866E1C522D8216E00728705 /* DataStoreManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B82A946E22D629FE00AB64F4 /* PBXTargetDependency */ = {
+		2E33C52B213836E2007FB33D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8D1AD0622D581C400CF5EAB /* DataStoreManager-macOS */;
-			targetProxy = B82A946D22D629FE00AB64F4 /* PBXContainerItemProxy */;
+			target = 2E33C51E213836E2007FB33D /* DataStoreManager-iOS */;
+			targetProxy = 2E33C52A213836E2007FB33D /* PBXContainerItemProxy */;
 		};
-		B83A5D0622D6A821007DF85B /* PBXTargetDependency */ = {
+		B866E17022D81CA900728705 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B83A5CF222D6A802007DF85B /* DataStoreManager-tvOS */;
-			targetProxy = B83A5D0522D6A821007DF85B /* PBXContainerItemProxy */;
+			target = B866E16422D81CA900728705 /* DataStoreManager-macOS */;
+			targetProxy = B866E16F22D81CA900728705 /* PBXContainerItemProxy */;
 		};
-		B8C2CF3722C8E6640080102C /* PBXTargetDependency */ = {
+		B866E1B822D81F7700728705 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8C2CF2A22C8E6640080102C /* DataStoreManager-iOS */;
-			targetProxy = B8C2CF3622C8E6640080102C /* PBXContainerItemProxy */;
+			target = B866E1AC22D81F7600728705 /* DataStoreManager-tvOS */;
+			targetProxy = B866E1B722D81F7700728705 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		B82A947022D629FE00AB64F4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		B82A947122D629FE00AB64F4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		B83A5CF822D6A802007DF85B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = C8C5YY57VR;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Debug;
-		};
-		B83A5CF922D6A802007DF85B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = C8C5YY57VR;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Release;
-		};
-		B83A5D0822D6A821007DF85B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Debug;
-		};
-		B83A5D0922D6A821007DF85B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C8C5YY57VR;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Release;
-		};
-		B8C2CF3D22C8E6640080102C /* Debug */ = {
+		2E33C531213836E2007FB33D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -879,8 +732,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -890,7 +742,7 @@
 			};
 			name = Debug;
 		};
-		B8C2CF3E22C8E6640080102C /* Release */ = {
+		2E33C532213836E2007FB33D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -938,7 +790,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -948,7 +799,7 @@
 			};
 			name = Release;
 		};
-		B8C2CF4022C8E6640080102C /* Debug */ = {
+		2E33C534213836E2007FB33D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -959,6 +810,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -966,16 +818,19 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
-		B8C2CF4122C8E6640080102C /* Release */ = {
+		2E33C535213836E2007FB33D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -986,6 +841,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -993,15 +849,18 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
-		B8C2CF4322C8E6640080102C /* Debug */ = {
+		2E33C537213836E2007FB33D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1020,7 +879,7 @@
 			};
 			name = Debug;
 		};
-		B8C2CF4422C8E6640080102C /* Release */ = {
+		2E33C538213836E2007FB33D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1039,11 +898,10 @@
 			};
 			name = Release;
 		};
-		B8D1AD0D22D581C400CF5EAB /* Debug */ = {
+		B866E17622D81CA900728705 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1060,49 +918,100 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
+			};
+			name = Debug;
+		};
+		B866E17722D81CA900728705 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
+			};
+			name = Release;
+		};
+		B866E17822D81CA900728705 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		B8D1AD0E22D581C400CF5EAB /* Release */ = {
+		B866E17922D81CA900728705 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = C8C5YY57VR;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Sources/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
+					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		B8D1AD5922D58F6C00CF5EAB /* Debug */ = {
+		B866E19722D81E5A00728705 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -1117,22 +1026,24 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
-		B8D1AD5A22D58F6C00CF5EAB /* Release */ = {
+		B866E19822D81E5A00728705 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -1147,92 +1058,201 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		B866E1BE22D81F7700728705 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
+			};
+			name = Debug;
+		};
+		B866E1BF22D81F7700728705 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManager;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
+			};
+			name = Release;
+		};
+		B866E1C022D81F7700728705 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.2;
+			};
+			name = Debug;
+		};
+		B866E1C122D81F7700728705 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C8C5YY57VR;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentulasia.DataStoreManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.2;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B82A946F22D629FE00AB64F4 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-macOS" */ = {
+		2E33C519213836E2007FB33D /* Build configuration list for PBXProject "DataStoreManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B82A947022D629FE00AB64F4 /* Debug */,
-				B82A947122D629FE00AB64F4 /* Release */,
+				2E33C531213836E2007FB33D /* Debug */,
+				2E33C532213836E2007FB33D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B83A5CFA22D6A802007DF85B /* Build configuration list for PBXNativeTarget "DataStoreManager-tvOS" */ = {
+		2E33C533213836E2007FB33D /* Build configuration list for PBXNativeTarget "DataStoreManager-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B83A5CF822D6A802007DF85B /* Debug */,
-				B83A5CF922D6A802007DF85B /* Release */,
+				2E33C534213836E2007FB33D /* Debug */,
+				2E33C535213836E2007FB33D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B83A5D0722D6A821007DF85B /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-tvOS" */ = {
+		2E33C536213836E2007FB33D /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B83A5D0822D6A821007DF85B /* Debug */,
-				B83A5D0922D6A821007DF85B /* Release */,
+				2E33C537213836E2007FB33D /* Debug */,
+				2E33C538213836E2007FB33D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8C2CF2522C8E6640080102C /* Build configuration list for PBXProject "DataStoreManager" */ = {
+		B866E17A22D81CA900728705 /* Build configuration list for PBXNativeTarget "DataStoreManager-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8C2CF3D22C8E6640080102C /* Debug */,
-				B8C2CF3E22C8E6640080102C /* Release */,
+				B866E17622D81CA900728705 /* Debug */,
+				B866E17722D81CA900728705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8C2CF3F22C8E6640080102C /* Build configuration list for PBXNativeTarget "DataStoreManager-iOS" */ = {
+		B866E17B22D81CA900728705 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8C2CF4022C8E6640080102C /* Debug */,
-				B8C2CF4122C8E6640080102C /* Release */,
+				B866E17822D81CA900728705 /* Debug */,
+				B866E17922D81CA900728705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8C2CF4222C8E6640080102C /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-iOS" */ = {
+		B866E19622D81E5A00728705 /* Build configuration list for PBXNativeTarget "DataStoreManager-watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8C2CF4322C8E6640080102C /* Debug */,
-				B8C2CF4422C8E6640080102C /* Release */,
+				B866E19722D81E5A00728705 /* Debug */,
+				B866E19822D81E5A00728705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8D1AD0C22D581C400CF5EAB /* Build configuration list for PBXNativeTarget "DataStoreManager-macOS" */ = {
+		B866E1C222D81F7700728705 /* Build configuration list for PBXNativeTarget "DataStoreManager-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8D1AD0D22D581C400CF5EAB /* Debug */,
-				B8D1AD0E22D581C400CF5EAB /* Release */,
+				B866E1BE22D81F7700728705 /* Debug */,
+				B866E1BF22D81F7700728705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8D1AD5822D58F6C00CF5EAB /* Build configuration list for PBXNativeTarget "DataStoreManager-watchOS" */ = {
+		B866E1C322D81F7700728705 /* Build configuration list for PBXNativeTarget "DataStoreManagerTests-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8D1AD5922D58F6C00CF5EAB /* Debug */,
-				B8D1AD5A22D58F6C00CF5EAB /* Release */,
+				B866E1C022D81F7700728705 /* Debug */,
+				B866E1C122D81F7700728705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B8C2CF2222C8E6640080102C /* Project object */;
+	rootObject = 2E33C516213836E2007FB33D /* Project object */;
 }

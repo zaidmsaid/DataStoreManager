@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B83A5CF222D6A802007DF85B"
+               BlueprintIdentifier = "B866E1AC22D81F7600728705"
                BuildableName = "DataStoreManager_tvOS.framework"
                BlueprintName = "DataStoreManager-tvOS"
                ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B83A5CFE22D6A821007DF85B"
+               BlueprintIdentifier = "B866E1B422D81F7600728705"
                BuildableName = "DataStoreManagerTests-tvOS.xctest"
                BlueprintName = "DataStoreManagerTests-tvOS"
                ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B83A5CF222D6A802007DF85B"
+            BlueprintIdentifier = "B866E1AC22D81F7600728705"
             BuildableName = "DataStoreManager_tvOS.framework"
             BlueprintName = "DataStoreManager-tvOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -64,7 +64,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B83A5CF222D6A802007DF85B"
+            BlueprintIdentifier = "B866E1AC22D81F7600728705"
             BuildableName = "DataStoreManager_tvOS.framework"
             BlueprintName = "DataStoreManager-tvOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
@@ -82,7 +82,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B83A5CF222D6A802007DF85B"
+            BlueprintIdentifier = "B866E1AC22D81F7600728705"
             BuildableName = "DataStoreManager_tvOS.framework"
             BlueprintName = "DataStoreManager-tvOS"
             ReferencedContainer = "container:DataStoreManager.xcodeproj">
