@@ -17,7 +17,7 @@
 import XCTest
 
 #if !os(macOS)
-public func allTests() -> [XCTestCaseEntry] {
+func allTests() -> [XCTestCaseEntry] {
     return [
         testCase(DataStoreManagerTests.allTests),
     ]

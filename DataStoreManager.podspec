@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DataStoreManager"
-  s.version      = "0.9.1"
+  s.version      = "0.9.3"
   s.summary      = "This library allows you to easily manage persistent data in your iOS app."
 
   # This description is used to generate tags and improve search results.
@@ -115,7 +115,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework = "SomeFramework"
-  s.frameworks = "Security", "LocalAuthentication", "CloudKit"
+  s.frameworks = "Security", "LocalAuthentication", "CoreData", "CloudKit"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
