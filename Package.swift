@@ -6,54 +6,45 @@ import PackageDescription
 let package = Package(
     name: "DataStoreManager",
     platforms: [
-        .iOS(.v8),
-        .macOS(.v10_10),
-        .watchOS(.v2),
-        .tvOS(.v9)
+        .macOS(.v10_10)
     ],
-    products: [
+    products: {
+        var products: [Product] = []
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
-        .library(
-            name: "DataStoreManager",
-            targets: ["DataStoreManager"]),
-    ],
+        products.append(contentsOf: [
+            .library(
+                name: "DataStoreManager",
+                targets: [
+                    "DataStoreManager-macOS"
+                ]
+            ),
+        ])
+        return products
+    }(),
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
+        // add your dependencies here, for example:
+        // .package(url: "https://github.com/User/Project.git", .upToNextMajor(from: "1.0.0")),
     ],
     targets: {
-        var targets: [Target] = [
-            // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-            // Targets can depend on other targets in this package, and on products in packages which this package depends on.
-            .testTarget(
-                name: "DataStoreManagerTests",
-                dependencies: ["DataStoreManager"]),
-        ]
-        #if os(iOS)
-        targets.append(contentsOf: [
-            .target(
-                name: "DataStoreManager-iOS",
-                dependencies: []),
-            ])
-        #elseif os(macOS)
+        var targets: [Target] = []
         targets.append(contentsOf: [
             .target(
                 name: "DataStoreManager-macOS",
-                dependencies: []),
-            ])
-        #elseif os(watchOS)
-        targets.append(contentsOf: [
-            .target(
-                name: "DataStoreManager-watchOS",
-                dependencies: []),
-            ])
-        #elseif os(tvOS)
-        targets.append(contentsOf: [
-            .target(
-                name: "DataStoreManager-tvOS",
-                dependencies: []),
-            ])
-        #endif
+                dependencies: [
+                    // add your dependencies scheme names here, for example:
+                    // "Project",
+                ],
+                path: "Sources/DataStoreManager"
+            ),
+            .testTarget(
+                name: "DataStoreManagerTests-macOS",
+                dependencies: [
+                    "DataStoreManager-macOS"
+                ],
+                path: "Tests/DataStoreManagerTests"
+            ),
+        ])
         return targets
-}(),
+    }(),
     swiftLanguageVersions: [.v5]
 )
