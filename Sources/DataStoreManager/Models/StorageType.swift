@@ -67,9 +67,6 @@ import Security
 
     /// The corresponding value of the raw type.
     public final var rawValue: String
-
-    /// A collection of all values of this type.
-    fileprivate static var entity = EntityCollection<DataStoreStorageType>()
 }
 
 extension DataStoreStorageType : RawRepresentable {
@@ -139,6 +136,8 @@ extension DataStoreStorageType : RawRepresentable {
 
 extension DataStoreStorageType : Entity, CaseIterable {
     public typealias PrimaryKey = String
+
+    fileprivate static var entity = EntityCollection<DataStoreStorageType>()
 
     /// A collection of all values of this type.
     public static var allCases: [DataStoreStorageType] {
