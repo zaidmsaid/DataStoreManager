@@ -36,6 +36,23 @@ import Security
     ///
     /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
     public required init?(rawValue: String) {
+
+        DataStoreStorageType.multiset.add(.userDefaults)
+        DataStoreStorageType.multiset.add(.documentDirectory)
+        DataStoreStorageType.multiset.add(.userDirectory)
+        DataStoreStorageType.multiset.add(.libraryDirectory)
+        DataStoreStorageType.multiset.add(.applicationDirectory)
+        DataStoreStorageType.multiset.add(.coreServiceDirectory)
+        DataStoreStorageType.multiset.add(.temporaryDirectory)
+        DataStoreStorageType.multiset.add(.cache)
+        DataStoreStorageType.multiset.add(.genericKeychain)
+        DataStoreStorageType.multiset.add(.internetKeychain)
+        DataStoreStorageType.multiset.add(.coreData)
+        DataStoreStorageType.multiset.add(.privateCloudDatabase)
+        DataStoreStorageType.multiset.add(.publicCloudDatabase)
+        DataStoreStorageType.multiset.add(.sharedCloudDatabase)
+        DataStoreStorageType.multiset.add(.ubiquitousCloudStore)
+
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
                 self.rawValue = rawValue
@@ -52,28 +69,10 @@ import Security
     public final var rawValue: String
 
     /// A collection of all values of this type.
-    public static var allCases: [DataStoreStorageType] {
-        return [
-            DataStoreStorageType.userDefaults,
-            DataStoreStorageType.documentDirectory,
-            DataStoreStorageType.userDirectory,
-            DataStoreStorageType.libraryDirectory,
-            DataStoreStorageType.applicationDirectory,
-            DataStoreStorageType.coreServiceDirectory,
-            DataStoreStorageType.temporaryDirectory,
-            DataStoreStorageType.cache,
-            DataStoreStorageType.genericKeychain,
-            DataStoreStorageType.internetKeychain,
-            DataStoreStorageType.coreData,
-            DataStoreStorageType.privateCloudDatabase,
-            DataStoreStorageType.publicCloudDatabase,
-            DataStoreStorageType.sharedCloudDatabase,
-            DataStoreStorageType.ubiquitousCloudStore
-        ]
-    }
+    fileprivate static var multiset = Multiset<DataStoreStorageType>()
 }
 
-extension DataStoreStorageType : RawRepresentable, CaseIterable {
+extension DataStoreStorageType : RawRepresentable {
 
     // MARK: - Enumerations
 
@@ -134,6 +133,20 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
 
     /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
     public static let ubiquitousCloudStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
+}
+
+// MARK: - CaseIterable
+
+extension DataStoreStorageType : CaseIterable {
+
+    /// A collection of all values of this type.
+    public static var allCases: [DataStoreStorageType] {
+        var cases = [DataStoreStorageType]()
+        for key in multiset.allKey {
+            cases.append(key)
+        }
+        return cases
+    }
 }
 
 // MARK: - CustomStringConvertible
