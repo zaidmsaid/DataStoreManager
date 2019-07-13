@@ -34,10 +34,6 @@
 /* Begin PBXBuildFile section */
 		2E33C529213836E2007FB33D /* DataStoreManager_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E33C51F213836E2007FB33D /* DataStoreManager_iOS.framework */; };
 		2E33C52E213836E2007FB33D /* DataStoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */; };
-		B8623CFD22D9584B00B90552 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8623CF922D94FE800B90552 /* Multiset.swift */; };
-		B8623CFE22D9585200B90552 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8623CF922D94FE800B90552 /* Multiset.swift */; };
-		B8623CFF22D9585D00B90552 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8623CF922D94FE800B90552 /* Multiset.swift */; };
-		B8623D0022D9586400B90552 /* Multiset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8623CF922D94FE800B90552 /* Multiset.swift */; };
 		B8623D0222D9916300B90552 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8623D0122D9913F00B90552 /* Entity.swift */; };
 		B8623D0322D9916A00B90552 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8623D0122D9913F00B90552 /* Entity.swift */; };
 		B8623D0422D9917300B90552 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8623D0122D9913F00B90552 /* Entity.swift */; };
@@ -152,7 +148,6 @@
 		2E33C51F213836E2007FB33D /* DataStoreManager_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStoreManager_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E33C528213836E2007FB33D /* DataStoreManagerTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DataStoreManagerTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E33C52D213836E2007FB33D /* DataStoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManagerTests.swift; sourceTree = "<group>"; };
-		B8623CF922D94FE800B90552 /* Multiset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multiset.swift; sourceTree = "<group>"; };
 		B8623D0122D9913F00B90552 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		B866E13E22D8035000728705 /* DataStoreManager-UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-UIKit.h"; sourceTree = "<group>"; };
 		B866E13F22D8035000728705 /* DataStoreManager-Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataStoreManager-Cocoa.h"; sourceTree = "<group>"; };
@@ -284,7 +279,6 @@
 			children = (
 				B866E14922D805D800728705 /* StorageType.swift */,
 				B8623D0122D9913F00B90552 /* Entity.swift */,
-				B8623CF922D94FE800B90552 /* Multiset.swift */,
 				B866E14222D804F000728705 /* Error.swift */,
 				B866E14522D805C700728705 /* AuthenticationType.swift */,
 				B866E14722D805D100728705 /* ProtocolType.swift */,
@@ -637,7 +631,6 @@
 				B866E14822D805D100728705 /* ProtocolType.swift in Sources */,
 				B866E14622D805C700728705 /* AuthenticationType.swift in Sources */,
 				B866E14322D804F000728705 /* Error.swift in Sources */,
-				B8623CFD22D9584B00B90552 /* Multiset.swift in Sources */,
 				B8623D0222D9916300B90552 /* Entity.swift in Sources */,
 				B866E14A22D805D800728705 /* StorageType.swift in Sources */,
 				B866E15E22D818C400728705 /* UserDefaultsWorker.swift in Sources */,
@@ -668,7 +661,6 @@
 				B866E18822D81D9200728705 /* ProtocolType.swift in Sources */,
 				B866E18722D81D9000728705 /* AuthenticationType.swift in Sources */,
 				B866E18622D81D8F00728705 /* Error.swift in Sources */,
-				B8623CFE22D9585200B90552 /* Multiset.swift in Sources */,
 				B8623D0322D9916A00B90552 /* Entity.swift in Sources */,
 				B866E18522D81D8D00728705 /* StorageType.swift in Sources */,
 				B866E18422D81D8A00728705 /* UserDefaultsWorker.swift in Sources */,
@@ -700,7 +692,6 @@
 				B866E1A522D81EEE00728705 /* ProtocolType.swift in Sources */,
 				B866E1A422D81EEB00728705 /* AuthenticationType.swift in Sources */,
 				B866E1A322D81EE900728705 /* Error.swift in Sources */,
-				B8623CFF22D9585D00B90552 /* Multiset.swift in Sources */,
 				B8623D0422D9917300B90552 /* Entity.swift in Sources */,
 				B866E1A222D81EE600728705 /* StorageType.swift in Sources */,
 				B866E1A122D81EE300728705 /* UserDefaultsWorker.swift in Sources */,
@@ -723,7 +714,6 @@
 				B866E1D122D821C200728705 /* ProtocolType.swift in Sources */,
 				B866E1D022D821BF00728705 /* AuthenticationType.swift in Sources */,
 				B866E1CF22D821BD00728705 /* Error.swift in Sources */,
-				B8623D0022D9586400B90552 /* Multiset.swift in Sources */,
 				B8623D0522D9919E00B90552 /* Entity.swift in Sources */,
 				B866E1CE22D821BA00728705 /* StorageType.swift in Sources */,
 				B866E1CD22D821B800728705 /* UserDefaultsWorker.swift in Sources */,

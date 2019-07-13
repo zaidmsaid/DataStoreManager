@@ -37,21 +37,21 @@ import Security
     /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
     public required init?(rawValue: String) {
 
-        DataStoreStorageType.multiset.add(.userDefaults)
-        DataStoreStorageType.multiset.add(.documentDirectory)
-        DataStoreStorageType.multiset.add(.userDirectory)
-        DataStoreStorageType.multiset.add(.libraryDirectory)
-        DataStoreStorageType.multiset.add(.applicationDirectory)
-        DataStoreStorageType.multiset.add(.coreServiceDirectory)
-        DataStoreStorageType.multiset.add(.temporaryDirectory)
-        DataStoreStorageType.multiset.add(.cache)
-        DataStoreStorageType.multiset.add(.genericKeychain)
-        DataStoreStorageType.multiset.add(.internetKeychain)
-        DataStoreStorageType.multiset.add(.coreData)
-        DataStoreStorageType.multiset.add(.privateCloudDatabase)
-        DataStoreStorageType.multiset.add(.publicCloudDatabase)
-        DataStoreStorageType.multiset.add(.sharedCloudDatabase)
-        DataStoreStorageType.multiset.add(.ubiquitousCloudStore)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDefaults, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.documentDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.libraryDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.applicationDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreServiceDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.temporaryDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.cache, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.genericKeychain, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.internetKeychain, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreData, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.privateCloudDatabase, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.publicCloudDatabase, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.sharedCloudDatabase, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.ubiquitousCloudStore, forKey: AnyHashableMetatype(DataStoreStorageType.self))
 
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
@@ -69,7 +69,7 @@ import Security
     public final var rawValue: String
 
     /// A collection of all values of this type.
-    fileprivate static var multiset = Multiset<DataStoreStorageType>()
+    fileprivate static var entity = EntityCollection<DataStoreStorageType>()
 }
 
 extension DataStoreStorageType : RawRepresentable {
@@ -137,13 +137,14 @@ extension DataStoreStorageType : RawRepresentable {
 
 // MARK: - CaseIterable
 
-extension DataStoreStorageType : CaseIterable {
+extension DataStoreStorageType : Entity, CaseIterable {
+    public typealias PrimaryKey = String
 
     /// A collection of all values of this type.
     public static var allCases: [DataStoreStorageType] {
         var cases = [DataStoreStorageType]()
-        for key in multiset.allKey {
-            cases.append(key)
+        for value in entity.values {
+            cases.append(value)
         }
         return cases
     }
