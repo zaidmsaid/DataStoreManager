@@ -187,11 +187,7 @@ extension ErrorProtocol : Entity, CaseIterable {
 
     /// A collection of all values of this type.
     public static var allCases: [ErrorProtocol] {
-        var cases = [ErrorProtocol]()
-        for value in entity.values {
-            cases.append(value)
-        }
-        return cases
+        return entity.values
     }
 }
 

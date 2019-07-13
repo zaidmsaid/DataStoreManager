@@ -141,11 +141,7 @@ extension DataStoreStorageType : Entity, CaseIterable {
 
     /// A collection of all values of this type.
     public static var allCases: [DataStoreStorageType] {
-        var cases = [DataStoreStorageType]()
-        for value in entity.values {
-            cases.append(value)
-        }
-        return cases
+        return entity.values
     }
 }
 
