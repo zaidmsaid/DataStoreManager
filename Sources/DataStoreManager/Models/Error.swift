@@ -89,7 +89,7 @@ enum ErrorProtocol : Error {
 
 // MARK: - RawRepresentable
 
-extension ErrorProtocol : RawRepresentable, CaseIterable {
+extension ErrorProtocol : RawRepresentable {
 
     // MARK: Initializers
 
@@ -99,6 +99,23 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
     ///
     /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
     init?(rawValue: Int) {
+
+        ErrorProtocol.entity.add(value: ErrorProtocol.bundleIdentifierNotAvailable, forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.platformNotSupported(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.platformVersionNotSupported(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.lowerSchemaVersion(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.datasourceNotAvailable(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.createFailed(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.readFailed(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.updateFailed(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.deleteFailed(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.duplicateObject(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.directoryURLNotAvailable, forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.directoryFullURLNotAvailable, forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.directoryListNotAvailable(detail: ""), forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.databaseNotAvailable, forKey: AnyHashableMetatype(ErrorProtocol.self))
+        ErrorProtocol.entity.add(value: ErrorProtocol.unknownRepresentation, forKey: AnyHashableMetatype(ErrorProtocol.self))
+
         for `protocol` in ErrorProtocol.allCases {
             if `protocol`.rawValue == rawValue {
                 self = `protocol`
@@ -159,26 +176,22 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
             return -9000
         }
     }
+}
+
+// MARK: - CaseIterable
+
+extension ErrorProtocol : Entity, CaseIterable {
+    public typealias PrimaryKey = String
+
+    fileprivate static var entity = EntityCollection<ErrorProtocol>()
 
     /// A collection of all values of this type.
-    static var allCases: [ErrorProtocol] {
-        return [
-            .bundleIdentifierNotAvailable,
-            .platformNotSupported(detail: ""),
-            .platformVersionNotSupported(detail: ""),
-            .lowerSchemaVersion(detail: ""),
-            .datasourceNotAvailable(detail: ""),
-            .createFailed(detail: ""),
-            .readFailed(detail: ""),
-            .updateFailed(detail: ""),
-            .deleteFailed(detail: ""),
-            .duplicateObject(detail: ""),
-            .directoryURLNotAvailable,
-            .directoryFullURLNotAvailable,
-            .directoryListNotAvailable(detail: ""),
-            .databaseNotAvailable,
-            .unknownRepresentation
-        ]
+    public static var allCases: [ErrorProtocol] {
+        var cases = [ErrorProtocol]()
+        for value in entity.values {
+            cases.append(value)
+        }
+        return cases
     }
 }
 
