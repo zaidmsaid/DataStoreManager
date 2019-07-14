@@ -157,7 +157,7 @@ extension DataStoreManager {
                 url = fileManager.urls(for: .coreServiceDirectory, in: .userDomainMask).first
 
             case .temporaryDirectory:
-                if #available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *) {
+                if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
                     url = fileManager.temporaryDirectory
 
                 } else {

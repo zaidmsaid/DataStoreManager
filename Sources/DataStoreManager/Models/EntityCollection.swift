@@ -16,18 +16,30 @@
 
 import Foundation
 
+/// An observable collection of `Entity` instances where each entity has a
+/// unique id.
 public struct EntityCollection<T: Hashable> {
 
     // MARK: - Initializers
 
+    /// Implemented by subclasses to initialize a new object (the receiver)
+    /// immediately after memory for it has been allocated.
     init() { }
 
+    /// Creates a new instance with the specified sequence of the generic
+    /// type.
+    ///
+    /// - Parameter sequence: The sequence to use for the new instance.
     init<S: Sequence>(_ sequence: S) where S.Iterator.Element == T {
         for element in sequence {
             add(forKey: element)
         }
     }
 
+    /// Creates a new instance with the specified sequence of the generic
+    /// type.
+    ///
+    /// - Parameter sequence: The sequence to use for the new instance.
     init<S: Sequence>(_ sequence: S) where S.Iterator.Element == (key: T, value: Any) {
         for (element, value) in sequence {
             add(value: value, forKey: element)
@@ -36,8 +48,7 @@ public struct EntityCollection<T: Hashable> {
 
     // MARK: - Properties
 
-    fileprivate var contents = [T: Any]()
-
+    /// A collection containing the values of the `EntityCollection`.
     public var values: [T] {
         var values = [T]()
         for value in contents.keys {
@@ -46,9 +57,16 @@ public struct EntityCollection<T: Hashable> {
         return values
     }
 
+    fileprivate var contents = [T: Any]()
+
     // MARK: - CRUD
 
-    public mutating func add(value: Any = "", forKey key: T) {
+    /// Adds an element to the contents of EntityCollection.
+    ///
+    /// - Parameters:
+    ///   - value: The object to store in the contents of EntityCollection.
+    ///   - key: The key with which to associate the value.
+    public mutating func add(value: Any? = nil, forKey key: T) {
 
         precondition(contents[key] == nil, "Can only add a unique value")
 
@@ -59,6 +77,8 @@ public struct EntityCollection<T: Hashable> {
 // MARK: - CustomStringConvertible
 
 extension EntityCollection : CustomStringConvertible {
+
+    /// A textual representation of this instance.
     public var description: String {
         return String(describing: contents)
     }
@@ -67,6 +87,10 @@ extension EntityCollection : CustomStringConvertible {
 // MARK: - ExpressibleByArrayLiteral
 
 extension EntityCollection: ExpressibleByArrayLiteral {
+
+    /// Creates a new instance with the specified array literal.
+    ///
+    /// - Parameter elements: Elements to be stored in a EntityCollection.
     public init(arrayLiteral elements: T...) {
         self.init(elements)
     }
@@ -76,10 +100,12 @@ extension EntityCollection: ExpressibleByArrayLiteral {
 
 extension EntityCollection : ExpressibleByDictionaryLiteral {
 
-    /// The map converts elements to the "named" tuple the initializer expects.
+    /// Creates a new instance with the specified dictionary literal.
     ///
-    /// - Parameter elements: TODO
+    /// - Parameter elements: Elements to be stored in a EntityCollection.
     public init(dictionaryLiteral elements: (T, Any)...) {
+        // The map converts elements to the "named" tuple the initializer
+        // expects.
         self.init(elements.map { (key: $0.0, value: $0.1) })
     }
 }
@@ -88,8 +114,14 @@ extension EntityCollection : ExpressibleByDictionaryLiteral {
 
 extension EntityCollection : Sequence {
 
+    /// Type to mean instance of
+    /// [AnyIterator](apple-reference-documentation://hsAabAoau8).
     public typealias Iterator = AnyIterator<(element: T, value: Any)>
 
+    /// Returns an iterator over the elements of the collection.
+    ///
+    /// - Returns: Advances to the next element and returns it, or `nil` if
+    ///            no next element exists.
     public func makeIterator() -> Iterator {
         var iterator = contents.makeIterator()
 
@@ -103,16 +135,25 @@ extension EntityCollection : Sequence {
 
 extension EntityCollection : Collection {
 
+    /// Type to mean instance of DictionaryIndex.
     public typealias Index = EntityCollectionIndex<T>
 
+    /// The position of the first element in a nonempty dictionary.
     public var startIndex: Index {
         return EntityCollectionIndex(contents.startIndex)
     }
 
+    /// The dictionary’s “past the end” position—that is, the position one
+    /// greater than the last valid subscript argument.
     public var endIndex: Index {
         return EntityCollectionIndex(contents.endIndex)
     }
 
+    /// Returns an element where the given element is contained within the
+    /// range expression.
+    ///
+    /// - Parameter position: The index value of contents of
+    ///                       EntityCollection.
     public subscript (position: Index) -> Iterator.Element {
         precondition((startIndex ..< endIndex).contains(position), "out of bounds")
 
@@ -120,6 +161,11 @@ extension EntityCollection : Collection {
         return (element: dictionaryElement.key, value: dictionaryElement.value)
     }
 
+    /// Returns the position immediately after the given index.
+    ///
+    /// - Parameter i: A valid index of the collection. `i` must be less
+    ///                than `endIndex`.
+    /// - Returns: The index value immediately after `i`.
     public func index(after i: Index) -> Index {
         return Index(contents.index(after: i.index))
     }
@@ -127,6 +173,7 @@ extension EntityCollection : Collection {
 
 // MARK: - Index
 
+/// The index value of EntityCollection.
 public struct EntityCollectionIndex<T: Hashable> {
 
     fileprivate let index: DictionaryIndex<T, Any>
@@ -136,26 +183,77 @@ public struct EntityCollectionIndex<T: Hashable> {
     }
 }
 
+// MARK: - Equatable
+
+extension EntityCollectionIndex : Equatable {
+
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    /// - Returns: true if the first argument equals the second argument;
+    ///            false if not.
+    public static func == (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
+        return lhs.index == rhs.index
+    }
+}
+
 // MARK: - Comparable
 
 extension EntityCollectionIndex : Comparable {
 
-    public static func == (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
-        return lhs.index == rhs.index
-    }
-
+    /// This function is the only requirement of the `Comparable` protocol.
+    /// The remainder of the relational operator functions are implemented
+    /// by the standard library for any type that conforms to `Comparable`.
+    ///
+    /// Returns a Boolean value indicating whether the value of the first
+    /// argument is less than that of the second argument.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    /// - Returns: true if the first argument is less than the second
+    ///            argument; false if not.
     public static func < (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index < rhs.index
     }
 
+    /// Returns a Boolean value indicating whether the value of the first
+    /// argument is less than or equal to that of the second argument.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    /// - Returns: true if the first argument is less than or equal the
+    ///            second argument; false if not.
     public static func <= (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index <= rhs.index
     }
 
+    /// Return a Boolean value indicating whether the value of the first
+    /// argument is greater than or equal to that of the second argument.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    /// - Returns: true if the first argument is greater than or equal the
+    ///            second argument; false if not.
     public static func >= (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index >= rhs.index
     }
 
+    /// Return a Boolean value indicating whether the value of the first
+    /// argument is greater than that of the second argument.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    /// - Returns: true if the first argument is greater than the second
+    ///            argument; false if not.
     public static func > (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index > rhs.index
     }
