@@ -36,6 +36,23 @@ import Security
     ///
     /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
     public required init?(rawValue: String) {
+
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDefaults.rawValue, forKey: DataStoreStorageType.userDefaults)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.documentDirectory.rawValue, forKey: DataStoreStorageType.documentDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDirectory.rawValue, forKey: DataStoreStorageType.userDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.libraryDirectory.rawValue, forKey: DataStoreStorageType.libraryDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.applicationDirectory.rawValue, forKey: DataStoreStorageType.applicationDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreServiceDirectory.rawValue, forKey: DataStoreStorageType.coreServiceDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.temporaryDirectory.rawValue, forKey: DataStoreStorageType.temporaryDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.cache.rawValue, forKey: DataStoreStorageType.cache)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.genericKeychain.rawValue, forKey: DataStoreStorageType.genericKeychain)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.internetKeychain.rawValue, forKey: DataStoreStorageType.internetKeychain)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreData.rawValue, forKey: DataStoreStorageType.coreData)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.privateCloudDatabase.rawValue, forKey: DataStoreStorageType.privateCloudDatabase)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.publicCloudDatabase.rawValue, forKey: DataStoreStorageType.publicCloudDatabase)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.sharedCloudDatabase.rawValue, forKey: DataStoreStorageType.sharedCloudDatabase)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.ubiquitousCloudStore.rawValue, forKey: DataStoreStorageType.ubiquitousCloudStore)
+
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
                 self.rawValue = rawValue
@@ -50,30 +67,9 @@ import Security
 
     /// The corresponding value of the raw type.
     public final var rawValue: String
-
-    /// A collection of all values of this type.
-    public static var allCases: [DataStoreStorageType] {
-        return [
-            DataStoreStorageType.userDefaults,
-            DataStoreStorageType.documentDirectory,
-            DataStoreStorageType.userDirectory,
-            DataStoreStorageType.libraryDirectory,
-            DataStoreStorageType.applicationDirectory,
-            DataStoreStorageType.coreServiceDirectory,
-            DataStoreStorageType.temporaryDirectory,
-            DataStoreStorageType.cache,
-            DataStoreStorageType.coreData,
-            DataStoreStorageType.genericKeychain,
-            DataStoreStorageType.internetKeychain,
-            DataStoreStorageType.privateCloudDatabase,
-            DataStoreStorageType.publicCloudDatabase,
-            DataStoreStorageType.sharedCloudDatabase,
-            DataStoreStorageType.ubiquitousCloudStore
-        ]
-    }
 }
 
-extension DataStoreStorageType : RawRepresentable, CaseIterable {
+extension DataStoreStorageType : RawRepresentable {
 
     // MARK: - Enumerations
 
@@ -108,17 +104,17 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
     /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
     public static let cache = DataStoreStorageType("NSCache")
 
-    public static let coreData = DataStoreStorageType("CoreData")
-
-    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
+    /// The storage type [Security](https://developer.apple.com/documentation/security/keychain_services)
     /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
     /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassgenericpassword).
-    public static let genericKeychain = DataStoreStorageType("SecItem.kSecClassGenericPassword")
+    public static let genericKeychain = DataStoreStorageType("Security.kSecClassGenericPassword")
 
-    /// The storage type [SecItem](https://developer.apple.com/documentation/security/keychain_services)
+    /// The storage type [Security](https://developer.apple.com/documentation/security/keychain_services)
     /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
     /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassinternetpassword).
-    public static let internetKeychain = DataStoreStorageType("SecItem.kSecClassInternetPassword")
+    public static let internetKeychain = DataStoreStorageType("Security.kSecClassInternetPassword")
+
+    public static let coreData = DataStoreStorageType("CoreData")
 
     /// The storage type [CKContainer](apple-reference-documentation://hsS7IJpn_8)
     /// with [privateCloudDatabase](apple-reference-documentation://hsl8OIqKuV).
@@ -134,6 +130,17 @@ extension DataStoreStorageType : RawRepresentable, CaseIterable {
 
     /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
     public static let ubiquitousCloudStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
+}
+
+// MARK: - CaseIterable
+
+extension DataStoreStorageType : CaseIterable {
+    fileprivate static var entity = EntityCollection<DataStoreStorageType>()
+
+    /// A collection of all values of this type.
+    public static var allCases: [DataStoreStorageType] {
+        return entity.values
+    }
 }
 
 // MARK: - CustomStringConvertible
@@ -167,14 +174,14 @@ extension DataStoreStorageType {
         case .cache:
             return "NSCache"
 
-        case .coreData:
-            return "CoreData"
-
         case .genericKeychain:
-            return "SecItem"
+            return "Security"
 
         case .internetKeychain:
-            return "SecItem"
+            return "Security"
+
+        case .coreData:
+            return "CoreData"
 
         case .privateCloudDatabase:
             return "CKContainer"
@@ -226,14 +233,14 @@ extension DataStoreStorageType {
         case .cache:
             return "NSCache"
 
-        case .coreData:
-            return "CoreData"
-
         case .genericKeychain:
-            return "SecItem"
+            return "Security"
 
         case .internetKeychain:
-            return "SecItem"
+            return "Security"
+
+        case .coreData:
+            return "CoreData"
 
         case .privateCloudDatabase:
             return "CKContainer"

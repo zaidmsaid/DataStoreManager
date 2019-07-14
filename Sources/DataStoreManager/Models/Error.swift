@@ -89,7 +89,7 @@ enum ErrorProtocol : Error {
 
 // MARK: - RawRepresentable
 
-extension ErrorProtocol : RawRepresentable, CaseIterable {
+extension ErrorProtocol : RawRepresentable {
 
     // MARK: Initializers
 
@@ -99,6 +99,23 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
     ///
     /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
     init?(rawValue: Int) {
+
+        ErrorProtocol.entity.add(value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue, forKey: ErrorProtocol.bundleIdentifierNotAvailable)
+        ErrorProtocol.entity.add(value: ErrorProtocol.platformNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformNotSupported(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformVersionNotSupported(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue, forKey: ErrorProtocol.lowerSchemaVersion(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.datasourceNotAvailable(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.createFailed(detail: "").rawValue, forKey: ErrorProtocol.createFailed(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.readFailed(detail: "").rawValue, forKey: ErrorProtocol.readFailed(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.updateFailed(detail: "").rawValue, forKey: ErrorProtocol.updateFailed(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.deleteFailed(detail: "").rawValue, forKey: ErrorProtocol.deleteFailed(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.duplicateObject(detail: "").rawValue, forKey: ErrorProtocol.duplicateObject(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.directoryURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryURLNotAvailable)
+        ErrorProtocol.entity.add(value: ErrorProtocol.directoryFullURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryFullURLNotAvailable)
+        ErrorProtocol.entity.add(value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.directoryListNotAvailable(detail: ""))
+        ErrorProtocol.entity.add(value: ErrorProtocol.databaseNotAvailable.rawValue, forKey: ErrorProtocol.databaseNotAvailable)
+        ErrorProtocol.entity.add(value: ErrorProtocol.unknownRepresentation.rawValue, forKey: ErrorProtocol.unknownRepresentation)
+
         for `protocol` in ErrorProtocol.allCases {
             if `protocol`.rawValue == rawValue {
                 self = `protocol`
@@ -159,26 +176,32 @@ extension ErrorProtocol : RawRepresentable, CaseIterable {
             return -9000
         }
     }
+}
+
+// MARK: - Equatable
+
+extension ErrorProtocol : Equatable {
+    public static func == (lhs: ErrorProtocol, rhs: ErrorProtocol) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+}
+
+// MARK: - Hashable
+
+extension ErrorProtocol : Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(rawValue)
+    }
+}
+
+// MARK: - CaseIterable
+
+extension ErrorProtocol : CaseIterable {
+    fileprivate static var entity = EntityCollection<ErrorProtocol>()
 
     /// A collection of all values of this type.
-    static var allCases: [ErrorProtocol] {
-        return [
-            .bundleIdentifierNotAvailable,
-            .platformNotSupported(detail: ""),
-            .platformVersionNotSupported(detail: ""),
-            .lowerSchemaVersion(detail: ""),
-            .datasourceNotAvailable(detail: ""),
-            .createFailed(detail: ""),
-            .readFailed(detail: ""),
-            .updateFailed(detail: ""),
-            .deleteFailed(detail: ""),
-            .duplicateObject(detail: ""),
-            .directoryURLNotAvailable,
-            .directoryFullURLNotAvailable,
-            .directoryListNotAvailable(detail: ""),
-            .databaseNotAvailable,
-            .unknownRepresentation
-        ]
+    public static var allCases: [ErrorProtocol] {
+        return entity.values
     }
 }
 

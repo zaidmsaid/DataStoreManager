@@ -20,11 +20,11 @@ import Security
 import LocalAuthentication
 #endif
 
-// MARK: - SecItem
+// MARK: - Security
 
 extension DataStoreManager {
 
-    /// An interface to the SecItem.
+    /// An interface to the Security.
     class KeychainWorker {
 
         // MARK: - Enumerations

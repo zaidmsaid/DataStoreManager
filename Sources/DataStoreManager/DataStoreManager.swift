@@ -96,16 +96,16 @@ import Foundation
         return worker
     }()
 
-    /// An interface to the CoreData.
-    lazy var coreDataWorker: CoreDataWorker = {
-        let worker = CoreDataWorker()
+    /// An interface to the Security.
+    lazy var keychainWorker: KeychainWorker = {
+        let worker = KeychainWorker()
         worker.dataStoreManager = self
         return worker
     }()
 
-    /// An interface to the SecItem.
-    lazy var keychainWorker: KeychainWorker = {
-        let worker = KeychainWorker()
+    /// An interface to the CoreData.
+    lazy var coreDataWorker: CoreDataWorker = {
+        let worker = CoreDataWorker()
         worker.dataStoreManager = self
         return worker
     }()
@@ -194,14 +194,14 @@ import Foundation
         case .cache:
             cacheWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
-        case .coreData:
-            coreDataWorker.create(object: object, forKey: key, completionHandler: completionHandler)
-
         case .genericKeychain:
             keychainWorker.create(object: object, forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
             keychainWorker.create(object: object, forKey: key, forItemClass: .internet, completionHandler: completionHandler)
+
+        case .coreData:
+            coreDataWorker.create(object: object, forKey: key, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
@@ -302,14 +302,14 @@ import Foundation
         case .cache:
             cacheWorker.read(forKey: key, completionHandler: completionHandler)
 
-        case .coreData:
-            coreDataWorker.read(forKey: key, withObjectType: objectType, completionHandler: completionHandler)
-
         case .genericKeychain:
             keychainWorker.read(forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
             keychainWorker.read(forKey: key, forItemClass: .internet, completionHandler: completionHandler)
+
+        case .coreData:
+            coreDataWorker.read(forKey: key, withObjectType: objectType, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
@@ -410,14 +410,14 @@ import Foundation
         case .cache:
             cacheWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
-        case .coreData:
-            coreDataWorker.update(object: object, forKey: key, completionHandler: completionHandler)
-
         case .genericKeychain:
             keychainWorker.update(object: object, forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
             keychainWorker.update(object: object, forKey: key, forItemClass: .internet, completionHandler: completionHandler)
+
+        case .coreData:
+            coreDataWorker.update(object: object, forKey: key, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
@@ -518,14 +518,14 @@ import Foundation
         case .cache:
             cacheWorker.delete(forKey: key, completionHandler: completionHandler)
 
-        case .coreData:
-            coreDataWorker.delete(forKey: key, withObjectType: objectType, completionHandler: completionHandler)
-
         case .genericKeychain:
             keychainWorker.delete(forKey: key, forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
             keychainWorker.delete(forKey: key, forItemClass: .internet, completionHandler: completionHandler)
+
+        case .coreData:
+            coreDataWorker.delete(forKey: key, withObjectType: objectType, completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
@@ -622,14 +622,14 @@ import Foundation
         case .cache:
             cacheWorker.deleteAll(completionHandler: completionHandler)
 
-        case .coreData:
-            coreDataWorker.deleteAll(completionHandler: completionHandler)
-
         case .genericKeychain:
             keychainWorker.deleteAll(forItemClass: .generic, completionHandler: completionHandler)
 
         case .internetKeychain:
             keychainWorker.deleteAll(forItemClass: .internet, completionHandler: completionHandler)
+
+        case .coreData:
+            coreDataWorker.deleteAll(completionHandler: completionHandler)
 
         case .privateCloudDatabase:
             if #available(watchOSApplicationExtension 3.0, *) {
