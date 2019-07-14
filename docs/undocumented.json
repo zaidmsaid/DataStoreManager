@@ -379,8 +379,99 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 19,
+      "symbol": "EntityCollection",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 23,
+      "symbol": "EntityCollection.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 25,
+      "symbol": "EntityCollection.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 31,
+      "symbol": "EntityCollection.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 41,
+      "symbol": "EntityCollection.values",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 51,
+      "symbol": "EntityCollection.add(value:forKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 61,
+      "symbol": "EntityCollection",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 69,
+      "symbol": "EntityCollection",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 77,
+      "symbol": "EntityCollection",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 89,
+      "symbol": "EntityCollection",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 104,
+      "symbol": "EntityCollection",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 130,
+      "symbol": "EntityCollectionIndex",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/EntityCollection.swift",
+      "line": 141,
+      "symbol": "EntityCollectionIndex",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/Models/StorageType.swift",
-      "line": 111,
+      "line": 117,
       "symbol": "DataStoreStorageType.coreData",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
