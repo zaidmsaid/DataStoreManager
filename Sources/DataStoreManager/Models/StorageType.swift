@@ -37,21 +37,21 @@ import Security
     /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
     public required init?(rawValue: String) {
 
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDefaults, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.documentDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.libraryDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.applicationDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreServiceDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.temporaryDirectory, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.cache, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.genericKeychain, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.internetKeychain, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreData, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.privateCloudDatabase, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.publicCloudDatabase, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.sharedCloudDatabase, forKey: AnyHashableMetatype(DataStoreStorageType.self))
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.ubiquitousCloudStore, forKey: AnyHashableMetatype(DataStoreStorageType.self))
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDefaults.rawValue, forKey: DataStoreStorageType.userDefaults)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.documentDirectory.rawValue, forKey: DataStoreStorageType.documentDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDirectory.rawValue, forKey: DataStoreStorageType.userDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.libraryDirectory.rawValue, forKey: DataStoreStorageType.libraryDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.applicationDirectory.rawValue, forKey: DataStoreStorageType.applicationDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreServiceDirectory.rawValue, forKey: DataStoreStorageType.coreServiceDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.temporaryDirectory.rawValue, forKey: DataStoreStorageType.temporaryDirectory)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.cache.rawValue, forKey: DataStoreStorageType.cache)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.genericKeychain.rawValue, forKey: DataStoreStorageType.genericKeychain)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.internetKeychain.rawValue, forKey: DataStoreStorageType.internetKeychain)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreData.rawValue, forKey: DataStoreStorageType.coreData)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.privateCloudDatabase.rawValue, forKey: DataStoreStorageType.privateCloudDatabase)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.publicCloudDatabase.rawValue, forKey: DataStoreStorageType.publicCloudDatabase)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.sharedCloudDatabase.rawValue, forKey: DataStoreStorageType.sharedCloudDatabase)
+        DataStoreStorageType.entity.add(value: DataStoreStorageType.ubiquitousCloudStore.rawValue, forKey: DataStoreStorageType.ubiquitousCloudStore)
 
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
@@ -134,9 +134,7 @@ extension DataStoreStorageType : RawRepresentable {
 
 // MARK: - CaseIterable
 
-extension DataStoreStorageType : Entity, CaseIterable {
-    public typealias PrimaryKey = String
-
+extension DataStoreStorageType : CaseIterable {
     fileprivate static var entity = EntityCollection<DataStoreStorageType>()
 
     /// A collection of all values of this type.
