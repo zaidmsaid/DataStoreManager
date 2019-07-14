@@ -44,7 +44,7 @@ extension DataStoreManager {
         private var managedObject: NSManagedObject? {
             if let context = managedContext, let entity = entityDescription {
                 return NSManagedObject(entity: entity, insertInto: context)
-            } else if let context = managedContext, #available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *) {
+            } else if let context = managedContext, #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
                 return NSManagedObject(context: context)
             }
             return nil
@@ -131,7 +131,7 @@ extension DataStoreManager {
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
                 fetchRequest.returnsObjectsAsFaults = false
 
-                if #available(iOS 9.0, macOS 10.11, tvOS 9.0, watchOS 2.0, *) {
+                if #available(iOS 9.0, macOS 10.11, watchOSApplicationExtension 2.0, tvOS 9.0, *) {
                     let query = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
                     do {

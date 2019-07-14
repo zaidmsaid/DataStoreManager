@@ -14,7 +14,7 @@
     <a title="DataStoreManagerDelegate Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DataStoreManager Docs</a> (67% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -154,7 +154,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Tells the delegate that the specified storage type of a data store needs to perform migration.</p>
+                        <p>Tells the delegate that the specified storage type of a data store
+needs to perform migration.</p>
 
 <p>Handle the logic to perform the migration. For example:</p>
 <pre class="highlight swift"><code><span class="k">switch</span> <span class="n">version</span> <span class="p">{</span>
@@ -168,7 +169,8 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>After the delegate method is called, the schema version will be updated to the version defined in
+<p>After the delegate method is called, the schema version will be
+updated to the version defined in
 <a href="https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:currentSchemaVersionForType:">dataStoreManager(_:currentSchemaVersionForType:)</a></p>
 
                       </div>
@@ -193,7 +195,8 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The data store manager object informing the delegate of this event.</p>
+                                  <p>The data store manager object informing the delegate of
+     this event.</p>
                                 </div>
                               </td>
                             </tr>
@@ -253,14 +256,20 @@
                       <div class="abstract">
                         <p>Asks the delegate for the cost with which associate to the object.</p>
 
-<p>When memory is limited or when the total cost of the cache eclipses the maximum allowed total cost, the cache could begin an
-eviction process to remove some of its elements. However, this eviction process is not in a guaranteed order. As a consequence,
-if you try to manipulate the cost values to achieve some specific behavior, the consequences could be detrimental to your program.
-Typically, the obvious cost is the size of the value in bytes. If that information is not readily available, you should not go
-through the trouble of trying to compute it, as doing so will drive up the cost of using the cache. Pass in 0 for the cost value
-if you otherwise have nothing useful to pass.</p>
+<p>When memory is limited or when the total cost of the cache eclipses
+the maximum allowed total cost, the cache could begin an eviction
+process to remove some of its elements. However, this eviction
+process is not in a guaranteed order. As a consequence, if you try
+to manipulate the cost values to achieve some specific behavior, the
+consequences could be detrimental to your program. Typically, the
+obvious cost is the size of the value in bytes. If that information
+is not readily available, you should not go through the trouble of
+trying to compute it, as doing so will drive up the cost of using
+the cache. Pass in 0 for the cost value if you otherwise have
+nothing useful to pass.</p>
 
-<p>Unlike an <code>NSMutableDictionary</code> object, a cache does not copy the key objects that are put into it.</p>
+<p>Unlike an <code>NSMutableDictionary</code> object, a cache does not copy the
+key objects that are put into it.</p>
 
                       </div>
                       <div class="declaration">
@@ -284,7 +293,8 @@ if you otherwise have nothing useful to pass.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An object representing the data store manager requesting this information.</p>
+                                  <p>An object representing the data store manager
+     requesting this information.</p>
                                 </div>
                               </td>
                             </tr>
@@ -305,7 +315,8 @@ if you otherwise have nothing useful to pass.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The <code>cost</code> value is used to compute a sum encompassing the costs of all the objects in the cache.</p>
+                        <p>The <code>cost</code> value is used to compute a sum encompassing
+       the costs of all the objects in the cache.</p>
                       </div>
                     </section>
                   </div>
@@ -334,10 +345,12 @@ if you otherwise have nothing useful to pass.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Asks the delegate for the cloud kit container record type of the data store manager.</p>
+                        <p>Asks the delegate for the cloud kit container record type of the
+data store manager.</p>
 
-<p>Use this string to differentiate between different record types in your app. The string is primarily for your benefit,
-so choose type names that reflect the data in the corresponding records.</p>
+<p>Use this string to differentiate between different record types in
+your app. The string is primarily for your benefit, so choose type
+names that reflect the data in the corresponding records.</p>
 
                       </div>
                       <div class="declaration">
@@ -362,7 +375,8 @@ so choose type names that reflect the data in the corresponding records.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An object representing the data store manager requesting this information.</p>
+                                  <p>An object representing the data store manager
+     requesting this information.</p>
                                 </div>
                               </td>
                             </tr>
@@ -383,7 +397,8 @@ so choose type names that reflect the data in the corresponding records.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The app-defined string that identifies the type of the record.</p>
+                        <p>The app-defined string that identifies the type of the
+       record.</p>
                       </div>
                     </section>
                   </div>
@@ -412,7 +427,24 @@ so choose type names that reflect the data in the corresponding records.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Tells the delegate that the specified storage type of a data store
+needs to handle when the value of one or more keys in the local
+key-value store changed due to incoming data pushed from iCloud.</p>
+
+<p>The user info dictionary can contain the reason for the notification
+as well as a list of which values changed, as follows:</p>
+
+<ul>
+<li>The value of the
+<a href="apple-reference-documentation://hsUJ2fgaPt">NSUbiquitousKeyValueStoreChangeReasonKey</a>
+key, when present, indicates why the key-value store changed. Its
+value is one of the constants in
+<a href="apple-reference-documentation://ts1433687">Change Reason Values</a>.</li>
+<li>The value of the
+[NSUbiquitousKeyValueStoreChangedKeysKey(apple-reference-documentation://hsxKbLUIAR),
+when present, is an array of strings, each the name of a key whose
+value changed.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -424,6 +456,38 @@ so choose type names that reflect the data in the corresponding records.</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object representing the data store manager
+     requesting this information.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userInfo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The user info dictionary.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -432,7 +496,7 @@ so choose type names that reflect the data in the corresponding records.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-14)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

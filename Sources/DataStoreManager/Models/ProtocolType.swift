@@ -16,7 +16,8 @@
 
 import Foundation
 
-/// Constants that provide information regarding protocol type of data store manager.
+/// Constants that provide information regarding protocol type of data store
+/// manager.
 @objc public enum DataStoreProtocolType : Int {
 
     // MARK: - Enumerations
@@ -125,7 +126,8 @@ extension DataStoreProtocolType : RawRepresentable, CaseIterable {
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
     ///
-    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
+    /// If there is no value of the type that corresponds with the specified
+    /// string value, this initializer returns nil.
     public init?(rawValue: String) {
         for type in DataStoreProtocolType.allCases {
             if type.rawValue == rawValue {

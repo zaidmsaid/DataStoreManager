@@ -26,10 +26,14 @@ extension DataStoreManager {
 
         // MARK: - Initializers
 
+        /// Implemented by subclasses to initialize a new object (the
+        /// receiver) immediately after memory for it has been allocated.
         init() {
             NotificationCenter.default.addObserver(self, selector: #selector(onUbiquitousCloudStoreDidChangeExternally(notification:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousCloudStore)
         }
 
+        /// A deinitializer is called immediately before a class instance is
+        /// deallocated.
         deinit {
             NotificationCenter.default.removeObserver(self, name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousCloudStore)
         }

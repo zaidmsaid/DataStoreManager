@@ -26,47 +26,56 @@ enum ErrorProtocol : Error {
 
     /// The platform cannot use this property or function.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case platformNotSupported(detail: String)
 
     /// The platform version cannot use this property or function.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case platformVersionNotSupported(detail: String)
 
     /// Current schema version is lower than old schema version.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case lowerSchemaVersion(detail: String)
 
     /// The data source cannot be retrieved.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case datasourceNotAvailable(detail: String)
 
     /// The object cannot be created.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case createFailed(detail: String)
 
     /// The object cannot be retrieved.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case readFailed(detail: String)
 
     /// The object cannot be updated.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case updateFailed(detail: String)
 
     /// The object cannot be deleted.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case deleteFailed(detail: String)
 
     /// The specified object already exists.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case duplicateObject(detail: String)
 
     /// The directory URL cannot be retrieved.
@@ -77,7 +86,8 @@ enum ErrorProtocol : Error {
 
     /// Contents of directory cannot be retrieved.
     ///
-    /// - Parameter detail: The detail to place after description of the error description.
+    /// - Parameter detail: The detail to place after description of the
+    ///                     error description.
     case directoryListNotAvailable(detail: String)
 
     /// The database cannot be retrieved.
@@ -97,24 +107,11 @@ extension ErrorProtocol : RawRepresentable {
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
     ///
-    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
+    /// If there is no value of the type that corresponds with the specified
+    /// string value, this initializer returns nil.
     init?(rawValue: Int) {
 
-        ErrorProtocol.entity.add(value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue, forKey: ErrorProtocol.bundleIdentifierNotAvailable)
-        ErrorProtocol.entity.add(value: ErrorProtocol.platformNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformNotSupported(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformVersionNotSupported(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue, forKey: ErrorProtocol.lowerSchemaVersion(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.datasourceNotAvailable(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.createFailed(detail: "").rawValue, forKey: ErrorProtocol.createFailed(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.readFailed(detail: "").rawValue, forKey: ErrorProtocol.readFailed(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.updateFailed(detail: "").rawValue, forKey: ErrorProtocol.updateFailed(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.deleteFailed(detail: "").rawValue, forKey: ErrorProtocol.deleteFailed(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.duplicateObject(detail: "").rawValue, forKey: ErrorProtocol.duplicateObject(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.directoryURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryURLNotAvailable)
-        ErrorProtocol.entity.add(value: ErrorProtocol.directoryFullURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryFullURLNotAvailable)
-        ErrorProtocol.entity.add(value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.directoryListNotAvailable(detail: ""))
-        ErrorProtocol.entity.add(value: ErrorProtocol.databaseNotAvailable.rawValue, forKey: ErrorProtocol.databaseNotAvailable)
-        ErrorProtocol.entity.add(value: ErrorProtocol.unknownRepresentation.rawValue, forKey: ErrorProtocol.unknownRepresentation)
+        ErrorProtocol.setupEntityCollection()
 
         for `protocol` in ErrorProtocol.allCases {
             if `protocol`.rawValue == rawValue {
@@ -197,11 +194,31 @@ extension ErrorProtocol : Hashable {
 // MARK: - CaseIterable
 
 extension ErrorProtocol : CaseIterable {
-    fileprivate static var entity = EntityCollection<ErrorProtocol>()
+    fileprivate static var entityCollection = EntityCollection<ErrorProtocol>()
+
+    /// Initializes entityCollection before DataStoreStorageType receives its first message.
+    public static func setupEntityCollection() {
+
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue, forKey: ErrorProtocol.bundleIdentifierNotAvailable)
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.platformNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformNotSupported(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformVersionNotSupported(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue, forKey: ErrorProtocol.lowerSchemaVersion(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.datasourceNotAvailable(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.createFailed(detail: "").rawValue, forKey: ErrorProtocol.createFailed(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.readFailed(detail: "").rawValue, forKey: ErrorProtocol.readFailed(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.updateFailed(detail: "").rawValue, forKey: ErrorProtocol.updateFailed(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.deleteFailed(detail: "").rawValue, forKey: ErrorProtocol.deleteFailed(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.duplicateObject(detail: "").rawValue, forKey: ErrorProtocol.duplicateObject(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.directoryURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryURLNotAvailable)
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.directoryFullURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryFullURLNotAvailable)
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.directoryListNotAvailable(detail: ""))
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.databaseNotAvailable.rawValue, forKey: ErrorProtocol.databaseNotAvailable)
+        ErrorProtocol.entityCollection.add(value: ErrorProtocol.unknownRepresentation.rawValue, forKey: ErrorProtocol.unknownRepresentation)
+    }
 
     /// A collection of all values of this type.
     public static var allCases: [ErrorProtocol] {
-        return entity.values
+        return entityCollection.values
     }
 }
 
@@ -367,11 +384,15 @@ extension ErrorProtocol : CustomDebugStringConvertible {
     }
 }
 
-/// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
+/// Information about an error condition including a domain, a
+/// domain-specific error code, and application-specific information.
 ///
-/// Objective-C methods can signal an error condition by returning an `NSError` object by reference, which provides additional
-/// information about the kind of error and any underlying cause, if one can be determined. An `NSError` object may also provide
-/// localized error descriptions suitable for display to the user in its user info dictionary. See
+/// Objective-C methods can signal an error condition by returning an
+/// `NSError` object by reference, which provides additional information
+/// about the kind of error and any underlying cause, if one can be
+/// determined. An `NSError` object may also provide localized error
+/// descriptions suitable for display to the user in its user info
+/// dictionary. See
 /// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
 /// for more information.
 class ErrorObject : NSError {
@@ -382,8 +403,11 @@ class ErrorObject : NSError {
     ///
     /// - Parameters:
     ///   - type: An error object type.
-    ///   - comment: The comment to place above the key-value pair in the strings file.
-    /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
+    ///   - comment: The comment to place above the key-value pair in the
+    ///              strings file.
+    /// - Returns: An `NSError` object initialized for domain with the
+    ///            specified error code and the dictionary of arbitrary data
+    ///            userInfo.
     required init(protocol: ErrorProtocol) {
         super.init(domain: ErrorProtocol.errorDomain, code: `protocol`.rawValue, userInfo: `protocol`.errorUserInfo)
     }
@@ -392,9 +416,13 @@ class ErrorObject : NSError {
     ///
     /// - Parameters:
     ///   - code: The error code for the error.
-    ///   - value: The value to return if key is nil or if a localized string for key can’t be found in the table.
-    ///   - comment: The comment to place above the key-value pair in the strings file.
-    /// - Returns: An `NSError` object initialized for domain with the specified error code and the dictionary of arbitrary data userInfo.
+    ///   - value: The value to return if key is nil or if a localized
+    ///            string for key can’t be found in the table.
+    ///   - comment: The comment to place above the key-value pair in the
+    ///              strings file.
+    /// - Returns: An `NSError` object initialized for domain with the
+    ///            specified error code and the dictionary of arbitrary data
+    ///            userInfo.
     required init(code: Int, value: String) {
         let userInfo =  [
             NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: value, comment: value)

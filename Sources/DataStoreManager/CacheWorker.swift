@@ -31,6 +31,8 @@ extension DataStoreManager {
 
         // MARK: - Initializers
 
+        /// Implemented by subclasses to initialize a new object (the
+        /// receiver) immediately after memory for it has been allocated.
         init() {
             cache.totalCostLimit = totalCostLimit
             #if os(iOS) || os(tvOS)
@@ -38,15 +40,12 @@ extension DataStoreManager {
             #endif
         }
 
+        /// A deinitializer is called immediately before a class instance is
+        /// deallocated.
         deinit {
             #if os(iOS) || os(tvOS)
             NotificationCenter.default.removeObserver(self, name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
             #endif
-        }
-
-        @objc private func didReceiveMemoryWarning() {
-            deleteAll { (_, _, _) in
-            }
         }
 
         // MARK: - Properties
@@ -93,6 +92,11 @@ extension DataStoreManager {
 
             cache.removeAllObjects()
             completionHandler(true, nil, nil)
+        }
+
+        @objc private func didReceiveMemoryWarning() {
+            deleteAll { (_, _, _) in
+            }
         }
 
         private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {

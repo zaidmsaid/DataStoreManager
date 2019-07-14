@@ -17,7 +17,8 @@
 import Foundation
 import Security
 
-/// Constants that provide information regarding storage type of data store manager.
+/// Constants that provide information regarding storage type of data store
+/// manager.
 @objcMembers open class DataStoreStorageType : NSObject {
 
     // MARK: - Initializers
@@ -25,33 +26,12 @@ import Security
     /// Creates a new instance with the specified raw value.
     ///
     /// - Parameter rawValue: The raw value to use for the new instance.
-    init(_ rawValue: String) {
-        self.rawValue = rawValue
-        super.init()
-    }
-
-    /// Creates a new instance with the specified raw value.
     ///
-    /// - Parameter rawValue: The raw value to use for the new instance.
-    ///
-    /// If there is no value of the type that corresponds with the specified string value, this initializer returns nil.
+    /// If there is no value of the type that corresponds with the specified
+    /// string value, this initializer returns nil.
     public required init?(rawValue: String) {
 
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDefaults.rawValue, forKey: DataStoreStorageType.userDefaults)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.documentDirectory.rawValue, forKey: DataStoreStorageType.documentDirectory)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.userDirectory.rawValue, forKey: DataStoreStorageType.userDirectory)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.libraryDirectory.rawValue, forKey: DataStoreStorageType.libraryDirectory)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.applicationDirectory.rawValue, forKey: DataStoreStorageType.applicationDirectory)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreServiceDirectory.rawValue, forKey: DataStoreStorageType.coreServiceDirectory)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.temporaryDirectory.rawValue, forKey: DataStoreStorageType.temporaryDirectory)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.cache.rawValue, forKey: DataStoreStorageType.cache)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.genericKeychain.rawValue, forKey: DataStoreStorageType.genericKeychain)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.internetKeychain.rawValue, forKey: DataStoreStorageType.internetKeychain)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.coreData.rawValue, forKey: DataStoreStorageType.coreData)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.privateCloudDatabase.rawValue, forKey: DataStoreStorageType.privateCloudDatabase)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.publicCloudDatabase.rawValue, forKey: DataStoreStorageType.publicCloudDatabase)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.sharedCloudDatabase.rawValue, forKey: DataStoreStorageType.sharedCloudDatabase)
-        DataStoreStorageType.entity.add(value: DataStoreStorageType.ubiquitousCloudStore.rawValue, forKey: DataStoreStorageType.ubiquitousCloudStore)
+        DataStoreStorageType.setupEntityCollection()
 
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
@@ -60,7 +40,16 @@ import Security
                 return
             }
         }
+
         return nil
+    }
+
+    /// Creates a new instance with the specified raw value.
+    ///
+    /// - Parameter rawValue: The raw value to use for the new instance.
+    init(_ rawValue: String) {
+        self.rawValue = rawValue
+        super.init()
     }
 
     // MARK: - Properties
@@ -73,73 +62,115 @@ extension DataStoreStorageType : RawRepresentable {
 
     // MARK: - Enumerations
 
-    /// The storage type [UserDefaults](apple-reference-documentation://hsARFaqWd3).
+    /// The storage type
+    /// [UserDefaults](apple-reference-documentation://hsARFaqWd3).
     public static let userDefaults = DataStoreStorageType("UserDefaults")
 
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// The storage type
+    /// [FileManager](apple-reference-documentation://hsQQiy1kjA)
     /// with the search path document directory (`~/Documents`).
     public static let documentDirectory = DataStoreStorageType("FileManager.documentDirectory")
 
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// The storage type
+    /// [FileManager](apple-reference-documentation://hsQQiy1kjA)
     /// with the search path user home directories (`/Users`).
     public static let userDirectory = DataStoreStorageType("FileManager.userDirectory")
 
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
-    /// with the search path various user-visible documentation, support, and
-    /// configuration files (`/Library`).
+    /// The storage type
+    /// [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// with the search path various user-visible documentation, support,
+    /// and configuration files (`/Library`).
     public static let libraryDirectory = DataStoreStorageType("FileManager.libraryDirectory")
 
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// The storage type
+    /// [FileManager](apple-reference-documentation://hsQQiy1kjA)
     /// with the search path supported applications (`/Applications`).
     public static let applicationDirectory = DataStoreStorageType("FileManager.applicationDirectory")
 
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// The storage type
+    /// [FileManager](apple-reference-documentation://hsQQiy1kjA)
     /// with the search path core services (`/System/Library/CoreServices`).
     public static let coreServiceDirectory = DataStoreStorageType("FileManager.coreServiceDirectory")
 
-    /// The storage type [FileManager](apple-reference-documentation://hsQQiy1kjA)
+    /// The storage type
+    /// [FileManager](apple-reference-documentation://hsQQiy1kjA)
     /// with the temporary directory for the current user (`/tmp`).
     public static let temporaryDirectory = DataStoreStorageType("FileManager.temporaryDirectory")
 
-    /// The storage type [NSCache](apple-reference-documentation://hs3dlYnTwl).
+    /// The storage type
+    /// [NSCache](apple-reference-documentation://hs3dlYnTwl).
     public static let cache = DataStoreStorageType("NSCache")
 
-    /// The storage type [Security](https://developer.apple.com/documentation/security/keychain_services)
-    /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
+    /// The storage type
+    /// [Security](https://developer.apple.com/documentation/security/keychain_services)
+    /// with
+    /// [kSecClass](https://developer.apple.com/documentation/security/ksecclass)
+    /// value defined as
     /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassgenericpassword).
     public static let genericKeychain = DataStoreStorageType("Security.kSecClassGenericPassword")
 
     /// The storage type [Security](https://developer.apple.com/documentation/security/keychain_services)
-    /// with [kSecClass](https://developer.apple.com/documentation/security/ksecclass) value defined as
+    /// with
+    /// [kSecClass](https://developer.apple.com/documentation/security/ksecclass)
+    /// value defined as
     /// [kSecClassGenericPassword](https://developer.apple.com/documentation/security/ksecclassinternetpassword).
     public static let internetKeychain = DataStoreStorageType("Security.kSecClassInternetPassword")
 
+    /// The storage type [CoreData](https://developer.apple.com/documentation/coredata).
     public static let coreData = DataStoreStorageType("CoreData")
 
-    /// The storage type [CKContainer](apple-reference-documentation://hsS7IJpn_8)
-    /// with [privateCloudDatabase](apple-reference-documentation://hsl8OIqKuV).
+    /// The storage type
+    /// [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// with
+    /// [privateCloudDatabase](apple-reference-documentation://hsl8OIqKuV).
     public static let privateCloudDatabase = DataStoreStorageType("CKContainer.privateCloudDatabase")
 
-    /// The storage type [CKContainer](apple-reference-documentation://hsS7IJpn_8)
-    /// with [publicCloudDatabase](apple-reference-documentation://hsr3N4H2SH).
+    /// The storage type
+    /// [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// with
+    /// [publicCloudDatabase](apple-reference-documentation://hsr3N4H2SH).
     public static let publicCloudDatabase = DataStoreStorageType("CKContainer.publicCloudDatabase")
 
-    /// The storage type [CKContainer](apple-reference-documentation://hsS7IJpn_8)
-    /// with [sharedCloudDatabase](apple-reference-documentation://hse91QSrM6).
+    /// The storage type
+    /// [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// with
+    /// [sharedCloudDatabase](apple-reference-documentation://hse91QSrM6).
     public static let sharedCloudDatabase = DataStoreStorageType("CKContainer.sharedCloudDatabase")
 
-    /// The storage type [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
+    /// The storage type
+    /// [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
     public static let ubiquitousCloudStore = DataStoreStorageType("NSUbiquitousKeyValueStore")
 }
 
 // MARK: - CaseIterable
 
 extension DataStoreStorageType : CaseIterable {
-    fileprivate static var entity = EntityCollection<DataStoreStorageType>()
+    fileprivate static var entityCollection = EntityCollection<DataStoreStorageType>()
+
+    /// Initializes entityCollection before DataStoreStorageType receives its first message.
+    public static func setupEntityCollection() {
+
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.userDefaults.rawValue, forKey: DataStoreStorageType.userDefaults)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.documentDirectory.rawValue, forKey: DataStoreStorageType.documentDirectory)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.userDirectory.rawValue, forKey: DataStoreStorageType.userDirectory)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.libraryDirectory.rawValue, forKey: DataStoreStorageType.libraryDirectory)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.applicationDirectory.rawValue, forKey: DataStoreStorageType.applicationDirectory)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.coreServiceDirectory.rawValue, forKey: DataStoreStorageType.coreServiceDirectory)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.temporaryDirectory.rawValue, forKey: DataStoreStorageType.temporaryDirectory)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.cache.rawValue, forKey: DataStoreStorageType.cache)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.genericKeychain.rawValue, forKey: DataStoreStorageType.genericKeychain)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.internetKeychain.rawValue, forKey: DataStoreStorageType.internetKeychain)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.coreData.rawValue, forKey: DataStoreStorageType.coreData)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.privateCloudDatabase.rawValue, forKey: DataStoreStorageType.privateCloudDatabase)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.publicCloudDatabase.rawValue, forKey: DataStoreStorageType.publicCloudDatabase)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.sharedCloudDatabase.rawValue, forKey: DataStoreStorageType.sharedCloudDatabase)
+        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.ubiquitousCloudStore.rawValue, forKey: DataStoreStorageType.ubiquitousCloudStore)
+    }
 
     /// A collection of all values of this type.
     public static var allCases: [DataStoreStorageType] {
-        return entity.values
+
+        return entityCollection.values
     }
 }
 
