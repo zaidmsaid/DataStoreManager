@@ -14,7 +14,7 @@
     <a title="DataStoreManager Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DataStoreManager Docs</a> (67% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -128,7 +128,8 @@
 
                 </div>
               </div>
-            <p>An interface to the data store manager, where you store key-value pairs persistently across launches of your app.</p>
+            <p>An interface to the data store manager, where you store key-value pairs
+persistently across launches of your app.</p>
 
           </section>
           <section class="section task-group-section">
@@ -156,7 +157,8 @@
                       <div class="abstract">
                         <p>Return a data store manager with the specified identifier.</p>
 
-<p>Initialize a new data store manager object immediately after memory for it has been allocated.</p>
+<p>Initialize a new data store manager object immediately after memory
+for it has been allocated.</p>
 
                       </div>
                       <div class="declaration">
@@ -179,7 +181,8 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>A string identifying the data store manager object.</p>
+                                  <p>A string identifying the data store manager
+                    object.</p>
                                 </div>
                               </td>
                             </tr>
@@ -188,8 +191,9 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An initialized object, or <code>nil</code> if an object could not be created for some reason that
-       would not result in an exception.</p>
+                        <p>An initialized object, or <code>nil</code> if an object could not be
+       created for some reason that would not result in an
+       exception.</p>
                       </div>
                     </section>
                   </div>
@@ -272,9 +276,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An integer that you can use to identify data store manager objects in your application.</p>
+                        <p>An integer that you can use to identify data store manager objects
+in your application.</p>
 
-<p>The default value is 0. You can set the value of this tag and use that value to identify the data store manager later.</p>
+<p>The default value is 0. You can set the value of this tag and use
+that value to identify the data store manager later.</p>
 
                       </div>
                       <div class="declaration">
@@ -303,7 +309,8 @@
                       <div class="abstract">
                         <p>The object that acts as the data source of the data store manager.</p>
 
-<p>The data source must adopt the <a href="https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html">DataStoreManagerDataSource</a>
+<p>The data source must adopt the
+<a href="https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html">DataStoreManagerDataSource</a>
 protocol. The data source is not retained.</p>
 
                       </div>
@@ -333,7 +340,8 @@ protocol. The data source is not retained.</p>
                       <div class="abstract">
                         <p>The object that acts as the delegate of the data store manager.</p>
 
-<p>The delegate must adopt the <a href="https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html">DataStoreManagerDelegate</a>
+<p>The delegate must adopt the
+<a href="https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html">DataStoreManagerDelegate</a>
 protocol. The delegate is not retained.</p>
 
                       </div>
@@ -563,7 +571,8 @@ protocol. The delegate is not retained.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create the property of the receiver specified by a given key to a given object.</p>
+                        <p>Create the property of the receiver specified by a given key to a
+given object.</p>
 
                       </div>
                       <div class="declaration">
@@ -610,9 +619,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -636,9 +647,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -650,8 +663,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -674,7 +689,8 @@ protocol. The delegate is not retained.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create the property of the receiver specified by a given key to a given object.</p>
+                        <p>Create the property of the receiver specified by a given key to a
+given object.</p>
 
                       </div>
                       <div class="declaration">
@@ -733,9 +749,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -759,9 +777,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -773,8 +793,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -832,7 +854,8 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The type of object for the property identified by key.</p>
+                                  <p>The type of object for the property identified by
+        key.</p>
                                 </div>
                               </td>
                             </tr>
@@ -844,9 +867,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the associated object.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the associated
+               object. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -858,7 +883,8 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The object associated with the specified key, or nil if the key was not found.</p>
+                                  <p>The object associated with the specified key, or
+                <code>nil</code> if the key was not found.</p>
                                 </div>
                               </td>
                             </tr>
@@ -870,9 +896,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -884,8 +912,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -943,7 +973,8 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The type of object for the property identified by key.</p>
+                                  <p>The type of object for the property identified by
+        key.</p>
                                 </div>
                               </td>
                             </tr>
@@ -967,9 +998,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the associated object.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the associated
+               object. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -981,7 +1014,8 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The object associated with the specified key, or nil if the key was not found.</p>
+                                  <p>The object associated with the specified key, or
+                <code>nil</code> if the key was not found.</p>
                                 </div>
                               </td>
                             </tr>
@@ -993,9 +1027,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1007,8 +1043,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1031,7 +1069,8 @@ protocol. The delegate is not retained.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Update the property of the receiver specified by a given key to a given object.</p>
+                        <p>Update the property of the receiver specified by a given key to a
+given object.</p>
 
                       </div>
                       <div class="declaration">
@@ -1078,9 +1117,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -1104,9 +1145,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1118,8 +1161,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1142,7 +1187,8 @@ protocol. The delegate is not retained.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Update the property of the receiver specified by a given key to a given object.</p>
+                        <p>Update the property of the receiver specified by a given key to a
+given object.</p>
 
                       </div>
                       <div class="declaration">
@@ -1201,9 +1247,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -1227,9 +1275,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1241,8 +1291,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1300,7 +1352,8 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The type of object for the property identified by key.</p>
+                                  <p>The type of object for the property identified by
+        key.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1312,9 +1365,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -1338,9 +1393,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1352,8 +1409,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1411,7 +1470,8 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The type of object for the property identified by key.</p>
+                                  <p>The type of object for the property identified by
+        key.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1435,9 +1495,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -1461,9 +1523,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1475,8 +1539,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1522,9 +1588,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -1548,9 +1616,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1562,8 +1632,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1621,9 +1693,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -1647,9 +1721,11 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The unique ID of the object. For CloudKit, the type is
+                                  <p>The unique ID of the object. For CloudKit, the
+                  type is
                   <a href="apple-reference-documentation://hsWjEyXEsV">CKRecord.ID</a>
-                  and it is the object that uniquely identifies a record in a database.</p>
+                  and it is the object that uniquely identifies
+                  a record in a database.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1661,8 +1737,10 @@ protocol. The delegate is not retained.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1698,8 +1776,9 @@ protocol. The delegate is not retained.</p>
                       <div class="abstract">
                         <p>Migrate the schema if the version differs.</p>
 
-<p>Call this function at the point where you app can migrate the schema. It will check first
-if the schema version is the same or not.If the schema needs to be migrated, it will call
+<p>Call this function at the point where you app can migrate the
+schema. It will check first if the schema version is the same or
+not.If the schema needs to be migrated, it will call
 <a href="https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:">dataStoreManager(_:performMigrationFromOldVersion:forType:)</a>
 delegate method.</p>
 
@@ -1736,9 +1815,11 @@ delegate method.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The block to execute with the successful flag.
-               This block is executed asynchronously on your app&rsquo;s main thread.
-               The block has no return value and takes the following parameter:</p>
+                                  <p>The block to execute with the successful
+               flag. This block is executed asynchronously
+               on your app&rsquo;s main thread. The block has no
+               return value and takes the following
+               parameter:</p>
                                 </div>
                               </td>
                             </tr>
@@ -1762,8 +1843,10 @@ delegate method.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An error object, or <code>nil</code> if it was completed successfully. Use the information
-               in the error object to determine whether a problem has a workaround.</p>
+                                  <p>An error object, or <code>nil</code> if it was completed
+               successfully. Use the information in the error
+               object to determine whether a problem has a
+               workaround.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2053,7 +2136,7 @@ delegate method.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-14)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
