@@ -2,49 +2,35 @@
   "warnings": [
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 53,
-      "symbol": "DataStoreManager.CacheWorker.dataStoreManager",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 54,
-      "symbol": "DataStoreManager.CacheWorker.costDelegate",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 69,
+      "line": 74,
       "symbol": "DataStoreManager.CacheWorker.create(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 74,
+      "line": 79,
       "symbol": "DataStoreManager.CacheWorker.read(forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 80,
+      "line": 85,
       "symbol": "DataStoreManager.CacheWorker.update(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 85,
+      "line": 90,
       "symbol": "DataStoreManager.CacheWorker.delete(forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 91,
+      "line": 96,
       "symbol": "DataStoreManager.CacheWorker.deleteAll(completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -79,91 +65,70 @@
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CloudKitWorker.swift",
-      "line": 40,
-      "symbol": "DataStoreManager.CloudKitWorker.dataStoreManager",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CloudKitWorker.swift",
-      "line": 41,
-      "symbol": "DataStoreManager.CloudKitWorker.recordIDDelegate",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CloudKitWorker.swift",
-      "line": 80,
+      "line": 85,
       "symbol": "DataStoreManager.CloudKitWorker.create(object:forKey:forContainerType:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CloudKitWorker.swift",
-      "line": 111,
+      "line": 116,
       "symbol": "DataStoreManager.CloudKitWorker.read(forKey:withObjectType:forContainerType:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CloudKitWorker.swift",
-      "line": 137,
+      "line": 142,
       "symbol": "DataStoreManager.CloudKitWorker.update(object:forKey:forContainerType:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CloudKitWorker.swift",
-      "line": 175,
+      "line": 180,
       "symbol": "DataStoreManager.CloudKitWorker.delete(forKey:withObjectType:forContainerType:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CloudKitWorker.swift",
-      "line": 225,
+      "line": 230,
       "symbol": "DataStoreManager.CloudKitWorker.deleteAll(forContainerType:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CoreDataWorker.swift",
-      "line": 28,
-      "symbol": "DataStoreManager.CoreDataWorker.dataStoreManager",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CoreDataWorker.swift",
-      "line": 55,
+      "line": 57,
       "symbol": "DataStoreManager.CoreDataWorker.create(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CoreDataWorker.swift",
-      "line": 60,
+      "line": 62,
       "symbol": "DataStoreManager.CoreDataWorker.read(forKey:withObjectType:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CoreDataWorker.swift",
-      "line": 86,
+      "line": 88,
       "symbol": "DataStoreManager.CoreDataWorker.update(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CoreDataWorker.swift",
-      "line": 91,
+      "line": 93,
       "symbol": "DataStoreManager.CoreDataWorker.delete(forKey:withObjectType:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CoreDataWorker.swift",
-      "line": 128,
+      "line": 130,
       "symbol": "DataStoreManager.CoreDataWorker.deleteAll(completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -324,147 +289,105 @@
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/KeychainWorker.swift",
-      "line": 48,
-      "symbol": "DataStoreManager.KeychainWorker.dataStoreManager",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/KeychainWorker.swift",
-      "line": 110,
+      "line": 112,
       "symbol": "DataStoreManager.KeychainWorker.create(object:forKey:forItemClass:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/KeychainWorker.swift",
-      "line": 115,
+      "line": 117,
       "symbol": "DataStoreManager.KeychainWorker.read(forKey:forItemClass:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/KeychainWorker.swift",
-      "line": 141,
+      "line": 143,
       "symbol": "DataStoreManager.KeychainWorker.update(object:forKey:forItemClass:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/KeychainWorker.swift",
-      "line": 146,
+      "line": 148,
       "symbol": "DataStoreManager.KeychainWorker.delete(forKey:forItemClass:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/KeychainWorker.swift",
-      "line": 166,
+      "line": 168,
       "symbol": "DataStoreManager.KeychainWorker.deleteAll(forItemClass:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UbiquitousCloudStoreWorker.swift",
-      "line": 43,
-      "symbol": "DataStoreManager.UbiquitousCloudStoreWorker.dataStoreManager",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UbiquitousCloudStoreWorker.swift",
-      "line": 44,
-      "symbol": "DataStoreManager.UbiquitousCloudStoreWorker.notificationDelegate",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UbiquitousCloudStoreWorker.swift",
-      "line": 52,
+      "line": 59,
       "symbol": "DataStoreManager.UbiquitousCloudStoreWorker.create(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UbiquitousCloudStoreWorker.swift",
-      "line": 57,
+      "line": 64,
       "symbol": "DataStoreManager.UbiquitousCloudStoreWorker.read(forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UbiquitousCloudStoreWorker.swift",
-      "line": 64,
+      "line": 71,
       "symbol": "DataStoreManager.UbiquitousCloudStoreWorker.update(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UbiquitousCloudStoreWorker.swift",
-      "line": 69,
+      "line": 76,
       "symbol": "DataStoreManager.UbiquitousCloudStoreWorker.delete(forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UbiquitousCloudStoreWorker.swift",
-      "line": 76,
+      "line": 83,
       "symbol": "DataStoreManager.UbiquitousCloudStoreWorker.deleteAll(completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
-      "line": 28,
-      "symbol": "DataStoreManager.UserDefaultsWorker.dataStoreManager",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
-      "line": 30,
-      "symbol": "DataStoreManager.UserDefaultsWorker.suiteName",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
-      "line": 37,
-      "symbol": "DataStoreManager.UserDefaultsWorker.userDefaults",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
-      "line": 43,
+      "line": 45,
       "symbol": "DataStoreManager.UserDefaultsWorker.create(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
-      "line": 48,
+      "line": 50,
       "symbol": "DataStoreManager.UserDefaultsWorker.read(forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
-      "line": 55,
+      "line": 57,
       "symbol": "DataStoreManager.UserDefaultsWorker.update(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
-      "line": 60,
+      "line": 62,
       "symbol": "DataStoreManager.UserDefaultsWorker.delete(forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/UserDefaultsWorker.swift",
-      "line": 67,
+      "line": 69,
       "symbol": "DataStoreManager.UserDefaultsWorker.deleteAll(completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
