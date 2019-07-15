@@ -24,11 +24,11 @@ import Foundation
 
     /// Return a data store manager with the specified identifier.
     ///
-    /// - Parameter identifier: A string identifying the data store manager
-    ///                         object.
-    ///
     /// Initialize a new data store manager object immediately after memory
     /// for it has been allocated.
+    ///
+    /// - Parameter identifier: A string identifying the data store manager
+    ///                         object.
     ///
     /// - Returns: An initialized object, or `nil` if an object could not be
     ///            created for some reason that would not result in an
@@ -786,6 +786,12 @@ import Foundation
 
     /// Migrate the schema if the version differs.
     ///
+    /// Call this function at the point where you app can migrate the
+    /// schema. It will check first if the schema version is the same or
+    /// not.If the schema needs to be migrated, it will call
+    /// [dataStoreManager(_:performMigrationFromOldVersion:forType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:)
+    /// delegate method.
+    ///
     /// - Parameters:
     ///   - storageType: A storage type constant.
     ///   - completionHandler: The block to execute with the successful
@@ -798,12 +804,6 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    ///
-    /// Call this function at the point where you app can migrate the
-    /// schema. It will check first if the schema version is the same or
-    /// not.If the schema needs to be migrated, it will call
-    /// [dataStoreManager(_:performMigrationFromOldVersion:forType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:)
-    /// delegate method.
     open func migrateSchema(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
 
         let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"

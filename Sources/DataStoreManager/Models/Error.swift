@@ -105,13 +105,13 @@ extension ErrorProtocol : RawRepresentable {
 
     /// Creates a new instance with the specified raw value.
     ///
-    /// - Parameter rawValue: The raw value to use for the new instance.
-    ///
     /// If there is no value of the type that corresponds with the specified
     /// string value, this initializer returns nil.
+    ///
+    /// - Parameter rawValue: The raw value to use for the new instance.
     init?(rawValue: Int) {
 
-        ErrorProtocol.setupEntityCollection()
+        ErrorProtocol.setupEntities()
 
         for `protocol` in ErrorProtocol.allCases {
             if `protocol`.rawValue == rawValue {
@@ -178,6 +178,17 @@ extension ErrorProtocol : RawRepresentable {
 // MARK: - Equatable
 
 extension ErrorProtocol : Equatable {
+
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    /// - Returns: true if the first argument equals the second argument;
+    ///            false if not.
     public static func == (lhs: ErrorProtocol, rhs: ErrorProtocol) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
@@ -186,6 +197,20 @@ extension ErrorProtocol : Equatable {
 // MARK: - Hashable
 
 extension ErrorProtocol : Hashable {
+
+    /// Hashes the essential components of this value by feeding them into
+    /// the given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components
+    /// compared in your type's `==` operator implementation. Call
+    /// `hasher.combine(_:)` with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may
+    ///              become a compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///                     of this instance.
     public func hash(into hasher: inout Hasher) {
         hasher.combine(rawValue)
     }
@@ -194,31 +219,32 @@ extension ErrorProtocol : Hashable {
 // MARK: - CaseIterable
 
 extension ErrorProtocol : CaseIterable {
-    fileprivate static var entityCollection = EntityCollection<ErrorProtocol>()
-
-    /// Initializes entityCollection before DataStoreStorageType receives its first message.
-    public static func setupEntityCollection() {
-
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue, forKey: ErrorProtocol.bundleIdentifierNotAvailable)
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.platformNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformNotSupported(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformVersionNotSupported(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue, forKey: ErrorProtocol.lowerSchemaVersion(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.datasourceNotAvailable(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.createFailed(detail: "").rawValue, forKey: ErrorProtocol.createFailed(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.readFailed(detail: "").rawValue, forKey: ErrorProtocol.readFailed(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.updateFailed(detail: "").rawValue, forKey: ErrorProtocol.updateFailed(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.deleteFailed(detail: "").rawValue, forKey: ErrorProtocol.deleteFailed(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.duplicateObject(detail: "").rawValue, forKey: ErrorProtocol.duplicateObject(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.directoryURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryURLNotAvailable)
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.directoryFullURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryFullURLNotAvailable)
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.directoryListNotAvailable(detail: ""))
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.databaseNotAvailable.rawValue, forKey: ErrorProtocol.databaseNotAvailable)
-        ErrorProtocol.entityCollection.add(value: ErrorProtocol.unknownRepresentation.rawValue, forKey: ErrorProtocol.unknownRepresentation)
-    }
 
     /// A collection of all values of this type.
     public static var allCases: [ErrorProtocol] {
-        return entityCollection.values
+        return entities.values
+    }
+
+    fileprivate static var entities = EntityCollection<ErrorProtocol>()
+
+    /// Setup entities before ErrorProtocol receives its first message.
+    public static func setupEntities() {
+
+        ErrorProtocol.entities.add(value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue, forKey: ErrorProtocol.bundleIdentifierNotAvailable)
+        ErrorProtocol.entities.add(value: ErrorProtocol.platformNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformNotSupported(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformVersionNotSupported(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue, forKey: ErrorProtocol.lowerSchemaVersion(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.datasourceNotAvailable(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.createFailed(detail: "").rawValue, forKey: ErrorProtocol.createFailed(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.readFailed(detail: "").rawValue, forKey: ErrorProtocol.readFailed(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.updateFailed(detail: "").rawValue, forKey: ErrorProtocol.updateFailed(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.deleteFailed(detail: "").rawValue, forKey: ErrorProtocol.deleteFailed(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.duplicateObject(detail: "").rawValue, forKey: ErrorProtocol.duplicateObject(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.directoryURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryURLNotAvailable)
+        ErrorProtocol.entities.add(value: ErrorProtocol.directoryFullURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryFullURLNotAvailable)
+        ErrorProtocol.entities.add(value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.directoryListNotAvailable(detail: ""))
+        ErrorProtocol.entities.add(value: ErrorProtocol.databaseNotAvailable.rawValue, forKey: ErrorProtocol.databaseNotAvailable)
+        ErrorProtocol.entities.add(value: ErrorProtocol.unknownRepresentation.rawValue, forKey: ErrorProtocol.unknownRepresentation)
     }
 }
 

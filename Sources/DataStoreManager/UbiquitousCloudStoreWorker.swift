@@ -40,7 +40,14 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
+        /// An object representing the data store manager requesting this
+        /// information.
         var dataStoreManager: DataStoreManager?
+
+        /// Tells the delegate that the specified storage type of a data
+        /// store needs to handle when the value of one or more keys in the
+        /// local key-value store changed due to incoming data pushed from
+        /// iCloud.
         var notificationDelegate: ((DataStoreManager, [AnyHashable : Any]?) -> Void)?
 
         private lazy var ubiquitousCloudStore: NSUbiquitousKeyValueStore = {

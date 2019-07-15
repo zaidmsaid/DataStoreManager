@@ -37,8 +37,20 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
+        /// An object representing the data store manager requesting this
+        /// information.
         var dataStoreManager: DataStoreManager?
+
+        /// Asks the delegate for the cloud kit container record type of the
+        /// data store manager.
         var recordIDDelegate: ((DataStoreManager, String) -> CKRecord.ID)?
+
+        private var cloudKitContainer: CKContainer {
+            if let manager = dataStoreManager, let containerIdentifier = manager.dataSource?.cloudKitContainerIdentifier?(for: manager) {
+                return CKContainer(identifier: containerIdentifier)
+            }
+            return CKContainer.default()
+        }
 
         private var recordType: String? {
             if let manager = dataStoreManager {
@@ -67,13 +79,6 @@ extension DataStoreManager {
             }
             return false
         }
-
-        private lazy var cloudKitContainer: CKContainer = {
-            if let manager = dataStoreManager, let containerIdentifier = manager.dataSource?.cloudKitContainerIdentifier?(for: manager) {
-                return CKContainer(identifier: containerIdentifier)
-            }
-            return CKContainer.default()
-        }()
 
         // MARK: - CRUD
 

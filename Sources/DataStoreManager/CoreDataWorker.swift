@@ -25,11 +25,15 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
+        /// An object representing the data store manager requesting this
+        /// information.
         var dataStoreManager: DataStoreManager?
 
-        private var entityDescription: NSEntityDescription? {
-            if let manager = dataStoreManager {
-                return manager.dataSource?.coreDataEntityDescription?(for: manager)
+        private var managedObject: NSManagedObject? {
+            if let context = managedContext, let entity = entityDescription {
+                return NSManagedObject(entity: entity, insertInto: context)
+            } else if let context = managedContext, #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
+                return NSManagedObject(context: context)
             }
             return nil
         }
@@ -41,11 +45,9 @@ extension DataStoreManager {
             return nil
         }
 
-        private var managedObject: NSManagedObject? {
-            if let context = managedContext, let entity = entityDescription {
-                return NSManagedObject(entity: entity, insertInto: context)
-            } else if let context = managedContext, #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
-                return NSManagedObject(context: context)
+        private var entityDescription: NSEntityDescription? {
+            if let manager = dataStoreManager {
+                return manager.dataSource?.coreDataEntityDescription?(for: manager)
             }
             return nil
         }

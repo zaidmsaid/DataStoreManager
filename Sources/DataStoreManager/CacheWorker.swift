@@ -50,8 +50,17 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
+        /// An object representing the data store manager requesting this
+        /// information.
         var dataStoreManager: DataStoreManager?
+
+        /// Asks the delegate for the cost with which associate to the
+        /// object.
         var costDelegate: ((DataStoreManager, Any) -> Int)?
+
+        private lazy var cache: NSCache<NSString, AnyObject> = {
+            return NSCache<NSString, AnyObject>()
+        }()
 
         private var totalCostLimit: Int {
             if let manager = dataStoreManager, let totalCostLimit = manager.dataSource?.cacheTotalCostLimit?(for: manager) {
@@ -59,10 +68,6 @@ extension DataStoreManager {
             }
             return 0
         }
-
-        private lazy var cache: NSCache<NSString, AnyObject> = {
-            return NSCache<NSString, AnyObject>()
-        }()
 
         // MARK: - CRUD
 

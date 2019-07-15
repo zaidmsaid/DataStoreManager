@@ -25,18 +25,20 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
+        /// An object representing the data store manager requesting this
+        /// information.
         var dataStoreManager: DataStoreManager?
 
-        var suiteName: String? {
+        private var userDefaults: UserDefaults {
+            return UserDefaults(suiteName: suiteName) ?? UserDefaults.standard
+        }
+        
+        private var suiteName: String? {
             if let manager = dataStoreManager {
                 return manager.dataSource?.userDefaultsSuiteName?(for: manager)
             }
             return nil
         }
-
-        lazy var userDefaults: UserDefaults = {
-            return UserDefaults(suiteName: suiteName) ?? UserDefaults.standard
-        }()
 
         // MARK: - CRUD
 
