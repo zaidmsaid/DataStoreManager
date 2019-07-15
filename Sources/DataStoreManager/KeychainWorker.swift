@@ -45,6 +45,8 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
+        /// An object representing the data store manager requesting this
+        /// information.
         var dataStoreManager: DataStoreManager?
 
         private var genericKeychainService: String {

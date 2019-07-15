@@ -124,10 +124,10 @@ extension DataStoreProtocolType : RawRepresentable, CaseIterable {
 
     /// Creates a new instance with the specified raw value.
     ///
-    /// - Parameter rawValue: The raw value to use for the new instance.
-    ///
     /// If there is no value of the type that corresponds with the specified
     /// string value, this initializer returns nil.
+    ///
+    /// - Parameter rawValue: The raw value to use for the new instance.
     public init?(rawValue: String) {
         for type in DataStoreProtocolType.allCases {
             if type.rawValue == rawValue {

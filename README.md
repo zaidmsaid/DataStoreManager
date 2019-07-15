@@ -111,13 +111,13 @@ Available storage types:
 /// CoreData
 .coreData
 
-/// CKContainer (.privateCloudDatabase)
+/// CloudKit (.privateCloudDatabase)
 .privateCloudDatabase
 
-/// CKContainer (.publicCloudDatabase)
+/// CloudKit (.publicCloudDatabase)
 .publicCloudDatabase
 
-/// CKContainer (.sharedCloudDatabase)
+/// CloudKit (.sharedCloudDatabase)
 .sharedCloudDatabase
 
 /// NSUbiquitousKeyValueStore

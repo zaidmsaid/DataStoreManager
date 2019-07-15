@@ -25,13 +25,13 @@ import Security
 
     /// Creates a new instance with the specified raw value.
     ///
-    /// - Parameter rawValue: The raw value to use for the new instance.
-    ///
     /// If there is no value of the type that corresponds with the specified
     /// string value, this initializer returns nil.
+    ///
+    /// - Parameter rawValue: The raw value to use for the new instance.
     public required init?(rawValue: String) {
 
-        DataStoreStorageType.setupEntityCollection()
+        DataStoreStorageType.setupEntities()
 
         for type in DataStoreStorageType.allCases {
             if type.rawValue == rawValue {
@@ -145,32 +145,34 @@ extension DataStoreStorageType : RawRepresentable {
 // MARK: - CaseIterable
 
 extension DataStoreStorageType : CaseIterable {
-    fileprivate static var entityCollection = EntityCollection<DataStoreStorageType>()
-
-    /// Initializes entityCollection before DataStoreStorageType receives its first message.
-    public static func setupEntityCollection() {
-
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.userDefaults.rawValue, forKey: DataStoreStorageType.userDefaults)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.documentDirectory.rawValue, forKey: DataStoreStorageType.documentDirectory)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.userDirectory.rawValue, forKey: DataStoreStorageType.userDirectory)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.libraryDirectory.rawValue, forKey: DataStoreStorageType.libraryDirectory)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.applicationDirectory.rawValue, forKey: DataStoreStorageType.applicationDirectory)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.coreServiceDirectory.rawValue, forKey: DataStoreStorageType.coreServiceDirectory)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.temporaryDirectory.rawValue, forKey: DataStoreStorageType.temporaryDirectory)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.cache.rawValue, forKey: DataStoreStorageType.cache)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.genericKeychain.rawValue, forKey: DataStoreStorageType.genericKeychain)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.internetKeychain.rawValue, forKey: DataStoreStorageType.internetKeychain)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.coreData.rawValue, forKey: DataStoreStorageType.coreData)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.privateCloudDatabase.rawValue, forKey: DataStoreStorageType.privateCloudDatabase)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.publicCloudDatabase.rawValue, forKey: DataStoreStorageType.publicCloudDatabase)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.sharedCloudDatabase.rawValue, forKey: DataStoreStorageType.sharedCloudDatabase)
-        DataStoreStorageType.entityCollection.add(value: DataStoreStorageType.ubiquitousCloudStore.rawValue, forKey: DataStoreStorageType.ubiquitousCloudStore)
-    }
 
     /// A collection of all values of this type.
     public static var allCases: [DataStoreStorageType] {
 
-        return entityCollection.values
+        return entities.values
+    }
+
+    fileprivate static var entities = EntityCollection<DataStoreStorageType>()
+
+    /// Setup entities before DataStoreStorageType receives its first
+    /// message.
+    public static func setupEntities() {
+
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.userDefaults.rawValue, forKey: DataStoreStorageType.userDefaults)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.documentDirectory.rawValue, forKey: DataStoreStorageType.documentDirectory)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.userDirectory.rawValue, forKey: DataStoreStorageType.userDirectory)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.libraryDirectory.rawValue, forKey: DataStoreStorageType.libraryDirectory)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.applicationDirectory.rawValue, forKey: DataStoreStorageType.applicationDirectory)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.coreServiceDirectory.rawValue, forKey: DataStoreStorageType.coreServiceDirectory)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.temporaryDirectory.rawValue, forKey: DataStoreStorageType.temporaryDirectory)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.cache.rawValue, forKey: DataStoreStorageType.cache)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.genericKeychain.rawValue, forKey: DataStoreStorageType.genericKeychain)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.internetKeychain.rawValue, forKey: DataStoreStorageType.internetKeychain)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.coreData.rawValue, forKey: DataStoreStorageType.coreData)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.privateCloudDatabase.rawValue, forKey: DataStoreStorageType.privateCloudDatabase)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.publicCloudDatabase.rawValue, forKey: DataStoreStorageType.publicCloudDatabase)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.sharedCloudDatabase.rawValue, forKey: DataStoreStorageType.sharedCloudDatabase)
+        DataStoreStorageType.entities.add(value: DataStoreStorageType.ubiquitousCloudStore.rawValue, forKey: DataStoreStorageType.ubiquitousCloudStore)
     }
 }
 

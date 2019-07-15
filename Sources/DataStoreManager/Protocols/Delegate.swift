@@ -24,12 +24,6 @@ import CloudKit
     /// Tells the delegate that the specified storage type of a data store
     /// needs to perform migration.
     ///
-    /// - Parameters:
-    ///   - manager: The data store manager object informing the delegate of
-    ///              this event.
-    ///   - version: The old schema version for reference to do migration.
-    ///   - type: A storage type constant.
-    ///
     /// Handle the logic to perform the migration. For example:
     /// ```
     /// switch version {
@@ -45,18 +39,18 @@ import CloudKit
     /// After the delegate method is called, the schema version will be
     /// updated to the version defined in
     /// [dataStoreManager(_:currentSchemaVersionForType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDataSource.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDataSource(im)dataStoreManager:currentSchemaVersionForType:)
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, performMigrationFromOldVersion version: Int, forType type: DataStoreStorageType)
+    ///
+    /// - Parameters:
+    ///   - manager: The data store manager object informing the delegate of
+    ///              this event.
+    ///   - oldVersion: The old schema version for reference to do
+    ///                 migration.
+    ///   - type: A storage type constant.
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, performMigrationFromOldVersion oldVersion: Int, forType type: DataStoreStorageType)
 
     // MARK: Cache
 
     /// Asks the delegate for the cost with which associate to the object.
-    ///
-    /// - Parameters:
-    ///   - manager: An object representing the data store manager
-    ///              requesting this information.
-    ///   - object: The object to be cached.
-    /// - Returns: The `cost` value is used to compute a sum encompassing
-    ///            the costs of all the objects in the cache.
     ///
     /// When memory is limited or when the total cost of the cache eclipses
     /// the maximum allowed total cost, the cache could begin an eviction
@@ -72,6 +66,13 @@ import CloudKit
     ///
     /// Unlike an `NSMutableDictionary` object, a cache does not copy the
     /// key objects that are put into it.
+    ///
+    /// - Parameters:
+    ///   - manager: An object representing the data store manager
+    ///              requesting this information.
+    ///   - object: The object to be cached.
+    /// - Returns: The `cost` value is used to compute a sum encompassing
+    ///            the costs of all the objects in the cache.
     @objc optional func dataStoreManager(_ manager: DataStoreManager, cacheCostLimitForObject object: Any) -> Int
 
     // MARK: Cloud Kit Container
@@ -79,16 +80,16 @@ import CloudKit
     /// Asks the delegate for the cloud kit container record type of the
     /// data store manager.
     ///
+    /// Use this string to differentiate between different record types in
+    /// your app. The string is primarily for your benefit, so choose type
+    /// names that reflect the data in the corresponding records.
+    ///
     /// - Parameters:
     ///   - manager: An object representing the data store manager
     ///              requesting this information.
     ///   - key: The key to identify the data store manager object.
     /// - Returns: The app-defined string that identifies the type of the
     ///            record.
-    ///
-    /// Use this string to differentiate between different record types in
-    /// your app. The string is primarily for your benefit, so choose type
-    /// names that reflect the data in the corresponding records.
     @available(watchOSApplicationExtension 3.0, *)
     @objc optional func dataStoreManager(_ manager: DataStoreManager, cloudKitContainerRecordIDForKey key: String) -> CKRecord.ID
 
@@ -97,11 +98,6 @@ import CloudKit
     /// Tells the delegate that the specified storage type of a data store
     /// needs to handle when the value of one or more keys in the local
     /// key-value store changed due to incoming data pushed from iCloud.
-    ///
-    /// - Parameters:
-    ///   - manager: An object representing the data store manager
-    ///              requesting this information.
-    ///   - userInfo: The user info dictionary.
     ///
     /// The user info dictionary can contain the reason for the notification
     /// as well as a list of which values changed, as follows:
@@ -114,5 +110,10 @@ import CloudKit
     ///   [NSUbiquitousKeyValueStoreChangedKeysKey(apple-reference-documentation://hsxKbLUIAR),
     ///   when present, is an array of strings, each the name of a key whose
     ///   value changed.
+    ///
+    /// - Parameters:
+    ///   - manager: An object representing the data store manager
+    ///              requesting this information.
+    ///   - userInfo: The user info dictionary.
     @objc optional func dataStoreManager(_ manager: DataStoreManager, ubiquitousCloudStoreDidChangeExternallyWithUserInfo userInfo: [AnyHashable : Any]?)
 }

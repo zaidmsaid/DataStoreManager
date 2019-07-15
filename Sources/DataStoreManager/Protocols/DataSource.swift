@@ -70,10 +70,6 @@ import CloudKit
     /// Asks the data source for the maximum total cost that the cache can
     /// hold before it starts evicting objects.
     ///
-    /// - Parameter manager: An object representing the data store manager
-    ///                      requesting this information.
-    /// - Returns: The number of total cost limit.
-    ///
     /// When you add an object to the cache, you may pass in a specified
     /// cost for the object, such as the size in bytes of the object. If
     /// adding this object to the cache causes the cache’s total cost to
@@ -85,6 +81,10 @@ import CloudKit
     /// object in the cache could be evicted instantly, at a later point in
     /// time, or possibly never, all depending on the implementation details
     /// of the cache.
+    ///
+    /// - Parameter manager: An object representing the data store manager
+    ///                      requesting this information.
+    /// - Returns: The number of total cost limit.
     @objc optional func cacheTotalCostLimit(for manager: DataStoreManager) -> Int
 
     // MARK: Core Data
@@ -139,11 +139,6 @@ import CloudKit
     /// Asks the data source for the generic keychain access group of the
     /// data store manager.
     ///
-    /// - Parameter manager: An object representing the data store manager
-    ///                      requesting this information.
-    /// - Returns: The corresponding value is a string that indicates the
-    ///            item’s one and only access group.
-    ///
     /// For an app to access a keychain item, one of the groups to which the
     /// app belongs must be the item’s group. The list of an app’s access
     /// groups consists of the following string identifiers, in this order:
@@ -162,6 +157,11 @@ import CloudKit
     /// access group, or the app ID when the app has no keychain groups. In
     /// the latter case, the item is only accessible to the app creating the
     /// item, since no other app can be in that group.
+    ///
+    /// - Parameter manager: An object representing the data store manager
+    ///                      requesting this information.
+    /// - Returns: The corresponding value is a string that indicates the
+    ///            item’s one and only access group.
     @objc optional func genericKeychainAccessGroup(for manager: DataStoreManager) -> String
 
     /// Returns a value that identifies the location of a resource, such as
@@ -220,13 +220,6 @@ import CloudKit
     /// Asks the data source for the keychain local authentication context
     /// to use of the data store manager.
     ///
-    /// - Parameter manager: An object representing the data store manager
-    ///                      requesting this information.
-    /// - Returns: The corresponding value is of type
-    ///            [LAContext](https://developer.apple.com/documentation/localauthentication/lacontext),
-    ///            and represents a reusable local authentication context
-    ///            that should be used for keychain item authentication.
-    ///
     /// It is according to the following rules:
     /// * If this key is not specified, and if the item requires
     ///   authentication, a new context will be created, used once, and
@@ -244,6 +237,13 @@ import CloudKit
     ///              key in your app’s Info.plist file if your app allows
     ///              biometric authentication. Otherwise, authorization
     ///              requests may fail.
+    ///
+    /// - Parameter manager: An object representing the data store manager
+    ///                      requesting this information.
+    /// - Returns: The corresponding value is of type
+    ///            [LAContext](https://developer.apple.com/documentation/localauthentication/lacontext),
+    ///            and represents a reusable local authentication context
+    ///            that should be used for keychain item authentication.
     @available(iOS 8.0, *)
     @available(macOS 10.10, *)
     @available(watchOS, unavailable)
@@ -264,14 +264,14 @@ import CloudKit
     /// Asks the data source for the cloud kit container record type of the
     /// data store manager.
     ///
+    /// Use this string to differentiate between different record types in
+    /// your app. The string is primarily for your benefit, so choose type
+    /// names that reflect the data in the corresponding records.
+    ///
     /// - Parameter manager: An object representing the data store manager
     ///                      requesting this information.
     /// - Returns: The app-defined string that identifies the type of the
     ///            record.
-    ///
-    /// Use this string to differentiate between different record types in
-    /// your app. The string is primarily for your benefit, so choose type
-    /// names that reflect the data in the corresponding records.
     @objc optional func cloudKitContainerRecordType(for manager: DataStoreManager) -> String
 
     /// Returns a definition of logical conditions used to constrain a
@@ -296,12 +296,12 @@ import CloudKit
     /// Asks the data source to verify that the cloud kit container of data
     /// source manager allows duplicate key.
     ///
+    /// If you do not implement this method, the data store manager
+    /// configures does not allow duplicate key.
+    ///
     /// - Parameter manager: An object representing the data store manager
     ///                      requesting this information.
     /// - Returns: `true` if the key allowed to be duplicated; otherwise
     ///            `false`.
-    ///
-    /// If you do not implement this method, the data store manager
-    /// configures does not allow duplicate key.
     @objc optional func cloudKitContainerAllowsDuplicateKey(for manager: DataStoreManager) -> Bool
 }
