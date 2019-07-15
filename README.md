@@ -2,9 +2,11 @@
 
 [![Swift 5](https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platform](https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat)](http://www.apple.com/ios/)
-[![Carthage](https://img.shields.io/badge/carthage-compatible-brightgreen.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Carthage](https://img.shields.io/badge/carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
 [![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
+[![Codebeat](https://codebeat.co/badges/5403398a-5535-4def-8937-ab9a413584cc)](https://codebeat.co/projects/github-com-zaidmsaid-datastoremanager)
+[![Hound](https://img.shields.io/badge/reviewed_by-hound-8E64B0.svg)](https://houndci.com)
 [![Documentation](https://zaidmsaid.github.io/DataStoreManager/badge.svg)](https://zaidmsaid.github.io/DataStoreManager/)
 [![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg?style=flat)](http://twitter.com/SentulAsia)
 
@@ -45,20 +47,20 @@ class ViewController: UIViewController {
         }
     }
 
-    func storeToDataStore(object: Any) {
-    	manager.create(object: object, forKey: "Text", forType: .userDefaults) { (isSuccessful, _, _) in
+    func storeToDataStore(object aObject: Any) {
+    	manager.create(object: aObject, forKey: "Text", forType: .userDefaults) { (isSuccessful, _, _) in
             if isSuccessful {
     	        print("successfully create object at UserDefaults")
             }
     	}
 
-        manager.update(object: object, forKey: "Text", forType: .genericKeychain) { (isSuccessful, _, _) in
+        manager.update(object: aObject, forKey: "Text", forType: .genericKeychain) { (isSuccessful, _, _) in
             if isSuccessful {
                 print("successfully update object at Generic Keychain")
             }
         }
 
-    	manager.create(object: object, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful, _, _) in
+    	manager.create(object: aObject, forKey: "Inbox/file.txt", forType: .documentDirectory) { (isSuccessful, _, _) in
             if isSuccessful {
     	        print("successfully create file at Inbox Document Directory")
             }
