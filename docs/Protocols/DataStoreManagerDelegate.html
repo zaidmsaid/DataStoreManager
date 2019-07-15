@@ -14,7 +14,7 @@
     <a title="DataStoreManagerDelegate Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DataStoreManager Docs</a> (77% documented)</p>
+        <p><a href="../index.html">DataStoreManager Docs</a> (80% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -179,7 +179,7 @@ updated to the version defined in
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">performMigrationFromOldVersion</span> <span class="nv">version</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">forType</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreStorageType.html">DataStoreStorageType</a></span><span class="p">)</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataStoreManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreManager.html">DataStoreManager</a></span><span class="p">,</span> <span class="n">performMigrationFromOldVersion</span> <span class="nv">oldVersion</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">forType</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/DataStoreStorageType.html">DataStoreStorageType</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -203,12 +203,13 @@ updated to the version defined in
                             <tr>
                               <td>
                                 <code>
-                                <em>version</em>
+                                <em>oldVersion</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The old schema version for reference to do migration.</p>
+                                  <p>The old schema version for reference to do
+        migration.</p>
                                 </div>
                               </td>
                             </tr>
@@ -440,10 +441,10 @@ as well as a list of which values changed, as follows:</p>
 key, when present, indicates why the key-value store changed. Its
 value is one of the constants in
 <a href="apple-reference-documentation://ts1433687">Change Reason Values</a>.</li>
-<li>The value of the
+<li><p>The value of the
 [NSUbiquitousKeyValueStoreChangedKeysKey(apple-reference-documentation://hsxKbLUIAR),
 when present, is an array of strings, each the name of a key whose
-value changed.</li>
+value changed.</p></li>
 </ul>
 
                       </div>
