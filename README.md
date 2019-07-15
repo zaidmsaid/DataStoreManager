@@ -151,7 +151,7 @@ for up to date installation instructions.
 
 [carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
 
-#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/cocoapods.png" width="24" height="24"> [CocoaPods]
+#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/Resources/cocoapods.png" width="24" height="24"> [CocoaPods]
 
 [CocoaPods]: http://cocoapods.org
 
@@ -169,7 +169,7 @@ use_frameworks!
 
 Then run `pod install` with CocoaPods 1.6.0 or newer.
 
-#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/resources/swift.png" width="24" height="24"> [Swift Package Manager]
+#### <img src="https://raw.githubusercontent.com/zaidmsaid/DataStoreManager/master/Resources/swift.png" width="24" height="24"> [Swift Package Manager]
 
 [Swift Package Manager]: https://swift.org/package-manager/
 
