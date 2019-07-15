@@ -22,7 +22,7 @@ extension DataStoreManager {
 
     /// An interface to the CloudKit.
     @available(watchOSApplicationExtension 3.0, *)
-    class CloudKitWorker {
+    internal class CloudKitWorker {
 
         // MARK: - Enumerations
 

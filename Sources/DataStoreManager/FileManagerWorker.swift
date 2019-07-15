@@ -25,7 +25,7 @@ import Cocoa
 extension DataStoreManager {
 
     /// An interface to the FileManager.
-    class FileManagerWorker {
+    internal class FileManagerWorker {
 
         // MARK: - Enumerations
 
@@ -288,7 +288,7 @@ extension Bool: DataConvertible {
 
     /// Creates a new instance with the specified data.
     ///
-    /// If there is non boolean value of the type that corresponds with the
+    /// If there is non Boolean value of the type that corresponds with the
     /// specified data, this initializer returns nil.
     ///
     /// - Parameter data: The data to use for the new instance.

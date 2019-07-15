@@ -22,7 +22,7 @@ extension DataStoreManager {
 
     /// An interface to the NSUbiquitousKeyValueStore.
     @available(watchOS, unavailable)
-    class UbiquitousCloudStoreWorker {
+    internal class UbiquitousCloudStoreWorker {
 
         // MARK: - Initializers
 

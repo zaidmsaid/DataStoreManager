@@ -21,7 +21,7 @@ import CoreData
 extension DataStoreManager {
 
     /// An interface to the CoreData.
-    class CoreDataWorker {
+    internal class CoreDataWorker {
 
         // MARK: - Properties
 

@@ -25,7 +25,7 @@ import LocalAuthentication
 extension DataStoreManager {
 
     /// An interface to the Security.
-    class KeychainWorker {
+    internal class KeychainWorker {
 
         // MARK: - Enumerations
 

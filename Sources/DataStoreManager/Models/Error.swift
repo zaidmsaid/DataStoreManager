@@ -187,8 +187,8 @@ extension ErrorProtocol : Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument equals the second argument;
-    ///            false if not.
+    /// - Returns: `true` if the first argument equals the second argument;
+    ///            `false` if not.
     public static func == (lhs: ErrorProtocol, rhs: ErrorProtocol) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }

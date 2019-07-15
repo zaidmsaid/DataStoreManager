@@ -205,8 +205,8 @@ extension EntityCollectionIndex : Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument equals the second argument;
-    ///            false if not.
+    /// - Returns: `true` if the first argument equals the second argument;
+    ///            `false` if not.
     public static func == (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index == rhs.index
     }
@@ -226,8 +226,8 @@ extension EntityCollectionIndex : Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument is less than the second
-    ///            argument; false if not.
+    /// - Returns: `true` if the first argument is less than the second
+    ///            argument; `false` if not.
     public static func < (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index < rhs.index
     }
@@ -238,8 +238,8 @@ extension EntityCollectionIndex : Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument is less than or equal the
-    ///            second argument; false if not.
+    /// - Returns: `true` if the first argument is less than or equal the
+    ///            second argument; `false` if not.
     public static func <= (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index <= rhs.index
     }
@@ -250,8 +250,8 @@ extension EntityCollectionIndex : Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument is greater than or equal the
-    ///            second argument; false if not.
+    /// - Returns: `true` if the first argument is greater than or equal the
+    ///            second argument; `false` if not.
     public static func >= (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index >= rhs.index
     }
@@ -262,8 +262,8 @@ extension EntityCollectionIndex : Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument is greater than the second
-    ///            argument; false if not.
+    /// - Returns: `true` if the first argument is greater than the second
+    ///            argument; `false` if not.
     public static func > (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index > rhs.index
     }
