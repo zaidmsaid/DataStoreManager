@@ -114,6 +114,8 @@ extension DataStoreManager {
             }
         }
 
+        // MARK: - NSDiscardableContent
+
         /// Returns a Boolean value indicating whether the discardable
         /// contents are still available and have been successfully
         /// accessed.
