@@ -16,11 +16,11 @@
 
 import CloudKit
 
-// MARK: - CKContainer
+// MARK: - CloudKit
 
 extension DataStoreManager {
 
-    /// An interface to the CKContainer.
+    /// An interface to the CloudKit.
     @available(watchOSApplicationExtension 3.0, *)
     class CloudKitWorker {
 

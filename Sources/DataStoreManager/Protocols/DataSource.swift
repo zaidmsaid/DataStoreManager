@@ -252,12 +252,12 @@ import CloudKit
 
     // MARK: Cloud Kit Container
 
-    /// Asks the data source for the containerIdentifier for `CKContainer`
+    /// Asks the data source for the containerIdentifier for `CloudKit`
     /// of the data store manager.
     ///
     /// - Parameter manager: An object representing the data store manager
     ///                      requesting this information.
-    /// - Returns: The `CKContainer` containerIdentifier for the data store
+    /// - Returns: The `CloudKit` containerIdentifier for the data store
     ///            manager.
     @objc optional func cloudKitContainerIdentifier(for manager: DataStoreManager) -> String
 
