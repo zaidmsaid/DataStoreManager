@@ -285,6 +285,13 @@ extension Decimal: DataConvertible {
 }
 
 extension Bool: DataConvertible {
+
+    /// Creates a new instance with the specified data.
+    ///
+    /// If there is non boolean value of the type that corresponds with the
+    /// specified data, this initializer returns nil.
+    ///
+    /// - Parameter data: The data to use for the new instance.
     init?(data: Data) {
         guard data.count == MemoryLayout<Bool>.size else {
             return nil
@@ -295,6 +302,13 @@ extension Bool: DataConvertible {
 }
 
 extension UInt16: DataConvertible {
+
+    /// Creates a new instance with the specified data.
+    ///
+    /// If there is non 16-bit unsigned integer value of the type that
+    /// corresponds with the specified data, this initializer returns nil.
+    ///
+    /// - Parameter data: The data to use for the new instance.
     init?(data: Data) {
         guard data.count == MemoryLayout<UInt16>.size else {
             return nil
@@ -303,6 +317,7 @@ extension UInt16: DataConvertible {
         self = data.withUnsafeBytes { $0.load(as: UInt16.self) }
     }
 
+    /// A byte buffer in memory.
     var data: Data {
         var value = CFSwapInt16HostToBig(self)
         return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
@@ -310,10 +325,18 @@ extension UInt16: DataConvertible {
 }
 
 extension String: DataConvertible {
+
+    /// Creates a new instance with the specified data.
+    ///
+    /// If there is non string value of the type that corresponds with the
+    /// specified data, this initializer returns nil.
+    ///
+    /// - Parameter data: The data to use for the new instance.
     init?(data: Data) {
         self.init(data: data, encoding: .utf8)
     }
 
+    /// A byte buffer in memory.
     var data: Data {
         if let utf8 = self.data(using: .utf8) {
             return utf8
@@ -324,6 +347,8 @@ extension String: DataConvertible {
 
 #if os(iOS) || os(watchOS) || os(tvOS)
 extension UIImage: DataConvertible {
+
+    /// A byte buffer in memory.
     var data: Data {
         if let pngData = self.pngData() {
             return pngData
