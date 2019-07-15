@@ -56,7 +56,7 @@ extension DataStoreManager {
 
         // MARK: - Properties
 
-        lazy var fileManager: FileManager = {
+        private lazy var fileManager: FileManager = {
             return FileManager.default
         }()
 
