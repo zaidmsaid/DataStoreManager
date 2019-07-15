@@ -118,7 +118,7 @@ import Foundation
         return worker
     }()
 
-    /// An interface to the CKContainer.
+    /// An interface to the CloudKit.
     @available(watchOSApplicationExtension 3.0, *)
     lazy var cloudKitWorker: CloudKitWorker = {
         let worker = CloudKitWorker()

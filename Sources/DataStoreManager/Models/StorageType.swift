@@ -120,22 +120,22 @@ extension DataStoreStorageType : RawRepresentable {
     public static let coreData = DataStoreStorageType("CoreData")
 
     /// The storage type
-    /// [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// [CloudKit](https://developer.apple.com/documentation/cloudkit)
     /// with
     /// [privateCloudDatabase](apple-reference-documentation://hsl8OIqKuV).
-    public static let privateCloudDatabase = DataStoreStorageType("CKContainer.privateCloudDatabase")
+    public static let privateCloudDatabase = DataStoreStorageType("CloudKit.privateCloudDatabase")
 
     /// The storage type
-    /// [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// [CloudKit](https://developer.apple.com/documentation/cloudkit)
     /// with
     /// [publicCloudDatabase](apple-reference-documentation://hsr3N4H2SH).
-    public static let publicCloudDatabase = DataStoreStorageType("CKContainer.publicCloudDatabase")
+    public static let publicCloudDatabase = DataStoreStorageType("CloudKit.publicCloudDatabase")
 
     /// The storage type
-    /// [CKContainer](apple-reference-documentation://hsS7IJpn_8)
+    /// [CloudKit](https://developer.apple.com/documentation/cloudkit)
     /// with
     /// [sharedCloudDatabase](apple-reference-documentation://hse91QSrM6).
-    public static let sharedCloudDatabase = DataStoreStorageType("CKContainer.sharedCloudDatabase")
+    public static let sharedCloudDatabase = DataStoreStorageType("CloudKit.sharedCloudDatabase")
 
     /// The storage type
     /// [NSUbiquitousKeyValueStore](apple-reference-documentation://hskNNwzU6H).
@@ -215,13 +215,13 @@ extension DataStoreStorageType {
             return "CoreData"
 
         case .privateCloudDatabase:
-            return "CKContainer"
+            return "CloudKit"
 
         case .publicCloudDatabase:
-            return "CKContainer"
+            return "CloudKit"
 
         case .sharedCloudDatabase:
-            return "CKContainer"
+            return "CloudKit"
 
         case .ubiquitousCloudStore:
             return "NSUbiquitousKeyValueStore"
@@ -274,13 +274,13 @@ extension DataStoreStorageType {
             return "CoreData"
 
         case .privateCloudDatabase:
-            return "CKContainer"
+            return "CloudKit"
 
         case .publicCloudDatabase:
-            return "CKContainer"
+            return "CloudKit"
 
         case .sharedCloudDatabase:
-            return "CKContainer"
+            return "CloudKit"
 
         case .ubiquitousCloudStore:
             return "NSUbiquitousKeyValueStore"
