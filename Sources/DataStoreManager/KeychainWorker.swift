@@ -31,7 +31,7 @@ extension DataStoreManager {
 
         /// Constants that provide information regarding item class of
         /// keychain worker.
-        @objc enum ItemClass : Int {
+        @objc enum ItemClass: Int {
 
             /// The item class of the value that indicates a generic
             /// password item.
@@ -174,7 +174,7 @@ extension DataStoreManager {
 
         func deleteAll(forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            var query = [String : AnyObject]()
+            var query = [String: AnyObject]()
 
             switch itemClass {
             case .generic:
@@ -237,7 +237,7 @@ extension DataStoreManager {
 
         private func update(_ value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
-            var newQuery = [String : AnyObject]()
+            var newQuery = [String: AnyObject]()
             newQuery[kSecValueData as String] = value as AnyObject
 
             let query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
@@ -254,9 +254,9 @@ extension DataStoreManager {
 
         // MARK: - Helpers
 
-        private final func getKeychainQuery(forAccount account: String, forItemClass itemClass: ItemClass) -> [String : AnyObject] {
+        private final func getKeychainQuery(forAccount account: String, forItemClass itemClass: ItemClass) -> [String: AnyObject] {
 
-            var query = [String : AnyObject]()
+            var query = [String: AnyObject]()
 
             switch itemClass {
             case .generic:

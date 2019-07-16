@@ -27,7 +27,7 @@ import Foundation
 extension DataStoreManager {
 
     /// An interface to the NSCache.
-    internal class CacheWorker : NSDiscardableContent {
+    internal class CacheWorker: NSDiscardableContent {
 
         // MARK: - Initializers
 

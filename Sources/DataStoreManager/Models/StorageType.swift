@@ -19,7 +19,7 @@ import Security
 
 /// Constants that provide information regarding storage type of data store
 /// manager.
-@objcMembers open class DataStoreStorageType : NSObject {
+@objcMembers open class DataStoreStorageType: NSObject {
 
     // MARK: - Initializers
 
@@ -58,7 +58,7 @@ import Security
     public final var rawValue: String
 }
 
-extension DataStoreStorageType : RawRepresentable {
+extension DataStoreStorageType: RawRepresentable {
 
     // MARK: - Enumerations
 
@@ -144,7 +144,7 @@ extension DataStoreStorageType : RawRepresentable {
 
 // MARK: - CaseIterable
 
-extension DataStoreStorageType : CaseIterable {
+extension DataStoreStorageType: CaseIterable {
 
     /// A collection of all values of this type.
     public static var allCases: [DataStoreStorageType] {

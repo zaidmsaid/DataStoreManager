@@ -18,7 +18,7 @@ import Foundation
 
 /// An interface to the data store manager, where you store key-value pairs
 /// persistently across launches of your app.
-@objcMembers open class DataStoreManager : NSObject {
+@objcMembers open class DataStoreManager: NSObject {
 
     // MARK: - Initializers
 

@@ -28,7 +28,7 @@ extension DataStoreManager {
 
         /// Constants that provide information regarding container type of
         /// cloud kit worker.
-        @objc enum ContainerType : Int {
+        @objc enum ContainerType: Int {
 
             /// The container type of the database containing the user’s
             /// private data.

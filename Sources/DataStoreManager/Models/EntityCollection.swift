@@ -76,7 +76,7 @@ public struct EntityCollection<T: Hashable> {
 
 // MARK: - CustomStringConvertible
 
-extension EntityCollection : CustomStringConvertible {
+extension EntityCollection: CustomStringConvertible {
 
     /// A textual representation of this instance.
     public var description: String {
@@ -86,7 +86,7 @@ extension EntityCollection : CustomStringConvertible {
 
 // MARK: - CustomDebugStringConvertible
 
-extension EntityCollection : CustomDebugStringConvertible {
+extension EntityCollection: CustomDebugStringConvertible {
 
     /// A textual representation of this instance, suitable for debugging.
     public var debugDescription: String {
@@ -108,7 +108,7 @@ extension EntityCollection: ExpressibleByArrayLiteral {
 
 // MARK: - ExpressibleByDictionaryLiteral
 
-extension EntityCollection : ExpressibleByDictionaryLiteral {
+extension EntityCollection: ExpressibleByDictionaryLiteral {
 
     /// Creates a new instance with the specified dictionary literal.
     ///
@@ -122,7 +122,7 @@ extension EntityCollection : ExpressibleByDictionaryLiteral {
 
 // MARK: - Sequence
 
-extension EntityCollection : Sequence {
+extension EntityCollection: Sequence {
 
     /// Type to mean instance of
     /// [AnyIterator](apple-reference-documentation://hsAabAoau8).
@@ -143,7 +143,7 @@ extension EntityCollection : Sequence {
 
 // MARK: - Collection
 
-extension EntityCollection : Collection {
+extension EntityCollection: Collection {
 
     /// Type to mean instance of DictionaryIndex.
     public typealias Index = EntityCollectionIndex<T>
@@ -195,7 +195,7 @@ public struct EntityCollectionIndex<T: Hashable> {
 
 // MARK: - Equatable
 
-extension EntityCollectionIndex : Equatable {
+extension EntityCollectionIndex: Equatable {
 
     /// Equality is the inverse of inequality. For any values `a` and `b`,
     /// `a == b` implies that `a != b` is `false`.
@@ -214,7 +214,7 @@ extension EntityCollectionIndex : Equatable {
 
 // MARK: - Comparable
 
-extension EntityCollectionIndex : Comparable {
+extension EntityCollectionIndex: Comparable {
 
     /// This function is the only requirement of the `Comparable` protocol.
     /// The remainder of the relational operator functions are implemented

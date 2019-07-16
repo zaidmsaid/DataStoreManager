@@ -31,7 +31,7 @@ extension DataStoreManager {
 
         /// Constants that provide information regarding directory of file
         /// manager worker.
-        @objc enum Directory : Int {
+        @objc enum Directory: Int {
 
             /// The directory document directory (`~/Documents`).
             case documentDirectory

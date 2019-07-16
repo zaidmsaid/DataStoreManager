@@ -115,5 +115,5 @@ import CloudKit
     ///   - manager: An object representing the data store manager
     ///              requesting this information.
     ///   - userInfo: The user info dictionary.
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, ubiquitousCloudStoreDidChangeExternallyWithUserInfo userInfo: [AnyHashable : Any]?)
+    @objc optional func dataStoreManager(_ manager: DataStoreManager, ubiquitousCloudStoreDidChangeExternallyWithUserInfo userInfo: [AnyHashable: Any]?)
 }

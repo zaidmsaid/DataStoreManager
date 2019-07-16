@@ -17,7 +17,7 @@
 import Foundation
 
 /// A type representing an error value.
-enum ErrorProtocol : Error {
+enum ErrorProtocol: Error {
 
     // MARK: - Enumerations
 
@@ -99,7 +99,7 @@ enum ErrorProtocol : Error {
 
 // MARK: - RawRepresentable
 
-extension ErrorProtocol : RawRepresentable {
+extension ErrorProtocol: RawRepresentable {
 
     // MARK: Initializers
 
@@ -177,7 +177,7 @@ extension ErrorProtocol : RawRepresentable {
 
 // MARK: - Equatable
 
-extension ErrorProtocol : Equatable {
+extension ErrorProtocol: Equatable {
 
     /// Equality is the inverse of inequality. For any values `a` and `b`,
     /// `a == b` implies that `a != b` is `false`.
@@ -196,7 +196,7 @@ extension ErrorProtocol : Equatable {
 
 // MARK: - Hashable
 
-extension ErrorProtocol : Hashable {
+extension ErrorProtocol: Hashable {
 
     /// Hashes the essential components of this value by feeding them into
     /// the given hasher.
@@ -218,7 +218,7 @@ extension ErrorProtocol : Hashable {
 
 // MARK: - CaseIterable
 
-extension ErrorProtocol : CaseIterable {
+extension ErrorProtocol: CaseIterable {
 
     /// A collection of all values of this type.
     public static var allCases: [ErrorProtocol] {
@@ -250,7 +250,7 @@ extension ErrorProtocol : CaseIterable {
 
 // MARK: - CustomNSError
 
-extension ErrorProtocol : CustomNSError {
+extension ErrorProtocol: CustomNSError {
 
     /// The key of the error.
     static var key: String {
@@ -268,16 +268,16 @@ extension ErrorProtocol : CustomNSError {
     }
 
     /// The user-info dictionary.
-    var errorUserInfo: [String : Any] {
+    var errorUserInfo: [String: Any] {
         return [
-            NSLocalizedDescriptionKey : NSLocalizedString(ErrorProtocol.key, value: debugDescription, comment: description)
+            NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: debugDescription, comment: description)
         ]
     }
 }
 
 // MARK: - LocalizedError
 
-extension ErrorProtocol : LocalizedError {
+extension ErrorProtocol: LocalizedError {
 
     /// A localized message describing what error occurred.
     var errorDescription: String? {
@@ -347,7 +347,7 @@ extension ErrorProtocol : LocalizedError {
 
 // MARK: - CustomStringConvertible
 
-extension ErrorProtocol : CustomStringConvertible {
+extension ErrorProtocol: CustomStringConvertible {
 
     /// A textual representation of this instance.
     var description: String {
@@ -402,7 +402,7 @@ extension ErrorProtocol : CustomStringConvertible {
 
 // MARK: - CustomDebugStringConvertible
 
-extension ErrorProtocol : CustomDebugStringConvertible {
+extension ErrorProtocol: CustomDebugStringConvertible {
 
     /// A textual representation of this instance, suitable for debugging.
     var debugDescription: String {
@@ -421,7 +421,7 @@ extension ErrorProtocol : CustomDebugStringConvertible {
 /// dictionary. See
 /// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
 /// for more information.
-class ErrorObject : NSError {
+class ErrorObject: NSError {
 
     // MARK: - Initializers
 
