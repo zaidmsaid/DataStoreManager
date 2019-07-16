@@ -270,7 +270,11 @@ extension ErrorProtocol: CustomNSError {
     /// The user-info dictionary.
     var errorUserInfo: [String: Any] {
         return [
-            NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: debugDescription, comment: description)
+            NSLocalizedDescriptionKey: NSLocalizedString(
+                ErrorProtocol.key,
+                value: debugDescription,
+                comment: description
+            )
         ]
     }
 }
