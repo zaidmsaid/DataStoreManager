@@ -48,7 +48,7 @@ extension DataStoreManager {
         /// store needs to handle when the value of one or more keys in the
         /// local key-value store changed due to incoming data pushed from
         /// iCloud.
-        weak var notificationDelegate: ((DataStoreManager, [AnyHashable: Any]?) -> Void)?
+        var notificationHandler: ((DataStoreManager, [AnyHashable: Any]?) -> Void)?
 
         private lazy var ubiquitousCloudStore: NSUbiquitousKeyValueStore = {
             return NSUbiquitousKeyValueStore.default
@@ -100,7 +100,7 @@ extension DataStoreManager {
         // MARK: - Helpers
 
         @objc private func onUbiquitousCloudStoreDidChangeExternally(notification: Notification) {
-            if let manager = dataStoreManager, let delegate = notificationDelegate {
+            if let manager = dataStoreManager, let delegate = notificationHandler {
                 delegate(manager, notification.userInfo)
             }
         }

@@ -20,39 +20,39 @@ import UIKit
 import Cocoa
 #endif
 
+// MARK: - Enumerations
+
+/// Constants that provide information regarding directory of file
+/// manager worker.
+@objc enum Directory: Int {
+
+    /// The directory document directory (`~/Documents`).
+    case documentDirectory
+
+    /// The directory user home directories (`/Users`).
+    case userDirectory
+
+    /// The directory library (`/Library`).
+    case libraryDirectory
+
+    /// The directory supported applications (`/Applications`).
+    case applicationDirectory
+
+    /// The directory core services
+    /// (`/System/Library/CoreServices`).
+    case coreServiceDirectory
+
+    /// The directory the temporary directory for the current user
+    /// (`/tmp`).
+    case temporaryDirectory
+}
+
 // MARK: - FileManager
 
 extension DataStoreManager {
 
     /// An interface to the FileManager.
     internal class FileManagerWorker {
-
-        // MARK: - Enumerations
-
-        /// Constants that provide information regarding directory of file
-        /// manager worker.
-        @objc enum Directory: Int {
-
-            /// The directory document directory (`~/Documents`).
-            case documentDirectory
-
-            /// The directory user home directories (`/Users`).
-            case userDirectory
-
-            /// The directory library (`/Library`).
-            case libraryDirectory
-
-            /// The directory supported applications (`/Applications`).
-            case applicationDirectory
-
-            /// The directory core services
-            /// (`/System/Library/CoreServices`).
-            case coreServiceDirectory
-
-            /// The directory the temporary directory for the current user
-            /// (`/tmp`).
-            case temporaryDirectory
-        }
 
         // MARK: - Properties
 

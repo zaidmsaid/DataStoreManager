@@ -20,27 +20,27 @@ import Security
 import LocalAuthentication
 #endif
 
+// MARK: - Enumerations
+
+/// Constants that provide information regarding item class of
+/// keychain worker.
+@objc enum ItemClass: Int {
+
+    /// The item class of the value that indicates a generic
+    /// password item.
+    case generic
+
+    /// The item class of the value that indicates an Internet
+    /// password item.
+    case internet
+}
+
 // MARK: - Security
 
 extension DataStoreManager {
 
     /// An interface to the Security.
     internal class KeychainWorker {
-
-        // MARK: - Enumerations
-
-        /// Constants that provide information regarding item class of
-        /// keychain worker.
-        @objc enum ItemClass: Int {
-
-            /// The item class of the value that indicates a generic
-            /// password item.
-            case generic
-
-            /// The item class of the value that indicates an Internet
-            /// password item.
-            case internet
-        }
 
         // MARK: - Type Aliases
 

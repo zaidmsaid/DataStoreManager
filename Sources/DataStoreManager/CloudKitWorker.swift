@@ -16,6 +16,25 @@
 
 import CloudKit
 
+// MARK: - Enumerations
+
+/// Constants that provide information regarding container type of
+/// cloud kit worker.
+@objc enum ContainerType: Int {
+
+    /// The container type of the database containing the user’s
+    /// private data.
+    case privateCloudDatabase
+
+    /// The container type of the database containing the data
+    /// shared by all users.
+    case publicCloudDatabase
+
+    /// The container type of the database containing shared user
+    /// data.
+    case sharedCloudDatabase
+}
+
 // MARK: - CloudKit
 
 extension DataStoreManager {
@@ -23,25 +42,6 @@ extension DataStoreManager {
     /// An interface to the CloudKit.
     @available(watchOSApplicationExtension 3.0, *)
     internal class CloudKitWorker {
-
-        // MARK: - Enumerations
-
-        /// Constants that provide information regarding container type of
-        /// cloud kit worker.
-        @objc enum ContainerType: Int {
-
-            /// The container type of the database containing the user’s
-            /// private data.
-            case privateCloudDatabase
-
-            /// The container type of the database containing the data
-            /// shared by all users.
-            case publicCloudDatabase
-
-            /// The container type of the database containing shared user
-            /// data.
-            case sharedCloudDatabase
-        }
 
         // MARK: - Properties
 
@@ -51,7 +51,7 @@ extension DataStoreManager {
 
         /// Asks the delegate for the cloud kit container record type of the
         /// data store manager.
-        weak var recordIDDelegate: ((DataStoreManager, String) -> CKRecord.ID)?
+        var recordIDHandler: ((DataStoreManager, String) -> CKRecord.ID)?
 
         private var cloudKitContainer: CKContainer {
             if let manager = dataStoreManager, let containerIdentifier = manager.dataSource?.cloudKitContainerIdentifier?(for: manager) {
@@ -151,7 +151,7 @@ extension DataStoreManager {
 
             let recordType = self.recordType ?? key
 
-            if let delegate = recordIDDelegate, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
+            if let delegate = recordIDHandler, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
                 updateValue(object, forKey: key, forRecordType: recordType, forRecordID: delegate(manager, key), forCloudKitDatabase: database, completionHandler: completionHandler)
 
             } else {
@@ -189,7 +189,7 @@ extension DataStoreManager {
 
             let recordType = self.recordType ?? key
 
-            if let delegate = recordIDDelegate, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
+            if let delegate = recordIDHandler, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
                 delete(forRecordID: delegate(manager, key), forCloudKitDatabase: database, completionHandler: completionHandler)
 
             } else {
