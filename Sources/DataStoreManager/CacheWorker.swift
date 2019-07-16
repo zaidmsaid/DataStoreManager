@@ -55,7 +55,7 @@ extension DataStoreManager {
 
         /// Asks the delegate for the cost with which associate to the
         /// object.
-        var costHandler: ((DataStoreManager, Any) -> Int)?
+        var handler: ((DataStoreManager, Any) -> Int)?
 
         private lazy var cache: NSCache<NSString, AnyObject> = {
             let cache = NSCache<NSString, AnyObject>()
@@ -123,7 +123,7 @@ extension DataStoreManager {
         private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
             lock.lock()
-            if let manager = dataStoreManager, let delegate = costHandler {
+            if let manager = dataStoreManager, let delegate = handler {
                 cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: delegate(manager, value))
             } else {
                 cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: 0)

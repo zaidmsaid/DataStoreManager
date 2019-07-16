@@ -100,7 +100,7 @@ import Foundation
     lazy var cacheWorker: CacheWorker = {
         let worker = CacheWorker()
         worker.dataStoreManager = self
-        worker.costHandler = self.delegate?.dataStoreManager(_:cacheCostLimitForObject:)
+        worker.handler = self.delegate?.dataStoreManager(_:cacheCostLimitForObject:)
         return worker
     }()
 
@@ -123,7 +123,7 @@ import Foundation
     lazy var cloudKitWorker: CloudKitWorker = {
         let worker = CloudKitWorker()
         worker.dataStoreManager = self
-        worker.recordIDHandler = self.delegate?.dataStoreManager(_:cloudKitContainerRecordIDForKey:)
+        worker.handler = self.delegate?.dataStoreManager(_:cloudKitContainerRecordIDForKey:)
         return worker
     }()
 
@@ -132,7 +132,7 @@ import Foundation
     lazy var ubiquitousCloudStoreWorker: UbiquitousCloudStoreWorker = {
         let worker = UbiquitousCloudStoreWorker()
         worker.dataStoreManager = self
-        worker.notificationHandler = self.delegate?.dataStoreManager(_:ubiquitousCloudStoreDidChangeExternallyWithUserInfo:)
+        worker.handler = self.delegate?.dataStoreManager(_:ubiquitousCloudStoreDidChangeExternallyWithUserInfo:)
         return UbiquitousCloudStoreWorker()
     }()
 

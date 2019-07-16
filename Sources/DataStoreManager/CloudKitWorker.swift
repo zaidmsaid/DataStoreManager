@@ -51,7 +51,7 @@ extension DataStoreManager {
 
         /// Asks the delegate for the cloud kit container record type of the
         /// data store manager.
-        var recordIDHandler: ((DataStoreManager, String) -> CKRecord.ID)?
+        var handler: ((DataStoreManager, String) -> CKRecord.ID)?
 
         private var cloudKitContainer: CKContainer {
             if let manager = dataStoreManager, let containerIdentifier = manager.dataSource?.cloudKitContainerIdentifier?(for: manager) {
@@ -151,7 +151,7 @@ extension DataStoreManager {
 
             let recordType = self.recordType ?? key
 
-            if let delegate = recordIDHandler, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
+            if let delegate = handler, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
                 updateValue(object, forKey: key, forRecordType: recordType, forRecordID: delegate(manager, key), forCloudKitDatabase: database, completionHandler: completionHandler)
 
             } else {
@@ -189,7 +189,7 @@ extension DataStoreManager {
 
             let recordType = self.recordType ?? key
 
-            if let delegate = recordIDHandler, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
+            if let delegate = handler, let manager = dataStoreManager, let database = getDatabase(forContainerType: containerType) {
                 delete(forRecordID: delegate(manager, key), forCloudKitDatabase: database, completionHandler: completionHandler)
 
             } else {
