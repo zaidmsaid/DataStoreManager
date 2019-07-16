@@ -46,7 +46,10 @@ import CloudKit
     ///   - oldVersion: The old schema version for reference to do
     ///                 migration.
     ///   - type: A storage type constant.
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, performMigrationFromOldVersion oldVersion: Int, forType type: DataStoreStorageType)
+    @objc optional func dataStoreManager(
+        _ manager: DataStoreManager,
+        performMigrationFromOldVersion oldVersion: Int, forType type: DataStoreStorageType
+    )
 
     // MARK: Cache
 
@@ -73,7 +76,10 @@ import CloudKit
     ///   - object: The object to be cached.
     /// - Returns: The `cost` value is used to compute a sum encompassing
     ///            the costs of all the objects in the cache.
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, cacheCostLimitForObject object: Any) -> Int
+    @objc optional func dataStoreManager(
+        _ manager: DataStoreManager,
+        cacheCostLimitForObject object: Any
+        ) -> Int
 
     // MARK: Cloud Kit Container
 
@@ -91,7 +97,10 @@ import CloudKit
     /// - Returns: The app-defined string that identifies the type of the
     ///            record.
     @available(watchOSApplicationExtension 3.0, *)
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, cloudKitContainerRecordIDForKey key: String) -> CKRecord.ID
+    @objc optional func dataStoreManager(
+        _ manager: DataStoreManager,
+        cloudKitContainerRecordIDForKey key: String
+        ) -> CKRecord.ID
 
     // MARK: iCloud Key-value Storage
 
@@ -115,5 +124,8 @@ import CloudKit
     ///   - manager: An object representing the data store manager
     ///              requesting this information.
     ///   - userInfo: The user info dictionary.
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, ubiquitousCloudStoreDidChangeExternallyWithUserInfo userInfo: [AnyHashable: Any]?)
+    @objc optional func dataStoreManager(
+        _ manager: DataStoreManager,
+        ubiquitousCloudStoreDidChangeExternallyWithUserInfo userInfo: [AnyHashable: Any]?
+    )
 }

@@ -42,7 +42,9 @@ import CloudKit
     /// - Parameter manager: An object representing the data store manager
     ///                      requesting this information.
     /// - Returns: The default storage type of the data store manager.
-    @objc optional func defaultStorageType(for manager: DataStoreManager) -> DataStoreStorageType
+    @objc optional func defaultStorageType(
+        for manager: DataStoreManager
+        ) -> DataStoreStorageType
 
     /// Asks the data source for the current schema version for the storage
     /// type of data store manager.
@@ -53,7 +55,10 @@ import CloudKit
     ///   - type: A storage type constant.
     /// - Returns: The current schema version number for the storage type of
     ///            the data store manager.
-    @objc optional func dataStoreManager(_ manager: DataStoreManager, currentSchemaVersionForType type: DataStoreStorageType) -> Int
+    @objc optional func dataStoreManager(
+        _ manager: DataStoreManager,
+        currentSchemaVersionForType type: DataStoreStorageType
+        ) -> Int
 
     // MARK: User Defaults
 
@@ -63,7 +68,9 @@ import CloudKit
     /// - Parameter manager: An object representing the data store manager
     ///                      requesting this information.
     /// - Returns: The `UserDefaults` suite name for the data store manager.
-    @objc optional func userDefaultsSuiteName(for manager: DataStoreManager) -> String
+    @objc optional func userDefaultsSuiteName(
+        for manager: DataStoreManager
+        ) -> String
 
     // MARK: Cache
 
@@ -87,7 +94,9 @@ import CloudKit
     /// - Parameter manager: An object representing the data store manager
     ///                      requesting this information.
     /// - Returns: The number of total cost limit.
-    @objc optional func cacheTotalCostLimit(for manager: DataStoreManager) -> Int
+    @objc optional func cacheTotalCostLimit(
+        for manager: DataStoreManager
+        ) -> Int
 
     /// Asks the data source for the maximum number of objects the cache
     /// should hold.
@@ -101,7 +110,9 @@ import CloudKit
     /// - Parameter manager: An object representing the data store manager
     ///                      requesting this information.
     /// - Returns: The number of count limit.
-    @objc optional func cacheCountLimit(for manager: DataStoreManager) -> Int
+    @objc optional func cacheCountLimit(
+        for manager: DataStoreManager
+        ) -> Int
 
     // MARK: Core Data
 
@@ -110,7 +121,9 @@ import CloudKit
     /// - Parameter manager: An object representing the data store manager
     ///                      requesting this information.
     /// - Returns: A description of an entity in Core Data.
-    @objc optional func coreDataEntityDescription(for manager: DataStoreManager) -> NSEntityDescription
+    @objc optional func coreDataEntityDescription(
+        for manager: DataStoreManager
+        ) -> NSEntityDescription
 
     /// Returns An object space that you use to manipulate and track changes
     /// to managed objects.
@@ -119,7 +132,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: An object space that you use to manipulate and track
     /// changes to managed objects.
-    @objc optional func coreDataManagedObjectContext(for manager: DataStoreManager) -> NSManagedObjectContext
+    @objc optional func coreDataManagedObjectContext(
+        for manager: DataStoreManager
+        ) -> NSManagedObjectContext
 
     /// Returns a specialized predicate that evaluates logical combinations
     /// of other predicates.
@@ -129,7 +144,9 @@ import CloudKit
     /// - Returns: A specialized predicate that evaluates logical
     ///            combinations of other predicates.
     @available(*, unavailable)
-    @objc optional func coreDataCompoundPredicate(for manager: DataStoreManager) -> NSCompoundPredicate
+    @objc optional func coreDataCompoundPredicate(
+        for manager: DataStoreManager
+        ) -> NSCompoundPredicate
 
     /// Returns a definition of logical conditions used to constrain a
     /// search either for a fetch or for in-memory filtering.
@@ -139,7 +156,9 @@ import CloudKit
     /// - Returns: A definition of logical conditions used to constrain a
     ///            search either for a fetch or for in-memory filtering.
     @available(*, unavailable)
-    @objc optional func coreDataPredicate(for manager: DataStoreManager) -> NSPredicate
+    @objc optional func coreDataPredicate(
+        for manager: DataStoreManager
+        ) -> NSPredicate
 
     // MARK: Keychain
 
@@ -150,7 +169,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: The corresponding value is a string that represents the
     ///            service associated with this item.
-    @objc optional func genericKeychainService(for manager: DataStoreManager) -> String
+    @objc optional func genericKeychainService(
+        for manager: DataStoreManager
+        ) -> String
 
     /// Asks the data source for the generic keychain access group of the
     /// data store manager.
@@ -178,7 +199,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: The corresponding value is a string that indicates the
     ///            item’s one and only access group.
-    @objc optional func genericKeychainAccessGroup(for manager: DataStoreManager) -> String
+    @objc optional func genericKeychainAccessGroup(
+        for manager: DataStoreManager
+        ) -> String
 
     /// Returns a value that identifies the location of a resource, such as
     /// an item on a remote server or the path to a local file.
@@ -188,7 +211,9 @@ import CloudKit
     /// - Returns: A value that identifies the location of a resource, such
     ///            as an item on a remote server or the path to a local
     ///            file.
-    @objc optional func internetKeychainServer(for manager: DataStoreManager) -> URL
+    @objc optional func internetKeychainServer(
+        for manager: DataStoreManager
+        ) -> URL
 
     /// Returns a value that provide information regarding protocol type of
     /// data store manager.
@@ -197,7 +222,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: A value that provide information regarding protocol type
     ///            of data store manager.
-    @objc optional func internetKeychainProtocolType(for manager: DataStoreManager) -> DataStoreProtocolType
+    @objc optional func internetKeychainProtocolType(
+        for manager: DataStoreManager
+        ) -> DataStoreProtocolType
 
     /// Returns a value that provide information regarding authentication
     /// type of data store manager.
@@ -206,7 +233,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: A value that provide information regarding authentication
     ///            type of data store manager.
-    @objc optional func internetKeychainAuthenticationType(for manager: DataStoreManager) -> DataStoreAuthenticationType
+    @objc optional func internetKeychainAuthenticationType(
+        for manager: DataStoreManager
+        ) -> DataStoreAuthenticationType
 
     /// Asks the data source to verify that the keychain of the data store
     /// manager is synchronized through iCloud.
@@ -215,7 +244,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: `true` if the item is synchronized through iCloud;
     ///            otherwise `false`.
-    @objc optional func keychainIsSynchronizable(for manager: DataStoreManager) -> Bool
+    @objc optional func keychainIsSynchronizable(
+        for manager: DataStoreManager
+        ) -> Bool
 
     /// Asks the data source for the keychain operation prompt of the data
     /// store manager.
@@ -231,7 +262,9 @@ import CloudKit
     @available(macOS 10.10, *)
     @available(watchOS, unavailable)
     @available(tvOS, unavailable)
-    @objc optional func keychainOperationPrompt(for manager: DataStoreManager) -> String
+    @objc optional func keychainOperationPrompt(
+        for manager: DataStoreManager
+        ) -> String
 
     /// Asks the data source for the keychain local authentication context
     /// to use of the data store manager.
@@ -264,7 +297,9 @@ import CloudKit
     @available(macOS 10.10, *)
     @available(watchOS, unavailable)
     @available(tvOS, unavailable)
-    @objc optional func keychainLocalAuthenticationContext(for manager: DataStoreManager) -> LocalAuthenticationContext
+    @objc optional func keychainLocalAuthenticationContext(
+        for manager: DataStoreManager
+        ) -> LocalAuthenticationContext
 
     // MARK: Cloud Kit Container
 
@@ -275,7 +310,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: The `CloudKit` containerIdentifier for the data store
     ///            manager.
-    @objc optional func cloudKitContainerIdentifier(for manager: DataStoreManager) -> String
+    @objc optional func cloudKitContainerIdentifier(
+        for manager: DataStoreManager
+        ) -> String
 
     /// Asks the data source for the cloud kit container record type of the
     /// data store manager.
@@ -288,7 +325,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: The app-defined string that identifies the type of the
     ///            record.
-    @objc optional func cloudKitContainerRecordType(for manager: DataStoreManager) -> String
+    @objc optional func cloudKitContainerRecordType(
+        for manager: DataStoreManager
+        ) -> String
 
     /// Returns a definition of logical conditions used to constrain a
     /// search either for a fetch or for in-memory filtering.
@@ -297,7 +336,9 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: A definition of logical conditions used to constrain a
     ///            search either for a fetch or for in-memory filtering.
-    @objc optional func cloudKitContainerPredicate(for manager: DataStoreManager) -> NSPredicate
+    @objc optional func cloudKitContainerPredicate(
+        for manager: DataStoreManager
+        ) -> NSPredicate
 
     /// Returns an object that uniquely identifies a record zone in a
     /// database.
@@ -307,7 +348,9 @@ import CloudKit
     /// - Returns: An object that uniquely identifies a record zone in a
     ///            database.
     @available(watchOSApplicationExtension 3.0, *)
-    @objc optional func cloudKitContainerZoneID(for manager: DataStoreManager) -> CKRecordZone.ID
+    @objc optional func cloudKitContainerZoneID(
+        for manager: DataStoreManager
+        ) -> CKRecordZone.ID
 
     /// Asks the data source to verify that the cloud kit container of data
     /// source manager allows duplicate key.
@@ -319,5 +362,7 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: `true` if the key allowed to be duplicated; otherwise
     ///            `false`.
-    @objc optional func cloudKitContainerAllowsDuplicateKey(for manager: DataStoreManager) -> Bool
+    @objc optional func cloudKitContainerAllowsDuplicateKey(
+        for manager: DataStoreManager
+        ) -> Bool
 }
