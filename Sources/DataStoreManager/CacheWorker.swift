@@ -34,12 +34,6 @@ extension DataStoreManager {
         /// Implemented by subclasses to initialize a new object (the
         /// receiver) immediately after memory for it has been allocated.
         init() {
-            if let manager = dataStoreManager {
-                cache.name = manager.identifier
-            }
-            cache.totalCostLimit = totalCostLimit
-            cache.countLimit = countLimit
-            cache.evictsObjectsWithDiscardedContent = false
             #if os(iOS) || os(tvOS)
             NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
             #endif
@@ -64,7 +58,14 @@ extension DataStoreManager {
         var costDelegate: ((DataStoreManager, Any) -> Int)?
 
         private lazy var cache: NSCache<NSString, AnyObject> = {
-            return NSCache<NSString, AnyObject>()
+            let cache = NSCache<NSString, AnyObject>()
+            if let manager = dataStoreManager {
+                cache.name = manager.identifier
+            }
+            cache.totalCostLimit = totalCostLimit
+            cache.countLimit = countLimit
+            cache.evictsObjectsWithDiscardedContent = false
+            return cache
         }()
 
         private var totalCostLimit: Int {
