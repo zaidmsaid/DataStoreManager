@@ -5,8 +5,8 @@
 [![Carthage compatible](https://img.shields.io/badge/carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat)](http://cocoapods.org/pods/DataStoreManager)
 [![License](https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?style=flat)](https://opensource.org/licenses/Apache-2.0)
-[![Reviewed by Hound](https://img.shields.io/badge/reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
-[![Documentation](https://zaidmsaid.github.io/DataStoreManager/badge.svg)](https://zaidmsaid.github.io/DataStoreManager/)
+[![Reviewed by Hound](https://img.shields.io/badge/reviewed_by-Hound-8E64B0.svg?style=flat)](https://houndci.com)
+[![Documentation](https://zaidmsaid.github.io/DataStoreManager/badge.svg?style=flat)](https://zaidmsaid.github.io/DataStoreManager/)
 [![Twitter](https://img.shields.io/badge/twitter-@SentulAsia-blue.svg?style=flat)](http://twitter.com/SentulAsia)
 <!---
 [![Codebeat badge](https://codebeat.co/badges/5403398a-5535-4def-8937-ab9a413584cc)](https://codebeat.co/projects/github-com-zaidmsaid-datastoremanager)
