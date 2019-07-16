@@ -70,6 +70,8 @@ import CloudKit
     /// Asks the data source for the maximum total cost that the cache can
     /// hold before it starts evicting objects.
     ///
+    /// If `0`, there is no total cost limit. The default value is `0`.
+    ///
     /// When you add an object to the cache, you may pass in a specified
     /// cost for the object, such as the size in bytes of the object. If
     /// adding this object to the cache causes the cache’s total cost to
@@ -86,6 +88,20 @@ import CloudKit
     ///                      requesting this information.
     /// - Returns: The number of total cost limit.
     @objc optional func cacheTotalCostLimit(for manager: DataStoreManager) -> Int
+
+    /// Asks the data source for the maximum number of objects the cache
+    /// should hold.
+    ///
+    /// If `0`, there is no count limit. The default value is `0`.
+    ///
+    /// This is not a strict limit—if the cache goes over the limit, an
+    /// object in the cache could be evicted instantly, later, or possibly
+    /// never, depending on the implementation details of the cache.
+    ///
+    /// - Parameter manager: An object representing the data store manager
+    ///                      requesting this information.
+    /// - Returns: The number of count limit.
+    @objc optional func cacheCountLimit(for manager: DataStoreManager) -> Int
 
     // MARK: Core Data
 

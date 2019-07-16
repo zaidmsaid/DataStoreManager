@@ -34,7 +34,12 @@ extension DataStoreManager {
         /// Implemented by subclasses to initialize a new object (the
         /// receiver) immediately after memory for it has been allocated.
         init() {
+            if let manager = dataStoreManager {
+                cache.name = manager.identifier
+            }
             cache.totalCostLimit = totalCostLimit
+            cache.countLimit = countLimit
+            cache.evictsObjectsWithDiscardedContent = false
             #if os(iOS) || os(tvOS)
             NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
             #endif
@@ -69,6 +74,15 @@ extension DataStoreManager {
             return 0
         }
 
+        private var countLimit: Int {
+            if let manager = dataStoreManager, let countLimit = manager.dataSource?.cacheCountLimit?(for: manager) {
+                return countLimit
+            }
+            return 0
+        }
+
+        private let lock = NSLock()
+
         // MARK: - CRUD
 
         func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
@@ -78,7 +92,9 @@ extension DataStoreManager {
 
         func read(forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
+            lock.lock()
             let object = cache.object(forKey: NSString(string: key))
+            lock.unlock()
             completionHandler(object, nil, nil)
         }
 
@@ -89,23 +105,29 @@ extension DataStoreManager {
 
         func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
+            lock.lock()
             cache.removeObject(forKey: NSString(string: key))
+            lock.unlock()
             completionHandler(true, nil, nil)
         }
 
         func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
+            lock.lock()
             cache.removeAllObjects()
+            lock.unlock()
             completionHandler(true, nil, nil)
         }
 
         private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
+            lock.lock()
             if let manager = dataStoreManager, let delegate = costDelegate {
                 cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: delegate(manager, value))
             } else {
                 cache.setObject(value as AnyObject, forKey: NSString(string: key), cost: 0)
             }
+            lock.unlock()
             completionHandler(true, nil, nil)
         }
 
