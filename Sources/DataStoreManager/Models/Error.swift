@@ -451,7 +451,11 @@ class ErrorObject: NSError {
     ///            userInfo.
     required init(code: Int, value: String) {
         let userInfo =  [
-            NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: value, comment: value)
+            NSLocalizedDescriptionKey: NSLocalizedString(
+                ErrorProtocol.key,
+                value: value,
+                comment: value
+            )
         ]
         super.init(domain: ErrorProtocol.errorDomain, code: code, userInfo: userInfo)
     }

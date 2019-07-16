@@ -55,7 +55,7 @@ extension DataStoreManager {
 
         /// Asks the delegate for the cost with which associate to the
         /// object.
-        var costDelegate: ((DataStoreManager, Any) -> Int)?
+        weak var costDelegate: ((DataStoreManager, Any) -> Int)?
 
         private lazy var cache: NSCache<NSString, AnyObject> = {
             let cache = NSCache<NSString, AnyObject>()

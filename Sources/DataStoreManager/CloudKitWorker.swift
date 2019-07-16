@@ -51,7 +51,7 @@ extension DataStoreManager {
 
         /// Asks the delegate for the cloud kit container record type of the
         /// data store manager.
-        var recordIDDelegate: ((DataStoreManager, String) -> CKRecord.ID)?
+        weak var recordIDDelegate: ((DataStoreManager, String) -> CKRecord.ID)?
 
         private var cloudKitContainer: CKContainer {
             if let manager = dataStoreManager, let containerIdentifier = manager.dataSource?.cloudKitContainerIdentifier?(for: manager) {
