@@ -162,7 +162,11 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create(
+        object: Any,
+        forKey key: String,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         create(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -189,7 +193,12 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func create(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create(
+        object: Any,
+        forKey key: String,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         create(object, forKey: key, forStorageType: storageType, completionHandler: completionHandler)
     }
@@ -216,7 +225,11 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func read<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read<T>(
+        forKey key: String,
+        withObjectType objectType: T.Type,
+        completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -244,7 +257,12 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func read<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read<T>(
+        forKey key: String,
+        withObjectType objectType: T.Type,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         read(key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
     }
@@ -270,7 +288,11 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update(
+        object: Any,
+        forKey key: String,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -297,7 +319,12 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update(
+        object: Any,
+        forKey key: String,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         update(object, forKey: key, forStorageType: storageType, completionHandler: completionHandler)
     }
@@ -323,7 +350,11 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete<T>(
+        forKey key: String,
+        withObjectType objectType: T.Type,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -350,7 +381,12 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete<T>(
+        forKey key: String,
+        withObjectType objectType: T.Type,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         delete(key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
     }
@@ -373,7 +409,9 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func deleteAll(
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         deleteAll(forStorageType: defaultType, completionHandler: completionHandler)
     }
@@ -397,7 +435,10 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func deleteAll(
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         deleteAll(storageType, completionHandler: completionHandler)
     }
@@ -424,31 +465,23 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func migrateSchema(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
+    open func migrateSchema(
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void
+        ) {
 
-        let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"
-
-        let oldSchemaVersion = UserDefaults.standard.integer(forKey: key)
-        let newSchemaVersion = dataSource?.dataStoreManager?(self, currentSchemaVersionForType: storageType) ?? 0
-
-        if oldSchemaVersion < newSchemaVersion {
-            delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: storageType)
-            UserDefaults.standard.set(newSchemaVersion, forKey: key)
-            completionHandler(true, nil)
-
-        } else if oldSchemaVersion > newSchemaVersion {
-            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: "The oldSchemaVersion is \(oldSchemaVersion), newSchemaVersion is \(newSchemaVersion)."))
-            completionHandler(false, error)
-
-        } else {
-            completionHandler(true, nil)
-        }
+        migrateSchema(storageType, completionHandler: completionHandler)
     }
 }
 
 private extension DataStoreManager {
 
-    func create(_ object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    func create(
+        _ object: Any,
+        forKey key: String,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         switch storageType {
         case .userDefaults:
@@ -529,7 +562,12 @@ private extension DataStoreManager {
         }
     }
 
-    func read<T>(_ key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    func read<T>(
+        _ key: String,
+        withObjectType objectType: T.Type,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         switch storageType {
         case .userDefaults:
@@ -610,7 +648,12 @@ private extension DataStoreManager {
         }
     }
 
-    func update(_ object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    func update(
+        _ object: Any,
+        forKey key: String,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         switch storageType {
         case .userDefaults:
@@ -691,7 +734,12 @@ private extension DataStoreManager {
         }
     }
 
-    func delete<T>(_ key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    func delete<T>(
+        _ key: String,
+        withObjectType objectType: T.Type,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         switch storageType {
         case .userDefaults:
@@ -772,7 +820,10 @@ private extension DataStoreManager {
         }
     }
 
-    func deleteAll(_ storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    func deleteAll(
+        _ storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        ) {
 
         switch storageType {
         case .userDefaults:
@@ -850,6 +901,30 @@ private extension DataStoreManager {
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
+        }
+    }
+
+    func migrateSchema(
+        _ storageType: DataStoreStorageType,
+        completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void
+        ) {
+
+        let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"
+
+        let oldSchemaVersion = UserDefaults.standard.integer(forKey: key)
+        let newSchemaVersion = dataSource?.dataStoreManager?(self, currentSchemaVersionForType: storageType) ?? 0
+
+        if oldSchemaVersion < newSchemaVersion {
+            delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: storageType)
+            UserDefaults.standard.set(newSchemaVersion, forKey: key)
+            completionHandler(true, nil)
+
+        } else if oldSchemaVersion > newSchemaVersion {
+            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: "The oldSchemaVersion is \(oldSchemaVersion), newSchemaVersion is \(newSchemaVersion)."))
+            completionHandler(false, error)
+
+        } else {
+            completionHandler(true, nil)
         }
     }
 }

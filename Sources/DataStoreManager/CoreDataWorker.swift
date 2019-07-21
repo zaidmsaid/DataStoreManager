@@ -54,12 +54,20 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create<T>(object: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create<T>(
+            object: T,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func read<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        func read<T>(
+            forKey key: String,
+            withObjectType objectType: T.Type,
+            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             if let context = managedContext, let name = entityDescription?.name {
                 getCoreDataRecords(context: context, name: name) { (coreDataRecords, _, error) in
@@ -85,12 +93,20 @@ extension DataStoreManager {
             }
         }
 
-        func update<T>(object: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update<T>(
+            object: T,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func delete<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func delete<T>(
+            forKey key: String,
+            withObjectType objectType: T.Type,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             if let context = managedContext, let name = entityDescription?.name {
                 getCoreDataRecords(context: context, name: name) { [unowned self] (coreDataRecords, managedObjectContext, error) in
@@ -127,7 +143,9 @@ extension DataStoreManager {
             }
         }
 
-        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func deleteAll(
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             if let context = managedContext, let name = entityDescription?.name {
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
@@ -167,7 +185,11 @@ extension DataStoreManager {
             }
         }
 
-        private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        private func setValue(
+            _ value: Any,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             managedObject?.setValue(value, forKey: key)
 
@@ -179,7 +201,12 @@ extension DataStoreManager {
             }
         }
 
-        private func saveRecord(_ managedObject: NSManagedObject?, context: NSManagedObjectContext, objectID: Any?, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        private func saveRecord(
+            _ managedObject: NSManagedObject?,
+            context: NSManagedObjectContext,
+            objectID: Any?,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             do {
                 try context.save()
@@ -199,7 +226,11 @@ extension DataStoreManager {
 
         // MARK: - Helpers
 
-        private final func getCoreDataRecords(context: NSManagedObjectContext, name: String, completionHandler: @escaping (_ records: [NSManagedObject]?, _ managedObjectContext: NSManagedObjectContext?, _ error: Error?) -> Void) {
+        private final func getCoreDataRecords(
+            context: NSManagedObjectContext,
+            name: String,
+            completionHandler: @escaping (_ records: [NSManagedObject]?, _ managedObjectContext: NSManagedObjectContext?, _ error: Error?) -> Void
+            ) {
 
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: name)
             fetchRequest.returnsObjectsAsFaults = false

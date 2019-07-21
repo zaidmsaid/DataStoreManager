@@ -116,12 +116,21 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(object: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create(
+            object: Any,
+            forKey key: String,
+            forItemClass itemClass: ItemClass,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             create(object, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
         }
 
-        func read(forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        func read(
+            forKey key: String,
+            forItemClass itemClass: ItemClass,
+            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             var query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
             query[kSecMatchLimit as String] = kSecMatchLimitOne
@@ -147,12 +156,21 @@ extension DataStoreManager {
             completionHandler(object, nil, nil)
         }
 
-        func update(object: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update(
+            object: Any,
+            forKey key: String,
+            forItemClass itemClass: ItemClass,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             update(object, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
         }
 
-        func delete(forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func delete(
+            forKey key: String,
+            forItemClass itemClass: ItemClass,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             let query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
             let status = SecItemDelete(query as CFDictionary)
@@ -172,7 +190,10 @@ extension DataStoreManager {
             completionHandler(true, nil, nil)
         }
 
-        func deleteAll(forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func deleteAll(
+            forItemClass itemClass: ItemClass,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             var query = [String: AnyObject]()
 
@@ -219,7 +240,12 @@ extension DataStoreManager {
             completionHandler(true, nil, nil)
         }
 
-        private func create(_ value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        private func create(
+            _ value: Any,
+            forKey key: String,
+            forItemClass itemClass: ItemClass,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?
+            ) -> Void) {
 
             var query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
             query[kSecValueData as String] = value as AnyObject
@@ -235,7 +261,12 @@ extension DataStoreManager {
             completionHandler(true, nil, nil)
         }
 
-        private func update(_ value: Any, forKey key: String, forItemClass itemClass: ItemClass, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        private func update(
+            _ value: Any,
+            forKey key: String,
+            forItemClass itemClass: ItemClass,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             var newQuery = [String: AnyObject]()
             newQuery[kSecValueData as String] = value as AnyObject
@@ -254,7 +285,10 @@ extension DataStoreManager {
 
         // MARK: - Helpers
 
-        private final func getKeychainQuery(forAccount account: String, forItemClass itemClass: ItemClass) -> [String: AnyObject] {
+        private final func getKeychainQuery(
+            forAccount account: String,
+            forItemClass itemClass: ItemClass
+            ) -> [String: AnyObject] {
 
             var query = [String: AnyObject]()
 
@@ -270,7 +304,7 @@ extension DataStoreManager {
                     query[kSecAttrAccessGroup as String] = accessGroup as AnyObject
                 }
                 #endif
-                
+
             case .internet:
                 query[kSecClass as String] = kSecClassInternetPassword
 

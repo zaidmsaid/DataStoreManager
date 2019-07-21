@@ -56,31 +56,47 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create(
+            object: Any,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func read(forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        func read(
+            forKey key: String,
+            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             ubiquitousCloudStore.synchronize()
             let object = ubiquitousCloudStore.object(forKey: key)
             completionHandler(object, nil, nil)
         }
 
-        func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update(
+            object: Any,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func delete(
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             ubiquitousCloudStore.removeObject(forKey: key)
             ubiquitousCloudStore.synchronize()
             completionHandler(true, nil, nil)
         }
 
-        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func deleteAll(
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             let keys = ubiquitousCloudStore.dictionaryRepresentation.keys
             for key in keys {
@@ -90,7 +106,11 @@ extension DataStoreManager {
             completionHandler(true, nil, nil)
         }
 
-        private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        private func setValue(
+            _ value: Any,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             ubiquitousCloudStore.setValue(value, forKey: key)
             ubiquitousCloudStore.synchronize()

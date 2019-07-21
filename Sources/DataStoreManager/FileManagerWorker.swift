@@ -62,7 +62,12 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(object: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create(
+            object: Any,
+            forKey fileName: String,
+            forDirectory directory: Directory,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
                 let error = ErrorObject(protocol: .directoryURLNotAvailable)
@@ -76,7 +81,11 @@ extension DataStoreManager {
             completionHandler(isSuccessful, nil, nil)
         }
 
-        func read(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        func read(
+            forKey fileName: String,
+            forDirectory directory: Directory,
+            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
                 let error = ErrorObject(protocol: .directoryURLNotAvailable)
@@ -89,7 +98,12 @@ extension DataStoreManager {
             completionHandler(object, nil, nil)
         }
 
-        func update(object: Any, forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update(
+            object: Any,
+            forKey fileName: String,
+            forDirectory directory: Directory,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             // TODO: change to update file logic
             guard let url = getURL(for: directory, withFileName: fileName) else {
@@ -104,7 +118,11 @@ extension DataStoreManager {
             completionHandler(isSuccessful, nil, nil)
         }
 
-        func delete(forKey fileName: String, forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func delete(
+            forKey fileName: String,
+            forDirectory directory: Directory,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             guard let url = getURL(for: directory, withFileName: fileName)?.appendingPathComponent(fileName) else {
                 let error = ErrorObject(protocol: .directoryFullURLNotAvailable)
@@ -121,7 +139,10 @@ extension DataStoreManager {
             }
         }
 
-        func deleteAll(forDirectory directory: Directory, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func deleteAll(
+            forDirectory directory: Directory,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             guard let url = getURL(for: directory) else {
                 let error = ErrorObject(protocol: .directoryURLNotAvailable)
@@ -141,7 +162,9 @@ extension DataStoreManager {
 
         // MARK: - Helpers
 
-        private final func getPathComponent(forKey fileName: String) -> [String]? {
+        private final func getPathComponent(
+            forKey fileName: String
+            ) -> [String]? {
 
             // Check if file should contain in a folder.
             if fileName.contains("/") {
@@ -152,7 +175,10 @@ extension DataStoreManager {
             return nil
         }
 
-        private final func getURL(for directory: Directory, withFileName fileName: String? = nil) -> URL? {
+        private final func getURL(
+            for directory: Directory,
+            withFileName fileName: String? = nil
+            ) -> URL? {
 
             var url: URL?
             switch directory {
@@ -193,7 +219,9 @@ extension DataStoreManager {
             return url
         }
 
-        private final func list(at directory: URL) -> [String]? {
+        private final func list(
+            at directory: URL
+            ) -> [String]? {
 
             if let listing = try? fileManager.contentsOfDirectory(atPath: directory.path), listing.count > 0 {
                 return listing

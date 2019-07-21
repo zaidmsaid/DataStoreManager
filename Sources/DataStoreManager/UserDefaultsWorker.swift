@@ -42,31 +42,47 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create(
+            object: Any,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func read(forKey key: String, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        func read(
+            forKey key: String,
+            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             userDefaults.synchronize()
             let object = userDefaults.object(forKey: key)
             completionHandler(object, nil, nil)
         }
 
-        func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update(
+            object: Any,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func delete(forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func delete(
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             userDefaults.removeObject(forKey: key)
             userDefaults.synchronize()
             completionHandler(true, nil, nil)
         }
 
-        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func deleteAll(
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
                 let error = ErrorObject(protocol: .bundleIdentifierNotAvailable)
@@ -79,7 +95,11 @@ extension DataStoreManager {
             completionHandler(true, nil, nil)
         }
 
-        private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        private func setValue(
+            _ value: Any,
+            forKey key: String,
+            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            ) {
 
             userDefaults.setValue(value, forKey: key)
             userDefaults.synchronize()
