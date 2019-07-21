@@ -2,35 +2,35 @@
   "warnings": [
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 74,
+      "line": 89,
       "symbol": "DataStoreManager.CacheWorker.create(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 79,
+      "line": 94,
       "symbol": "DataStoreManager.CacheWorker.read(forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 85,
+      "line": 102,
       "symbol": "DataStoreManager.CacheWorker.update(object:forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 90,
+      "line": 107,
       "symbol": "DataStoreManager.CacheWorker.delete(forKey:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/zaid/Developer/DataStoreManager/Sources/DataStoreManager/CacheWorker.swift",
-      "line": 96,
+      "line": 115,
       "symbol": "DataStoreManager.CacheWorker.deleteAll(completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

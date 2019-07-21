@@ -18,7 +18,7 @@ import Foundation
 
 /// Constants that provide information regarding protocol type of data store
 /// manager.
-@objc public enum DataStoreProtocolType : Int {
+@objc public enum DataStoreProtocolType: Int {
 
     // MARK: - Enumerations
 
@@ -118,7 +118,7 @@ import Foundation
 
 // MARK: - RawRepresentable
 
-extension DataStoreProtocolType : RawRepresentable, CaseIterable {
+extension DataStoreProtocolType: RawRepresentable, CaseIterable {
 
     // MARK: Initializers
 
@@ -245,7 +245,7 @@ extension DataStoreProtocolType : RawRepresentable, CaseIterable {
 
 // MARK: - CustomStringConvertible
 
-extension DataStoreProtocolType : CustomStringConvertible {
+extension DataStoreProtocolType: CustomStringConvertible {
 
     /// A textual representation of this instance.
     public var description: String {
@@ -352,7 +352,7 @@ extension DataStoreProtocolType : CustomStringConvertible {
 
 // MARK: - CustomDebugStringConvertible
 
-extension DataStoreProtocolType : CustomDebugStringConvertible {
+extension DataStoreProtocolType: CustomDebugStringConvertible {
 
     /// A textual representation of this instance, suitable for debugging.
     public var debugDescription: String {

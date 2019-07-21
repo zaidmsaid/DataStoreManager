@@ -21,7 +21,7 @@ import CoreData
 extension DataStoreManager {
 
     /// An interface to the CoreData.
-    class CoreDataWorker {
+    internal class CoreDataWorker {
 
         // MARK: - Properties
 
@@ -32,7 +32,8 @@ extension DataStoreManager {
         private var managedObject: NSManagedObject? {
             if let context = managedContext, let entity = entityDescription {
                 return NSManagedObject(entity: entity, insertInto: context)
-            } else if let context = managedContext, #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
+            } else if let context = managedContext,
+                #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
                 return NSManagedObject(context: context)
             }
             return nil
@@ -54,14 +55,31 @@ extension DataStoreManager {
 
         // MARK: - CRUD
 
-        func create<T>(object: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func create<T>(
+            object: T,
+            forKey key: String,
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func read<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+        func read<T>(
+            forKey key: String,
+            withObjectType objectType: T.Type,
+            completionHandler: @escaping (
+            _ object: Any?,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
-            if let context = managedContext, let name = entityDescription?.name {
+            if let context = managedContext,
+                let name = entityDescription?.name {
                 getCoreDataRecords(context: context, name: name) { (coreDataRecords, _, error) in
                     guard let records = coreDataRecords else {
                         DispatchQueue.main.async {
@@ -80,17 +98,34 @@ extension DataStoreManager {
                     }
                 }
             } else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is managedContext from coreDataManagedObjectContext."))
+                let detail = "The missing data source is managedContext from coreDataManagedObjectContext."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(nil, nil, error)
             }
         }
 
-        func update<T>(object: T, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func update<T>(
+            object: T,
+            forKey key: String,
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
         }
 
-        func delete<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func delete<T>(
+            forKey key: String,
+            withObjectType objectType: T.Type,
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
             if let context = managedContext, let name = entityDescription?.name {
                 getCoreDataRecords(context: context, name: name) { [unowned self] (coreDataRecords, managedObjectContext, error) in
@@ -116,18 +151,26 @@ extension DataStoreManager {
                         }
                     }
 
-                    let error = ErrorObject(protocol: .deleteFailed(detail: "The recordID is not found in \(records.description)."))
+                    let detail = "The recordID is not found in \(records.description)."
+                    let error = ErrorObject(protocol: .deleteFailed(detail: detail))
                     DispatchQueue.main.async {
                         completionHandler(false, nil, error)
                     }
                 }
             } else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is managedContext from coreDataManagedObjectContext."))
+                let detail = "The missing data source is managedContext from coreDataManagedObjectContext."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(false, nil, error)
             }
         }
 
-        func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        func deleteAll(
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
             if let context = managedContext, let name = entityDescription?.name {
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
@@ -162,24 +205,43 @@ extension DataStoreManager {
                     }
                 }
             } else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is managedContext from coreDataManagedObjectContext."))
+                let detail = "The missing data source is managedContext from coreDataManagedObjectContext."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(false, nil, error)
             }
         }
 
-        private func setValue(_ value: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        private func setValue(
+            _ value: Any,
+            forKey key: String,
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
             managedObject?.setValue(value, forKey: key)
 
             if let context = managedContext {
                 saveRecord(managedObject, context: context, objectID: nil, completionHandler: completionHandler)
             } else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is managedContext from coreDataManagedObjectContext."))
+                let detail = "The missing data source is managedContext from coreDataManagedObjectContext."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(false, nil, error)
             }
         }
 
-        private func saveRecord(_ managedObject: NSManagedObject?, context: NSManagedObjectContext, objectID: Any?, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+        private func saveRecord(
+            _ managedObject: NSManagedObject?,
+            context: NSManagedObjectContext,
+            objectID: Any?,
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
             do {
                 try context.save()
@@ -199,7 +261,15 @@ extension DataStoreManager {
 
         // MARK: - Helpers
 
-        private final func getCoreDataRecords(context: NSManagedObjectContext, name: String, completionHandler: @escaping (_ records: [NSManagedObject]?, _ managedObjectContext: NSManagedObjectContext?, _ error: Error?) -> Void) {
+        private final func getCoreDataRecords(
+            context: NSManagedObjectContext,
+            name: String,
+            completionHandler: @escaping (
+            _ records: [NSManagedObject]?,
+            _ managedObjectContext: NSManagedObjectContext?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: name)
             fetchRequest.returnsObjectsAsFaults = false

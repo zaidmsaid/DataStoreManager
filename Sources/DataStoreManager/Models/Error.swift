@@ -17,7 +17,7 @@
 import Foundation
 
 /// A type representing an error value.
-enum ErrorProtocol : Error {
+enum ErrorProtocol: Error {
 
     // MARK: - Enumerations
 
@@ -35,6 +35,9 @@ enum ErrorProtocol : Error {
     /// - Parameter detail: The detail to place after description of the
     ///                     error description.
     case platformVersionNotSupported(detail: String)
+
+    /// The storage cannot store this storage type.
+    case invalidStorageType
 
     /// Current schema version is lower than old schema version.
     ///
@@ -99,7 +102,7 @@ enum ErrorProtocol : Error {
 
 // MARK: - RawRepresentable
 
-extension ErrorProtocol : RawRepresentable {
+extension ErrorProtocol: RawRepresentable {
 
     // MARK: Initializers
 
@@ -136,8 +139,11 @@ extension ErrorProtocol : RawRepresentable {
         case .platformVersionNotSupported:
             return -1200
 
-        case .lowerSchemaVersion:
+        case .invalidStorageType:
             return -1300
+
+        case .lowerSchemaVersion:
+            return -1400
 
         case .datasourceNotAvailable:
             return -2000
@@ -177,7 +183,7 @@ extension ErrorProtocol : RawRepresentable {
 
 // MARK: - Equatable
 
-extension ErrorProtocol : Equatable {
+extension ErrorProtocol: Equatable {
 
     /// Equality is the inverse of inequality. For any values `a` and `b`,
     /// `a == b` implies that `a != b` is `false`.
@@ -187,8 +193,8 @@ extension ErrorProtocol : Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument equals the second argument;
-    ///            false if not.
+    /// - Returns: `true` if the first argument equals the second argument;
+    ///            `false` if not.
     public static func == (lhs: ErrorProtocol, rhs: ErrorProtocol) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
@@ -196,7 +202,7 @@ extension ErrorProtocol : Equatable {
 
 // MARK: - Hashable
 
-extension ErrorProtocol : Hashable {
+extension ErrorProtocol: Hashable {
 
     /// Hashes the essential components of this value by feeding them into
     /// the given hasher.
@@ -218,7 +224,7 @@ extension ErrorProtocol : Hashable {
 
 // MARK: - CaseIterable
 
-extension ErrorProtocol : CaseIterable {
+extension ErrorProtocol: CaseIterable {
 
     /// A collection of all values of this type.
     public static var allCases: [ErrorProtocol] {
@@ -230,27 +236,76 @@ extension ErrorProtocol : CaseIterable {
     /// Setup entities before ErrorProtocol receives its first message.
     public static func setupEntities() {
 
-        ErrorProtocol.entities.add(value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue, forKey: ErrorProtocol.bundleIdentifierNotAvailable)
-        ErrorProtocol.entities.add(value: ErrorProtocol.platformNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformNotSupported(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformVersionNotSupported(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue, forKey: ErrorProtocol.lowerSchemaVersion(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.datasourceNotAvailable(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.createFailed(detail: "").rawValue, forKey: ErrorProtocol.createFailed(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.readFailed(detail: "").rawValue, forKey: ErrorProtocol.readFailed(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.updateFailed(detail: "").rawValue, forKey: ErrorProtocol.updateFailed(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.deleteFailed(detail: "").rawValue, forKey: ErrorProtocol.deleteFailed(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.duplicateObject(detail: "").rawValue, forKey: ErrorProtocol.duplicateObject(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.directoryURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryURLNotAvailable)
-        ErrorProtocol.entities.add(value: ErrorProtocol.directoryFullURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryFullURLNotAvailable)
-        ErrorProtocol.entities.add(value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.directoryListNotAvailable(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.databaseNotAvailable.rawValue, forKey: ErrorProtocol.databaseNotAvailable)
-        ErrorProtocol.entities.add(value: ErrorProtocol.unknownRepresentation.rawValue, forKey: ErrorProtocol.unknownRepresentation)
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue,
+            forKey: ErrorProtocol.bundleIdentifierNotAvailable
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.platformNotSupported(detail: "").rawValue,
+            forKey: ErrorProtocol.platformNotSupported(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue,
+            forKey: ErrorProtocol.platformVersionNotSupported(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.invalidStorageType.rawValue,
+            forKey: ErrorProtocol.invalidStorageType
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue,
+            forKey: ErrorProtocol.lowerSchemaVersion(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue,
+            forKey: ErrorProtocol.datasourceNotAvailable(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.createFailed(detail: "").rawValue,
+            forKey: ErrorProtocol.createFailed(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.readFailed(detail: "").rawValue,
+            forKey: ErrorProtocol.readFailed(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.updateFailed(detail: "").rawValue,
+            forKey: ErrorProtocol.updateFailed(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.deleteFailed(detail: "").rawValue,
+            forKey: ErrorProtocol.deleteFailed(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.duplicateObject(detail: "").rawValue,
+            forKey: ErrorProtocol.duplicateObject(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.directoryURLNotAvailable.rawValue,
+            forKey: ErrorProtocol.directoryURLNotAvailable
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.directoryFullURLNotAvailable.rawValue,
+            forKey: ErrorProtocol.directoryFullURLNotAvailable
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue,
+            forKey: ErrorProtocol.directoryListNotAvailable(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.databaseNotAvailable.rawValue,
+            forKey: ErrorProtocol.databaseNotAvailable
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.unknownRepresentation.rawValue,
+            forKey: ErrorProtocol.unknownRepresentation
+        )
     }
 }
 
 // MARK: - CustomNSError
 
-extension ErrorProtocol : CustomNSError {
+extension ErrorProtocol: CustomNSError {
 
     /// The key of the error.
     static var key: String {
@@ -268,78 +323,44 @@ extension ErrorProtocol : CustomNSError {
     }
 
     /// The user-info dictionary.
-    var errorUserInfo: [String : Any] {
+    var errorUserInfo: [String: Any] {
         return [
-            NSLocalizedDescriptionKey : NSLocalizedString(ErrorProtocol.key, value: debugDescription, comment: description)
+            NSLocalizedDescriptionKey: NSLocalizedString(
+                ErrorProtocol.key,
+                value: debugDescription,
+                comment: description
+            )
         ]
     }
 }
 
 // MARK: - LocalizedError
 
-extension ErrorProtocol : LocalizedError {
+extension ErrorProtocol: LocalizedError {
 
     /// A localized message describing what error occurred.
     var errorDescription: String? {
         switch self {
-        case .bundleIdentifierNotAvailable:
+        case .bundleIdentifierNotAvailable,
+             .invalidStorageType,
+             .directoryURLNotAvailable,
+             .directoryFullURLNotAvailable,
+             .databaseNotAvailable,
+             .unknownRepresentation:
             let message = description
             return NSLocalizedString(message, comment: description)
 
-        case .platformNotSupported(let detail):
+        case .platformNotSupported(let detail),
+             .platformVersionNotSupported(let detail),
+             .lowerSchemaVersion(let detail),
+             .datasourceNotAvailable(let detail),
+             .createFailed(let detail),
+             .updateFailed(let detail),
+             .readFailed(let detail),
+             .deleteFailed(let detail),
+             .duplicateObject(let detail),
+             .directoryListNotAvailable(let detail):
             let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .platformVersionNotSupported(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .lowerSchemaVersion(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .datasourceNotAvailable(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .createFailed(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .updateFailed(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .readFailed(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .deleteFailed(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .duplicateObject(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .directoryURLNotAvailable:
-            let message = description
-            return NSLocalizedString(message, comment: description)
-
-        case .directoryFullURLNotAvailable:
-            let message = description
-            return NSLocalizedString(message, comment: description)
-
-        case .directoryListNotAvailable(let detail):
-            let message = detail.isEmpty ? description : description + " " + detail
-            return NSLocalizedString(message, comment: description)
-
-        case .databaseNotAvailable:
-            let message = description
-            return NSLocalizedString(message, comment: description)
-
-        case .unknownRepresentation:
-            let message = description
             return NSLocalizedString(message, comment: description)
         }
     }
@@ -347,7 +368,7 @@ extension ErrorProtocol : LocalizedError {
 
 // MARK: - CustomStringConvertible
 
-extension ErrorProtocol : CustomStringConvertible {
+extension ErrorProtocol: CustomStringConvertible {
 
     /// A textual representation of this instance.
     var description: String {
@@ -360,6 +381,9 @@ extension ErrorProtocol : CustomStringConvertible {
 
         case .platformVersionNotSupported:
             return "The platform version cannot use this property or function."
+
+        case .invalidStorageType:
+            return "The storage cannot store this storage type."
 
         case .lowerSchemaVersion:
             return "Current schema version is lower than old schema version."
@@ -402,7 +426,7 @@ extension ErrorProtocol : CustomStringConvertible {
 
 // MARK: - CustomDebugStringConvertible
 
-extension ErrorProtocol : CustomDebugStringConvertible {
+extension ErrorProtocol: CustomDebugStringConvertible {
 
     /// A textual representation of this instance, suitable for debugging.
     var debugDescription: String {
@@ -421,7 +445,7 @@ extension ErrorProtocol : CustomDebugStringConvertible {
 /// dictionary. See
 /// [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806)
 /// for more information.
-class ErrorObject : NSError {
+class ErrorObject: NSError {
 
     // MARK: - Initializers
 
@@ -451,7 +475,11 @@ class ErrorObject : NSError {
     ///            userInfo.
     required init(code: Int, value: String) {
         let userInfo =  [
-            NSLocalizedDescriptionKey: NSLocalizedString(ErrorProtocol.key, value: value, comment: value)
+            NSLocalizedDescriptionKey: NSLocalizedString(
+                ErrorProtocol.key,
+                value: value,
+                comment: value
+            )
         ]
         super.init(domain: ErrorProtocol.errorDomain, code: code, userInfo: userInfo)
     }

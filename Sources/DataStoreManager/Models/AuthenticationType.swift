@@ -18,7 +18,7 @@ import Foundation
 
 /// Constants that provide information regarding authentication type of data
 /// store manager.
-@objc public enum DataStoreAuthenticationType : Int {
+@objc public enum DataStoreAuthenticationType: Int {
 
     // MARK: - Enumerations
 
@@ -49,7 +49,7 @@ import Foundation
 
 // MARK: - RawRepresentable
 
-extension DataStoreAuthenticationType : RawRepresentable, CaseIterable {
+extension DataStoreAuthenticationType: RawRepresentable, CaseIterable {
 
     // MARK: Initializers
 
@@ -107,7 +107,7 @@ extension DataStoreAuthenticationType : RawRepresentable, CaseIterable {
 
 // MARK: - CustomStringConvertible
 
-extension DataStoreAuthenticationType : CustomStringConvertible {
+extension DataStoreAuthenticationType: CustomStringConvertible {
 
     /// A textual representation of this instance.
     public var description: String {
@@ -145,7 +145,7 @@ extension DataStoreAuthenticationType : CustomStringConvertible {
 
 // MARK: - CustomDebugStringConvertible
 
-extension DataStoreAuthenticationType : CustomDebugStringConvertible {
+extension DataStoreAuthenticationType: CustomDebugStringConvertible {
 
     /// A textual representation of this instance, suitable for debugging.
     public var debugDescription: String {

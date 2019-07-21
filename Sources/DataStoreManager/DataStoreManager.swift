@@ -18,7 +18,7 @@ import Foundation
 
 /// An interface to the data store manager, where you store key-value pairs
 /// persistently across launches of your app.
-@objcMembers open class DataStoreManager : NSObject {
+@objcMembers open class DataStoreManager: NSObject {
 
     // MARK: - Initializers
 
@@ -43,7 +43,8 @@ import Foundation
 
     /// Returns the data store manager framework short version string.
     open var version: String? {
-        return Bundle(for: DataStoreManager.self).object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        return Bundle(for: DataStoreManager.self)
+            .object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
 
     /// Returns the identifier of the data store manager.
@@ -100,7 +101,8 @@ import Foundation
     lazy var cacheWorker: CacheWorker = {
         let worker = CacheWorker()
         worker.dataStoreManager = self
-        worker.costDelegate = self.delegate?.dataStoreManager(_:cacheCostLimitForObject:)
+        worker.handler = self.delegate?
+            .dataStoreManager(_:cacheCostLimitForObject:)
         return worker
     }()
 
@@ -123,7 +125,8 @@ import Foundation
     lazy var cloudKitWorker: CloudKitWorker = {
         let worker = CloudKitWorker()
         worker.dataStoreManager = self
-        worker.recordIDDelegate = self.delegate?.dataStoreManager(_:cloudKitContainerRecordIDForKey:)
+        worker.handler = self.delegate?
+            .dataStoreManager(_:cloudKitContainerRecordIDForKey:)
         return worker
     }()
 
@@ -132,7 +135,8 @@ import Foundation
     lazy var ubiquitousCloudStoreWorker: UbiquitousCloudStoreWorker = {
         let worker = UbiquitousCloudStoreWorker()
         worker.dataStoreManager = self
-        worker.notificationDelegate = self.delegate?.dataStoreManager(_:ubiquitousCloudStoreDidChangeExternallyWithUserInfo:)
+        worker.handler = self.delegate?
+            .dataStoreManager(_:ubiquitousCloudStoreDidChangeExternallyWithUserInfo:)
         return UbiquitousCloudStoreWorker()
     }()
 
@@ -152,7 +156,7 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter objectID: The unique ID of the object. For CloudKit, the
     ///                       type is
     ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
@@ -162,9 +166,22 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func create(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create(
+        object: Any,
+        forKey key: String,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        create(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
+        create(
+            object: object,
+            forKey: key,
+            forStorageType: defaultType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Create the property of the receiver specified by a given key to a
@@ -179,7 +196,7 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter objectID: The unique ID of the object. For CloudKit, the
     ///                       type is
     ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
@@ -189,85 +206,23 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func create(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func create(
+        object: Any,
+        forKey key: String,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        switch storageType {
-        case .userDefaults:
-            userDefaultsWorker.create(object: object, forKey: key, completionHandler: completionHandler)
-
-        case .documentDirectory:
-            fileManagerWorker.create(object: object, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
-
-        case .userDirectory:
-            fileManagerWorker.create(object: object, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
-
-        case .libraryDirectory:
-            fileManagerWorker.create(object: object, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
-
-        case .applicationDirectory:
-            fileManagerWorker.create(object: object, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
-
-        case .coreServiceDirectory:
-            fileManagerWorker.create(object: object, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
-
-        case .temporaryDirectory:
-            fileManagerWorker.create(object: object, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
-
-        case .cache:
-            cacheWorker.create(object: object, forKey: key, completionHandler: completionHandler)
-
-        case .genericKeychain:
-            keychainWorker.create(object: object, forKey: key, forItemClass: .generic, completionHandler: completionHandler)
-
-        case .internetKeychain:
-            keychainWorker.create(object: object, forKey: key, forItemClass: .internet, completionHandler: completionHandler)
-
-        case .coreData:
-            coreDataWorker.create(object: object, forKey: key, completionHandler: completionHandler)
-
-        case .privateCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.create(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .publicCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.create(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .sharedCloudDatabase:
-            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
-                cloudKitWorker.create(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
-            } else {
-                #if os(watchOS)
-                let detail = "The platform version is less than 3.0."
-                #elseif os(macOS)
-                let detail = "The platform version is less than 10.12."
-                #else
-                let detail = "The platform version is less than 10.0."
-                #endif
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
-                completionHandler(false, nil, error)
-            }
-
-        case .ubiquitousCloudStore:
-            #if os(watchOS)
-            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
-            completionHandler(false, nil, error)
-            #else
-            ubiquitousCloudStoreWorker.create(object: object, forKey: key, completionHandler: completionHandler)
-            #endif
-
-        default:
-            let error = ErrorObject(protocol: .unknownRepresentation)
-            completionHandler(false, nil, error)
-        }
+        create(
+            object,
+            forKey: key,
+            forStorageType: storageType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Returns the object associated with the specified key.
@@ -292,9 +247,22 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func read<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read<T>(
+        forKey key: String,
+        withObjectType objectType: T.Type,
+        completionHandler: @escaping (
+        _ object: Any?,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
+        read(
+            forKey: key,
+            withObjectType: objectType,
+            forStorageType: defaultType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Returns the object associated with the specified key.
@@ -320,85 +288,23 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func read<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func read<T>(
+        forKey key: String,
+        withObjectType objectType: T.Type,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ object: Any?,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        switch storageType {
-        case .userDefaults:
-            userDefaultsWorker.read(forKey: key, completionHandler: completionHandler)
-
-        case .documentDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
-
-        case .userDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
-
-        case .libraryDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
-
-        case .applicationDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
-
-        case .coreServiceDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
-
-        case .temporaryDirectory:
-            fileManagerWorker.read(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
-
-        case .cache:
-            cacheWorker.read(forKey: key, completionHandler: completionHandler)
-
-        case .genericKeychain:
-            keychainWorker.read(forKey: key, forItemClass: .generic, completionHandler: completionHandler)
-
-        case .internetKeychain:
-            keychainWorker.read(forKey: key, forItemClass: .internet, completionHandler: completionHandler)
-
-        case .coreData:
-            coreDataWorker.read(forKey: key, withObjectType: objectType, completionHandler: completionHandler)
-
-        case .privateCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .publicCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .sharedCloudDatabase:
-            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
-                cloudKitWorker.read(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
-            } else {
-                #if os(watchOS)
-                let detail = "The platform version is less than 3.0."
-                #elseif os(macOS)
-                let detail = "The platform version is less than 10.12."
-                #else
-                let detail = "The platform version is less than 10.0."
-                #endif
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
-                completionHandler(false, nil, error)
-            }
-
-        case .ubiquitousCloudStore:
-            #if os(watchOS)
-            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
-            completionHandler(false, nil, error)
-            #else
-            ubiquitousCloudStoreWorker.read(forKey: key, completionHandler: completionHandler)
-            #endif
-
-        default:
-            let error = ErrorObject(protocol: .unknownRepresentation)
-            completionHandler(nil, nil, error)
-        }
+        read(
+            key,
+            withObjectType: objectType,
+            forStorageType: storageType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Update the property of the receiver specified by a given key to a
@@ -412,7 +318,7 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter objectID: The unique ID of the object. For CloudKit, the
     ///                       type is
     ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
@@ -422,9 +328,22 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update(
+        object: Any,
+        forKey key: String,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
+        update(
+            object: object,
+            forKey: key,
+            forStorageType: defaultType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Update the property of the receiver specified by a given key to a
@@ -439,7 +358,7 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter objectID: The unique ID of the object. For CloudKit, the
     ///                       type is
     ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
@@ -449,85 +368,23 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func update(
+        object: Any,
+        forKey key: String,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        switch storageType {
-        case .userDefaults:
-            userDefaultsWorker.update(object: object, forKey: key, completionHandler: completionHandler)
-
-        case .documentDirectory:
-            fileManagerWorker.update(object: object, forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
-
-        case .userDirectory:
-            fileManagerWorker.update(object: object, forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
-
-        case .libraryDirectory:
-            fileManagerWorker.update(object: object, forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
-
-        case .applicationDirectory:
-            fileManagerWorker.update(object: object, forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
-
-        case .coreServiceDirectory:
-            fileManagerWorker.update(object: object, forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
-
-        case .temporaryDirectory:
-            fileManagerWorker.update(object: object, forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
-
-        case .cache:
-            cacheWorker.update(object: object, forKey: key, completionHandler: completionHandler)
-
-        case .genericKeychain:
-            keychainWorker.update(object: object, forKey: key, forItemClass: .generic, completionHandler: completionHandler)
-
-        case .internetKeychain:
-            keychainWorker.update(object: object, forKey: key, forItemClass: .internet, completionHandler: completionHandler)
-
-        case .coreData:
-            coreDataWorker.update(object: object, forKey: key, completionHandler: completionHandler)
-
-        case .privateCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.update(object: object, forKey: key, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .publicCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.update(object: object, forKey: key, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .sharedCloudDatabase:
-            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
-                cloudKitWorker.update(object: object, forKey: key, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
-            } else {
-                #if os(watchOS)
-                let detail = "The platform version is less than 3.0."
-                #elseif os(macOS)
-                let detail = "The platform version is less than 10.12."
-                #else
-                let detail = "The platform version is less than 10.0."
-                #endif
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
-                completionHandler(false, nil, error)
-            }
-
-        case .ubiquitousCloudStore:
-            #if os(watchOS)
-            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
-            completionHandler(false, nil, error)
-            #else
-            ubiquitousCloudStoreWorker.update(object: object, forKey: key, completionHandler: completionHandler)
-            #endif
-
-        default:
-            let error = ErrorObject(protocol: .unknownRepresentation)
-            completionHandler(false, nil, error)
-        }
+        update(
+            object,
+            forKey: key,
+            forStorageType: storageType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Removes the object of the specified default key.
@@ -541,7 +398,7 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter objectID: The unique ID of the object. For CloudKit, the
     ///                       type is
     ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
@@ -551,9 +408,22 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete<T>(
+        forKey key: String,
+        withObjectType objectType: T.Type,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
+        delete(
+            forKey: key,
+            withObjectType: objectType,
+            forStorageType: defaultType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Removes the object of the specified default key.
@@ -568,7 +438,7 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter objectID: The unique ID of the object. For CloudKit, the
     ///                       type is
     ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
@@ -578,85 +448,23 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func delete<T>(
+        forKey key: String,
+        withObjectType objectType: T.Type,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        switch storageType {
-        case .userDefaults:
-            userDefaultsWorker.delete(forKey: key, completionHandler: completionHandler)
-
-        case .documentDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .documentDirectory, completionHandler: completionHandler)
-
-        case .userDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .userDirectory, completionHandler: completionHandler)
-
-        case .libraryDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .libraryDirectory, completionHandler: completionHandler)
-
-        case .applicationDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .applicationDirectory, completionHandler: completionHandler)
-
-        case .coreServiceDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
-
-        case .temporaryDirectory:
-            fileManagerWorker.delete(forKey: key, forDirectory: .temporaryDirectory, completionHandler: completionHandler)
-
-        case .cache:
-            cacheWorker.delete(forKey: key, completionHandler: completionHandler)
-
-        case .genericKeychain:
-            keychainWorker.delete(forKey: key, forItemClass: .generic, completionHandler: completionHandler)
-
-        case .internetKeychain:
-            keychainWorker.delete(forKey: key, forItemClass: .internet, completionHandler: completionHandler)
-
-        case .coreData:
-            coreDataWorker.delete(forKey: key, withObjectType: objectType, completionHandler: completionHandler)
-
-        case .privateCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .publicCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .sharedCloudDatabase:
-            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
-                cloudKitWorker.delete(forKey: key, withObjectType: objectType, forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
-            } else {
-                #if os(watchOS)
-                let detail = "The platform version is less than 3.0."
-                #elseif os(macOS)
-                let detail = "The platform version is less than 10.12."
-                #else
-                let detail = "The platform version is less than 10.0."
-                #endif
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
-                completionHandler(false, nil, error)
-            }
-
-        case .ubiquitousCloudStore:
-            #if os(watchOS)
-            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
-            completionHandler(false, nil, error)
-            #else
-            ubiquitousCloudStoreWorker.delete(forKey: key, completionHandler: completionHandler)
-            #endif
-
-        default:
-            let error = ErrorObject(protocol: .unknownRepresentation)
-            completionHandler(false, nil, error)
-        }
+        delete(
+            key,
+            withObjectType: objectType,
+            forStorageType: storageType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Empties the data store manager for the given type.
@@ -667,7 +475,7 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter objectID: The unique ID of the object. For CloudKit, the
     ///                       type is
     ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
@@ -677,9 +485,18 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func deleteAll(
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        deleteAll(forStorageType: defaultType, completionHandler: completionHandler)
+        deleteAll(
+            forStorageType: defaultType,
+            completionHandler: completionHandler
+        )
     }
 
     /// Empties the data store manager for the given type.
@@ -691,7 +508,7 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter objectID: The unique ID of the object. For CloudKit, the
     ///                       type is
     ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
@@ -701,85 +518,19 @@ import Foundation
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    open func deleteAll(
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
 
-        switch storageType {
-        case .userDefaults:
-            userDefaultsWorker.deleteAll(completionHandler: completionHandler)
-
-        case .documentDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .documentDirectory, completionHandler: completionHandler)
-
-        case .userDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .userDirectory, completionHandler: completionHandler)
-
-        case .libraryDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .libraryDirectory, completionHandler: completionHandler)
-
-        case .applicationDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .applicationDirectory, completionHandler: completionHandler)
-
-        case .coreServiceDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .coreServiceDirectory, completionHandler: completionHandler)
-
-        case .temporaryDirectory:
-            fileManagerWorker.deleteAll(forDirectory: .temporaryDirectory, completionHandler: completionHandler)
-
-        case .cache:
-            cacheWorker.deleteAll(completionHandler: completionHandler)
-
-        case .genericKeychain:
-            keychainWorker.deleteAll(forItemClass: .generic, completionHandler: completionHandler)
-
-        case .internetKeychain:
-            keychainWorker.deleteAll(forItemClass: .internet, completionHandler: completionHandler)
-
-        case .coreData:
-            coreDataWorker.deleteAll(completionHandler: completionHandler)
-
-        case .privateCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.deleteAll(forContainerType: .privateCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .publicCloudDatabase:
-            if #available(watchOSApplicationExtension 3.0, *) {
-                cloudKitWorker.deleteAll(forContainerType: .publicCloudDatabase, completionHandler: completionHandler)
-            } else {
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: "The platform version is less than 3.0."))
-                completionHandler(false, nil, error)
-            }
-
-        case .sharedCloudDatabase:
-            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
-                cloudKitWorker.deleteAll(forContainerType: .sharedCloudDatabase, completionHandler: completionHandler)
-            } else {
-                #if os(watchOS)
-                let detail = "The platform version is less than 3.0."
-                #elseif os(macOS)
-                let detail = "The platform version is less than 10.12."
-                #else
-                let detail = "The platform version is less than 10.0."
-                #endif
-                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
-                completionHandler(false, nil, error)
-            }
-
-        case .ubiquitousCloudStore:
-            #if os(watchOS)
-            let error = ErrorObject(protocol: .platformNotSupported(detail: "The platform is watchOS."))
-            completionHandler(false, nil, error)
-            #else
-            ubiquitousCloudStoreWorker.deleteAll(completionHandler: completionHandler)
-            #endif
-
-        default:
-            let error = ErrorObject(protocol: .unknownRepresentation)
-            completionHandler(false, nil, error)
-        }
+        deleteAll(
+            storageType,
+            completionHandler: completionHandler
+        )
     }
 
     // MARK: - Migrate
@@ -799,25 +550,822 @@ import Foundation
     ///                        on your app's main thread. The block has no
     ///                        return value and takes the following
     ///                        parameter:
-    /// - Parameter isSuccessful: true on successful; false if not.
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
     /// - Parameter error: An error object, or `nil` if it was completed
     ///                    successfully. Use the information in the error
     ///                    object to determine whether a problem has a
     ///                    workaround.
-    open func migrateSchema(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
+    open func migrateSchema(
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ error: Error?
+        ) -> Void
+        ) {
+
+        migrateSchema(
+            storageType,
+            completionHandler: completionHandler
+        )
+    }
+}
+
+private extension DataStoreManager {
+
+    func create(
+        _ object: Any,
+        forKey key: String,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
+
+        switch storageType {
+        case .userDefaults:
+            userDefaultsWorker.create(
+                object: object,
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .documentDirectory:
+            fileManagerWorker.create(
+                object: object,
+                forKey: key,
+                forDirectory: .documentDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .userDirectory:
+            fileManagerWorker.create(
+                object: object,
+                forKey: key,
+                forDirectory: .userDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .libraryDirectory:
+            fileManagerWorker.create(
+                object: object,
+                forKey: key,
+                forDirectory: .libraryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .applicationDirectory:
+            fileManagerWorker.create(
+                object: object,
+                forKey: key,
+                forDirectory: .applicationDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .coreServiceDirectory:
+            fileManagerWorker.create(
+                object: object,
+                forKey: key,
+                forDirectory: .coreServiceDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .temporaryDirectory:
+            fileManagerWorker.create(
+                object: object,
+                forKey: key,
+                forDirectory: .temporaryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .cache:
+            cacheWorker.create(
+                object: object,
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .genericKeychain:
+            keychainWorker.create(
+                object: object,
+                forKey: key,
+                forItemClass: .generic,
+                completionHandler: completionHandler
+            )
+
+        case .internetKeychain:
+            keychainWorker.create(
+                object: object,
+                forKey: key,
+                forItemClass: .internet,
+                completionHandler: completionHandler
+            )
+
+        case .coreData:
+            coreDataWorker.create(
+                object: object,
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .privateCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.create(
+                    object: object,
+                    forKey: key,
+                    forContainerType: .privateCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .publicCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.create(
+                    object: object,
+                    forKey: key,
+                    forContainerType: .publicCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .sharedCloudDatabase:
+            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
+                cloudKitWorker.create(
+                    object: object,
+                    forKey: key,
+                    forContainerType: .sharedCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                #if os(watchOS)
+                let detail = "The platform version is less than 3.0."
+                #elseif os(macOS)
+                let detail = "The platform version is less than 10.12."
+                #else
+                let detail = "The platform version is less than 10.0."
+                #endif
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .ubiquitousCloudStore:
+            #if os(watchOS)
+            let detail = "The platform is watchOS."
+            let error = ErrorObject(protocol: .platformNotSupported(detail: detail))
+            completionHandler(false, nil, error)
+            #else
+            ubiquitousCloudStoreWorker.create(
+                object: object,
+                forKey: key,
+                completionHandler: completionHandler
+            )
+            #endif
+
+        default:
+            let error = ErrorObject(protocol: .unknownRepresentation)
+            completionHandler(false, nil, error)
+        }
+    }
+
+    func read<T>(
+        _ key: String,
+        withObjectType objectType: T.Type,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ object: Any?,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
+
+        switch storageType {
+        case .userDefaults:
+            userDefaultsWorker.read(
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .documentDirectory:
+            fileManagerWorker.read(
+                forKey: key,
+                forDirectory: .documentDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .userDirectory:
+            fileManagerWorker.read(
+                forKey: key,
+                forDirectory: .userDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .libraryDirectory:
+            fileManagerWorker.read(
+                forKey: key,
+                forDirectory: .libraryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .applicationDirectory:
+            fileManagerWorker.read(
+                forKey: key,
+                forDirectory: .applicationDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .coreServiceDirectory:
+            fileManagerWorker.read(
+                forKey: key,
+                forDirectory: .coreServiceDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .temporaryDirectory:
+            fileManagerWorker.read(
+                forKey: key,
+                forDirectory: .temporaryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .cache:
+            cacheWorker.read(
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .genericKeychain:
+            keychainWorker.read(
+                forKey: key,
+                forItemClass: .generic,
+                completionHandler: completionHandler
+            )
+
+        case .internetKeychain:
+            keychainWorker.read(
+                forKey: key,
+                forItemClass: .internet,
+                completionHandler: completionHandler
+            )
+
+        case .coreData:
+            coreDataWorker.read(
+                forKey: key,
+                withObjectType: objectType,
+                completionHandler: completionHandler
+            )
+
+        case .privateCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.read(
+                    forKey: key,
+                    withObjectType: objectType,
+                    forContainerType: .privateCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .publicCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.read(
+                    forKey: key,
+                    withObjectType: objectType,
+                    forContainerType: .publicCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .sharedCloudDatabase:
+            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
+                cloudKitWorker.read(
+                    forKey: key,
+                    withObjectType: objectType,
+                    forContainerType: .sharedCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                #if os(watchOS)
+                let detail = "The platform version is less than 3.0."
+                #elseif os(macOS)
+                let detail = "The platform version is less than 10.12."
+                #else
+                let detail = "The platform version is less than 10.0."
+                #endif
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .ubiquitousCloudStore:
+            #if os(watchOS)
+            let detail = "The platform is watchOS."
+            let error = ErrorObject(protocol: .platformNotSupported(detail: detail))
+            completionHandler(false, nil, error)
+            #else
+            ubiquitousCloudStoreWorker.read(
+                forKey: key,
+                completionHandler: completionHandler
+            )
+            #endif
+
+        default:
+            let error = ErrorObject(protocol: .unknownRepresentation)
+            completionHandler(nil, nil, error)
+        }
+    }
+
+    func update(
+        _ object: Any,
+        forKey key: String,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
+
+        switch storageType {
+        case .userDefaults:
+            userDefaultsWorker.update(
+                object: object,
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .documentDirectory:
+            fileManagerWorker.update(
+                object: object,
+                forKey: key,
+                forDirectory: .documentDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .userDirectory:
+            fileManagerWorker.update(
+                object: object,
+                forKey: key,
+                forDirectory: .userDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .libraryDirectory:
+            fileManagerWorker.update(
+                object: object,
+                forKey: key,
+                forDirectory: .libraryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .applicationDirectory:
+            fileManagerWorker.update(
+                object: object,
+                forKey: key,
+                forDirectory: .applicationDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .coreServiceDirectory:
+            fileManagerWorker.update(
+                object: object,
+                forKey: key,
+                forDirectory: .coreServiceDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .temporaryDirectory:
+            fileManagerWorker.update(
+                object: object,
+                forKey: key,
+                forDirectory: .temporaryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .cache:
+            cacheWorker.update(
+                object: object,
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .genericKeychain:
+            keychainWorker.update(
+                object: object,
+                forKey: key,
+                forItemClass: .generic,
+                completionHandler: completionHandler
+            )
+
+        case .internetKeychain:
+            keychainWorker.update(
+                object: object,
+                forKey: key,
+                forItemClass: .internet,
+                completionHandler: completionHandler
+            )
+
+        case .coreData:
+            coreDataWorker.update(
+                object: object,
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .privateCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.update(
+                    object: object,
+                    forKey: key,
+                    forContainerType: .privateCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .publicCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.update(
+                    object: object,
+                    forKey: key,
+                    forContainerType: .publicCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .sharedCloudDatabase:
+            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
+                cloudKitWorker.update(
+                    object: object,
+                    forKey: key,
+                    forContainerType: .sharedCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                #if os(watchOS)
+                let detail = "The platform version is less than 3.0."
+                #elseif os(macOS)
+                let detail = "The platform version is less than 10.12."
+                #else
+                let detail = "The platform version is less than 10.0."
+                #endif
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .ubiquitousCloudStore:
+            #if os(watchOS)
+            let detail = "The platform is watchOS."
+            let error = ErrorObject(protocol: .platformNotSupported(detail: detail))
+            completionHandler(false, nil, error)
+            #else
+            ubiquitousCloudStoreWorker.update(
+                object: object,
+                forKey: key,
+                completionHandler: completionHandler
+            )
+            #endif
+
+        default:
+            let error = ErrorObject(protocol: .unknownRepresentation)
+            completionHandler(false, nil, error)
+        }
+    }
+
+    func delete<T>(
+        _ key: String,
+        withObjectType objectType: T.Type,
+        forStorageType storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
+
+        switch storageType {
+        case .userDefaults:
+            userDefaultsWorker.delete(
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .documentDirectory:
+            fileManagerWorker.delete(
+                forKey: key,
+                forDirectory: .documentDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .userDirectory:
+            fileManagerWorker.delete(
+                forKey: key,
+                forDirectory: .userDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .libraryDirectory:
+            fileManagerWorker.delete(
+                forKey: key,
+                forDirectory: .libraryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .applicationDirectory:
+            fileManagerWorker.delete(
+                forKey: key,
+                forDirectory: .applicationDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .coreServiceDirectory:
+            fileManagerWorker.delete(
+                forKey: key,
+                forDirectory: .coreServiceDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .temporaryDirectory:
+            fileManagerWorker.delete(
+                forKey: key,
+                forDirectory: .temporaryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .cache:
+            cacheWorker.delete(
+                forKey: key,
+                completionHandler: completionHandler
+            )
+
+        case .genericKeychain:
+            keychainWorker.delete(
+                forKey: key,
+                forItemClass: .generic,
+                completionHandler: completionHandler
+            )
+
+        case .internetKeychain:
+            keychainWorker.delete(
+                forKey: key,
+                forItemClass: .internet,
+                completionHandler: completionHandler
+            )
+
+        case .coreData:
+            coreDataWorker.delete(
+                forKey: key,
+                withObjectType: objectType,
+                completionHandler: completionHandler
+            )
+
+        case .privateCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.delete(
+                    forKey: key,
+                    withObjectType: objectType,
+                    forContainerType: .privateCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .publicCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.delete(
+                    forKey: key,
+                    withObjectType: objectType,
+                    forContainerType: .publicCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .sharedCloudDatabase:
+            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
+                cloudKitWorker.delete(
+                    forKey: key,
+                    withObjectType: objectType,
+                    forContainerType: .sharedCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                #if os(watchOS)
+                let detail = "The platform version is less than 3.0."
+                #elseif os(macOS)
+                let detail = "The platform version is less than 10.12."
+                #else
+                let detail = "The platform version is less than 10.0."
+                #endif
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .ubiquitousCloudStore:
+            #if os(watchOS)
+            let detail = "The platform is watchOS."
+            let error = ErrorObject(protocol: .platformNotSupported(detail: detail))
+            completionHandler(false, nil, error)
+            #else
+            ubiquitousCloudStoreWorker.delete(
+                forKey: key,
+                completionHandler: completionHandler
+            )
+            #endif
+
+        default:
+            let error = ErrorObject(protocol: .unknownRepresentation)
+            completionHandler(false, nil, error)
+        }
+    }
+
+    func deleteAll(
+        _ storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
+        ) {
+
+        switch storageType {
+        case .userDefaults:
+            userDefaultsWorker.deleteAll(
+                completionHandler: completionHandler
+            )
+
+        case .documentDirectory:
+            fileManagerWorker.deleteAll(
+                forDirectory: .documentDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .userDirectory:
+            fileManagerWorker.deleteAll(
+                forDirectory: .userDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .libraryDirectory:
+            fileManagerWorker.deleteAll(
+                forDirectory: .libraryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .applicationDirectory:
+            fileManagerWorker.deleteAll(
+                forDirectory: .applicationDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .coreServiceDirectory:
+            fileManagerWorker.deleteAll(
+                forDirectory: .coreServiceDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .temporaryDirectory:
+            fileManagerWorker.deleteAll(
+                forDirectory: .temporaryDirectory,
+                completionHandler: completionHandler
+            )
+
+        case .cache:
+            cacheWorker.deleteAll(
+                completionHandler: completionHandler
+            )
+
+        case .genericKeychain:
+            keychainWorker.deleteAll(
+                forItemClass: .generic,
+                completionHandler: completionHandler
+            )
+
+        case .internetKeychain:
+            keychainWorker.deleteAll(
+                forItemClass: .internet,
+                completionHandler: completionHandler
+            )
+
+        case .coreData:
+            coreDataWorker.deleteAll(
+                completionHandler: completionHandler
+            )
+
+        case .privateCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.deleteAll(
+                    forContainerType: .privateCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .publicCloudDatabase:
+            if #available(watchOSApplicationExtension 3.0, *) {
+                cloudKitWorker.deleteAll(
+                    forContainerType: .publicCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                let detail = "The platform version is less than 3.0."
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .sharedCloudDatabase:
+            if #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
+                cloudKitWorker.deleteAll(
+                    forContainerType: .sharedCloudDatabase,
+                    completionHandler: completionHandler
+                )
+            } else {
+                #if os(watchOS)
+                let detail = "The platform version is less than 3.0."
+                #elseif os(macOS)
+                let detail = "The platform version is less than 10.12."
+                #else
+                let detail = "The platform version is less than 10.0."
+                #endif
+                let error = ErrorObject(protocol: .platformVersionNotSupported(detail: detail))
+                completionHandler(false, nil, error)
+            }
+
+        case .ubiquitousCloudStore:
+            #if os(watchOS)
+            let detail = "The platform is watchOS."
+            let error = ErrorObject(protocol: .platformNotSupported(detail: detail))
+            completionHandler(false, nil, error)
+            #else
+            ubiquitousCloudStoreWorker.deleteAll(
+                completionHandler: completionHandler
+            )
+            #endif
+
+        default:
+            let error = ErrorObject(protocol: .unknownRepresentation)
+            completionHandler(false, nil, error)
+        }
+    }
+
+    func migrateSchema(
+        _ storageType: DataStoreStorageType,
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ error: Error?
+        ) -> Void
+        ) {
 
         let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"
 
         let oldSchemaVersion = UserDefaults.standard.integer(forKey: key)
-        let newSchemaVersion = dataSource?.dataStoreManager?(self, currentSchemaVersionForType: storageType) ?? 0
+        let newSchemaVersion = dataSource?.dataStoreManager?(
+            self,
+            currentSchemaVersionForType: storageType
+            ) ?? 0
 
         if oldSchemaVersion < newSchemaVersion {
-            delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: storageType)
+            delegate?.dataStoreManager?(
+                self,
+                performMigrationFromOldVersion: oldSchemaVersion,
+                forType: storageType
+            )
             UserDefaults.standard.set(newSchemaVersion, forKey: key)
             completionHandler(true, nil)
 
         } else if oldSchemaVersion > newSchemaVersion {
-            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: "The oldSchemaVersion is \(oldSchemaVersion), newSchemaVersion is \(newSchemaVersion)."))
+            let detail = "The oldSchemaVersion is \(oldSchemaVersion), newSchemaVersion is \(newSchemaVersion)."
+            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: detail))
             completionHandler(false, error)
 
         } else {

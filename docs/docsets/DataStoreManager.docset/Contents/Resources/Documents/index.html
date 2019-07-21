@@ -13,7 +13,7 @@
     <a title="DataStoreManager  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">DataStoreManager Docs</a> (87% documented)</p>
+        <p><a href="index.html">DataStoreManager Docs</a> (88% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -124,11 +124,16 @@
 
 <p><a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/swift-v5.0-orange.svg?style=flat" alt="Swift 5"></a>
 <a href="http://www.apple.com/ios/"><img src="https://img.shields.io/cocoapods/p/DataStoreManager.svg?style=flat" alt="Platform"></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/carthage-compatible-brightgreen.svg?style=flat" alt="Carthage"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
 <a href="http://cocoapods.org/pods/DataStoreManager"><img src="https://img.shields.io/cocoapods/v/DataStoreManager.svg?style=flat" alt="CocoaPods"></a>
 <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/github/license/zaidmsaid/DataStoreManager.svg?style=flat" alt="License"></a>
-<a href="https://zaidmsaid.github.io/DataStoreManager/"><img src="https://zaidmsaid.github.io/DataStoreManager/badge.svg" alt="Documentation"></a>
+<a href="https://houndci.com"><img src="https://img.shields.io/badge/reviewed_by-Hound-8E64B0.svg?style=flat" alt="Reviewed by Hound"></a>
+<a href="https://zaidmsaid.github.io/DataStoreManager/"><img src="https://zaidmsaid.github.io/DataStoreManager/badge.svg?style=flat" alt="Documentation"></a>
 <a href="http://twitter.com/SentulAsia"><img src="https://img.shields.io/badge/twitter-@SentulAsia-blue.svg?style=flat" alt="Twitter"></a></p>
+
+<!---
+[![Codebeat badge](https://codebeat.co/badges/5403398a-5535-4def-8937-ab9a413584cc)](https://codebeat.co/projects/github-com-zaidmsaid-datastoremanager)
+-->
 
 <p><a href="https://github.com/zaidmsaid/DataStoreManager">DataStoreManager</a> is a persistent data framework written in Swift and can be used with Objective-C.</p>
 <h2 id='usage' class='heading'>Usage</h2>
@@ -164,20 +169,20 @@
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="kd">func</span> <span class="nf">storeToDataStore</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">userDefaults</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+    <span class="kd">func</span> <span class="nf">storeToDataStore</span><span class="p">(</span><span class="n">object</span> <span class="nv">aObject</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">aObject</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">userDefaults</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"successfully create object at UserDefaults"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">genericKeychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">aObject</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Text"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">genericKeychain</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"successfully update object at Generic Keychain"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Inbox/file.txt"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">documentDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">manager</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="n">aObject</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"Inbox/file.txt"</span><span class="p">,</span> <span class="nv">forType</span><span class="p">:</span> <span class="o">.</span><span class="n">documentDirectory</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">isSuccessful</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">in</span>
             <span class="k">if</span> <span class="n">isSuccessful</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"successfully create file at Inbox Document Directory"</span><span class="p">)</span>
             <span class="p">}</span>
@@ -335,7 +340,7 @@ for up to date installation instructions.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-15)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/zaidmsaid/DataStoreManager" target="_blank" rel="external">Zaid M. Said</a>. All rights reserved. (Last updated: 2019-07-16)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

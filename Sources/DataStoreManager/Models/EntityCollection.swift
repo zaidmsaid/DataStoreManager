@@ -76,11 +76,21 @@ public struct EntityCollection<T: Hashable> {
 
 // MARK: - CustomStringConvertible
 
-extension EntityCollection : CustomStringConvertible {
+extension EntityCollection: CustomStringConvertible {
 
     /// A textual representation of this instance.
     public var description: String {
         return String(describing: contents)
+    }
+}
+
+// MARK: - CustomDebugStringConvertible
+
+extension EntityCollection: CustomDebugStringConvertible {
+
+    /// A textual representation of this instance, suitable for debugging.
+    public var debugDescription: String {
+        return description
     }
 }
 
@@ -98,7 +108,7 @@ extension EntityCollection: ExpressibleByArrayLiteral {
 
 // MARK: - ExpressibleByDictionaryLiteral
 
-extension EntityCollection : ExpressibleByDictionaryLiteral {
+extension EntityCollection: ExpressibleByDictionaryLiteral {
 
     /// Creates a new instance with the specified dictionary literal.
     ///
@@ -112,7 +122,7 @@ extension EntityCollection : ExpressibleByDictionaryLiteral {
 
 // MARK: - Sequence
 
-extension EntityCollection : Sequence {
+extension EntityCollection: Sequence {
 
     /// Type to mean instance of
     /// [AnyIterator](apple-reference-documentation://hsAabAoau8).
@@ -133,7 +143,7 @@ extension EntityCollection : Sequence {
 
 // MARK: - Collection
 
-extension EntityCollection : Collection {
+extension EntityCollection: Collection {
 
     /// Type to mean instance of DictionaryIndex.
     public typealias Index = EntityCollectionIndex<T>
@@ -185,7 +195,7 @@ public struct EntityCollectionIndex<T: Hashable> {
 
 // MARK: - Equatable
 
-extension EntityCollectionIndex : Equatable {
+extension EntityCollectionIndex: Equatable {
 
     /// Equality is the inverse of inequality. For any values `a` and `b`,
     /// `a == b` implies that `a != b` is `false`.
@@ -195,8 +205,8 @@ extension EntityCollectionIndex : Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument equals the second argument;
-    ///            false if not.
+    /// - Returns: `true` if the first argument equals the second argument;
+    ///            `false` if not.
     public static func == (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index == rhs.index
     }
@@ -204,7 +214,7 @@ extension EntityCollectionIndex : Equatable {
 
 // MARK: - Comparable
 
-extension EntityCollectionIndex : Comparable {
+extension EntityCollectionIndex: Comparable {
 
     /// This function is the only requirement of the `Comparable` protocol.
     /// The remainder of the relational operator functions are implemented
@@ -216,8 +226,8 @@ extension EntityCollectionIndex : Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument is less than the second
-    ///            argument; false if not.
+    /// - Returns: `true` if the first argument is less than the second
+    ///            argument; `false` if not.
     public static func < (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index < rhs.index
     }
@@ -228,8 +238,8 @@ extension EntityCollectionIndex : Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument is less than or equal the
-    ///            second argument; false if not.
+    /// - Returns: `true` if the first argument is less than or equal the
+    ///            second argument; `false` if not.
     public static func <= (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index <= rhs.index
     }
@@ -240,8 +250,8 @@ extension EntityCollectionIndex : Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument is greater than or equal the
-    ///            second argument; false if not.
+    /// - Returns: `true` if the first argument is greater than or equal the
+    ///            second argument; `false` if not.
     public static func >= (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index >= rhs.index
     }
@@ -252,8 +262,8 @@ extension EntityCollectionIndex : Comparable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    /// - Returns: true if the first argument is greater than the second
-    ///            argument; false if not.
+    /// - Returns: `true` if the first argument is greater than the second
+    ///            argument; `false` if not.
     public static func > (lhs: EntityCollectionIndex, rhs: EntityCollectionIndex) -> Bool {
         return lhs.index > rhs.index
     }
