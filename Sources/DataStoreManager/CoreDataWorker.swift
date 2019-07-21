@@ -98,7 +98,8 @@ extension DataStoreManager {
                     }
                 }
             } else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is managedContext from coreDataManagedObjectContext."))
+                let detail = "The missing data source is managedContext from coreDataManagedObjectContext."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(nil, nil, error)
             }
         }
@@ -150,13 +151,15 @@ extension DataStoreManager {
                         }
                     }
 
-                    let error = ErrorObject(protocol: .deleteFailed(detail: "The recordID is not found in \(records.description)."))
+                    let detail = "The recordID is not found in \(records.description)."
+                    let error = ErrorObject(protocol: .deleteFailed(detail: detail))
                     DispatchQueue.main.async {
                         completionHandler(false, nil, error)
                     }
                 }
             } else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is managedContext from coreDataManagedObjectContext."))
+                let detail = "The missing data source is managedContext from coreDataManagedObjectContext."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(false, nil, error)
             }
         }
@@ -202,7 +205,8 @@ extension DataStoreManager {
                     }
                 }
             } else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is managedContext from coreDataManagedObjectContext."))
+                let detail = "The missing data source is managedContext from coreDataManagedObjectContext."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(false, nil, error)
             }
         }
@@ -222,7 +226,8 @@ extension DataStoreManager {
             if let context = managedContext {
                 saveRecord(managedObject, context: context, objectID: nil, completionHandler: completionHandler)
             } else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is managedContext from coreDataManagedObjectContext."))
+                let detail = "The missing data source is managedContext from coreDataManagedObjectContext."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(false, nil, error)
             }
         }

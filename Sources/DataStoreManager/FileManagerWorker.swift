@@ -175,7 +175,8 @@ extension DataStoreManager {
                     delete(forKey: fileName, forDirectory: directory, completionHandler: completionHandler)
                 }
             } else {
-                let error = ErrorObject(protocol: .directoryListNotAvailable(detail: "The URL is \(url.description)."))
+                let detail = "The URL is \(url.description)."
+                let error = ErrorObject(protocol: .directoryListNotAvailable(detail: detail))
                 completionHandler(false, nil, error)
             }
         }

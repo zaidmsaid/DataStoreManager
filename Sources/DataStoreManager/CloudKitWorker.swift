@@ -122,7 +122,8 @@ extension DataStoreManager {
                 if !self.allowsDuplicateKey {
                     for record in records {
                         if let _ = record.object(forKey: key) as? T {
-                            let error = ErrorObject(protocol: .duplicateObject(detail: "The key is \(key)."))
+                            let detail = "The key is \(key)."
+                            let error = ErrorObject(protocol: .duplicateObject(detail: detail))
                             completionHandler(false, record.recordID, error)
                             return
                         }
@@ -270,7 +271,8 @@ extension DataStoreManager {
                         }
                     }
 
-                    let error = ErrorObject(protocol: .deleteFailed(detail: "The recordID is not found in \(records.description)."))
+                    let detail = "The recordID is not found in \(records.description)."
+                    let error = ErrorObject(protocol: .deleteFailed(detail: detail))
                     DispatchQueue.main.async {
                         completionHandler(false, nil, error)
                     }
@@ -288,7 +290,8 @@ extension DataStoreManager {
             ) {
 
             guard let recordType = self.recordType else {
-                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: "The missing data source is recordType from cloudKitContainerRecordType."))
+                let detail = "The missing data source is recordType from cloudKitContainerRecordType."
+                let error = ErrorObject(protocol: .datasourceNotAvailable(detail: detail))
                 completionHandler(false, nil, error)
                 return
             }
