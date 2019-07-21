@@ -57,7 +57,8 @@ extension DataStoreManager {
         var dataStoreManager: DataStoreManager?
 
         private var genericKeychainService: String {
-            if let manager = dataStoreManager, let service = manager.dataSource?.genericKeychainService?(for: manager) {
+            if let manager = dataStoreManager,
+                let service = manager.dataSource?.genericKeychainService?(for: manager) {
                 return service
             }
             return Bundle.main.bundleIdentifier ?? "DataStoreManager"
@@ -92,7 +93,8 @@ extension DataStoreManager {
         }
 
         private var isSynchronizable: Bool {
-            if let manager = dataStoreManager, let isSynchronizable = manager.dataSource?.keychainIsSynchronizable?(for: manager) {
+            if let manager = dataStoreManager,
+                let isSynchronizable = manager.dataSource?.keychainIsSynchronizable?(for: manager) {
                 return isSynchronizable
             }
             return false
@@ -120,7 +122,11 @@ extension DataStoreManager {
             object: Any,
             forKey key: String,
             forItemClass itemClass: ItemClass,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             create(object, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
@@ -129,7 +135,11 @@ extension DataStoreManager {
         func read(
             forKey key: String,
             forItemClass itemClass: ItemClass,
-            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ object: Any?,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             var query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
@@ -160,7 +170,11 @@ extension DataStoreManager {
             object: Any,
             forKey key: String,
             forItemClass itemClass: ItemClass,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             update(object, forKey: key, forItemClass: itemClass, completionHandler: completionHandler)
@@ -169,7 +183,11 @@ extension DataStoreManager {
         func delete(
             forKey key: String,
             forItemClass itemClass: ItemClass,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
@@ -192,7 +210,11 @@ extension DataStoreManager {
 
         func deleteAll(
             forItemClass itemClass: ItemClass,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             var query = [String: AnyObject]()
@@ -244,8 +266,12 @@ extension DataStoreManager {
             _ value: Any,
             forKey key: String,
             forItemClass itemClass: ItemClass,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?
-            ) -> Void) {
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
+            ) {
 
             var query = getKeychainQuery(forAccount: key, forItemClass: itemClass)
             query[kSecValueData as String] = value as AnyObject
@@ -265,7 +291,11 @@ extension DataStoreManager {
             _ value: Any,
             forKey key: String,
             forItemClass itemClass: ItemClass,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             var newQuery = [String: AnyObject]()

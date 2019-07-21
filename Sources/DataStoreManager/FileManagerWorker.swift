@@ -66,7 +66,11 @@ extension DataStoreManager {
             object: Any,
             forKey fileName: String,
             forDirectory directory: Directory,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
@@ -84,7 +88,11 @@ extension DataStoreManager {
         func read(
             forKey fileName: String,
             forDirectory directory: Directory,
-            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ object: Any?,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             guard let url = getURL(for: directory, withFileName: fileName) else {
@@ -102,7 +110,11 @@ extension DataStoreManager {
             object: Any,
             forKey fileName: String,
             forDirectory directory: Directory,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             // TODO: change to update file logic
@@ -121,7 +133,11 @@ extension DataStoreManager {
         func delete(
             forKey fileName: String,
             forDirectory directory: Directory,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             guard let url = getURL(for: directory, withFileName: fileName)?.appendingPathComponent(fileName) else {
@@ -141,7 +157,11 @@ extension DataStoreManager {
 
         func deleteAll(
             forDirectory directory: Directory,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             guard let url = getURL(for: directory) else {

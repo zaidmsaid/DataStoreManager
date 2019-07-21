@@ -29,13 +29,22 @@ extension DataStoreManager {
         /// Implemented by subclasses to initialize a new object (the
         /// receiver) immediately after memory for it has been allocated.
         init() {
-            NotificationCenter.default.addObserver(self, selector: #selector(onUbiquitousCloudStoreDidChangeExternally(notification:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousCloudStore)
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(onUbiquitousCloudStoreDidChangeExternally(notification:)),
+                name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+                object: ubiquitousCloudStore
+            )
         }
 
         /// A deinitializer is called immediately before a class instance is
         /// deallocated.
         deinit {
-            NotificationCenter.default.removeObserver(self, name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: ubiquitousCloudStore)
+            NotificationCenter.default.removeObserver(
+                self,
+                name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+                object: ubiquitousCloudStore
+            )
         }
 
         // MARK: - Properties
@@ -59,7 +68,11 @@ extension DataStoreManager {
         func create(
             object: Any,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
@@ -67,7 +80,11 @@ extension DataStoreManager {
 
         func read(
             forKey key: String,
-            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ object: Any?,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             ubiquitousCloudStore.synchronize()
@@ -78,7 +95,11 @@ extension DataStoreManager {
         func update(
             object: Any,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
@@ -86,7 +107,11 @@ extension DataStoreManager {
 
         func delete(
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             ubiquitousCloudStore.removeObject(forKey: key)
@@ -95,7 +120,11 @@ extension DataStoreManager {
         }
 
         func deleteAll(
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let keys = ubiquitousCloudStore.dictionaryRepresentation.keys
@@ -109,7 +138,11 @@ extension DataStoreManager {
         private func setValue(
             _ value: Any,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             ubiquitousCloudStore.setValue(value, forKey: key)
@@ -120,7 +153,8 @@ extension DataStoreManager {
         // MARK: - Helpers
 
         @objc private func onUbiquitousCloudStoreDidChangeExternally(notification: Notification) {
-            if let manager = dataStoreManager, let delegate = handler {
+            if let manager = dataStoreManager,
+                let delegate = handler {
                 delegate(manager, notification.userInfo)
             }
         }

@@ -32,7 +32,8 @@ extension DataStoreManager {
         private var managedObject: NSManagedObject? {
             if let context = managedContext, let entity = entityDescription {
                 return NSManagedObject(entity: entity, insertInto: context)
-            } else if let context = managedContext, #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
+            } else if let context = managedContext,
+                #available(iOS 10.0, macOS 10.12, watchOSApplicationExtension 3.0, tvOS 10.0, *) {
                 return NSManagedObject(context: context)
             }
             return nil
@@ -57,7 +58,11 @@ extension DataStoreManager {
         func create<T>(
             object: T,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
@@ -66,10 +71,15 @@ extension DataStoreManager {
         func read<T>(
             forKey key: String,
             withObjectType objectType: T.Type,
-            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ object: Any?,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
-            if let context = managedContext, let name = entityDescription?.name {
+            if let context = managedContext,
+                let name = entityDescription?.name {
                 getCoreDataRecords(context: context, name: name) { (coreDataRecords, _, error) in
                     guard let records = coreDataRecords else {
                         DispatchQueue.main.async {
@@ -96,7 +106,11 @@ extension DataStoreManager {
         func update<T>(
             object: T,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
@@ -105,7 +119,11 @@ extension DataStoreManager {
         func delete<T>(
             forKey key: String,
             withObjectType objectType: T.Type,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             if let context = managedContext, let name = entityDescription?.name {
@@ -144,7 +162,11 @@ extension DataStoreManager {
         }
 
         func deleteAll(
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             if let context = managedContext, let name = entityDescription?.name {
@@ -188,7 +210,11 @@ extension DataStoreManager {
         private func setValue(
             _ value: Any,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             managedObject?.setValue(value, forKey: key)
@@ -205,7 +231,11 @@ extension DataStoreManager {
             _ managedObject: NSManagedObject?,
             context: NSManagedObjectContext,
             objectID: Any?,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             do {
@@ -229,7 +259,11 @@ extension DataStoreManager {
         private final func getCoreDataRecords(
             context: NSManagedObjectContext,
             name: String,
-            completionHandler: @escaping (_ records: [NSManagedObject]?, _ managedObjectContext: NSManagedObjectContext?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ records: [NSManagedObject]?,
+            _ managedObjectContext: NSManagedObjectContext?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: name)

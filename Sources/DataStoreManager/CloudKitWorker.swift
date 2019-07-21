@@ -54,7 +54,8 @@ extension DataStoreManager {
         var handler: ((DataStoreManager, String) -> CKRecord.ID)?
 
         private var cloudKitContainer: CKContainer {
-            if let manager = dataStoreManager, let containerIdentifier = manager.dataSource?.cloudKitContainerIdentifier?(for: manager) {
+            if let manager = dataStoreManager,
+                let containerIdentifier = manager.dataSource?.cloudKitContainerIdentifier?(for: manager) {
                 return CKContainer(identifier: containerIdentifier)
             }
             return CKContainer.default()
@@ -68,7 +69,8 @@ extension DataStoreManager {
         }
 
         private var predicate: NSPredicate {
-            if let manager = dataStoreManager, let predicate = manager.dataSource?.cloudKitContainerPredicate?(for: manager) {
+            if let manager = dataStoreManager,
+                let predicate = manager.dataSource?.cloudKitContainerPredicate?(for: manager) {
                 return predicate
             }
             return NSPredicate(value: true)
@@ -82,7 +84,8 @@ extension DataStoreManager {
         }
 
         private var allowsDuplicateKey: Bool {
-            if let manager = dataStoreManager, let allowsDuplicateKey = manager.dataSource?.cloudKitContainerAllowsDuplicateKey?(for: manager) {
+            if let manager = dataStoreManager,
+                let allowsDuplicateKey = manager.dataSource?.cloudKitContainerAllowsDuplicateKey?(for: manager) {
                 return allowsDuplicateKey
             }
             return false
@@ -94,7 +97,11 @@ extension DataStoreManager {
             object: T,
             forKey key: String,
             forContainerType containerType: ContainerType,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let recordType = self.recordType ?? key
@@ -130,7 +137,11 @@ extension DataStoreManager {
             forKey key: String,
             withObjectType objectType: T.Type,
             forContainerType containerType: ContainerType,
-            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ object: Any?,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let recordType = self.recordType ?? key
@@ -161,7 +172,11 @@ extension DataStoreManager {
             object: T,
             forKey key: String,
             forContainerType containerType: ContainerType,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let recordType = self.recordType ?? key
@@ -206,7 +221,11 @@ extension DataStoreManager {
             forKey key: String,
             withObjectType objectType: T.Type,
             forContainerType containerType: ContainerType,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let recordType = self.recordType ?? key
@@ -261,7 +280,11 @@ extension DataStoreManager {
 
         func deleteAll(
             forContainerType containerType: ContainerType,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             guard let recordType = self.recordType else {
@@ -307,7 +330,11 @@ extension DataStoreManager {
             forKey key: String,
             forRecordType recordType: String,
             forCloudKitDatabase database: CKDatabase,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let newRecord = CKRecord(recordType: recordType)
@@ -321,7 +348,11 @@ extension DataStoreManager {
             forRecordType recordType: String,
             forRecordID recordID: CKRecord.ID,
             forCloudKitDatabase database: CKDatabase,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let newRecord = CKRecord(recordType: recordType, recordID: recordID)
@@ -332,7 +363,11 @@ extension DataStoreManager {
         private func saveRecord(
             _ newRecord: CKRecord,
             forCloudKitDatabase database: CKDatabase,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             database.save(newRecord) { (record, error) in
@@ -352,7 +387,11 @@ extension DataStoreManager {
         private func delete(
             forRecordID recordID: CKRecord.ID,
             forCloudKitDatabase database: CKDatabase,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             database.delete(withRecordID: recordID, completionHandler: { (recordID, error) in
@@ -398,7 +437,11 @@ extension DataStoreManager {
         private final func getCloudKitRecords(
             forRecordType recordType: String,
             forContainerType containerType: ContainerType,
-            completionHandler: @escaping (_ cloudKitRecords: [CKRecord]?, _ cloudKitDatabase: CKDatabase?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ cloudKitRecords: [CKRecord]?,
+            _ cloudKitDatabase: CKDatabase?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             let query = CKQuery(recordType: recordType, predicate: predicate)

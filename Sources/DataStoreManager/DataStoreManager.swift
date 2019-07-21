@@ -165,7 +165,11 @@ import Foundation
     open func create(
         object: Any,
         forKey key: String,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         create(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
@@ -197,7 +201,11 @@ import Foundation
         object: Any,
         forKey key: String,
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         create(object, forKey: key, forStorageType: storageType, completionHandler: completionHandler)
@@ -228,7 +236,11 @@ import Foundation
     open func read<T>(
         forKey key: String,
         withObjectType objectType: T.Type,
-        completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ object: Any?,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
@@ -261,7 +273,11 @@ import Foundation
         forKey key: String,
         withObjectType objectType: T.Type,
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ object: Any?,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         read(key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
@@ -291,7 +307,11 @@ import Foundation
     open func update(
         object: Any,
         forKey key: String,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
@@ -323,7 +343,11 @@ import Foundation
         object: Any,
         forKey key: String,
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         update(object, forKey: key, forStorageType: storageType, completionHandler: completionHandler)
@@ -353,7 +377,11 @@ import Foundation
     open func delete<T>(
         forKey key: String,
         withObjectType objectType: T.Type,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
@@ -385,7 +413,11 @@ import Foundation
         forKey key: String,
         withObjectType objectType: T.Type,
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         delete(key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
@@ -410,7 +442,11 @@ import Foundation
     ///                    object to determine whether a problem has a
     ///                    workaround.
     open func deleteAll(
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         deleteAll(forStorageType: defaultType, completionHandler: completionHandler)
@@ -437,7 +473,11 @@ import Foundation
     ///                    workaround.
     open func deleteAll(
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         deleteAll(storageType, completionHandler: completionHandler)
@@ -467,7 +507,10 @@ import Foundation
     ///                    workaround.
     open func migrateSchema(
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ error: Error?
+        ) -> Void
         ) {
 
         migrateSchema(storageType, completionHandler: completionHandler)
@@ -480,7 +523,11 @@ private extension DataStoreManager {
         _ object: Any,
         forKey key: String,
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         switch storageType {
@@ -566,7 +613,11 @@ private extension DataStoreManager {
         _ key: String,
         withObjectType objectType: T.Type,
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ object: Any?,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         switch storageType {
@@ -652,7 +703,11 @@ private extension DataStoreManager {
         _ object: Any,
         forKey key: String,
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         switch storageType {
@@ -738,7 +793,11 @@ private extension DataStoreManager {
         _ key: String,
         withObjectType objectType: T.Type,
         forStorageType storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         switch storageType {
@@ -822,7 +881,11 @@ private extension DataStoreManager {
 
     func deleteAll(
         _ storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ objectID: Any?,
+        _ error: Error?
+        ) -> Void
         ) {
 
         switch storageType {
@@ -906,7 +969,10 @@ private extension DataStoreManager {
 
     func migrateSchema(
         _ storageType: DataStoreStorageType,
-        completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void
+        completionHandler: @escaping (
+        _ isSuccessful: Bool,
+        _ error: Error?
+        ) -> Void
         ) {
 
         let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"

@@ -48,7 +48,8 @@ import CloudKit
     ///   - type: A storage type constant.
     @objc optional func dataStoreManager(
         _ manager: DataStoreManager,
-        performMigrationFromOldVersion oldVersion: Int, forType type: DataStoreStorageType
+        performMigrationFromOldVersion oldVersion: Int,
+        forType type: DataStoreStorageType
     )
 
     // MARK: Cache

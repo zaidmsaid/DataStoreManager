@@ -35,7 +35,12 @@ extension DataStoreManager {
         /// receiver) immediately after memory for it has been allocated.
         init() {
             #if os(iOS) || os(tvOS)
-            NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(didReceiveMemoryWarning),
+                name: UIApplication.didReceiveMemoryWarningNotification,
+                object: nil
+            )
             #endif
         }
 
@@ -43,7 +48,11 @@ extension DataStoreManager {
         /// deallocated.
         deinit {
             #if os(iOS) || os(tvOS)
-            NotificationCenter.default.removeObserver(self, name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+            NotificationCenter.default.removeObserver(
+                self,
+                name: UIApplication.didReceiveMemoryWarningNotification,
+                object: nil
+            )
             #endif
         }
 
@@ -69,14 +78,16 @@ extension DataStoreManager {
         }()
 
         private var totalCostLimit: Int {
-            if let manager = dataStoreManager, let totalCostLimit = manager.dataSource?.cacheTotalCostLimit?(for: manager) {
+            if let manager = dataStoreManager,
+                let totalCostLimit = manager.dataSource?.cacheTotalCostLimit?(for: manager) {
                 return totalCostLimit
             }
             return 0
         }
 
         private var countLimit: Int {
-            if let manager = dataStoreManager, let countLimit = manager.dataSource?.cacheCountLimit?(for: manager) {
+            if let manager = dataStoreManager,
+                let countLimit = manager.dataSource?.cacheCountLimit?(for: manager) {
                 return countLimit
             }
             return 0
@@ -89,7 +100,11 @@ extension DataStoreManager {
         func create(
             object: Any,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
@@ -97,7 +112,11 @@ extension DataStoreManager {
 
         func read(
             forKey key: String,
-            completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ object: Any?,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             lock.lock()
@@ -109,7 +128,11 @@ extension DataStoreManager {
         func update(
             object: Any,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             setValue(object, forKey: key, completionHandler: completionHandler)
@@ -117,7 +140,11 @@ extension DataStoreManager {
 
         func delete(
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             lock.lock()
@@ -127,7 +154,11 @@ extension DataStoreManager {
         }
 
         func deleteAll(
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             lock.lock()
@@ -139,7 +170,11 @@ extension DataStoreManager {
         private func setValue(
             _ value: Any,
             forKey key: String,
-            completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void
+            completionHandler: @escaping (
+            _ isSuccessful: Bool,
+            _ objectID: Any?,
+            _ error: Error?
+            ) -> Void
             ) {
 
             if let object = value as? NSObject {

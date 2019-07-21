@@ -236,22 +236,70 @@ extension ErrorProtocol: CaseIterable {
     /// Setup entities before ErrorProtocol receives its first message.
     public static func setupEntities() {
 
-        ErrorProtocol.entities.add(value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue, forKey: ErrorProtocol.bundleIdentifierNotAvailable)
-        ErrorProtocol.entities.add(value: ErrorProtocol.platformNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformNotSupported(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue, forKey: ErrorProtocol.platformVersionNotSupported(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.invalidStorageType.rawValue, forKey: ErrorProtocol.invalidStorageType)
-        ErrorProtocol.entities.add(value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue, forKey: ErrorProtocol.lowerSchemaVersion(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.datasourceNotAvailable(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.createFailed(detail: "").rawValue, forKey: ErrorProtocol.createFailed(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.readFailed(detail: "").rawValue, forKey: ErrorProtocol.readFailed(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.updateFailed(detail: "").rawValue, forKey: ErrorProtocol.updateFailed(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.deleteFailed(detail: "").rawValue, forKey: ErrorProtocol.deleteFailed(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.duplicateObject(detail: "").rawValue, forKey: ErrorProtocol.duplicateObject(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.directoryURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryURLNotAvailable)
-        ErrorProtocol.entities.add(value: ErrorProtocol.directoryFullURLNotAvailable.rawValue, forKey: ErrorProtocol.directoryFullURLNotAvailable)
-        ErrorProtocol.entities.add(value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue, forKey: ErrorProtocol.directoryListNotAvailable(detail: ""))
-        ErrorProtocol.entities.add(value: ErrorProtocol.databaseNotAvailable.rawValue, forKey: ErrorProtocol.databaseNotAvailable)
-        ErrorProtocol.entities.add(value: ErrorProtocol.unknownRepresentation.rawValue, forKey: ErrorProtocol.unknownRepresentation)
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.bundleIdentifierNotAvailable.rawValue,
+            forKey: ErrorProtocol.bundleIdentifierNotAvailable
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.platformNotSupported(detail: "").rawValue,
+            forKey: ErrorProtocol.platformNotSupported(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.platformVersionNotSupported(detail: "").rawValue,
+            forKey: ErrorProtocol.platformVersionNotSupported(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.invalidStorageType.rawValue,
+            forKey: ErrorProtocol.invalidStorageType
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.lowerSchemaVersion(detail: "").rawValue,
+            forKey: ErrorProtocol.lowerSchemaVersion(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.datasourceNotAvailable(detail: "").rawValue,
+            forKey: ErrorProtocol.datasourceNotAvailable(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.createFailed(detail: "").rawValue,
+            forKey: ErrorProtocol.createFailed(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.readFailed(detail: "").rawValue,
+            forKey: ErrorProtocol.readFailed(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.updateFailed(detail: "").rawValue,
+            forKey: ErrorProtocol.updateFailed(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.deleteFailed(detail: "").rawValue,
+            forKey: ErrorProtocol.deleteFailed(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.duplicateObject(detail: "").rawValue,
+            forKey: ErrorProtocol.duplicateObject(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.directoryURLNotAvailable.rawValue,
+            forKey: ErrorProtocol.directoryURLNotAvailable
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.directoryFullURLNotAvailable.rawValue,
+            forKey: ErrorProtocol.directoryFullURLNotAvailable
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.directoryListNotAvailable(detail: "").rawValue,
+            forKey: ErrorProtocol.directoryListNotAvailable(detail: "")
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.databaseNotAvailable.rawValue,
+            forKey: ErrorProtocol.databaseNotAvailable
+        )
+        ErrorProtocol.entities.add(
+            value: ErrorProtocol.unknownRepresentation.rawValue,
+            forKey: ErrorProtocol.unknownRepresentation
+        )
     }
 }
 

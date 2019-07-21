@@ -158,21 +158,66 @@ extension DataStoreStorageType: CaseIterable {
     /// message.
     public static func setupEntities() {
 
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.userDefaults.rawValue, forKey: DataStoreStorageType.userDefaults)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.documentDirectory.rawValue, forKey: DataStoreStorageType.documentDirectory)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.userDirectory.rawValue, forKey: DataStoreStorageType.userDirectory)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.libraryDirectory.rawValue, forKey: DataStoreStorageType.libraryDirectory)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.applicationDirectory.rawValue, forKey: DataStoreStorageType.applicationDirectory)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.coreServiceDirectory.rawValue, forKey: DataStoreStorageType.coreServiceDirectory)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.temporaryDirectory.rawValue, forKey: DataStoreStorageType.temporaryDirectory)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.cache.rawValue, forKey: DataStoreStorageType.cache)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.genericKeychain.rawValue, forKey: DataStoreStorageType.genericKeychain)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.internetKeychain.rawValue, forKey: DataStoreStorageType.internetKeychain)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.coreData.rawValue, forKey: DataStoreStorageType.coreData)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.privateCloudDatabase.rawValue, forKey: DataStoreStorageType.privateCloudDatabase)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.publicCloudDatabase.rawValue, forKey: DataStoreStorageType.publicCloudDatabase)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.sharedCloudDatabase.rawValue, forKey: DataStoreStorageType.sharedCloudDatabase)
-        DataStoreStorageType.entities.add(value: DataStoreStorageType.ubiquitousCloudStore.rawValue, forKey: DataStoreStorageType.ubiquitousCloudStore)
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.userDefaults.rawValue,
+            forKey: DataStoreStorageType.userDefaults
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.documentDirectory.rawValue,
+            forKey: DataStoreStorageType.documentDirectory
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.userDirectory.rawValue,
+            forKey: DataStoreStorageType.userDirectory
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.libraryDirectory.rawValue,
+            forKey: DataStoreStorageType.libraryDirectory
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.applicationDirectory.rawValue,
+            forKey: DataStoreStorageType.applicationDirectory
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.coreServiceDirectory.rawValue,
+            forKey: DataStoreStorageType.coreServiceDirectory
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.temporaryDirectory.rawValue,
+            forKey: DataStoreStorageType.temporaryDirectory
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.cache.rawValue,
+            forKey: DataStoreStorageType.cache
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.genericKeychain.rawValue,
+            forKey: DataStoreStorageType.genericKeychain
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.internetKeychain.rawValue,
+            forKey: DataStoreStorageType.internetKeychain
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.coreData.rawValue,
+            forKey: DataStoreStorageType.coreData
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.privateCloudDatabase.rawValue,
+            forKey: DataStoreStorageType.privateCloudDatabase
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.publicCloudDatabase.rawValue,
+            forKey: DataStoreStorageType.publicCloudDatabase
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.sharedCloudDatabase.rawValue,
+            forKey: DataStoreStorageType.sharedCloudDatabase
+        )
+        DataStoreStorageType.entities.add(
+            value: DataStoreStorageType.ubiquitousCloudStore.rawValue,
+            forKey: DataStoreStorageType.ubiquitousCloudStore
+        )
     }
 }
 
