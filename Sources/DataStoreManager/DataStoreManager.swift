@@ -191,6 +191,265 @@ import Foundation
     ///                    workaround.
     open func create(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
+        create(object, forKey: key, forStorageType: storageType, completionHandler: completionHandler)
+    }
+
+    /// Returns the object associated with the specified key.
+    ///
+    /// - Parameters:
+    ///   - key: The key to identify the data store manager object.
+    ///   - objectType: The type of object for the property identified by
+    ///                 key.
+    ///   - completionHandler: The block to execute with the associated
+    ///                        object. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter object: The object associated with the specified key, or
+    ///                     `nil` if the key was not found.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
+    ///                       type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies
+    ///                       a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func read<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+
+        read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
+    }
+
+    /// Returns the object associated with the specified key.
+    ///
+    /// - Parameters:
+    ///   - key: The key to identify the data store manager object.
+    ///   - objectType: The type of object for the property identified by
+    ///                 key.
+    ///   - storageType: A storage type constant.
+    ///   - completionHandler: The block to execute with the associated
+    ///                        object. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter object: The object associated with the specified key, or
+    ///                     `nil` if the key was not found.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
+    ///                       type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies
+    ///                       a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func read<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+
+        read(key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
+    }
+
+    /// Update the property of the receiver specified by a given key to a
+    /// given object.
+    ///
+    /// - Parameters:
+    ///   - object: The object for the property identified by key.
+    ///   - key: The name of one of the receiver's properties.
+    ///   - completionHandler: The block to execute with the successful
+    ///                        flag. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
+    ///                       type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies
+    ///                       a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+        update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
+    }
+
+    /// Update the property of the receiver specified by a given key to a
+    /// given object.
+    ///
+    /// - Parameters:
+    ///   - object: The object for the property identified by key.
+    ///   - key: The key to identify the data store manager object.
+    ///   - storageType: A storage type constant.
+    ///   - completionHandler: The block to execute with the successful
+    ///                        flag. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
+    ///                       type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies
+    ///                       a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+        update(object, forKey: key, forStorageType: storageType, completionHandler: completionHandler)
+    }
+
+    /// Removes the object of the specified default key.
+    ///
+    /// - Parameters:
+    ///   - key: The key to identify the data store manager object.
+    ///   - objectType: The type of object for the property identified by
+    ///                 key.
+    ///   - completionHandler: The block to execute with the successful
+    ///                        flag. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
+    ///                       type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies
+    ///                       a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+        delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
+    }
+
+    /// Removes the object of the specified default key.
+    ///
+    /// - Parameters:
+    ///   - key: The key to identify the data store manager object.
+    ///   - objectType: The type of object for the property identified by
+    ///                 key.
+    ///   - storageType: A storage type constant.
+    ///   - completionHandler: The block to execute with the successful
+    ///                        flag. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
+    ///                       type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies
+    ///                       a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+        delete(key, withObjectType: objectType, forStorageType: storageType, completionHandler: completionHandler)
+    }
+
+    /// Empties the data store manager for the given type.
+    ///
+    /// - Parameters:
+    ///   - completionHandler: The block to execute with the successful
+    ///                        flag. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
+    ///                       type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies
+    ///                       a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+        deleteAll(forStorageType: defaultType, completionHandler: completionHandler)
+    }
+
+    /// Empties the data store manager for the given type.
+    ///
+    /// - Parameters:
+    ///   - storageType: A storage type constant.
+    ///   - completionHandler: The block to execute with the successful
+    ///                        flag. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
+    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
+    ///                       type is
+    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
+    ///                       and it is the object that uniquely identifies
+    ///                       a record in a database.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
+        deleteAll(storageType, completionHandler: completionHandler)
+    }
+
+    // MARK: - Migrate
+
+    /// Migrate the schema if the version differs.
+    ///
+    /// Call this function at the point where you app can migrate the
+    /// schema. It will check first if the schema version is the same or
+    /// not.If the schema needs to be migrated, it will call
+    /// [dataStoreManager(_:performMigrationFromOldVersion:forType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:)
+    /// delegate method.
+    ///
+    /// - Parameters:
+    ///   - storageType: A storage type constant.
+    ///   - completionHandler: The block to execute with the successful
+    ///                        flag. This block is executed asynchronously
+    ///                        on your app's main thread. The block has no
+    ///                        return value and takes the following
+    ///                        parameter:
+    /// - Parameter isSuccessful: `true` on successful; `false` if not.
+    /// - Parameter error: An error object, or `nil` if it was completed
+    ///                    successfully. Use the information in the error
+    ///                    object to determine whether a problem has a
+    ///                    workaround.
+    open func migrateSchema(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
+
+        let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"
+
+        let oldSchemaVersion = UserDefaults.standard.integer(forKey: key)
+        let newSchemaVersion = dataSource?.dataStoreManager?(self, currentSchemaVersionForType: storageType) ?? 0
+
+        if oldSchemaVersion < newSchemaVersion {
+            delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: storageType)
+            UserDefaults.standard.set(newSchemaVersion, forKey: key)
+            completionHandler(true, nil)
+
+        } else if oldSchemaVersion > newSchemaVersion {
+            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: "The oldSchemaVersion is \(oldSchemaVersion), newSchemaVersion is \(newSchemaVersion)."))
+            completionHandler(false, error)
+
+        } else {
+            completionHandler(true, nil)
+        }
+    }
+}
+
+private extension DataStoreManager {
+
+    func create(_ object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+
         switch storageType {
         case .userDefaults:
             userDefaultsWorker.create(object: object, forKey: key, completionHandler: completionHandler)
@@ -270,57 +529,7 @@ import Foundation
         }
     }
 
-    /// Returns the object associated with the specified key.
-    ///
-    /// - Parameters:
-    ///   - key: The key to identify the data store manager object.
-    ///   - objectType: The type of object for the property identified by
-    ///                 key.
-    ///   - completionHandler: The block to execute with the associated
-    ///                        object. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter object: The object associated with the specified key, or
-    ///                     `nil` if the key was not found.
-    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
-    ///                       type is
-    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
-    ///                       and it is the object that uniquely identifies
-    ///                       a record in a database.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func read<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
-
-        read(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
-    }
-
-    /// Returns the object associated with the specified key.
-    ///
-    /// - Parameters:
-    ///   - key: The key to identify the data store manager object.
-    ///   - objectType: The type of object for the property identified by
-    ///                 key.
-    ///   - storageType: A storage type constant.
-    ///   - completionHandler: The block to execute with the associated
-    ///                        object. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter object: The object associated with the specified key, or
-    ///                     `nil` if the key was not found.
-    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
-    ///                       type is
-    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
-    ///                       and it is the object that uniquely identifies
-    ///                       a record in a database.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func read<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
+    func read<T>(_ key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ object: Any?, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -401,55 +610,7 @@ import Foundation
         }
     }
 
-    /// Update the property of the receiver specified by a given key to a
-    /// given object.
-    ///
-    /// - Parameters:
-    ///   - object: The object for the property identified by key.
-    ///   - key: The name of one of the receiver's properties.
-    ///   - completionHandler: The block to execute with the successful
-    ///                        flag. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter isSuccessful: `true` on successful; `false` if not.
-    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
-    ///                       type is
-    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
-    ///                       and it is the object that uniquely identifies
-    ///                       a record in a database.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func update(object: Any, forKey key: String, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
-
-        update(object: object, forKey: key, forStorageType: defaultType, completionHandler: completionHandler)
-    }
-
-    /// Update the property of the receiver specified by a given key to a
-    /// given object.
-    ///
-    /// - Parameters:
-    ///   - object: The object for the property identified by key.
-    ///   - key: The key to identify the data store manager object.
-    ///   - storageType: A storage type constant.
-    ///   - completionHandler: The block to execute with the successful
-    ///                        flag. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter isSuccessful: `true` on successful; `false` if not.
-    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
-    ///                       type is
-    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
-    ///                       and it is the object that uniquely identifies
-    ///                       a record in a database.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func update(object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    func update(_ object: Any, forKey key: String, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -530,55 +691,7 @@ import Foundation
         }
     }
 
-    /// Removes the object of the specified default key.
-    ///
-    /// - Parameters:
-    ///   - key: The key to identify the data store manager object.
-    ///   - objectType: The type of object for the property identified by
-    ///                 key.
-    ///   - completionHandler: The block to execute with the successful
-    ///                        flag. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter isSuccessful: `true` on successful; `false` if not.
-    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
-    ///                       type is
-    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
-    ///                       and it is the object that uniquely identifies
-    ///                       a record in a database.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
-
-        delete(forKey: key, withObjectType: objectType, forStorageType: defaultType, completionHandler: completionHandler)
-    }
-
-    /// Removes the object of the specified default key.
-    ///
-    /// - Parameters:
-    ///   - key: The key to identify the data store manager object.
-    ///   - objectType: The type of object for the property identified by
-    ///                 key.
-    ///   - storageType: A storage type constant.
-    ///   - completionHandler: The block to execute with the successful
-    ///                        flag. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter isSuccessful: `true` on successful; `false` if not.
-    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
-    ///                       type is
-    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
-    ///                       and it is the object that uniquely identifies
-    ///                       a record in a database.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func delete<T>(forKey key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    func delete<T>(_ key: String, withObjectType objectType: T.Type, forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -659,49 +772,7 @@ import Foundation
         }
     }
 
-    /// Empties the data store manager for the given type.
-    ///
-    /// - Parameters:
-    ///   - completionHandler: The block to execute with the successful
-    ///                        flag. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter isSuccessful: `true` on successful; `false` if not.
-    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
-    ///                       type is
-    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
-    ///                       and it is the object that uniquely identifies
-    ///                       a record in a database.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func deleteAll(completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
-
-        deleteAll(forStorageType: defaultType, completionHandler: completionHandler)
-    }
-
-    /// Empties the data store manager for the given type.
-    ///
-    /// - Parameters:
-    ///   - storageType: A storage type constant.
-    ///   - completionHandler: The block to execute with the successful
-    ///                        flag. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter isSuccessful: `true` on successful; `false` if not.
-    /// - Parameter objectID: The unique ID of the object. For CloudKit, the
-    ///                       type is
-    ///                       [CKRecord.ID](apple-reference-documentation://hsWjEyXEsV)
-    ///                       and it is the object that uniquely identifies
-    ///                       a record in a database.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func deleteAll(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
+    func deleteAll(_ storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ objectID: Any?, _ error: Error?) -> Void) {
 
         switch storageType {
         case .userDefaults:
@@ -779,49 +850,6 @@ import Foundation
         default:
             let error = ErrorObject(protocol: .unknownRepresentation)
             completionHandler(false, nil, error)
-        }
-    }
-
-    // MARK: - Migrate
-
-    /// Migrate the schema if the version differs.
-    ///
-    /// Call this function at the point where you app can migrate the
-    /// schema. It will check first if the schema version is the same or
-    /// not.If the schema needs to be migrated, it will call
-    /// [dataStoreManager(_:performMigrationFromOldVersion:forType:)](https://zaidmsaid.github.io/DataStoreManager/Protocols/DataStoreManagerDelegate.html#/c:@M@DataStoreManager@objc(pl)DataStoreManagerDelegate(im)dataStoreManager:performMigrationFromOldVersion:forType:)
-    /// delegate method.
-    ///
-    /// - Parameters:
-    ///   - storageType: A storage type constant.
-    ///   - completionHandler: The block to execute with the successful
-    ///                        flag. This block is executed asynchronously
-    ///                        on your app's main thread. The block has no
-    ///                        return value and takes the following
-    ///                        parameter:
-    /// - Parameter isSuccessful: `true` on successful; `false` if not.
-    /// - Parameter error: An error object, or `nil` if it was completed
-    ///                    successfully. Use the information in the error
-    ///                    object to determine whether a problem has a
-    ///                    workaround.
-    open func migrateSchema(forStorageType storageType: DataStoreStorageType, completionHandler: @escaping (_ isSuccessful: Bool, _ error: Error?) -> Void) {
-
-        let key = "kSchemaVersion|DataStoreManager|\(identifier)|\(storageType.rawValue)"
-
-        let oldSchemaVersion = UserDefaults.standard.integer(forKey: key)
-        let newSchemaVersion = dataSource?.dataStoreManager?(self, currentSchemaVersionForType: storageType) ?? 0
-
-        if oldSchemaVersion < newSchemaVersion {
-            delegate?.dataStoreManager?(self, performMigrationFromOldVersion: oldSchemaVersion, forType: storageType)
-            UserDefaults.standard.set(newSchemaVersion, forKey: key)
-            completionHandler(true, nil)
-
-        } else if oldSchemaVersion > newSchemaVersion {
-            let error = ErrorObject(protocol: .lowerSchemaVersion(detail: "The oldSchemaVersion is \(oldSchemaVersion), newSchemaVersion is \(newSchemaVersion)."))
-            completionHandler(false, error)
-
-        } else {
-            completionHandler(true, nil)
         }
     }
 }
